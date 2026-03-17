@@ -44,30 +44,25 @@
             <br>
 
             <div style="white-space: pre; line-height: 1.4; overflow-x: auto;">
-                <span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span
-                    class="c-yellow">visitor</span>) {
-                <span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
-                <span class="c-magenta">return</span> <a href="https://github.com/{{ site.github_username }}"
-                    target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
-                }
-                <span class="c-magenta">return</span> <span class="c-green">'Thanks for visiting!'</span>;
-                }
+<span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span class="c-yellow">visitor</span>) {
+<span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
+<span class="c-magenta">return</span> <a href="https://github.com/gu0bug" target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
+}
+<span class="c-magenta">return</span> <span class="c-green">'Thanks for visiting!'</span>;
+}
             </div>
         </aside>
 
-        <!-- 主要内容 -->
         <main class="main-content">
             <div class="content-section">
-                <span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{
-                    site.github_username }}{% else %}guest{% endif %}{% if page.url == '/' %}/index.md{% else %}{{
-                    page.url | replace: '.html', '.md' | remove_first: '/' }}{% endif %}</span>
+<span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{ site.github_username }}{% else %}guest{% endif %}/{{ page.path }}</span>
 
-                <span class="c-dim">Initializing...</span>
+<span class="c-dim">Initializing...</span>
 
-                {{ content }}
+{{ content }}
 
-                <br>
-                <span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
+<br>
+<span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
             </div>
             
             <footer style="margin-top: 40px; border-top: 1px dashed var(--ansi-dim); padding-top: 20px; font-size: 12px;">
