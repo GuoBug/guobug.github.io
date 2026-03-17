@@ -2,7 +2,7 @@
 layout: default
 title: HOME
 ---
-<span class="c-magenta">#</span> <span class="c-green">PM游牧手记 (PM Nomad Notes)</span>
+<span class="c-magenta">#</span> <span class="c-green">Gu0Bug</span>
 
 这里是独立数字空间的节点。记录从企业体制过渡至远程游牧状态的实践数据。
 
