@@ -1,0 +1,16 @@
+# 站点全局配置文件
+# 修改这里的设置后，全站所有页面会自动生效
+
+title: "YOUR_HANDLE · Terminal"
+description: "A terminal-style personal page on GitHub Pages."
+author: "YOUR_NAME"
+github_username: "YOUR_USERNAME"
+url: "https://YOUR_USERNAME.github.io" # 在这里填入你的实际 GitHub Pages 地址 (如 https://username.github.io)
+baseurl: "" # 如果你的仓库名不是 username.github.io 而是具体的项目名，如 /webpage，请在这里填 "/webpage"
+
+markdown: kramdown
+permalink: /posts/:year/:month/:day/:title/
+
+# 使用到的插件，GitHub Pages 原生支持
+plugins:
+  - jekyll-seo-tag

@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<span class="c-magenta">#</span> <span class="c-green">{{ page.title }}</span>
+
+{{ content }}
+
+<span class="c-dim">--------------------------------------------------</span>
+<ul style="list-style: none; padding: 0;">
+{% for post in site.posts %}
+  <li style="margin-bottom: 1em;">
+    <span class="c-dim">[{{ post.date | date: "%Y-%m-%d" }}]</span> 
+    <a href="{{ post.url | relative_url }}" class="c-cyan">{{ post.title }}</a>
+    <br>
+    <span class="c-dim">{{ post.excerpt | strip_html | truncatewords: 20 }}</span>
+  </li>
+{% endfor %}
+</ul>
