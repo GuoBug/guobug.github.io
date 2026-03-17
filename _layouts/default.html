@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description"
+        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
@@ -16,47 +17,64 @@
         <!-- 侧边栏 -->
         <aside class="sidebar">
             <div class="ascii-logo c-cyan">
- __   ___  __
- \ \ / _ \| |
-  \ V / | | |_
-   \_/|_| |_(_)
+ ____  __  __ 
+|  _ \|  \/  |
+| |_) | |\/| |
+|  __/| |  | |
+|_|   |_|  |_|
             </div>
 
             <div class="c-yellow">[ INDEX ]</div>
             <br>
 
             <ul class="nav-list">
-                <li><a href="{{ '/' | relative_url }}" class="nav-s1 {% if page.url == '/' or page.url == '/index.html' %}active-link{% endif %}">HOME</a></li>
-                <li><a href="{{ '/about/' | relative_url }}" class="nav-s2 {% if page.url == '/about/' %}active-link{% endif %}">ABOUT_ME</a></li>
-                <li><a href="{{ '/projects/' | relative_url }}" class="nav-s3 {% if page.url == '/projects/' %}active-link{% endif %}">PROJECTS</a></li>
-                <li><a href="{{ '/posts/' | relative_url }}" class="nav-s4 {% if page.url contains '/posts/' %}active-link{% endif %}">POSTS</a></li>
-                <li><a href="{{ '/contact/' | relative_url }}" class="nav-s1 {% if page.url == '/contact/' %}active-link{% endif %}">CONTACT</a></li>
+                <li><a href="{{ '/' | relative_url }}"
+                        class="nav-s1 {% if page.url == '/' or page.url == '/index.html' %}active-link{% endif %}">HOME</a>
+                </li>
+                <li><a href="{{ '/about/' | relative_url }}"
+                        class="nav-s2 {% if page.url == '/about/' %}active-link{% endif %}">ABOUT_ME</a></li>
+                <li><a href="{{ '/projects/' | relative_url }}"
+                        class="nav-s3 {% if page.url == '/projects/' %}active-link{% endif %}">PROJECTS</a></li>
+                <li><a href="{{ '/posts/' | relative_url }}"
+                        class="nav-s4 {% if page.url contains '/posts/' %}active-link{% endif %}">POSTS</a></li>
+                <li><a href="{{ '/contact/' | relative_url }}"
+                        class="nav-s1 {% if page.url == '/contact/' %}active-link{% endif %}">CONTACT</a></li>
             </ul>
 
             <br>
 
             <div style="white-space: pre; line-height: 1.4; overflow-x: auto;">
-<span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span class="c-yellow">visitor</span>) {
-<span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
-<span class="c-magenta">return</span> <a href="https://github.com/{{ site.github_username }}" target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
-}
-<span class="c-magenta">return</span> <span class="c-green">'Thanks for visiting!'</span>;
-}</div>
+                <span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span
+                    class="c-yellow">visitor</span>) {
+                <span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
+                <span class="c-magenta">return</span> <a href="https://github.com/{{ site.github_username }}"
+                    target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
+                }
+                <span class="c-magenta">return</span> <span class="c-green">'Thanks for visiting!'</span>;
+                }
+            </div>
         </aside>
 
         <!-- 主要内容 -->
         <main class="main-content">
             <div class="content-section">
-<span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{ site.github_username }}{% else %}guest{% endif %}{% if page.url == '/' %}/index.md{% else %}{{ page.url | replace: '.html', '.md' | remove_first: '/' }}{% endif %}</span>
+                <span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{
+                    site.github_username }}{% else %}guest{% endif %}{% if page.url == '/' %}/index.md{% else %}{{
+                    page.url | replace: '.html', '.md' | remove_first: '/' }}{% endif %}</span>
 
-<span class="c-dim">Initializing...</span>
+                <span class="c-dim">Initializing...</span>
 
-{{ content }}
+                {{ content }}
 
-<br>
-<span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
+                <br>
+                <span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
             </div>
+            
+            <footer style="margin-top: 40px; border-top: 1px dashed var(--ansi-dim); padding-top: 20px; font-size: 12px;">
+                <span class="c-dim">[SYS_ADMIN]</span> <a href="mailto:gu0bug0@gmail.com" class="c-cyan">gu0bug0@gmail.com</a>
+            </footer>
         </main>
     </div>
 </body>
+
 </html>
