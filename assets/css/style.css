@@ -225,9 +225,10 @@ a:hover, .active-link {
         margin-bottom: 10px;
     }
 
-    /* 显示汉堡按钮 */
+    /* 显示汉堡按钮并微调对齐 */
     .hamburger-btn {
         display: block;
+        top: 6px;
     }
 
     /* 默认隐藏可折叠区域 */
