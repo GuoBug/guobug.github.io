@@ -16,8 +16,8 @@
 <body>
     <div class="container">
         <!-- 侧边栏 -->
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">☰</button>
         <aside class="sidebar">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">[more]</button>
             <div class="ascii-logo c-cyan">
  ____  __  __ 
 |  _ \|  \/  |
@@ -82,13 +82,13 @@
             if (btn && panel) {
                 btn.addEventListener('click', function() {
                     panel.classList.toggle('open');
-                    btn.textContent = panel.classList.contains('open') ? '✕' : '☰';
+                    btn.textContent = panel.classList.contains('open') ? '[less]' : '[more]';
                 });
                 // 点击导航链接后自动收起菜单
                 panel.querySelectorAll('a').forEach(function(link) {
                     link.addEventListener('click', function() {
                         panel.classList.remove('open');
-                        btn.textContent = '☰';
+                        btn.textContent = '[more]';
                     });
                 });
             }

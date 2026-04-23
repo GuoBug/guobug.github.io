@@ -175,20 +175,23 @@ a:hover, .active-link {
    ===================================================== */
 .hamburger-btn {
     display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
     background: none;
-    border: 1px dashed var(--ansi-dim);
+    border: none;
     color: var(--ansi-cyan);
-    font-size: 12px;
-    padding: 2px 10px;
+    font-size: 14px;
+    padding: 0;
     cursor: pointer;
     font-family: "Courier New", Courier, monospace;
-    line-height: 1.4;
-    transition: border-color 0.2s;
-    margin-top: 6px;
+    line-height: 1.2;
+    transition: color 0.2s;
 }
 
 .hamburger-btn:hover {
-    border-color: var(--ansi-cyan);
+    color: var(--highlight-text);
 }
 
 /* 侧边栏可折叠部分 */
