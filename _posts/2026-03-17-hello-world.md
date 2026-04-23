@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello World - 第一篇文章
+summary: 在新的 Jekyll 终端风格博客上发布的第一篇文章，支持全站静态生成与自动 sitemap 收录。
 ---
 这是我在新的 Jekyll 终端风格博客上发布的第一篇文章。
 

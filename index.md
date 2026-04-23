@@ -9,9 +9,10 @@ title: HOME
 <span class="c-dim">--------------------------------------------------</span>
 <span class="c-magenta">##</span> <span class="c-yellow">LATEST_LOGS</span>
 
-<span class="c-dim">[2026-03-17]</span> 建立基础终端风格站点架构。
-<span class="c-dim">[2026-02-09]</span> 确认初始线上身份定义与内容定位。
-<span class="c-dim">[2026-01-15]</span> 部署个人知识库系统 <span class="c-cyan">(Obsidian + Git)</span>。
+{% for post in site.posts limit:5 %}
+<div class="log-entry"><span class="c-dim">[{{ post.date | date: "%Y-%m-%d" }}]</span> <a href="{{ post.url | relative_url }}" class="log-title-link"><span class="c-green">{{ post.title }}</span></a>
+{% if post.summary %}<span class="log-summary">  └─ {{ post.summary | truncate: 30 }}</span>{% endif %}</div>
+{% endfor %}
 
 <span class="c-magenta">##</span> <span class="c-yellow">SYS_STATUS</span>
 

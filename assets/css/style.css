@@ -37,13 +37,6 @@ body {
     gap: 50px;
 }
 
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
 .sidebar {
     flex: 0 0 200px;
 }
@@ -152,3 +145,102 @@ a:hover, .active-link {
 .content-section h1, .content-section h2, .content-section h3 { font-weight: normal; margin-top: 1.5em; margin-bottom: 0.5em; font-size: 1em; }
 .content-section ul, .content-section ol { padding-left: 1.5em; list-style-type: none; }
 .content-section ul li::before { content: "- "; color: var(--ansi-magenta); }
+
+/* =====================================================
+   LATEST_LOGS 日志条目样式
+   ===================================================== */
+.log-entry {
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.log-entry .log-summary {
+    color: var(--ansi-dim);
+    font-size: 12px;
+}
+
+.log-entry a.log-title-link {
+    display: inline;
+    transition: none;
+}
+
+.log-entry a.log-title-link:hover {
+    background-color: var(--ansi-cyan);
+    color: var(--bg-color);
+}
+
+/* =====================================================
+   汉堡菜单 - 仅移动端可见
+   ===================================================== */
+.hamburger-btn {
+    display: none;
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 1000;
+    background: none;
+    border: 1px solid var(--ansi-dim);
+    color: var(--ansi-green);
+    font-size: 22px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.hamburger-btn:hover {
+    border-color: var(--ansi-green);
+}
+
+/* 侧边栏可折叠部分 */
+.sidebar-collapsible {
+    display: block;
+}
+
+/* =====================================================
+   响应式 - 小屏幕
+   ===================================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 16px 12px;
+        padding-top: 50px;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sidebar {
+        flex: none;
+        position: relative;
+    }
+
+    /* PM Logo 缩小 */
+    .ascii-logo {
+        font-size: 8px;
+        line-height: 1.1;
+        margin-bottom: 10px;
+    }
+
+    /* 显示汉堡按钮 */
+    .hamburger-btn {
+        display: block;
+    }
+
+    /* 默认隐藏可折叠区域 */
+    .sidebar-collapsible {
+        display: none;
+        padding-top: 10px;
+        border-top: 1px dashed var(--ansi-dim);
+        margin-top: 10px;
+    }
+
+    /* 展开状态 */
+    .sidebar-collapsible.open {
+        display: block;
+        animation: fadeIn 0.15s ease-in;
+    }
+}

@@ -16,6 +16,7 @@
 <body>
     <div class="container">
         <!-- 侧边栏 -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">☰</button>
         <aside class="sidebar">
             <div class="ascii-logo c-cyan">
  ____  __  __ 
@@ -25,34 +26,37 @@
 |_|   |_|  |_|
             </div>
 
-            <div class="c-yellow">[ INDEX ]</div>
-            <br>
+            <div class="sidebar-collapsible" id="sidebarCollapsible">
+                <div class="c-yellow">[ INDEX ]</div>
+                <br>
 
-            <ul class="nav-list">
-                <li><a href="{{ '/' | relative_url }}"
-                        class="nav-s1 {% if page.url == '/' or page.url == '/index.html' %}active-link{% endif %}">HOME</a>
-                </li>
-                <li><a href="{{ '/about/' | relative_url }}"
-                        class="nav-s2 {% if page.url == '/about/' %}active-link{% endif %}">ABOUT_ME</a></li>
-                <li><a href="{{ '/projects/' | relative_url }}"
-                        class="nav-s3 {% if page.url == '/projects/' %}active-link{% endif %}">PROJECTS</a></li>
-                <li><a href="{{ '/posts/' | relative_url }}"
-                        class="nav-s4 {% if page.url contains '/posts/' %}active-link{% endif %}">POSTS</a></li>
-                <li><a href="{{ '/contact/' | relative_url }}"
-                        class="nav-s1 {% if page.url == '/contact/' %}active-link{% endif %}">CONTACT</a></li>
-            </ul>
+                <ul class="nav-list">
+                    <li><a href="{{ '/' | relative_url }}"
+                            class="nav-s1 {% if page.url == '/' or page.url == '/index.html' %}active-link{% endif %}">HOME</a>
+                    </li>
+                    <li><a href="{{ '/about/' | relative_url }}"
+                            class="nav-s2 {% if page.url == '/about/' %}active-link{% endif %}">ABOUT_ME</a></li>
+                    <li><a href="{{ '/projects/' | relative_url }}"
+                            class="nav-s3 {% if page.url == '/projects/' %}active-link{% endif %}">PROJECTS</a></li>
+                    <li><a href="{{ '/posts/' | relative_url }}"
+                            class="nav-s4 {% if page.url contains '/posts/' %}active-link{% endif %}">POSTS</a></li>
+                    <li><a href="{{ '/contact/' | relative_url }}"
+                            class="nav-s1 {% if page.url == '/contact/' %}active-link{% endif %}">CONTACT</a></li>
+                </ul>
 
-            <br>
+                <br>
 
-            <div style="white-space: pre; line-height: 1.4; overflow-x: auto;">
+                <div style="white-space: pre; line-height: 1.4; overflow-x: auto;">
 <span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span class="c-yellow">visitor</span>) {
 <span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
-<span class="c-magenta">return</span> <a href="https://github.com/gu0bug" target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
+<span class="c-magenta">return</span> <a href="https://github.com/{{ site.github_username }}" target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
 }
 <span class="c-magenta">return</span> <span class="c-green">'Thanks for visiting!'</span>;
 }
+                </div>
             </div>
         </aside>
+
 
         <main class="main-content">
             <div class="content-section">
@@ -67,10 +71,29 @@
             </div>
             
             <footer style="margin-top: 40px; border-top: 1px dashed var(--ansi-dim); padding-top: 20px; font-size: 12px;">
-                <span class="c-dim">[SYS_ADMIN]</span> <a href="mailto:gu0bug0@gmail.com" class="c-cyan">gu0bug0@gmail.com</a>
+                <span class="c-dim">[SYS_ADMIN]</span> <a href="mailto:{{ site.email }}" class="c-cyan">{{ site.email }}</a>
             </footer>
         </main>
     </div>
+    <script>
+        (function() {
+            var btn = document.getElementById('hamburgerBtn');
+            var panel = document.getElementById('sidebarCollapsible');
+            if (btn && panel) {
+                btn.addEventListener('click', function() {
+                    panel.classList.toggle('open');
+                    btn.textContent = panel.classList.contains('open') ? '✕' : '☰';
+                });
+                // 点击导航链接后自动收起菜单
+                panel.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        panel.classList.remove('open');
+                        btn.textContent = '☰';
+                    });
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>

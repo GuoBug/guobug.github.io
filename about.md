@@ -6,7 +6,7 @@ permalink: /about/
 <span class="c-magenta">#</span> <span class="c-green">ABOUT_ME</span>
 
 <span class="c-magenta">##</span> <span class="c-yellow">核心参数</span>
-<span class="c-magenta">-</span> 职业序列：<span class="c-cyan">Product Manager</span>
+<span class="c-magenta">-</span> 职业序列：<span class="c-cyan">Product Designer & Manager</span>
 <span class="c-magenta">-</span> 当前状态：Transitioning to Digital Nomad
 <span class="c-magenta">-</span> 核心技能：需求工程、数据分析、敏捷流程、跨文化沟通
 
