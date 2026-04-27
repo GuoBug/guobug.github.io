@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "拒绝官僚主义：我在远程工作流程中发现的 5 个组织进化秘诀"
-date: 2026-04-27 20:00:00 +0800
+date: 2026-04-27 12:00:00 +0800
 categories: [Management, Remote Work]
 tags: [GitLab, Remote Work, Management, Organization]
 ---
