@@ -146,6 +146,10 @@ a:hover, .active-link {
 .content-section ul, .content-section ol { padding-left: 1.5em; list-style-type: none; }
 .content-section ul li::before { content: "- "; color: var(--ansi-magenta); }
 
+/* 文章标题特别突出显示 */
+.post-title { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; line-height: 1.3; }
+.post-date { margin-bottom: 20px; font-size: 0.95em; }
+
 /* =====================================================
    LATEST_LOGS 日志条目样式
    ===================================================== */
