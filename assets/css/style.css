@@ -205,6 +205,10 @@ a:hover, .active-link {
 .nav-s4:hover, .nav-s4.active-link { background-color: var(--ansi-magenta); color: var(--bg-color); }
 .nav-s4:hover::before, .nav-s4.active-link::before { color: var(--bg-color); }
 
+.nav-s5 { color: var(--ansi-cyan); }
+.nav-s5:hover, .nav-s5.active-link { background-color: var(--ansi-cyan); color: var(--bg-color); }
+.nav-s5:hover::before, .nav-s5.active-link::before { color: var(--bg-color); }
+
 .link-inline { display: inline; transition: none; }
 .link-inline:hover, .link-inline.active-link { background-color: var(--ansi-cyan); color: var(--bg-color); }
 .link-inline:hover span, .link-inline.active-link span { color: var(--bg-color); }
