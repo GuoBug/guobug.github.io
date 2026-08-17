@@ -11,6 +11,9 @@
     --ansi-cyan: #22d3ee;
     --ansi-red: #f87171;
     --ansi-dim: #737373;
+
+    --font-mono: "Cascadia Code", "Fira Code", "JetBrains Mono", "Consolas", "Courier New", Courier, monospace;
+    --font-chinese: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Noto Sans SC", sans-serif;
 }
 
 *, *::before, *::after {
@@ -20,15 +23,102 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: "Courier New", Courier, monospace;
+    font-family: var(--font-mono), var(--font-chinese);
     font-size: 14px;
     line-height: 1.6;
     margin: 0;
     padding: 40px 20px;
     display: flex;
     justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+/* =====================================================
+   中英文切换与专属样式排版
+   ===================================================== */
+/* 中文模式排版增强 */
+html[data-lang="zh"], html:not([data-lang="en"]) {
+    letter-spacing: 0.02em;
+}
+
+html[data-lang="zh"] .content-section, html:not([data-lang="en"]) .content-section {
+    line-height: 1.8;
+}
+
+html[data-lang="zh"] .content-section p, html:not([data-lang="en"]) .content-section p {
+    text-align: justify;
+    text-justify: inter-ideograph;
+    line-height: 1.8;
+    margin-bottom: 1.2em;
+}
+
+/* 英文模式排版规范 */
+html[data-lang="en"] {
+    letter-spacing: 0;
+}
+
+html[data-lang="en"] .content-section p {
+    text-align: left;
+    line-height: 1.7;
+    margin-bottom: 1.1em;
+}
+
+/* 行内双语元素控制 */
+html[data-lang="zh"] [data-i18n-en],
+html:not([data-lang="en"]) [data-i18n-en] {
+    display: none !important;
+}
+
+html[data-lang="en"] [data-i18n-zh] {
+    display: none !important;
+}
+
+/* 块级双语容器控制 */
+.lang-block-zh, .lang-block-en {
+    display: block;
+}
+html[data-lang="zh"] .lang-block-en,
+html:not([data-lang="en"]) .lang-block-en {
+    display: none !important;
+}
+html[data-lang="en"] .lang-block-zh {
+    display: none !important;
+}
+
+/* 语言切换按钮组件 */
+.lang-switch-container {
+    font-size: 13px;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--ansi-dim);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 1px 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-radius: 2px;
+}
+
+.lang-btn:hover {
+    color: var(--ansi-cyan);
+    background-color: rgba(34, 211, 238, 0.1);
+}
+
+.lang-btn.active {
+    color: var(--bg-color);
+    background-color: var(--ansi-green);
+    font-weight: bold;
+}
+
+/* =====================================================
+   基础布局与组件
+   ===================================================== */
 .container {
     width: 100%;
     max-width: 900px;
@@ -75,7 +165,7 @@ a:hover, .active-link {
 .ascii-logo {
     font-size: 12px;
     line-height: 1.2;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     white-space: pre;
 }
 
@@ -303,7 +393,7 @@ a:hover, .active-link {
     font-size: 14px;
     padding: 0;
     cursor: pointer;
-    font-family: "Courier New", Courier, monospace;
+    font-family: inherit;
     line-height: 1.2;
     transition: color 0.2s;
 }
