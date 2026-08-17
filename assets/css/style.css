@@ -150,6 +150,29 @@ a:hover, .active-link {
 .post-title { font-size: 1.4em; font-weight: bold; margin-bottom: 5px; line-height: 1.3; }
 .post-date { margin-bottom: 20px; font-size: 0.95em; }
 
+.content-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5em 0;
+    border: 1px dashed var(--ansi-dim);
+    border-radius: 2px;
+}
+
+.content-section blockquote {
+    margin: 1.5em 0;
+    padding: 8px 14px;
+    border-left: 3px solid var(--ansi-yellow);
+    background-color: rgba(252, 211, 77, 0.05);
+    color: var(--text-color);
+}
+
+.content-section hr {
+    border: none;
+    border-top: 1px dashed var(--ansi-dim);
+    margin: 2em 0;
+}
+
 /* Markdown 表格样式 */
 .content-section table {
     width: 100%;
