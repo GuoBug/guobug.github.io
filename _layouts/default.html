@@ -58,14 +58,16 @@
 
         <main class="main-content">
             <div class="content-section">
-<span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{ site.github_username }}{% else %}guest{% endif %}/{{ page.path }}</span>
+                <div class="terminal-meta">
+                    <div><span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{ site.github_username }}{% else %}guest{% endif %}/{{ page.path }}</span></div>
+                    <div class="c-dim" style="margin-top: 2px;">Initializing...</div>
+                </div>
 
-<span class="c-dim">Initializing...</span>
+                {{ content }}
 
-{{ content }}
-
-<br>
-<span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
+                <div class="terminal-prompt">
+                    <span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
+                </div>
             </div>
             
             <footer style="margin-top: 40px; border-top: 1px dashed var(--ansi-dim); padding-top: 20px; font-size: 12px;">

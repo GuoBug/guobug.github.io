@@ -16,6 +16,6 @@ title: HOME
 
 <span class="c-magenta">##</span> <span class="c-yellow">SYS_STATUS</span>
 
-<span class="c-magenta">-</span> 身份定位：支持家族企业稳定运转 / 探索数字游牧
-<span class="c-magenta">-</span> 运作环境：<span class="c-cyan">Distributed / Remote</span>
-<span class="c-magenta">-</span> 核心输出：产品管理、远程工作流、技术实践验证
+- 身份定位：支持家族企业稳定运转 / 探索数字游牧
+- 运作环境：<span class="c-cyan">Distributed / Remote</span>
+- 核心输出：产品管理、远程工作流、技术实践验证
