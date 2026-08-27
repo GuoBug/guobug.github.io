@@ -80,14 +80,6 @@
                 <div class="hero-avatar">
                     <span>GQ</span>
                 </div>
-                <div class="hero-socials">
-                    <a href="https://github.com/gu0bug" target="_blank" rel="noopener noreferrer" class="hero-social-link">
-                        GITHUB ↗
-                    </a>
-                    <a href="mailto:gu0bug0@gmail.com" class="hero-social-link">
-                        EMAIL ↗
-                    </a>
-                </div>
             </div>
 
             <div class="hero-bio">
@@ -115,19 +107,82 @@
                 </div>
             </div>
 
-            <!-- Company Highlights Bar -->
+            <!-- Company Highlights Bar with Official Logos & Hover Popovers -->
             <div class="hero-companies-bar">
-                <div class="company-brand-item">
-                    <span class="company-brand-icon">GL</span>
+                <!-- a. GitLab -->
+                <div class="company-brand-item" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
+                        <path fill="#E24329" d="M12 21.5l3.586-11.037H8.414L12 21.5z"/>
+                        <path fill="#FC6D26" d="M12 21.5L8.414 10.463H1.795L12 21.5z"/>
+                        <path fill="#FCA326" d="M1.795 10.463l-.916 2.82a1.017 1.017 0 00.37 1.137L12 21.5 1.795 10.463z"/>
+                        <path fill="#E24329" d="M1.795 10.463h6.619L5.642 2.404a.51.51 0 00-.967 0L1.795 10.463z"/>
+                        <path fill="#FC6D26" d="M12 21.5l3.586-11.037h6.619L12 21.5z"/>
+                        <path fill="#FCA326" d="M22.205 10.463l.916 2.82a1.017 1.017 0 01-.37 1.137L12 21.5l10.205-11.037z"/>
+                        <path fill="#E24329" d="M22.205 10.463h-6.619l2.772-8.059a.51.51 0 01.967 0l2.88 8.059z"/>
+                    </svg>
                     <span>GitLab</span>
+                    
+                    <div class="company-tooltip">
+                        <div class="company-tooltip-header">
+                            <span class="company-tooltip-role">
+                                <span data-i18n="zh">产品负责人</span>
+                                <span data-i18n="en">Head of Product</span>
+                            </span>
+                            <span class="company-tooltip-badge">GITLAB</span>
+                        </div>
+                        <div class="company-tooltip-desc">
+                            <span data-i18n="zh">负责 GitLab SaaS（CN）、Ops、市场商务合作等。</span>
+                            <span data-i18n="en">Responsible for GitLab SaaS (CN), Ops, and strategic commercial partnerships.</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="company-brand-item">
-                    <span class="company-brand-icon">CT</span>
-                    <span>Ctrip</span>
-                </div>
-                <div class="company-brand-item">
-                    <span class="company-brand-icon">BL</span>
+
+                <!-- b. Bilibili -->
+                <div class="company-brand-item" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
+                        <rect width="24" height="24" rx="6" fill="#00A1D6"/>
+                        <path fill="#FFFFFF" d="M7.5 5.5l2.2 2.2h4.6l2.2-2.2a.75.75 0 111.06 1.06l-1.5 1.5H17a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6a2 2 0 012-2h.94l-1.5-1.5a.75.75 0 011.06-1.06zM7 10v6h10v-6H7zm2.5 2a1 1 0 110 2 1 1 0 010-2zm5 0a1 1 0 110 2 1 1 0 010-2z"/>
+                    </svg>
                     <span>Bilibili</span>
+
+                    <div class="company-tooltip">
+                        <div class="company-tooltip-header">
+                            <span class="company-tooltip-role">
+                                <span data-i18n="zh">移动主站产品</span>
+                                <span data-i18n="en">Mobile Product Lead</span>
+                            </span>
+                            <span class="company-tooltip-badge">BILIBILI</span>
+                        </div>
+                        <div class="company-tooltip-desc">
+                            <span data-i18n="zh">负责 Bilibili 移动站、移动商务需求。</span>
+                            <span data-i18n="en">Leading Bilibili Mobile Web platform & mobile commercial requirements.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- c. Ctrip -->
+                <div class="company-brand-item" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
+                        <rect width="24" height="24" rx="6" fill="#2577E3"/>
+                        <path fill="#FFA500" d="M12 4.5C8.2 4.5 5 7.5 4.6 11.2c1.7-1.1 3.8-1.6 6.1-1.3 2.6.3 4.8 2 5.7 4.5.3-.9.5-1.9.5-3 0-3.8-2.2-6.9-4.9-6.9z"/>
+                        <path fill="#FFFFFF" d="M16.5 14.2c-.8-2-2.5-3.5-4.6-3.7-1.9-.2-3.7.4-5 1.4 1.1 2.3 3.2 4 5.7 4.2 1.5.1 2.8-.5 3.9-1.9z"/>
+                        <circle cx="10" cy="7.5" r="1.2" fill="#FFA500"/>
+                    </svg>
+                    <span>Ctrip</span>
+
+                    <div class="company-tooltip">
+                        <div class="company-tooltip-header">
+                            <span class="company-tooltip-role">
+                                <span data-i18n="zh">产品经理 · 增长黑客</span>
+                                <span data-i18n="en">Product Manager · Growth</span>
+                            </span>
+                            <span class="company-tooltip-badge">CTRIP</span>
+                        </div>
+                        <div class="company-tooltip-desc">
+                            <span data-i18n="zh">负责移动营销需求包含 分销、APP 推广、SEO、SEM、广告平台/API 平台、订单流程优化等。</span>
+                            <span data-i18n="en">Leading mobile growth: distribution, App growth, SEO/SEM, Ad/API platforms, checkout flow optimization.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
