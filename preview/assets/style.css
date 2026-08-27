@@ -145,15 +145,19 @@ body {
     color: var(--foreground);
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    position: relative;
-    padding-bottom: 2px;
-    transition: color 0.15s ease;
+    padding: 0.35rem 0.65rem;
+    border: 2px solid transparent;
+    transition: all 0.15s ease;
+    display: inline-block;
 }
 
-.nav-link:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+.nav-link:hover,
+.nav-link.active-nav {
+    background-color: var(--accent);
+    color: #000000;
+    border-color: var(--border);
+    box-shadow: 2px 2px 0px 0px #000000;
+    text-decoration: none;
 }
 
 .lang-switch {

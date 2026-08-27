@@ -72,10 +72,9 @@
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
             if (href === `#${currentSectionId}`) {
-                link.style.textDecoration = 'underline';
-                link.style.textDecorationThickness = '2px';
+                link.classList.add('active-nav');
             } else {
-                link.style.textDecoration = 'none';
+                link.classList.remove('active-nav');
             }
         });
     }
