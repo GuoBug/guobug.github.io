@@ -5,9 +5,8 @@
 (function () {
     'use strict';
 
-    // 1. Bilingual Language Switcher
-    const DEFAULT_LANG = localStorage.getItem('gu0bug_lang') || 
-        (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'zh');
+    // 1. Bilingual Language Switcher (Default: English)
+    const DEFAULT_LANG = localStorage.getItem('gu0bug_lang') || 'en';
 
     function setLanguage(lang) {
         const activeLang = lang === 'en' ? 'en' : 'zh';

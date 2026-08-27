@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-lang="zh">
+<html lang="en" data-lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -25,20 +25,16 @@
             </a>
 
             <div class="nav-links">
-                <a href="#work" class="nav-link">
-                    <span data-i18n="zh">精选项目</span>
-                    <span data-i18n="en">WORK</span>
-                </a>
                 <a href="#vibe" class="nav-link">
                     <span>VIBE CODING</span>
                 </a>
                 <a href="#writings" class="nav-link">
-                    <span data-i18n="zh">文章观点</span>
+                    <span data-i18n="zh">文章</span>
                     <span data-i18n="en">WRITINGS</span>
                 </a>
-                <a href="#about" class="nav-link">
-                    <span data-i18n="zh">关于</span>
-                    <span data-i18n="en">ABOUT</span>
+                <a href="#work" class="nav-link">
+                    <span data-i18n="zh">精选项目</span>
+                    <span data-i18n="en">WORK</span>
                 </a>
                 <a href="#contact" class="nav-link">
                     <span data-i18n="zh">联系</span>
@@ -47,11 +43,11 @@
             </div>
 
             <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <!-- Language Switcher -->
+                <!-- Language Switcher (Default EN) -->
                 <div class="lang-switch">
-                    <button type="button" class="lang-btn active" data-lang-btn="zh">中文</button>
+                    <button type="button" class="lang-btn" data-lang-btn="zh">中文</button>
                     <span>/</span>
-                    <button type="button" class="lang-btn" data-lang-btn="en">EN</button>
+                    <button type="button" class="lang-btn active" data-lang-btn="en">EN</button>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -63,15 +59,14 @@
     <!-- Mobile Drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <ul class="mobile-nav-list">
-            <li><a href="#work"><span data-i18n="zh">精选项目</span><span data-i18n="en">WORK</span></a></li>
             <li><a href="#vibe">VIBE CODING</a></li>
-            <li><a href="#writings"><span data-i18n="zh">文章观点</span><span data-i18n="en">WRITINGS</span></a></li>
-            <li><a href="#about"><span data-i18n="zh">关于</span><span data-i18n="en">ABOUT</span></a></li>
+            <li><a href="#writings"><span data-i18n="zh">文章</span><span data-i18n="en">WRITINGS</span></a></li>
+            <li><a href="#work"><span data-i18n="zh">精选项目</span><span data-i18n="en">WORK</span></a></li>
             <li><a href="#contact"><span data-i18n="zh">联系</span><span data-i18n="en">CONTACT</span></a></li>
         </ul>
     </div>
 
-    <!-- 2. Hero Section -->
+    <!-- 2. Hero Section (Gu0 Qiang) -->
     <header class="hero-section" id="hero">
         <div class="container">
             <div class="hero-main-title-wrap">
@@ -220,113 +215,7 @@
         </div>
     </header>
 
-    <!-- Marquee Banner 1 -->
-    <div class="marquee-wrapper">
-        <div class="marquee-track">
-            <span>SELECTED WORKS • SYSTEM ARCHITECTURE • PRODUCT STRATEGY • CASE STUDIES • AGILE OPERATIONS •&nbsp;</span>
-            <span>SELECTED WORKS • SYSTEM ARCHITECTURE • PRODUCT STRATEGY • CASE STUDIES • AGILE OPERATIONS •&nbsp;</span>
-        </div>
-    </div>
-
-    <!-- 3. WORK Section -->
-    <section class="section-block" id="work">
-        <div class="container">
-            <div class="section-header">
-                <div>
-                    <h2 class="section-title">Work</h2>
-                </div>
-                <p class="section-subtitle">
-                    <span data-i18n="zh">精选产品架构案例、企业治理方案与数字化系统实践。</span>
-                    <span data-i18n="en">Selected product architectures, enterprise governance frameworks, and digital systems.</span>
-                </p>
-            </div>
-
-            <div class="work-grid">
-                <!-- Case 1 -->
-                <article class="work-card">
-                    <div class="work-visual">
-                        <div class="work-visual-banner">FDE // AI</div>
-                        <div class="work-visual-overlay">CASE STUDY ↗</div>
-                    </div>
-                    <div class="work-details">
-                        <div>
-                            <div class="work-meta">
-                                <span class="work-year-pill">2026</span>
-                                <span class="work-category-tag">Enterprise AI Governance</span>
-                            </div>
-                            <h3 class="work-title">FDE & Enterprise AI Governance</h3>
-                            <p class="work-desc">
-                                <span data-i18n="zh">深度解析前向部署工程师 (Forward Deployed Engineer) 在企业级 AI 落地中的关键作用。如何将大模型能力精准嵌入高价值企业业务流程。</span>
-                                <span data-i18n="en">In-depth analysis of Forward Deployed Engineers (FDE) in enterprise AI adoption. Bridging raw LLM capabilities with complex business logic.</span>
-                            </p>
-                        </div>
-                        <div>
-                            <a href="../posts/2026/08/14/fde-enterprise-governance/" class="work-action-btn">
-                                <span data-i18n="zh">阅读完整架构解析 ↗</span>
-                                <span data-i18n="en">Read Architecture ↗</span>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Case 2 -->
-                <article class="work-card inverted">
-                    <div class="work-visual">
-                        <div class="work-visual-banner">REMOTE // OS</div>
-                        <div class="work-visual-overlay">CASE STUDY ↗</div>
-                    </div>
-                    <div class="work-details">
-                        <div>
-                            <div class="work-meta">
-                                <span class="work-year-pill">2026</span>
-                                <span class="work-category-tag">Workflow & Nomadism</span>
-                            </div>
-                            <h3 class="work-title">Remote PM Operating System</h3>
-                            <p class="work-desc">
-                                <span data-i18n="zh">构建完全脱离地理限制的分布式协同体系。结合 GitLab 全员远程经验，建立以文档驱动为核心的异步沟通协议与高效交付流。</span>
-                                <span data-i18n="en">Building a distributed operating system decoupled from geography. Implementing doc-driven async communication protocols and agile workflows.</span>
-                            </p>
-                        </div>
-                        <div>
-                            <a href="../posts/2026/04/29/gitlab-remote-product-manager/" class="work-action-btn">
-                                <span data-i18n="zh">查看协同协议 ↗</span>
-                                <span data-i18n="en">View Protocols ↗</span>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Case 3 -->
-                <article class="work-card">
-                    <div class="work-visual">
-                        <div class="work-visual-banner">AI // NATIVE</div>
-                        <div class="work-visual-overlay">CASE STUDY ↗</div>
-                    </div>
-                    <div class="work-details">
-                        <div>
-                            <div class="work-meta">
-                                <span class="work-year-pill">2026</span>
-                                <span class="work-category-tag">Product Philosophy</span>
-                            </div>
-                            <h3 class="work-title">True AI-Native Paradigm</h3>
-                            <p class="work-desc">
-                                <span data-i18n="zh">从浅层工具封装跃升至全流程工作流重塑。探讨下一代 AI-Native 软件在需求工程、人机交互与价值交付上的范式转移。</span>
-                                <span data-i18n="en">Moving beyond wrapper tools to complete workflow remodeling. Exploring paradigm shifts in human-AI interaction and value delivery.</span>
-                            </p>
-                        </div>
-                        <div>
-                            <a href="../posts/2026/08/27/what-is-ai-native/" class="work-action-btn">
-                                <span data-i18n="zh">探索范式洞察 ↗</span>
-                                <span data-i18n="en">Explore Insights ↗</span>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marquee Banner 2 (Accent Reverse) -->
+    <!-- Marquee Banner 1 (Accent Reverse) -->
     <div class="marquee-wrapper reverse">
         <div class="marquee-track">
             <span>VIBE CODING • METAPHYSICS • RAPID PROTOTYPES • EXPERIMENTS • CODE SKETCHES • AI TOOLS •&nbsp;</span>
@@ -334,7 +223,7 @@
         </div>
     </div>
 
-    <!-- 4. VIBE CODING Section (Replacing 玄学工具) -->
+    <!-- 3. Section: VIBE CODING (Replaces 玄学工具) -->
     <section class="section-block vibe-section" id="vibe">
         <div class="container">
             <div class="section-header">
@@ -427,7 +316,15 @@
         </div>
     </section>
 
-    <!-- 5. WRITINGS Section -->
+    <!-- Marquee Banner 2 -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <span>WRITINGS • ARTICLES • AI-NATIVE PARADIGMS • REMOTE WORKFLOW • TECH PRACTICES •&nbsp;</span>
+            <span>WRITINGS • ARTICLES • AI-NATIVE PARADIGMS • REMOTE WORKFLOW • TECH PRACTICES •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- 4. Section: WRITINGS (文章) -->
     <section class="section-block" id="writings">
         <div class="container">
             <div class="section-header">
@@ -579,62 +476,171 @@
         </div>
     </section>
 
-    <!-- 6. ABOUT Section -->
-    <section class="section-block" id="about">
+    <!-- Marquee Banner 3 -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <span>SELECTED WORKS • SYSTEM ARCHITECTURE • PRODUCT STRATEGY • CASE STUDIES • AGILE OPERATIONS •&nbsp;</span>
+            <span>SELECTED WORKS • SYSTEM ARCHITECTURE • PRODUCT STRATEGY • CASE STUDIES • AGILE OPERATIONS •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- 5. Section: WORK (精选项目) -->
+    <section class="section-block" id="work">
         <div class="container">
-            <div class="about-grid">
+            <div class="section-header">
                 <div>
-                    <h2 class="about-heading">
-                        About<br>The<br>Process
-                    </h2>
+                    <h2 class="section-title">Work</h2>
                 </div>
-                <div class="about-content">
-                    <div data-i18n="zh">
-                        <p>
-                            站在<strong>产品设计、前沿技术与商业逻辑</strong>的交汇点，我专注于将复杂的业务系统与模糊的需求，转化为清晰、确定且具有商业价值的决策路径。
-                        </p>
-                        <p>
-                            我将<strong>设计</strong>视作一种决策结构，将<strong>AI 与自动化技术</strong>视作人类判断力与直觉创造力的倍增器；而<strong>商业约束</strong>则是打磨创新的磨刀石，而非创新的枷锁。
-                        </p>
-                        <p>
-                            目前，我正致力于验证 <strong>"Local Business Stability + Global Remote Nomadism"</strong> 的混合运作模式，持续探索自由与专注并存的独立数字空间。
-                        </p>
+                <p class="section-subtitle">
+                    <span data-i18n="zh">精选产品架构案例、企业治理方案与数字化系统实践。</span>
+                    <span data-i18n="en">Selected product architectures, enterprise governance frameworks, and digital systems.</span>
+                </p>
+            </div>
+
+            <div class="work-grid">
+                <!-- Case 1 -->
+                <article class="work-card">
+                    <div class="work-visual">
+                        <div class="work-visual-banner">FDE // AI</div>
+                        <div class="work-visual-overlay">CASE STUDY ↗</div>
                     </div>
-                    <div data-i18n="en">
-                        <p>
-                            Working at the intersection of <strong>product design, technology, and business strategy</strong>, I focus on turning complex systems into clear decisions that align user needs, technical possibilities, and commercial intent.
-                        </p>
-                        <p>
-                            I see <strong>design</strong> as a decision-making structure, <strong>AI & technology</strong> as a multiplier of human judgment and creativity, and <strong>business constraints</strong> as parameters that sharpen, rather than limit, innovation.
-                        </p>
-                        <p>
-                            Currently validating the hybrid model of <strong>"Local Business Stability + Global Remote Nomadism"</strong>, exploring the frontiers of sovereign digital workflows.
-                        </p>
+                    <div class="work-details">
+                        <div>
+                            <div class="work-meta">
+                                <span class="work-year-pill">2026</span>
+                                <span class="work-category-tag">Enterprise AI Governance</span>
+                            </div>
+                            <h3 class="work-title">FDE & Enterprise AI Governance</h3>
+                            <p class="work-desc">
+                                <span data-i18n="zh">深度解析前向部署工程师 (Forward Deployed Engineer) 在企业级 AI 落地中的关键作用。如何将大模型能力精准嵌入高价值企业业务流程。</span>
+                                <span data-i18n="en">In-depth analysis of Forward Deployed Engineers (FDE) in enterprise AI adoption. Bridging raw LLM capabilities with complex business logic.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <a href="../posts/2026/08/14/fde-enterprise-governance/" class="work-action-btn">
+                                <span data-i18n="zh">阅读完整架构解析 ↗</span>
+                                <span data-i18n="en">Read Architecture ↗</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Case 2 -->
+                <article class="work-card inverted">
+                    <div class="work-visual">
+                        <div class="work-visual-banner">REMOTE // OS</div>
+                        <div class="work-visual-overlay">CASE STUDY ↗</div>
+                    </div>
+                    <div class="work-details">
+                        <div>
+                            <div class="work-meta">
+                                <span class="work-year-pill">2026</span>
+                                <span class="work-category-tag">Workflow & Nomadism</span>
+                            </div>
+                            <h3 class="work-title">Remote PM Operating System</h3>
+                            <p class="work-desc">
+                                <span data-i18n="zh">构建完全脱离地理限制的分布式协同体系。结合 GitLab 全员远程经验，建立以文档驱动为核心的异步沟通协议与高效交付流。</span>
+                                <span data-i18n="en">Building a distributed operating system decoupled from geography. Implementing doc-driven async communication protocols and agile workflows.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <a href="../posts/2026/04/29/gitlab-remote-product-manager/" class="work-action-btn">
+                                <span data-i18n="zh">查看协同协议 ↗</span>
+                                <span data-i18n="en">View Protocols ↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case 3 -->
+                <article class="work-card">
+                    <div class="work-visual">
+                        <div class="work-visual-banner">AI // NATIVE</div>
+                        <div class="work-visual-overlay">CASE STUDY ↗</div>
+                    </div>
+                    <div class="work-details">
+                        <div>
+                            <div class="work-meta">
+                                <span class="work-year-pill">2026</span>
+                                <span class="work-category-tag">Product Philosophy</span>
+                            </div>
+                            <h3 class="work-title">True AI-Native Paradigm</h3>
+                            <p class="work-desc">
+                                <span data-i18n="zh">从浅层工具封装跃升至全流程工作流重塑。探讨下一代 AI-Native 软件在需求工程、人机交互与价值交付上的范式转移。</span>
+                                <span data-i18n="en">Moving beyond wrapper tools to complete workflow remodeling. Exploring paradigm shifts in human-AI interaction and value delivery.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <a href="../posts/2026/08/27/what-is-ai-native/" class="work-action-btn">
+                                <span data-i18n="zh">探索范式洞察 ↗</span>
+                                <span data-i18n="en">Explore Insights ↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- 7. FOOTER / CONTACT -->
-    <footer class="site-footer" id="contact">
-        <div class="footer-dot-bg"></div>
-        <div class="container" style="position: relative; z-index: 10;">
-            <p class="footer-top-label">GOT A PROJECT OR IDEA?</p>
-            <a href="mailto:gu0bug0@gmail.com" class="footer-email-link">gu0bug0@gmail.com</a>
-
-            <div class="footer-bottom">
-                <div>
-                    © 2026 Gu0 Qiang / Gu0Bug · Built with Vibe Coding
-                </div>
-                <div class="footer-social-links">
-                    <a href="https://github.com/gu0bug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
-                    <a href="https://gu0bug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
-                    <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
+    <!-- 6. Unified Section: CONTACT & ABOUT (截图部分合并，作为联系) -->
+    <div id="contact">
+        <!-- About The Process Block -->
+        <section class="section-block" style="border-bottom: none; padding-bottom: 5rem;">
+            <div class="container">
+                <div class="about-grid">
+                    <div>
+                        <h2 class="about-heading">
+                            About<br>The<br>Process
+                        </h2>
+                    </div>
+                    <div class="about-content">
+                        <div data-i18n="zh">
+                            <p>
+                                站在<strong>产品设计、前沿技术与商业逻辑</strong>的交汇点，我专注于将复杂的业务系统与模糊的需求，转化为清晰、确定且具有商业价值的决策路径。
+                            </p>
+                            <p>
+                                我将<strong>设计</strong>视作一种决策结构，将<strong>AI 与自动化技术</strong>视作人类判断力与直觉创造力的倍增器；而<strong>商业约束</strong>则是打磨创新的磨刀石，而非创新的枷锁。
+                            </p>
+                            <p>
+                                目前，我正致力于验证 <strong>"Local Business Stability + Global Remote Nomadism"</strong> 的混合运作模式，持续探索自由与专注并存的独立数字空间。
+                            </p>
+                        </div>
+                        <div data-i18n="en">
+                            <p>
+                                Working at the intersection of <strong>product design, technology, and business strategy</strong>, I focus on turning complex systems into clear decisions that align user needs, technical possibilities, and commercial intent.
+                            </p>
+                            <p>
+                                I see <strong>design</strong> as a decision-making structure, <strong>AI & technology</strong> as a multiplier of human judgment and creativity, and <strong>business constraints</strong> as parameters that sharpen, rather than limit, innovation.
+                            </p>
+                            <p>
+                                Currently validating the hybrid model of <strong>"Local Business Stability + Global Remote Nomadism"</strong>, exploring the frontiers of sovereign digital workflows.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <!-- Dark Inverted Footer Contact -->
+        <footer class="site-footer">
+            <div class="footer-dot-bg"></div>
+            <div class="container" style="position: relative; z-index: 10;">
+                <p class="footer-top-label">GOT A PROJECT OR IDEA?</p>
+                <a href="mailto:gu0bug0@gmail.com" class="footer-email-link">gu0bug0@gmail.com</a>
+
+                <div class="footer-bottom">
+                    <div>
+                        © 2026 Gu0 Qiang / Gu0Bug · Built with Vibe Coding
+                    </div>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/gu0bug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
+                        <a href="https://gu0bug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
+                        <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- Client Script -->
     <script src="./assets/app.js"></script>
