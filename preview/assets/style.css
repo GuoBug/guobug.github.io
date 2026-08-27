@@ -364,9 +364,59 @@ body {
     display: inline;
 }
 
+/* Company Highlights Bar */
+.hero-companies-bar {
+    margin-top: 3.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px dashed rgba(0,0,0,0.2);
+}
+
+.company-brand-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--foreground);
+    opacity: 0.85;
+    transition: all 0.2s ease;
+}
+
+.company-brand-item:hover {
+    opacity: 1;
+    color: #000;
+    transform: translateY(-1px);
+}
+
+.company-brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--foreground);
+    color: var(--background);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 900;
+    border-radius: 4px;
+}
+
+.company-brand-item:hover .company-brand-icon {
+    background: var(--accent);
+    color: #000;
+}
+
 /* Skills Badges Matrix */
 .hero-badges-matrix {
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
