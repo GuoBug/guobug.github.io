@@ -645,194 +645,85 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   WORK Section
+   WORK Section (Compact Chronological Career Rows)
    -------------------------------------------------------------------------- */
-.work-grid {
+.work-history-list {
     display: flex;
     flex-direction: column;
+    gap: 1.25rem;
 }
 
-.work-card {
+.work-history-item {
+    border: 2px solid var(--border);
+    background: #ffffff;
+    padding: 1.35rem 1.75rem;
+    box-shadow: 4px 4px 0px 0px #000000;
     display: grid;
     grid-template-columns: 1fr;
-    border: 2px solid var(--border);
-    margin-bottom: 2.5rem;
-    background: var(--card);
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.2s ease;
-}
-
-.work-card:last-child {
-    margin-bottom: 0;
-}
-
-@media (min-width: 860px) {
-    .work-card {
-        grid-template-columns: 3fr 2fr;
-        min-height: 500px;
-    }
-
-    .work-card.inverted {
-        grid-template-columns: 2fr 3fr;
-    }
-
-    .work-card.inverted .work-visual {
-        order: 2;
-        border-left: 2px solid var(--border);
-        border-right: none;
-    }
-
-    .work-card.inverted .work-details {
-        order: 1;
-    }
-}
-
-.work-visual {
-    position: relative;
-    min-height: 280px;
-    background: var(--muted);
-    border-bottom: 2px solid var(--border);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: radial-gradient(#00000022 1px, transparent 1px);
-    background-size: 20px 20px;
-}
-
-@media (min-width: 860px) {
-    .work-visual {
-        border-bottom: none;
-        border-right: 2px solid var(--border);
-    }
-}
-
-.work-visual-banner {
-    font-family: var(--font-mono);
-    font-weight: 900;
-    font-size: clamp(3.5rem, 7vw, 6.5rem);
-    text-transform: uppercase;
-    color: var(--border);
-    opacity: 0.15;
-    letter-spacing: -0.05em;
-    user-select: none;
-    transition: all 0.4s ease;
-    text-align: center;
-    padding: 1rem;
-}
-
-.work-card:hover .work-visual-banner {
-    opacity: 0.5;
-    color: #000;
-    transform: scale(1.05);
-}
-
-.work-visual-overlay {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 10;
-    background: var(--background);
-    border: 2px solid var(--border);
-    padding: 0.4rem 0.7rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 0.2s ease, background-color 0.2s ease;
-}
-
-.work-card:hover .work-visual-overlay {
-    opacity: 1;
-    background-color: var(--accent);
-}
-
-.work-details {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-@media (min-width: 768px) {
-    .work-details {
-        padding: 3rem;
-    }
-}
-
-.work-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-}
-
-.work-year-pill {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-    font-weight: 700;
-}
-
-.work-category-tag {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    color: var(--muted-foreground);
-    font-weight: 700;
-}
-
-.work-title {
-    font-size: clamp(1.85rem, 3.2vw, 3rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.25rem;
-    transition: color 0.15s ease;
-}
-
-.work-card:hover .work-title {
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 6px;
-}
-
-.work-desc {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--muted-foreground);
-    margin-bottom: 2rem;
-}
-
-.work-action-btn {
-    align-self: flex-start;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.4rem 0.8rem;
-    border: 2px solid var(--border);
-    background: var(--background);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+    gap: 1rem;
     transition: all 0.15s ease;
 }
 
-.work-card:hover .work-action-btn {
-    background-color: var(--accent);
-    transform: translate(2px, -2px);
-    box-shadow: 2px 2px 0px 0px #000;
+@media (min-width: 900px) {
+    .work-history-item {
+        grid-template-columns: 320px 1fr;
+        gap: 2.5rem;
+        align-items: center;
+    }
+}
+
+.work-history-item:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #000000;
+    background-color: #fafafa;
+}
+
+.work-history-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.work-history-period {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-weight: 700;
+    color: #000;
+    background: var(--accent);
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border: 1.5px solid #000;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.work-history-company {
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+    line-height: 1.15;
+    margin-top: 0.2rem;
+}
+
+.work-history-role {
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    color: var(--muted-foreground);
+    font-weight: 700;
+}
+
+.work-history-desc {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #222222;
+    margin: 0;
 }
 
 /* --------------------------------------------------------------------------
-   VIBE CODING Section (Replaced 玄学工具)
+   VIBE CODING Section (2 Prominent Interactive Cards)
    -------------------------------------------------------------------------- */
 .vibe-section {
     background-color: #f9f9fa;
@@ -840,19 +731,13 @@ body {
 
 .vibe-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
     .vibe-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .vibe-grid {
-        grid-template-columns: repeat(4, 1fr);
     }
 }
 
