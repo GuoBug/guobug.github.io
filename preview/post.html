@@ -112,18 +112,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="medium-author-actions">
-                    <button type="button" class="medium-action-btn" onclick="triggerClap(this)">
-                        <span>👏</span> <span class="clap-count-display">342</span>
-                    </button>
-                    <button type="button" class="medium-action-btn">
-                        <span>💬</span> <span>18</span>
-                    </button>
-                    <button type="button" class="medium-action-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');">
-                        <span>↗</span>
-                    </button>
-                </div>
             </div>
 
             <!-- Medium Cover Hero Visual -->
@@ -338,26 +326,7 @@
         </div>
     </main>
 
-    <!-- 3. Medium Floating Bottom Pill Bar (Claps & Sharing) -->
-    <div class="medium-floating-bar" id="floatingBar">
-        <button type="button" class="floating-clap-btn" onclick="triggerClap(this)">
-            <span>👏</span>
-            <span class="clap-count-display">342</span>
-        </button>
-        <span style="color: #d1d5db;">|</span>
-        <a href="#comments" class="floating-action-icon" title="Responses">
-            <span>💬</span> <span>18</span>
-        </a>
-        <button type="button" class="floating-action-icon" style="background:none; border:none; font:inherit;" onclick="navigator.clipboard.writeText(window.location.href); alert('Article URL copied!');" title="Share">
-            <span>↗</span> <span>SHARE</span>
-        </button>
-        <span style="color: #d1d5db;">|</span>
-        <a href="#" class="floating-action-icon" title="Back to Top">
-            <span>↑ TOP</span>
-        </a>
-    </div>
-
-    <!-- 4. Site Footer (Unified Contact) -->
+    <!-- 3. Site Footer (Unified Contact) -->
     <footer class="site-footer" id="contact">
         <div class="footer-dot-bg"></div>
         <div class="container" style="position: relative; z-index: 10;">
@@ -377,42 +346,8 @@
         </div>
     </footer>
 
-    <!-- Interactive Script -->
+    <!-- Client Script -->
     <script src="./assets/app.js"></script>
-    <script>
-        let claps = 342;
-        function triggerClap(btn) {
-            claps++;
-            document.querySelectorAll('.clap-count-display').forEach(el => el.textContent = claps);
-            
-            // Temporary popup animation
-            const badge = document.createElement('span');
-            badge.textContent = '+1';
-            badge.style.position = 'absolute';
-            badge.style.top = '-20px';
-            badge.style.left = '50%';
-            badge.style.transform = 'translateX(-50%)';
-            badge.style.background = '#7fff00';
-            badge.style.color = '#000';
-            badge.style.fontFamily = 'var(--font-mono)';
-            badge.style.fontSize = '0.75rem';
-            badge.style.fontWeight = 'bold';
-            badge.style.padding = '2px 6px';
-            badge.style.border = '1px solid #000';
-            badge.style.borderRadius = '9999px';
-            badge.style.pointerEvents = 'none';
-            badge.style.transition = 'all 0.5s ease';
-            
-            btn.style.position = 'relative';
-            btn.appendChild(badge);
-            
-            setTimeout(() => {
-                badge.style.top = '-40px';
-                badge.style.opacity = '0';
-            }, 50);
-            setTimeout(() => badge.remove(), 600);
-        }
-    </script>
 </body>
 
 </html>
