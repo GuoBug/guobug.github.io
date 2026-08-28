@@ -1476,6 +1476,129 @@ body {
     gap: 0.5rem;
 }
 
+/* Inline Code */
+.medium-body-text code,
+.post-content-body code,
+code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    font-weight: 600;
+    color: #0f172a;
+    background-color: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   Neo-Brutalist Terminal Code Blocks
+   ========================================================================== */
+.neo-code-block,
+pre {
+    position: relative;
+    border: 2px solid #000000;
+    background-color: #0d1117;
+    box-shadow: 5px 5px 0px 0px #000000;
+    margin: 2.25rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.code-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #161b22;
+    padding: 0.6rem 1rem;
+    border-bottom: 2px solid #000000;
+    user-select: none;
+}
+
+.code-window-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.code-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1.5px solid #000000;
+    display: inline-block;
+}
+
+.code-dot.red { background-color: #ff5f56; }
+.code-dot.yellow { background-color: #ffbd2e; }
+.code-dot.green { background-color: #27c93f; }
+
+.code-lang-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8b949e;
+}
+
+.code-copy-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c9d1d9;
+    background: #21262d;
+    border: 1.5px solid #30363d;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.code-copy-btn:hover {
+    background-color: var(--accent);
+    color: #000000;
+    border-color: #000000;
+    box-shadow: 2px 2px 0px 0px #000000;
+}
+
+pre {
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: #e6edf3;
+    tab-size: 2;
+}
+
+pre code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    color: inherit !important;
+    border-radius: 0 !important;
+    white-space: pre;
+}
+
+/* Syntax Highlighting Tokens */
+.token-keyword { color: #ff7b72; font-weight: 700; }
+.token-string { color: #a5d6ff; }
+.token-function { color: #d2a8ff; }
+.token-comment { color: #8b949e; font-style: italic; }
+.token-variable { color: #ffa657; }
+.token-number { color: #79c0ff; }
+.token-property { color: #7ee787; }
+.token-boolean { color: #ff7b72; font-weight: 700; }
+.token-operator { color: #79c0ff; }
+.token-accent { color: var(--accent); font-weight: 700; }
+
 /* Medium Floating Interaction Pill (Bottom Sticky Bar) */
 .medium-floating-bar {
     position: fixed;

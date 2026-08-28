@@ -79,4 +79,26 @@
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 4. Code Block Copy & Terminal Enhancer
+    document.querySelectorAll('.code-copy-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const container = this.closest('.neo-code-block') || this.parentElement.parentElement;
+            const codeEl = container.querySelector('pre code') || container.querySelector('pre');
+            if (codeEl) {
+                const textToCopy = codeEl.innerText;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = 'COPIED! ✓';
+                    this.style.backgroundColor = '#7fff00';
+                    this.style.color = '#000000';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.backgroundColor = '';
+                        this.style.color = '';
+                    }, 2000);
+                });
+            }
+        });
+    });
 })();

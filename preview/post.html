@@ -157,8 +157,36 @@
                         为什么 AI 工具能产生如此强大的粘性？核心在于 AI 已经从单纯的“答案生成器”变成了用户日常数字资产的“调度中枢”。
                     </p>
                     <p>
-                        在 Notion 中，AI 不仅能写字，还能自动分析数据库中的几十个关联表格，生成周报、提炼 Action Items；在 Lovable 中，开发者用直觉和自然语言就能在几分钟内生成生产级全栈应用。
+                        在 <code>Notion</code> 中，AI 不仅能写字，还能自动分析数据库中的关联表格；在 <code>Lovable</code> 中，开发者用直觉和自然语言就能在几分钟内生成全栈应用。
                     </p>
+
+                    <div class="neo-code-block">
+                        <div class="code-header-bar">
+                            <div class="code-window-dots">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                            </div>
+                            <span class="code-lang-label">TYPESCRIPT</span>
+                            <button type="button" class="code-copy-btn">
+                                <span>⎘</span> <span>COPY</span>
+                            </button>
+                        </div>
+                        <pre><code><span class="token-keyword">interface</span> <span class="token-variable">WorkflowAgent</span> {
+  <span class="token-property">id</span>: <span class="token-string">"magnetic-growth-loop"</span>;
+  <span class="token-property">trigger</span>: <span class="token-string">"onDocumentChange"</span>;
+  <span class="token-property">action</span>: <span class="token-keyword">async</span> (ctx: <span class="token-variable">Context</span>) =&gt; {
+    <span class="token-comment">// 自动感知上下文并生成智能关联建议</span>
+    <span class="token-keyword">const</span> insights = <span class="token-keyword">await</span> ctx.ai.<span class="token-function">synthesize</span>({
+      <span class="token-property">graph</span>: ctx.workspace.graph,
+      <span class="token-property">depth</span>: <span class="token-number">3</span>,
+      <span class="token-property">autonomous</span>: <span class="token-boolean">true</span>
+    });
+    <span class="token-keyword">return</span> insights.<span class="token-function">toActionableItems</span>();
+  };
+}</code></pre>
+                    </div>
+
                     <p>
                         当工具能够不断学习用户的上下文并替用户节省数小时的重复劳动时，用户的<strong>迁移成本就会指数级上升</strong>，留存自然水到渠成。
                     </p>
@@ -216,6 +244,34 @@
                     <p>
                         AI features—such as automated database synthesis, contextual querying, and rapid prompt-to-app deployment—shift tools from transactional utilities to persistent operational operating systems.
                     </p>
+
+                    <div class="neo-code-block">
+                        <div class="code-header-bar">
+                            <div class="code-window-dots">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                            </div>
+                            <span class="code-lang-label">TYPESCRIPT</span>
+                            <button type="button" class="code-copy-btn">
+                                <span>⎘</span> <span>COPY</span>
+                            </button>
+                        </div>
+                        <pre><code><span class="token-keyword">interface</span> <span class="token-variable">WorkflowAgent</span> {
+  <span class="token-property">id</span>: <span class="token-string">"magnetic-growth-loop"</span>;
+  <span class="token-property">trigger</span>: <span class="token-string">"onDocumentChange"</span>;
+  <span class="token-property">action</span>: <span class="token-keyword">async</span> (ctx: <span class="token-variable">Context</span>) =&gt; {
+    <span class="token-comment">// Asynchronously index context & synthesize actionable next steps</span>
+    <span class="token-keyword">const</span> insights = <span class="token-keyword">await</span> ctx.ai.<span class="token-function">synthesize</span>({
+      <span class="token-property">graph</span>: ctx.workspace.graph,
+      <span class="token-property">depth</span>: <span class="token-number">3</span>,
+      <span class="token-property">autonomous</span>: <span class="token-boolean">true</span>
+    });
+    <span class="token-keyword">return</span> insights.<span class="token-function">toActionableItems</span>();
+  };
+}</code></pre>
+                    </div>
+
                     <p>
                         When software dynamically learns user context and eliminates cognitive overhead, switching costs grow exponentially, securing effortless retention.
                     </p>
