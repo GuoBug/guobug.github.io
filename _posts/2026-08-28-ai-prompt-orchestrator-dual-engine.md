@@ -99,18 +99,6 @@ ai-prompt-orchestrator/
 
 ---
 
-## 四、 本系列后续演进路线（Roadmap）
-
-本项目将以连载形式，从产品设计、前端架构、算法调度到自动化部署进行全方位复盘：
-
-* **第 1 篇：为什么我们需要提示流编排器？（本篇）**
-* **第 2 篇：协议与约束：用 TypeScript 与 JSON Schema 锁定 AI 编码边界**
-* **第 3 篇：基于 React Flow 的低代码画布交互与节点状态机设计**
-* **第 4 篇：前端图计算：拓扑排序、环检测与 `{{var}}` 插槽解析引擎**
-* **第 5 篇：双引擎交付：GitHub Pages 自动化静态部署与本地全栈运行**
-
----
-
 > 💡 **项目开源与交流**：如果你对前端图计算、轻量级 AI 工作流编排或 Vibe Coding 实践感兴趣，欢迎访问项目仓库并点个 **Star ⭐️** 支持！如果有任何建议或 Bug，欢迎直接在 GitHub 提交 Issue 或 PR 交流。
 >
 > 🔗 **GitHub 仓库地址**：[https://github.com/gu0bug/ai-prompt-orchestrator](https://github.com/gu0bug/ai-prompt-orchestrator)
