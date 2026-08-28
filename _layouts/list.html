@@ -1,12 +1,22 @@
 ---
 layout: default
 ---
-<div class="writings-grid" style="margin-top: 2rem;">
+<div class="section-header" style="margin-bottom: 2.5rem;">
+    <div>
+        <h1 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Writings</h1>
+    </div>
+    <p class="section-subtitle">
+        <span data-i18n="zh">所有独立撰写的关于 AI 原生、产品架构与游民工作流的思考归档。</span>
+        <span data-i18n="en">All published essays and logs on AI-Native paradigms, architecture, and nomadism.</span>
+    </p>
+</div>
+
+<div class="writings-grid">
 {% for post in site.posts %}
     <a href="{{ post.url | relative_url }}" class="writing-card">
         <div>
             <div class="writing-card-header">
-                <span class="writing-pub-tag">{% if post.categories %}{{ post.categories.first }}{% else %}Post{% endif %}</span>
+                <span class="writing-pub-tag">{% if post.categories %}{{ post.categories.first }}{% else %}Article{% endif %}</span>
                 <span class="writing-date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
             <h3 class="writing-title">{{ post.title }}</h3>
@@ -15,8 +25,8 @@ layout: default
             </p>
         </div>
         <div class="writing-card-footer">
-            <span>READ ↗</span>
-            <span class="writing-read-more">EXPLORE ↗</span>
+            <span>{{ post.date | date: "%b %d, %Y" }}</span>
+            <span class="writing-read-more">READ ARTICLE ↗</span>
         </div>
     </a>
 {% endfor %}
