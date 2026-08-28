@@ -11,7 +11,10 @@ email: "gu0bug0@gmail.com"
 
 markdown: kramdown
 permalink: /posts/:year/:month/:day/:title/
+future: true
+timezone: Asia/Shanghai
 
 # 使用到的插件，GitHub Pages 原生支持
 plugins:
   - jekyll-seo-tag
+
