@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gu0 Qiang · Technology Product Manager · Workspace</title>
+    <meta name="description" content="Digital portfolio and workspace of Gu0 Qiang. Product Designer, AI-Native Explorer, and Independent Nomad.">
+    <meta name="author" content="Gu0 Qiang">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./assets/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+
+<body>
+    <!-- 1. Sticky Navigation Bar -->
+    <nav class="top-nav">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                GU0BUG.DESIGN
+                <span class="nav-logo-badge">SYSTEM</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#vibe" class="nav-link">
+                    <span>VIBE CODING</span>
+                </a>
+                <a href="#writings" class="nav-link">
+                    <span data-i18n="zh">文章</span>
+                    <span data-i18n="en">WRITINGS</span>
+                </a>
+                <a href="#work" class="nav-link">
+                    <span data-i18n="zh">精选项目</span>
+                    <span data-i18n="en">WORK</span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span data-i18n="zh">联系</span>
+                    <span data-i18n="en">CONTACT</span>
+                </a>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <!-- Language Switcher (Default EN) -->
+                <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-lang-btn="zh">中文</button>
+                    <span>/</span>
+                    <button type="button" class="lang-btn active" data-lang-btn="en">EN</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle menu">[MENU]</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <ul class="mobile-nav-list">
+            <li><a href="#vibe">VIBE CODING</a></li>
+            <li><a href="#writings"><span data-i18n="zh">文章</span><span data-i18n="en">WRITINGS</span></a></li>
+            <li><a href="#work"><span data-i18n="zh">精选项目</span><span data-i18n="en">WORK</span></a></li>
+            <li><a href="#contact"><span data-i18n="zh">联系</span><span data-i18n="en">CONTACT</span></a></li>
+        </ul>
+    </div>
+
+    <!-- 2. Hero Section (Gu0 Qiang) -->
+    <header class="hero-section" id="hero">
+        <div class="container">
+            <div class="hero-main-title-wrap">
+                <h1 class="hero-title">Gu0 Qiang</h1>
+                <div class="hero-avatar">
+                    <span>GQ</span>
+                </div>
+            </div>
+
+            <div class="hero-bio">
+                <div data-i18n="zh">
+                    <p>
+                        你好！我是 <strong>Gu0</strong>，一名拥有 <span class="highlight-tag">10 年以上经验</span> 的产品经理，曾服务于 <strong>GitLab</strong>、<strong>携程 (Ctrip)</strong>、<strong>哔哩哔哩 (Bilibili)</strong> 等头部互联网与远程企业。
+                    </p>
+                    <p>
+                        我的核心热情聚焦于 <span class="highlight-tag">设计、商业与 AI</span> 的交汇点。擅长驱动增长型业务、<span class="highlight-tag">塑造产品愿景与战略</span>、制定高影响力 GTM (Go-to-Market) 方案，以及从 0 到 1 孵化创新型产品。
+                    </p>
+                    <p>
+                        近期深度探索 <span class="highlight-tag">AI 赋能的产品体系与工作流</span> —— 运用直觉与 AI 协同，加速产品研发迭代并激发创造力协同。
+                    </p>
+                </div>
+                <div data-i18n="en">
+                    <p>
+                        Hi there! I'm <strong>Gu0</strong>, a product manager with <span class="highlight-tag">over 10 years</span> of experience, covering major internet companies such as <strong>GitLab</strong>, <strong>Ctrip</strong> and <strong>Bilibili</strong>.
+                    </p>
+                    <p>
+                        My passion lies at the intersection of <span class="highlight-tag">design, business, and AI</span>. I specialize in driving growth-oriented projects, <span class="highlight-tag">shaping product vision and strategy</span>, crafting impactful go-to-market plans, and innovating early-stage (0-to-1) products.
+                    </p>
+                    <p>
+                        Lately, I've been deeply exploring <span class="highlight-tag">AI-powered products and workflows</span>—leveraging AI alongside intuition to accelerate product development and inspire creative collaboration.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Company Highlights Bar with Official Logos & Hover Popovers -->
+            <div class="hero-companies-bar">
+                <!-- a. GitLab -->
+                <div class="company-brand-item" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
+                        <path fill="#E24329" d="M12 21.5l3.586-11.037H8.414L12 21.5z"/>
+                        <path fill="#FC6D26" d="M12 21.5L8.414 10.463H1.795L12 21.5z"/>
+                        <path fill="#FCA326" d="M1.795 10.463l-.916 2.82a1.017 1.017 0 00.37 1.137L12 21.5 1.795 10.463z"/>
+                        <path fill="#E24329" d="M1.795 10.463h6.619L5.642 2.404a.51.51 0 00-.967 0L1.795 10.463z"/>
+                        <path fill="#FC6D26" d="M12 21.5l3.586-11.037h6.619L12 21.5z"/>
+                        <path fill="#FCA326" d="M22.205 10.463l.916 2.82a1.017 1.017 0 01-.37 1.137L12 21.5l10.205-11.037z"/>
+                        <path fill="#E24329" d="M22.205 10.463h-6.619l2.772-8.059a.51.51 0 01.967 0l2.88 8.059z"/>
+                    </svg>
+                    <span>GitLab</span>
+                    
+                    <div class="company-tooltip">
+                        <div class="company-tooltip-header">
+                            <span class="company-tooltip-role">
+                                <span data-i18n="zh">产品负责人</span>
+                                <span data-i18n="en">Head of Product</span>
+                            </span>
+                            <span class="company-tooltip-badge">GITLAB</span>
+                        </div>
+                        <div class="company-tooltip-desc">
+                            <span data-i18n="zh">负责 GitLab SaaS（CN）、Ops、市场商务合作，跨时区合作，增长黑客等。</span>
+                            <span data-i18n="en">Responsible for GitLab SaaS (CN), Ops, strategic commercial partnerships, cross-timezone collaboration, and growth hacking.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- b. Bilibili -->
+                <div class="company-brand-item" tabindex="0">
+                    <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
+                        <rect width="24" height="24" rx="6" fill="#00A1D6"/>
+                        <path fill="#FFFFFF" d="M7.5 5.5l2.2 2.2h4.6l2.2-2.2a.75.75 0 111.06 1.06l-1.5 1.5H17a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6a2 2 0 012-2h.94l-1.5-1.5a.75.75 0 011.06-1.06zM7 10v6h10v-6H7zm2.5 2a1 1 0 110 2 1 1 0 010-2zm5 0a1 1 0 110 2 1 1 0 010-2z"/>
+                    </svg>
+                    <span>Bilibili</span>
+
+                    <div class="company-tooltip">
+                        <div class="company-tooltip-header">
+                            <span class="company-tooltip-role">
+                                <span data-i18n="zh">移动主站产品</span>
+                                <span data-i18n="en">Mobile Product Lead</span>
+                            </span>
+                            <span class="company-tooltip-badge">BILIBILI</span>
+                        </div>
+                        <div class="company-tooltip-desc">
+                            <span data-i18n="zh">负责 Bilibili 移动站、移动商务需求。</span>
+                            <span data-i18n="en">Leading Bilibili Mobile Web platform & mobile commercial requirements.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- c. Ctrip -->
+                <div class="company-brand-item" tabindex="0">
+                    <svg viewBox="240 160 95 100" width="32" height="32" class="company-logo-img" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-rule="evenodd" fill-rule="evenodd">
+                            <path d="m267.32 179.35c10.43-11.62 20.28-14.99 27.09-16.31 8.31-1.55 22.11 2.32 22.11 13.06 0 3.35 7.03-.95 9.12 3.85 2.19 5.03-5.61 9.38-10.09 9.08-1.9.17-4.85-.47-7.13-1.67-.71-.38-.7.33-.21 1.02.83 1.16 2.44 1.57 4.21 1.85 1.69.27 1.19 1.17-.53 1.85-1.82.72-4.9 1.4-7.64 1.7-2.08.22-4.55 1.45-5.17 2.27-2 3.27.74 7.09-4.16 13.15-2.8 3.47-7.78 6.4-12.5 5.82-.87-.11-1.31-.48-.74-1.34 1.21-1.81 2.83-2.57 3.57-4.9.77-2.42-.21-4.11-2.3-3.95-2.74.21-7.84 3.85-11.01 8.49-1.17 1.97-2.14 3.85-2.92 5.66-6.93 16.14 2.65 31.04 18.08 37.07 2.29.89 4.36 1.29 5.48.98.53-.15.85-.36.88-.95-4.97-1.6-10.28-5.16-13.41-9.34-3.44-4.59-4.48-9.99-4.48-15.59 0-5.84 2.7-12.68 3.77-11.96.31.21.8.39.5 1.14-1.57 3.98-1.83 8.56-1.25 12.64 1.02 7.07 4.97 12.51 11.59 15.28 5.05 2.11 10.63 1.78 15.64-.78 6.64-3.4 8.88-7.17 9.72-11.02.42-1.91.24-4.38.59-6.69.43-2.81 1.45-5.14 3.42-6.1 3.38-1.65 6.32-.34 7.73 1.24 3.47 3.88 1.18 13.85-1.21 17.94-1.74 2.98-3.81 5.84-6.07 7.86-6.5 5.8-18.23 9.85-29.4 9.02-14.78-1.1-25.8-7.33-34.5-19.05-6.7-9.03-7.48-17.29-7.74-25.99-.25-8.31 2.94-14.89 5.66-20.3 1.1-2.18.05-4.02-1-4.96-1.47-1.06-2.49-.89-3.42-.83-2.27.15-3.8 1.56-5.87 1.92-1.47.26-2.56-.38-1.4-2.95.32-.71.76-1.49 1.33-2.18 1.69-2.07 4.21-4.19 5.39-4.84 5.9-3.42 14.87-2.64 18.27-1.19zm36.44-4.61c.01-.68-3.7-.97-5.1 1.9-.86 1.78-.74 4.41.85 5.71.6.49 1.3.88 2.06 1.09 1.1.31 1.96.2 2.55-.08.64-.3 1.07-.7.9-.8-2.07-.24-3.36-1.29-3.99-2.73-.75-1.71-.26-4.01 2.73-5.09zm-.74 2.18c-.14.8.31 1.33.9 1.32.49-.01 1.08-.26 1.12-1.05.03-.57-.33-.92-.78-1.02-.49-.11-1.13.09-1.24.75z" fill="#005bac"/>
+                            <path d="m285.75 245.7c.48.23 1 .41 1.57.53 9.19 1.92 19.1-3.78 20.9-11.61.97-4.27 1.03-7.05.86-9.07-.25-2.92.27-6.9 2.59-8.88 3.13-2.66 7.62-.72 8.99 2.91.38 1 .66 2.15.93 3.41-.65.11-1.32.33-2.02.67-1.97.96-2.99 3.3-3.42 6.1-.35 2.32-.18 4.79-.59 6.69-.84 3.85-3.09 7.62-9.72 11.02-5.01 2.56-10.59 2.9-15.64.78-1.65-.68-3.13-1.54-4.45-2.55z" fill="#f08300"/>
+                        </g>
+                    </svg>
+                    <span>Ctrip</span>
+
+                    <div class="company-tooltip">
+                        <div class="company-tooltip-header">
+                            <span class="company-tooltip-role">
+                                <span data-i18n="zh">产品经理 · 增长黑客</span>
+                                <span data-i18n="en">Product Manager · Growth</span>
+                            </span>
+                            <span class="company-tooltip-badge">CTRIP</span>
+                        </div>
+                        <div class="company-tooltip-desc">
+                            <span data-i18n="zh">负责移动营销需求包含 分销、APP 推广、SEO、SEM、广告平台/API 平台、订单流程优化等。</span>
+                            <span data-i18n="en">Leading mobile growth: distribution, App growth, SEO/SEM, Ad/API platforms, checkout flow optimization.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges Matrix (Bilingual + Team Management) -->
+            <div class="hero-badges-matrix">
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span data-i18n="zh">产品管理</span>
+                    <span data-i18n="en">PRODUCT MANAGEMENT</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span data-i18n="zh">团队管理</span>
+                    <span data-i18n="en">TEAM MANAGEMENT</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span data-i18n="zh">AI 原生工作流</span>
+                    <span data-i18n="en">AI-NATIVE WORKFLOW</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span data-i18n="zh">远程游民</span>
+                    <span data-i18n="en">REMOTE NOMAD</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span data-i18n="zh">分布式体系</span>
+                    <span data-i18n="en">DISTRIBUTED SYSTEMS</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span>VIBE CODING</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Marquee Banner 1 (Accent Reverse) -->
+    <div class="marquee-wrapper reverse">
+        <div class="marquee-track">
+            <span>VIBE CODING • METAPHYSICS • RAPID PROTOTYPES • EXPERIMENTS • CODE SKETCHES • AI TOOLS •&nbsp;</span>
+            <span>VIBE CODING • METAPHYSICS • RAPID PROTOTYPES • EXPERIMENTS • CODE SKETCHES • AI TOOLS •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- 3. Section: VIBE CODING (Replaces 玄学工具) -->
+    <section class="section-block vibe-section" id="vibe">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Vibe<br>Coding</h2>
+                </div>
+                <p class="section-subtitle">
+                    <span data-i18n="zh">基于直觉与 AI 协同构建的实验工具、玄学计算与代码原型合集。</span>
+                    <span data-i18n="en">A curated collection of rapid AI prototypes, metaphysics tools, and computational experiments.</span>
+                </p>
+            </div>
+
+            <div class="vibe-grid">
+                <!-- Vibe Card 1: Metaphysics Hub -->
+                <a href="https://gu0bug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="vibe-card">
+                    <div class="vibe-card-badge">ONLINE ↗</div>
+                    <div class="vibe-card-bg">
+                        <span class="vibe-card-symbol">☯</span>
+                    </div>
+                    <div class="vibe-card-footer">
+                        <div class="vibe-card-title">
+                            <span data-i18n="zh">玄学工具集</span>
+                            <span data-i18n="en">Metaphysics Tools</span>
+                            <span>↗</span>
+                        </div>
+                        <div class="vibe-card-tag">
+                            <span data-i18n="zh">八字 / 六爻 / 紫微 / 周易</span>
+                            <span data-i18n="en">Bazi / I Ching / Ziwei</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Vibe Card 2: AI Workflow Copilot (Linked to GitHub) -->
+                <a href="https://github.com/gu0bug/ai-prompt-orchestrator" target="_blank" rel="noopener noreferrer" class="vibe-card">
+                    <div class="vibe-card-badge">GITHUB ↗</div>
+                    <div class="vibe-card-bg">
+                        <span class="vibe-card-symbol">⚡</span>
+                    </div>
+                    <div class="vibe-card-footer">
+                        <div class="vibe-card-title">
+                            <span data-i18n="zh">AI 提示流编排器</span>
+                            <span data-i18n="en">AI Prompt Orchestrator</span>
+                            <span>↗</span>
+                        </div>
+                        <div class="vibe-card-tag">
+                            <span data-i18n="zh">结构化输出 / 工作流链条编排</span>
+                            <span data-i18n="en">Structured Outputs / LLM Chains</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Banner 2 -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <span>WRITINGS • ARTICLES • AI-NATIVE PARADIGMS • REMOTE WORKFLOW • TECH PRACTICES •&nbsp;</span>
+            <span>WRITINGS • ARTICLES • AI-NATIVE PARADIGMS • REMOTE WORKFLOW • TECH PRACTICES •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- 4. Section: WRITINGS (文章) -->
+    <section class="section-block" id="writings">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Writings</h2>
+                </div>
+                <div>
+                    <a href="./posts/" class="view-all-link">
+                        <span data-i18n="zh">查看所有文章归档</span>
+                        <span data-i18n="en">VIEW ALL POSTS</span>
+                        ↗
+                    </a>
+                </div>
+            </div>
+
+            <div class="writings-grid">
+                <!-- Post 1 (Links to Preview Post Detail) -->
+                <a href="./posts/2026/08/27/what-is-ai-native/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">AI-Native</span>
+                            <span class="writing-date">2026-08-27</span>
+                        </div>
+                        <h3 class="writing-title">
+                            <span data-i18n="zh">什么是真正的 AI-Native？从工具层到工作流重塑</span>
+                            <span data-i18n="en">What is True AI-Native? From Tooling to Workflow Remodeling</span>
+                        </h3>
+                        <p class="writing-excerpt">
+                            <span data-i18n="zh">AI 不是简单的对话框插件，真正的 AI-Native 是对软件价值流动机制与生产关系的根本性解构与重组。</span>
+                            <span data-i18n="en">AI is not just a chat widget. True AI-Native software fundamentally restructures workflows and production relationships.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>5 MIN READ</span>
+                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 2 -->
+                <a href="./posts/2026/08/17/zhipin-ai-product-analysis/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Product Analysis</span>
+                            <span class="writing-date">2026-08-17</span>
+                        </div>
+                        <h3 class="writing-title">
+                            <span data-i18n="zh">Boss直聘与AI招聘产品的破局点思考</span>
+                            <span data-i18n="en">Breakthrough Analysis on BossZhipin & AI Recruitment</span>
+                        </h3>
+                        <p class="writing-excerpt">
+                            <span data-i18n="zh">双边市场匹配中的信任机制与摩擦系数：AI 如何在简历匹配与候选人真实画像中创造非对称优势。</span>
+                            <span data-i18n="en">Trust mechanisms and friction in two-sided marketplaces: How AI creates asymmetric advantages in talent matching.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>6 MIN READ</span>
+                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 3 -->
+                <a href="./posts/2026/08/14/fde-enterprise-governance/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Enterprise AI</span>
+                            <span class="writing-date">2026-08-14</span>
+                        </div>
+                        <h3 class="writing-title">
+                            <span data-i18n="zh">前向部署工程师 (FDE) 与企业级AI治理</span>
+                            <span data-i18n="en">Forward Deployed Engineers & Enterprise AI Governance</span>
+                        </h3>
+                        <p class="writing-excerpt">
+                            <span data-i18n="zh">为什么企业 AI 落地不仅是算法问题，更是组织架构、数据权限与前向工程交付能力的综合战役。</span>
+                            <span data-i18n="en">Why enterprise AI adoption is not merely an algorithmic challenge, but an organizational and engineering mission.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>8 MIN READ</span>
+                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 4 -->
+                <a href="./posts/2026/05/07/remote-pm-efficiency-secret/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Remote Work</span>
+                            <span class="writing-date">2026-05-07</span>
+                        </div>
+                        <h3 class="writing-title">
+                            <span data-i18n="zh">远程产品经理的高效工作秘密</span>
+                            <span data-i18n="en">Efficiency Secrets of a Remote Product Manager</span>
+                        </h3>
+                        <p class="writing-excerpt">
+                            <span data-i18n="zh">告别无意义的同步会议。用清晰的规格说明、上下文沉淀与异步沟通闭环换取极高的深度工作时间。</span>
+                            <span data-i18n="en">Eliminate meaningless sync meetings. Trade ambiguity for structured specs, contextual docs, and deep work hours.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>6 MIN READ</span>
+                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 5 -->
+                <a href="./posts/2026/04/29/gitlab-remote-product-manager/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Case Study</span>
+                            <span class="writing-date">2026-04-29</span>
+                        </div>
+                        <h3 class="writing-title">
+                            <span data-i18n="zh">从 GitLab 经验看全员远程产品团队运作</span>
+                            <span data-i18n="en">Lessons from GitLab: Running An All-Remote Product Team</span>
+                        </h3>
+                        <p class="writing-excerpt">
+                            <span data-i18n="zh">全员远程不是福利，而是一套严谨的工程与协同规范。解密 GitLab 的 Handbook-First 文化。</span>
+                            <span data-i18n="en">All-remote is an engineering discipline. Deciphering the Handbook-First operational culture of GitLab.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>7 MIN READ</span>
+                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 6 -->
+                <a href="./posts/2026/04/27/reject-bureaucracy/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Nomad Life</span>
+                            <span class="writing-date">2026-04-27</span>
+                        </div>
+                        <h3 class="writing-title">
+                            <span data-i18n="zh">拒绝体制内卷：建立个人游民操作系统</span>
+                            <span data-i18n="en">Escape the Grind: Building a Personal Nomad Operating System</span>
+                        </h3>
+                        <p class="writing-excerpt">
+                            <span data-i18n="zh">从企业体制过渡至远程游牧状态的真实实践数据与认知迭代，重构个人生产力与时间主权。</span>
+                            <span data-i18n="en">Real-world data and reflections transitioning from corporate structures to sovereign digital nomadism.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>6 MIN READ</span>
+                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Banner 3 -->
+    <div class="marquee-wrapper">
+        <div class="marquee-track">
+            <span>PROFESSIONAL EXPERIENCE • CAREER ROADMAP • ENTERPRISE SAAS • TECHNICAL PRODUCT LEAD •&nbsp;</span>
+            <span>PROFESSIONAL EXPERIENCE • CAREER ROADMAP • ENTERPRISE SAAS • TECHNICAL PRODUCT LEAD •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- 5. Section: WORK (工作经历) -->
+    <section class="section-block" id="work">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Work</h2>
+                </div>
+                <p class="section-subtitle">
+                    <span data-i18n="zh">十年以上技术与平台产品经验，覆盖企业级 SaaS、大流量平台与 AI 工作流。</span>
+                    <span data-i18n="en">10+ years of technical & platform product management across enterprise SaaS, high-traffic systems, and AI workflows.</span>
+                </p>
+            </div>
+
+            <!-- Compact Chronological Work History Rows -->
+            <div class="work-history-list">
+                <!-- Row 1: Miaoawu Tech Studio -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2024.09 – PRESENT</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">喵嗷呜科技工作室</span>
+                            <span data-i18n="en">Miaoawu Tech Studio</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">联合创始人 / 技术产品负责人</span>
+                            <span data-i18n="en">Co-founder / Tech Product Lead</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">主导企业级 AI Agentic Workflow 与自动化工具链搭建，基于 LLM API、n8n 构建自动化流水线，设计跨平台数据同步与统一 API 接口。</span>
+                        <span data-i18n="en">Architected enterprise AI automation pipelines & agentic workflows (LLM APIs, n8n), unified cross-platform API contracts, and managed rapid agile prototypes.</span>
+                    </div>
+                </div>
+
+                <!-- Row 2: JiHu GitLab -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2022.02 – 2024.09</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">极狐 GitLab</span>
+                            <span data-i18n="en">JiHu (GitLab)</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">产品专家 / SaaS 与平台产品负责人</span>
+                            <span data-i18n="en">Senior Product Manager / Product Specialist</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">主导中国区 SaaS 平台与本地化企业版产品规划，管理跨时区国际化分布式产研协同，推动路线图制定与高可用企业级功能端到端交付。</span>
+                        <span data-i18n="en">Owned product planning and quarterly roadmaps for China SaaS & Self-Managed enterprise editions, coordinating multi-timezone international R&D teams.</span>
+                    </div>
+                </div>
+
+                <!-- Row 3: Shanghai Xianze Analytical Instruments -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2019.08 – 2022.02</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">上海仙泽分析仪器</span>
+                            <span data-i18n="en">Shanghai Xianze Analytical Instruments</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">软件与平台产品负责人</span>
+                            <span data-i18n="en">Software & Platform Product Lead</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">面向科研与工业实验室场景，主导高精度光谱分析工作站软件与 SaaS 数据平台的产品架构与交付，搭建 Jira 敏捷管理体系。</span>
+                        <span data-i18n="en">Led product architecture and delivery for optical workstation software and laboratory SaaS data platforms, standardizing Jira-based agile workflows.</span>
+                    </div>
+                </div>
+
+                <!-- Row 4: Shanghai Qinwen Network Technology -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2018.06 – 2019.05</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">上海钦文网络科技</span>
+                            <span data-i18n="en">Shanghai Qinwen Network Technology</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">高级产品经理</span>
+                            <span data-i18n="en">Senior Product Manager</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">通过全流程 A/B 测试优化用户注册与付费转化链路，结合精细化用户分层运营策略，推动注册转化率提升 30%+，DAU 提升 20%+。</span>
+                        <span data-i18n="en">Designed end-to-end A/B tests to optimize registration and onboarding funnels, boosting conversion rate by 30%+ and DAU by 20%+.</span>
+                    </div>
+                </div>
+
+                <!-- Row 5: Bilibili -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2016.09 – 2018.03</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">哔哩哔哩 (Bilibili)</span>
+                            <span data-i18n="en">Bilibili</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">高级产品经理</span>
+                            <span data-i18n="en">Senior Product Manager</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">负责移动主站跨端组件与 Hybrid 架构升级，确保大流量峰值下的系统流畅度与交付一致性；搭建全栈转化漏斗与埋点监控指标体系。</span>
+                        <span data-i18n="en">Deployed cross-platform UI frameworks and Hybrid infrastructures for peak traffic; established full-stack event tracking and funnel monitoring metrics.</span>
+                    </div>
+                </div>
+
+                <!-- Row 6: Ctrip -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2014.03 – 2016.03</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">携程 (Ctrip)</span>
+                            <span data-i18n="en">Ctrip</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">产品经理 (营销与技术平台)</span>
+                            <span data-i18n="en">Product Manager (Technology PM / Marketing)</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">主导 APP 深度链接（Deep Linking）与 URI 路由标准化系统重构，使全站订单转化率提升 70%~80%；规划原生广告全生命周期看板与标准化营销 API。</span>
+                        <span data-i18n="en">Spearheaded APP Deep Linking & URI routing overhaul, boosting order conversion rate by 70%~80%; designed marketing automation APIs and real-time dashboards.</span>
+                    </div>
+                </div>
+
+                <!-- Row 7: Beijing Lianyintong Technology -->
+                <div class="work-history-item">
+                    <div class="work-history-meta">
+                        <span class="work-history-period">2012.07 – 2014.01</span>
+                        <h3 class="work-history-company">
+                            <span data-i18n="zh">北京联银通科技 (上海农商银行)</span>
+                            <span data-i18n="en">Beijing Lianyintong Tech (SRCB)</span>
+                        </h3>
+                        <div class="work-history-role">
+                            <span data-i18n="zh">软件工程师</span>
+                            <span data-i18n="en">Software Engineer</span>
+                        </div>
+                    </div>
+                    <div class="work-history-desc">
+                        <span data-i18n="zh">负责银行核心数据聚合平台（DCP）的后端开发、接口编写、自动化测试与生产环境部署，积累扎实的底层软件架构与数据处理经验。</span>
+                        <span data-i18n="en">Developed backend data aggregation modules and automated test pipelines for core banking platforms, building a solid software architecture foundation.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Unified Section: CONTACT & ABOUT (截图部分合并，作为联系) -->
+    <div id="contact">
+        <!-- About The Process Block -->
+        <section class="section-block" style="border-bottom: none; padding-bottom: 5rem;">
+            <div class="container">
+                <div class="about-grid">
+                    <div>
+                        <h2 class="about-heading">
+                            About<br>The<br>Process
+                        </h2>
+                    </div>
+                    <div class="about-content">
+                        <div data-i18n="zh">
+                            <p>
+                                站在<strong>产品设计、前沿技术与商业逻辑</strong>的交汇点，我专注于将复杂的业务系统与模糊的需求，转化为清晰、确定且具有商业价值的决策路径。
+                            </p>
+                            <p>
+                                我将<strong>设计</strong>视作一种决策结构，将<strong>AI 与自动化技术</strong>视作人类判断力与直觉创造力的倍增器；而<strong>商业约束</strong>则是打磨创新的磨刀石，而非创新的枷锁。
+                            </p>
+                            <p>
+                                目前，我正致力于验证 <strong>"Local Business Stability + Global Remote Nomadism"</strong> 的混合运作模式，持续探索自由与专注并存的独立数字空间。
+                            </p>
+                        </div>
+                        <div data-i18n="en">
+                            <p>
+                                Working at the intersection of <strong>product design, technology, and business strategy</strong>, I focus on turning complex systems into clear decisions that align user needs, technical possibilities, and commercial intent.
+                            </p>
+                            <p>
+                                I see <strong>design</strong> as a decision-making structure, <strong>AI & technology</strong> as a multiplier of human judgment and creativity, and <strong>business constraints</strong> as parameters that sharpen, rather than limit, innovation.
+                            </p>
+                            <p>
+                                Currently validating the hybrid model of <strong>"Local Business Stability + Global Remote Nomadism"</strong>, exploring the frontiers of sovereign digital workflows.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dark Inverted Footer Contact -->
+        <footer class="site-footer">
+            <div class="footer-dot-bg"></div>
+            <div class="container" style="position: relative; z-index: 10;">
+                <p class="footer-top-label">GOT A PROJECT OR IDEA?</p>
+                <a href="mailto:gu0bug0@gmail.com" class="footer-email-link">gu0bug0@gmail.com</a>
+
+                <div class="footer-bottom">
+                    <div>
+                        © 2026 Gu0 Qiang / Gu0Bug · Built with Vibe Coding
+                    </div>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/gu0bug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
+                        <a href="https://gu0bug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
+                        <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client Script -->
+    <script src="./assets/app.js"></script>
+</body>
+
+</html>

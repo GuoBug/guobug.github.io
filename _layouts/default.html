@@ -1,168 +1,170 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-lang="zh">
+<html lang="en" data-lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-    <meta name="description"
-        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description" content="{% if page.summary %}{{ page.summary }}{% elsif page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
-    <meta name="google-site-verification" content="5ZY9kO_iMhMayNih6A4mmwEr3sNYkpDGbuGH_nBTIn4" />
 
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 
 <body>
-    <div class="container">
-        <!-- 侧边栏 -->
-        <aside class="sidebar">
-            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">[more]</button>
-            <div class="ascii-logo c-cyan"> ____  __  __ 
-|  _ \|  \/  |
-| |_) | |\/| |
-|  __/| |  | |
-|_|   |_|  |_|</div>
+    <!-- 1. Sticky Navigation Bar -->
+    <nav class="top-nav">
+        <div class="container nav-container">
+            <a href="{{ '/' | relative_url }}" class="nav-logo">
+                GU0BUG.DESIGN
+                <span class="nav-logo-badge">SYSTEM</span>
+            </a>
 
-            <div class="sidebar-collapsible" id="sidebarCollapsible">
-                <div class="lang-switch-container">
-                    <span class="c-yellow">[ LANG: </span>
-                    <button type="button" class="lang-btn active" data-set-lang="zh" aria-label="切换至中文">中文</button>
-                    <span class="c-dim">/</span>
-                    <button type="button" class="lang-btn" data-set-lang="en" aria-label="Switch to English">EN</button>
-                    <span class="c-yellow"> ]</span>
-                </div>
-
-                <div class="c-yellow" style="margin-top: 15px;">
-                    <span data-i18n-zh>[ 索引 / INDEX ]</span>
-                    <span data-i18n-en>[ INDEX ]</span>
-                </div>
-                <br>
-
-                <ul class="nav-list">
-                    <li><a href="{{ '/' | relative_url }}"
-                            class="nav-s1 {% if page.url == '/' or page.url == '/index.html' %}active-link{% endif %}">
-                            <span data-i18n-zh>首页 · HOME</span>
-                            <span data-i18n-en>HOME</span>
-                        </a>
-                    </li>
-                    <li><a href="{{ '/about/' | relative_url }}"
-                            class="nav-s2 {% if page.url == '/about/' %}active-link{% endif %}">
-                            <span data-i18n-zh>关于 · ABOUT</span>
-                            <span data-i18n-en>ABOUT_ME</span>
-                        </a>
-                    </li>
-                    <li><a href="{{ '/projects/' | relative_url }}"
-                            class="nav-s3 {% if page.url == '/projects/' %}active-link{% endif %}">
-                            <span data-i18n-zh>项目 · PROJECTS</span>
-                            <span data-i18n-en>PROJECTS</span>
-                        </a>
-                    </li>
-                    <li><a href="{{ '/posts/' | relative_url }}"
-                            class="nav-s4 {% if page.url contains '/posts/' %}active-link{% endif %}">
-                            <span data-i18n-zh>文章 · POSTS</span>
-                            <span data-i18n-en>POSTS</span>
-                        </a>
-                    </li>
-                    <li><a href="https://gu0bug.github.io/metaphysics-tools/index.html#"
-                            class="nav-s5" target="_blank" rel="noopener noreferrer">
-                            <span data-i18n-zh>玄学工具 · METAPHYSICS ↗</span>
-                            <span data-i18n-en>METAPHYSICS_TOOLS ↗</span>
-                        </a>
-                    </li>
-                    <li><a href="{{ '/contact/' | relative_url }}"
-                            class="nav-s1 {% if page.url == '/contact/' %}active-link{% endif %}">
-                            <span data-i18n-zh>联系 · CONTACT</span>
-                            <span data-i18n-en>CONTACT</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <br>
-
-                <div style="white-space: pre; line-height: 1.4; overflow-x: auto;">
-<span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span class="c-yellow">visitor</span>) {
-<span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
-<span class="c-magenta">return</span> <a href="https://github.com/{{ site.github_username }}" target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
-}
-<span class="c-magenta">return</span> <span class="c-green" data-i18n-zh>'感谢访问！'</span><span class="c-green" data-i18n-en>'Thanks for visiting!'</span>;
-}
-                </div>
+            <div class="nav-links">
+                <a href="{{ '/#vibe' | relative_url }}" class="nav-link">
+                    <span>VIBE CODING</span>
+                </a>
+                <a href="{{ '/#writings' | relative_url }}" class="nav-link active-nav">
+                    <span data-i18n="zh">文章</span>
+                    <span data-i18n="en">WRITINGS</span>
+                </a>
+                <a href="{{ '/#work' | relative_url }}" class="nav-link">
+                    <span data-i18n="zh">精选项目</span>
+                    <span data-i18n="en">WORK</span>
+                </a>
+                <a href="{{ '/#contact' | relative_url }}" class="nav-link">
+                    <span data-i18n="zh">联系</span>
+                    <span data-i18n="en">CONTACT</span>
+                </a>
             </div>
-        </aside>
 
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <!-- Language Switcher -->
+                <div class="lang-switch">
+                    <button type="button" class="lang-btn" data-lang-btn="zh">中文</button>
+                    <span>/</span>
+                    <button type="button" class="lang-btn active" data-lang-btn="en">EN</button>
+                </div>
 
-        <main class="main-content">
-            <div class="content-section">
-                <div class="terminal-meta">
-                    <div><span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{ site.github_username }}{% else %}guest{% endif %}/{{ page.path }}</span></div>
-                    <div class="c-dim" style="margin-top: 2px;">
-                        <span data-i18n-zh>系统初始化就绪...</span>
-                        <span data-i18n-en>Initializing...</span>
+                <!-- Mobile Menu Button -->
+                <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle menu">[MENU]</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <ul class="mobile-nav-list">
+            <li><a href="{{ '/#vibe' | relative_url }}">VIBE CODING</a></li>
+            <li><a href="{{ '/#writings' | relative_url }}"><span data-i18n="zh">文章</span><span data-i18n="en">WRITINGS</span></a></li>
+            <li><a href="{{ '/#work' | relative_url }}"><span data-i18n="zh">精选项目</span><span data-i18n="en">WORK</span></a></li>
+            <li><a href="{{ '/#contact' | relative_url }}"><span data-i18n="zh">联系</span><span data-i18n="en">CONTACT</span></a></li>
+        </ul>
+    </div>
+
+    <!-- 2. Medium-Style Editorial Article Section -->
+    <main class="medium-article-page">
+        <div class="medium-article-container">
+            <!-- Publication Header & Breadcrumb -->
+            <div class="medium-pub-header">
+                <a href="{{ '/#writings' | relative_url }}" class="medium-pub-tag">
+                    <span>⚡ {% if page.categories %}{{ page.categories | join: ' // ' | upcase }}{% else %}ESSAY // ARTICLE{% endif %}</span>
+                </a>
+                <a href="{{ '/#writings' | relative_url }}" class="medium-back-link">
+                    <span>←</span>
+                    <span data-i18n="zh">返回文章归档</span>
+                    <span data-i18n="en">BACK TO WRITINGS</span>
+                </a>
+            </div>
+
+            <!-- Article Title & Subtitle -->
+            <h1 class="medium-article-title">
+                {{ page.title }}
+            </h1>
+
+            {% if page.summary %}
+            <p class="medium-article-subtitle">
+                {{ page.summary }}
+            </p>
+            {% endif %}
+
+            <!-- Author & Metadata Bar -->
+            <div class="medium-author-bar">
+                <div class="medium-author-left">
+                    <div class="medium-author-avatar">GQ</div>
+                    <div class="medium-author-meta">
+                        <div class="medium-author-name-row">
+                            <span class="medium-author-name">Gu0 Qiang</span>
+                            <button type="button" class="medium-follow-btn" id="followBtn" onclick="this.classList.toggle('following'); this.textContent = this.classList.contains('following') ? 'FOLLOWING ✓' : 'FOLLOW';">
+                                FOLLOW
+                            </button>
+                        </div>
+                        <div class="medium-post-specs">
+                            <span>Published in Gu0 Qiang</span>
+                            <span>·</span>
+                            <span>{{ page.date | date: "%b %d, %Y" }}</span>
+                        </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- Article Body Content -->
+            <article class="medium-body-text">
                 {{ content }}
+            </article>
 
-                <div class="terminal-prompt">
-                    <span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
+            <!-- "More from Gu0 Qiang" Recommendations -->
+            <section class="medium-more-section">
+                <h3 class="medium-more-heading">
+                    <span data-i18n="zh">更多精选文章推荐</span>
+                    <span data-i18n="en">MORE FROM GU0 QIANG</span>
+                </h3>
+
+                <div class="medium-more-grid">
+                    {% for post in site.posts limit:4 %}
+                    {% unless post.url == page.url %}
+                    <a href="{{ post.url | relative_url }}" class="medium-rec-card">
+                        <div>
+                            <div class="medium-rec-tag">{% if post.categories %}{{ post.categories.first }}{% else %}Product{% endif %}</div>
+                            <div class="medium-rec-title">
+                                {{ post.title }}
+                            </div>
+                        </div>
+                        <div class="medium-rec-footer">
+                            <span>{{ post.date | date: "%b %d, %Y" }}</span>
+                            <span>READ ↗</span>
+                        </div>
+                    </a>
+                    {% endunless %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Dark Inverted Footer (Consistent with Homepage) -->
+    <footer class="site-footer" style="padding-top: 3.5rem; padding-bottom: 3.5rem;">
+        <div class="footer-dot-bg"></div>
+        <div class="container" style="position: relative; z-index: 10;">
+            <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border-top: none;">
+                <div>
+                    © 2026 Gu0 Qiang / Gu0Bug · Built with Vibe Coding
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com/gu0bug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
+                    <a href="https://gu0bug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
+                    <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
                 </div>
             </div>
-            
-            <footer style="margin-top: 40px; border-top: 1px dashed var(--ansi-dim); padding-top: 20px; font-size: 12px;">
-                <span class="c-dim"><span data-i18n-zh>[系统管理员]</span><span data-i18n-en>[SYS_ADMIN]</span></span> <a href="mailto:{{ site.email }}" class="c-cyan">{{ site.email }}</a>
-            </footer>
-        </main>
-    </div>
-    <script>
-        (function() {
-            // 语言状态管理
-            var storedLang = localStorage.getItem('site_lang');
-            var defaultLang = storedLang || (navigator.language && navigator.language.indexOf('zh') !== -1 ? 'zh' : 'zh');
-            
-            function setLanguage(lang) {
-                var langAttr = (lang === 'en') ? 'en' : 'zh';
-                document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
-                document.documentElement.setAttribute('data-lang', langAttr);
-                localStorage.setItem('site_lang', langAttr);
-                
-                var buttons = document.querySelectorAll('.lang-btn');
-                buttons.forEach(function(btn) {
-                    if (btn.getAttribute('data-set-lang') === langAttr) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-            }
+        </div>
+    </footer>
 
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var targetLang = this.getAttribute('data-set-lang');
-                    setLanguage(targetLang);
-                });
-            });
-
-            // 初始化语言
-            setLanguage(defaultLang);
-
-            // 移动端汉堡菜单
-            var btn = document.getElementById('hamburgerBtn');
-            var panel = document.getElementById('sidebarCollapsible');
-            if (btn && panel) {
-                btn.addEventListener('click', function() {
-                    panel.classList.toggle('open');
-                    btn.textContent = panel.classList.contains('open') ? '[less]' : '[more]';
-                });
-                panel.querySelectorAll('a').forEach(function(link) {
-                    link.addEventListener('click', function() {
-                        panel.classList.remove('open');
-                        btn.textContent = '[more]';
-                    });
-                });
-            }
-        })();
-    </script>
+    <!-- Client Script -->
+    <script src="{{ '/assets/app.js' | relative_url }}"></script>
 </body>
 
 </html>

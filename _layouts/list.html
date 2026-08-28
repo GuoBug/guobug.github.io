@@ -1,18 +1,23 @@
 ---
 layout: default
 ---
-<span class="c-magenta">#</span> <span class="c-green">{{ page.title }}</span>
-
-{{ content }}
-
-<span class="c-dim">--------------------------------------------------</span>
-<ul style="list-style: none; padding: 0;">
+<div class="writings-grid" style="margin-top: 2rem;">
 {% for post in site.posts %}
-  <li style="margin-bottom: 1em;">
-    <span class="c-dim">[{{ post.date | date: "%Y-%m-%d" }}]</span> 
-    <a href="{{ post.url | relative_url }}" class="c-cyan">{{ post.title }}</a>
-    <br>
-    <span class="c-dim">{{ post.summary | default: post.excerpt | strip_html | truncatewords: 20 }}</span>
-  </li>
+    <a href="{{ post.url | relative_url }}" class="writing-card">
+        <div>
+            <div class="writing-card-header">
+                <span class="writing-pub-tag">{% if post.categories %}{{ post.categories.first }}{% else %}Post{% endif %}</span>
+                <span class="writing-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+            </div>
+            <h3 class="writing-title">{{ post.title }}</h3>
+            <p class="writing-excerpt">
+                {{ post.summary | default: post.excerpt | strip_html | truncatewords: 25 }}
+            </p>
+        </div>
+        <div class="writing-card-footer">
+            <span>READ ↗</span>
+            <span class="writing-read-more">EXPLORE ↗</span>
+        </div>
+    </a>
 {% endfor %}
-</ul>
+</div>

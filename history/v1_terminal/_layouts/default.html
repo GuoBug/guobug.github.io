@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <meta name="description"
+        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="author" content="{{ site.author }}">
+    <meta name="google-site-verification" content="5ZY9kO_iMhMayNih6A4mmwEr3sNYkpDGbuGH_nBTIn4" />
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">[more]</button>
+            <div class="ascii-logo c-cyan"> ____  __  __ 
+|  _ \|  \/  |
+| |_) | |\/| |
+|  __/| |  | |
+|_|   |_|  |_|</div>
+
+            <div class="sidebar-collapsible" id="sidebarCollapsible">
+                <div class="lang-switch-container">
+                    <span class="c-yellow">[ LANG: </span>
+                    <button type="button" class="lang-btn active" data-set-lang="zh" aria-label="切换至中文">中文</button>
+                    <span class="c-dim">/</span>
+                    <button type="button" class="lang-btn" data-set-lang="en" aria-label="Switch to English">EN</button>
+                    <span class="c-yellow"> ]</span>
+                </div>
+
+                <div class="c-yellow" style="margin-top: 15px;">
+                    <span data-i18n-zh>[ 索引 / INDEX ]</span>
+                    <span data-i18n-en>[ INDEX ]</span>
+                </div>
+                <br>
+
+                <ul class="nav-list">
+                    <li><a href="{{ '/' | relative_url }}"
+                            class="nav-s1 {% if page.url == '/' or page.url == '/index.html' %}active-link{% endif %}">
+                            <span data-i18n-zh>首页 · HOME</span>
+                            <span data-i18n-en>HOME</span>
+                        </a>
+                    </li>
+                    <li><a href="{{ '/about/' | relative_url }}"
+                            class="nav-s2 {% if page.url == '/about/' %}active-link{% endif %}">
+                            <span data-i18n-zh>关于 · ABOUT</span>
+                            <span data-i18n-en>ABOUT_ME</span>
+                        </a>
+                    </li>
+                    <li><a href="{{ '/projects/' | relative_url }}"
+                            class="nav-s3 {% if page.url == '/projects/' %}active-link{% endif %}">
+                            <span data-i18n-zh>项目 · PROJECTS</span>
+                            <span data-i18n-en>PROJECTS</span>
+                        </a>
+                    </li>
+                    <li><a href="{{ '/posts/' | relative_url }}"
+                            class="nav-s4 {% if page.url contains '/posts/' %}active-link{% endif %}">
+                            <span data-i18n-zh>文章 · POSTS</span>
+                            <span data-i18n-en>POSTS</span>
+                        </a>
+                    </li>
+                    <li><a href="https://gu0bug.github.io/metaphysics-tools/index.html#"
+                            class="nav-s5" target="_blank" rel="noopener noreferrer">
+                            <span data-i18n-zh>玄学工具 · METAPHYSICS ↗</span>
+                            <span data-i18n-en>METAPHYSICS_TOOLS ↗</span>
+                        </a>
+                    </li>
+                    <li><a href="{{ '/contact/' | relative_url }}"
+                            class="nav-s1 {% if page.url == '/contact/' %}active-link{% endif %}">
+                            <span data-i18n-zh>联系 · CONTACT</span>
+                            <span data-i18n-en>CONTACT</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <br>
+
+                <div style="white-space: pre; line-height: 1.4; overflow-x: auto;">
+<span class="c-magenta">function</span> <span class="c-blue">siteFor</span>(<span class="c-yellow">visitor</span>) {
+<span class="c-magenta">if</span> (visitor.like === <span class="c-cyan">true</span>) {
+<span class="c-magenta">return</span> <a href="https://github.com/{{ site.github_username }}" target="_blank" class="link-inline"><span class="c-cyan">'-&gt; GitHub'</span></a>;
+}
+<span class="c-magenta">return</span> <span class="c-green" data-i18n-zh>'感谢访问！'</span><span class="c-green" data-i18n-en>'Thanks for visiting!'</span>;
+}
+                </div>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+            <div class="content-section">
+                <div class="terminal-meta">
+                    <div><span class="c-dim">[path]:</span> <span class="c-blue">/home/{% if site.github_username %}{{ site.github_username }}{% else %}guest{% endif %}/{{ page.path }}</span></div>
+                    <div class="c-dim" style="margin-top: 2px;">
+                        <span data-i18n-zh>系统初始化就绪...</span>
+                        <span data-i18n-en>Initializing...</span>
+                    </div>
+                </div>
+
+                {{ content }}
+
+                <div class="terminal-prompt">
+                    <span class="c-green">guest@terminal:~$</span> <span class="cursor"></span>
+                </div>
+            </div>
+            
+            <footer style="margin-top: 40px; border-top: 1px dashed var(--ansi-dim); padding-top: 20px; font-size: 12px;">
+                <span class="c-dim"><span data-i18n-zh>[系统管理员]</span><span data-i18n-en>[SYS_ADMIN]</span></span> <a href="mailto:{{ site.email }}" class="c-cyan">{{ site.email }}</a>
+            </footer>
+        </main>
+    </div>
+    <script>
+        (function() {
+            // 语言状态管理
+            var storedLang = localStorage.getItem('site_lang');
+            var defaultLang = storedLang || (navigator.language && navigator.language.indexOf('zh') !== -1 ? 'zh' : 'zh');
+            
+            function setLanguage(lang) {
+                var langAttr = (lang === 'en') ? 'en' : 'zh';
+                document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
+                document.documentElement.setAttribute('data-lang', langAttr);
+                localStorage.setItem('site_lang', langAttr);
+                
+                var buttons = document.querySelectorAll('.lang-btn');
+                buttons.forEach(function(btn) {
+                    if (btn.getAttribute('data-set-lang') === langAttr) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var targetLang = this.getAttribute('data-set-lang');
+                    setLanguage(targetLang);
+                });
+            });
+
+            // 初始化语言
+            setLanguage(defaultLang);
+
+            // 移动端汉堡菜单
+            var btn = document.getElementById('hamburgerBtn');
+            var panel = document.getElementById('sidebarCollapsible');
+            if (btn && panel) {
+                btn.addEventListener('click', function() {
+                    panel.classList.toggle('open');
+                    btn.textContent = panel.classList.contains('open') ? '[less]' : '[more]';
+                });
+                panel.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        panel.classList.remove('open');
+                        btn.textContent = '[more]';
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>
