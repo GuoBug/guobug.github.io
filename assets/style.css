@@ -1324,6 +1324,25 @@ body {
     margin-bottom: 1.75rem;
 }
 
+/* Article Images Constrained to Container Width */
+.medium-body-text img,
+.post-content img,
+.section-block img,
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+.medium-body-text img {
+    width: 100%;
+    margin: 2.25rem 0;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0px 0px #000000;
+}
+
 .medium-pullquote {
     border-left: 6px solid var(--accent);
     background: #fafafa;
