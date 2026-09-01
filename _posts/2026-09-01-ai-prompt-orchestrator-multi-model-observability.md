@@ -39,13 +39,8 @@ tags: [AI, Multi-Model, DeepSeek, Gemini, Observability, React Flow, TypeScript,
 
 为了彻底解决这一问题，我们设计了**启发式模型回落机制（Heuristic Fallback Mapping）**。
 
-```text
-【传统硬编码调用（易崩溃）】
-用户使用 Google Key ──> 执行节点 (配置为 gpt-4o-mini) ──> 发送给 Google API ──> 💥 404 报错中断
+![启发式模型回落机制]({{ '/assets/images/fallback-mapping.jpg' | relative_url }})
 
-【启发式模型回落（自适应容错）】
-用户使用 Google Key ──> 触发 resolveTargetModel() 嗅探 ──> 检测到非 Gemini 模型 ──> 自动安全回落至 gemini-2.5-flash ──> ✅ 丝滑跑通
-```
 
 ### 2. 为什么叫“启发式（Heuristic）”？
 “启发式”指的是：**不依赖死板的全局全量硬编码字典，也不弹窗打断用户操作，而是基于模型命名的生态模式与前缀特征进行快速智能推断**：
@@ -115,18 +110,8 @@ export function resolveTargetModel(
 * **下游提取瘫痪**：下游的 JSON 抽取器或 JavaScript 代码沙箱试图解析输出时，会被冗长的思考文字干扰导致语法报错；
 * **画布界面爆炸**：长达几千字的思维链直接撑爆画布节点卡片。
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                    LLM 节点流式响应通道                      │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-               ┌───────────────┴───────────────┐
-               ▼                               ▼
-       【 思维链推理流 】              【 最终回答生成流 】
-       • <think> 标签 / reasoning_content • 实时 Markdown Token 渲染
-       • 独立抽屉面板展示              • 画布节点状态实时刷新
-       • 记录思考阶段耗时              • 记录首字延迟 (TTFT)
-```
+![双流 SSE 吐字与思维链独立渲染]({{ '/assets/images/dual-stream-sse.jpg' | relative_url }})
+
 
 ### 2. 核心架构解法
 1. **流式分块解复用（Demuxing）**：在 SSE 接收层对 `delta.reasoning_content` 与 `delta.content` 进行实时双通道分流；
