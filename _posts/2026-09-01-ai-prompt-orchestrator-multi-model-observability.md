@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与企业级可观测性实战（开源系列 03）"
+title: "从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）"
 date: 2026-09-01 16:30:00 +0800
 categories: [AI, Architecture, Engineering]
 summary: "深入剖析 AI 提示流编排器进阶工程实战：跨厂商启发式模型回落（解决 404 崩溃）、DeepSeek-R1 双流思维链渲染、三级安全日志脱敏控制台与画布实时环路防死锁设计。"
-tags: [AI, Multi-Model, DeepSeek, Gemini, Observability, React Flow, TypeScript, Open Source]
+tags: [AI, Multi-Model, DeepSeek, Gemini, Logging, React Flow, TypeScript, Open Source]
 ---
 
 > **项目开源地址**：[https://github.com/gu0bug/ai-prompt-orchestrator](https://github.com/gu0bug/ai-prompt-orchestrator)  
@@ -18,10 +18,10 @@ tags: [AI, Multi-Model, DeepSeek, Gemini, Observability, React Flow, TypeScript,
 
 在 [系列 01] 与 [系列 02] 中，我们先后攻克了提示流编排器的**双引擎架构设计**、**分层 Kahn 拓扑排序**以及**防原型链投毒的安全变量引擎**。底层的调度器（Scheduler）与异步运行时（Runtime）已经能够毫秒级调度复杂的 DAG 工作流。
 
-然而，当系统真正从“算法原型”迈向“生产级低代码平台”时，现实中各种更严苛的工程挑战接踵而至：
+然而，当系统真正从“算法原型”迈向“开箱即用的实用工具”时，现实中各种更严苛的工程挑战接踵而至：
 1. **厂商生态割裂与模板报错**：各家模型请求协议与命名各异，导入包含 `gpt-4o` 的预设模板时，如果用户切到 Google 或 DeepSeek，接口直接抛出 `404 model_not_found` 导致工作流崩溃；
 2. **推理模型思维链（Reasoning Process）的渲染难题**：面对 DeepSeek-R1、Gemini Thinking 这类带深度思考过程的模型，如何做双流 SSE 渲染，既展示思考过程又不污染下游节点的结构化数据提取？
-3. **纯前端环境下的企业级可观测性与隐私红线**：如何在浏览器内提供类似现代 IDE 的调试控制台，同时 100% 杜绝 `sk-***` 等 API 密钥在日志中泄露？
+3. **纯前端环境下的全链路日志记录与隐私脱敏**：如何在浏览器内提供类似现代 IDE 的三级调试控制台，同时 100% 杜绝 `sk-***` 等 API 密钥在日志中泄露？
 4. **画布交互的防御性体验**：用户在画布上连出循环依赖（死锁环路）时，如何在交互拖拽期毫秒级拦截？
 
 本文将全面复盘 **PatchCat** 在多模型接入、流式思维链、安全日志体系以及画布交互工程上的完整实践。
@@ -119,9 +119,9 @@ export function resolveTargetModel(
 
 ---
 
-## 模块三：三级企业级日志系统与递归安全脱敏（Sanitize Engine）
+## 模块三：三级日志记录体系与递归安全脱敏（Sanitize Engine）
 
-### 1. 为什么纯前端也需要企业级日志体系？
+### 1. 为什么纯前端也需要一套完整的日志体系？
 在纯浏览器执行（Client-Only BYOK）模式下，如果仅靠浏览器的 `console.log`，用户在调试几十个节点的大型工作流时无异于大海捞针。
 
 系统打造了类似现代 IDE 底部的**可折叠、可调高度的三级日志控制台**：
@@ -220,7 +220,7 @@ export function sanitizeData(data: unknown): unknown {
 
 ## 🎯 总结与后续演进
 
-从 [系列 01] 的理念构想，到 [系列 02] 的底层调度算法，再到本篇 [系列 03] 的**多模型生态、流式思维链、安全日志与防御性交互工程**，PatchCat 已经完成了一次完整的从“玩具原型”到“工业级生产工具”的蜕变。
+从 [系列 01] 的理念构想，到 [系列 02] 的底层调度算法，再到本篇 [系列 03] 的**多模型生态、流式思维链、安全日志与防御性交互工程**，PatchCat 已经完成了一次完整的从“玩具原型”到“生产就绪的实用工具”的蜕变。
 
 后续我们将继续探索：
 * **本地 Python 沙箱深度执行**（结合 Local FastAPI 引擎）；

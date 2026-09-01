@@ -333,4 +333,4 @@ Total: 18 tests, 5 suites, 18 passed, 0 failed (总耗时: 574ms)
 > 💡 **项目开源与交流**：如果你对前端图计算、轻量级 AI 工作流编排或 Vibe Coding 实践感兴趣，欢迎访问项目仓库并点个 **Star ⭐️** 支持！如果有任何建议或 Bug，欢迎直接在 GitHub 提交 Issue 或 PR 交流。
 >
 > 🔗 **GitHub 仓库地址**：[https://github.com/gu0bug/ai-prompt-orchestrator](https://github.com/gu0bug/ai-prompt-orchestrator)  
-> 📖 **下一篇深度解析**：[《从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与企业级可观测性实战（开源系列 03）》]({{ '/posts/2026/09/01/ai-prompt-orchestrator-multi-model-observability/' | relative_url }})
+> 📖 **下一篇深度解析**：[《从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）》]({{ '/posts/2026/09/01/ai-prompt-orchestrator-multi-model-observability/' | relative_url }})
