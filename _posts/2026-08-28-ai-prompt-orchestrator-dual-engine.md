@@ -18,6 +18,9 @@ tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Sour
 
 市面上虽然已有 Dify、Langflow 等优秀工具，但它们普遍依赖重型后端环境与复杂数据库。为了彻底吃透 Agentic Workflow 底层调度机制，并探索一种**无需后端即可在线体验、本地又能直连私有算力**的极简架构，我启动了这个开源项目：**从产品与架构视角出发，通过“规范先行”的 Vibe Coding，构建一个轻量级低代码 AI 提示流编排器（AI Prompt Flow Orchestrator）。**
 
+<!-- 封面图配置：当前页面使用白底新野兽派封面 (ai-prompt-orchestrator-cover.jpg)；后续如支持夜间模式，可切换为深色点阵封面 (ai-prompt-orchestrator-cover-dark.jpg) -->
+![AI Prompt Orchestrator 提示流编排器]({{ '/assets/images/ai-prompt-orchestrator-cover.jpg' | relative_url }})
+
 ---
 
 ## 一、 为什么单次 Prompt 无法胜任复杂业务？
