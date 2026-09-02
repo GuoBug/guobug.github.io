@@ -31,10 +31,6 @@ tags: [AI, DAG, Topological Sort, Workflow, TypeScript, Runtime, Open Source]
 ### 1. 是什么
 分层拓扑排序是在传统有向无环图（DAG）拓扑排序基础上的扩展算法。它依据入度消除的依赖时序，将图中的节点划分为离散的、具有先后因果顺序的**二维执行层矩阵（Wavefront Layers）**。同一层级内的所有节点彼此无拓扑依赖，在运行时完全互斥无关。
 
-```text
-传统拓扑排序（一维串行）: [ A ] ──▶ [ B ] ──▶ [ C ] ──▶ [ D ]
-分层拓扑排序（二维并发）: Layer 0: [ A ] ──▶ Layer 1: [ B, C ] ──▶ Layer 2: [ D ]
-```
 
 ### 2. 主要用在哪里
 * **AI Agent 工作流编排**：如 Dify、LangGraph、Coze 中多模型节点、工具节点与知识库检索的依赖执行流规划。
@@ -49,46 +45,11 @@ tags: [AI, DAG, Topological Sort, Workflow, TypeScript, Runtime, Open Source]
 
 ### 4. 核心代码实现
 
-```typescript
-// 1. 初始化入度表与邻接表
-for (const node of activeNodes) {
-  inDegree.set(node.id, 0);
-  adjacencyList.set(node.id, []);
-}
+![基于 Kahn 算法的分层拓扑排序]({{ '/assets/images/kahn-topological-sort.png' | relative_url }})
 
-// 2. 统计所有入度 (In-Degrees) 与构建出边映射
-for (const edge of graph.edges) {
-  adjacencyList.get(edge.source)!.push(edge.target);
-  inDegree.set(edge.target, (inDegree.get(edge.target) || 0) + 1);
-}
+为了更直观地理解算法在内存中消除入度与提取二维波次矩阵的全过程，其执行状态流转如下：
 
-// 3. 提取初始入度为 0 的节点作为 Layer 0 (种子层)
-let currentLayer: string[] = [];
-for (const [nodeId, degree] of inDegree.entries()) {
-  if (degree === 0) currentLayer.push(nodeId);
-}
-
-// 4. 逐层 BFS 推进与波次提取 (Layer-by-Layer)
-while (currentLayer.length > 0) {
-  executionLayers.push([...currentLayer]); // 持久化当前可完全并发的批次
-  const nextLayer: string[] = [];
-
-  for (const u of currentLayer) {
-    sortedNodeIds.push(u);
-    visitedCount++;
-
-    const neighbors = adjacencyList.get(u) || [];
-    for (const v of neighbors) {
-      const updatedDegree = (inDegree.get(v) || 0) - 1; // 消除前置依赖
-      inDegree.set(v, updatedDegree);
-      if (updatedDegree === 0) {
-        nextLayer.push(v); // 所有前置依赖全部解除，纳入下一批次
-      }
-    }
-  }
-  currentLayer = nextLayer;
-}
-```
+![Kahn 分层波次算法执行全流程解构]({{ '/assets/images/kahn-wavefront-flowchart.png' | relative_url }})
 
 * **逻辑拆解**：
   1. **初始化**：以 `O(V)` 开销建立哈希容器，将所有节点初始入度置为 `0`。
@@ -117,31 +78,7 @@ while (currentLayer.length > 0) {
 
 ### 4. 核心代码实现
 
-```typescript
-// 1. 建立 O(1) 节点索引集合，拦截悬空边 (Dangling Edges)
-const nodeIds = new Set(graph.nodes.map(n => n.id));
-for (const edge of graph.edges) {
-  if (!nodeIds.has(edge.source)) {
-    errors.push(`Edge ${edge.id} references non-existent source node "${edge.source}"`);
-  }
-  if (!nodeIds.has(edge.target)) {
-    errors.push(`Edge ${edge.id} references non-existent target node "${edge.target}"`);
-  }
-}
-
-// 2. 基于 Kahn 定理判断全图连通性与环路
-const hasCycle = visitedCount !== activeNodes.length;
-const cycleNodeIds: string[] = [];
-
-// 3. 提取所有因环导致依赖无法释放的节点集合
-if (hasCycle) {
-  for (const [nodeId, degree] of inDegree.entries()) {
-    if (degree > 0) {
-      cycleNodeIds.push(nodeId); 
-    }
-  }
-}
-```
+![图静态语义校验与循环依赖熔断]({{ '/assets/images/graph-semantic-validation.png' | relative_url }})
 
 ---
 
@@ -162,30 +99,7 @@ if (hasCycle) {
 
 ### 4. 核心代码实现
 
-```typescript
-export function getNestedProperty(obj: unknown, path: string): unknown {
-  if (obj === null || obj === undefined) return undefined;
-
-  // 1. 语法标准化: 将 a[0] 或 a[name] 统一转换为 a.0 / a.name
-  const normalizedPath = path.replace(/\[(\w+)\]/g, '.$1');
-  const segments = normalizedPath.split('.').filter(Boolean);
-
-  let current: any = obj;
-  for (const segment of segments) {
-    // 运行时安全类型收窄
-    if (current === null || current === undefined || typeof current !== 'object') {
-      return undefined; 
-    }
-
-    // 2. 🛡️ 防原型链污染核心安全守卫
-    if (segment === '__proto__' || segment === 'constructor' || segment === 'prototype') {
-      return undefined; // 拦截针对全局对象原型的恶意探测
-    }
-    current = current[segment];
-  }
-  return current;
-}
-```
+![深层嵌套属性安全提取与防原型链投毒]({{ '/assets/images/nested-property-security.png' | relative_url }})
 
 ---
 
@@ -208,38 +122,7 @@ export function getNestedProperty(obj: unknown, path: string): unknown {
 
 ### 4. 核心代码实现
 
-{% raw %}
-```typescript
-// Mustache 模板提取正则 (捕获组: 1=nodeId, 2=path, 3=fallback)
-const VARIABLE_REGEX = /\{\{\s*([a-zA-Z0-9_-]+)\.([a-zA-Z0-9_.[\]-]+)(?:\s*\|\s*([^}]+))?\s*\}\}/g;
-
-export function resolveTemplateVariables(
-  template: string,
-  context: Record<string, Record<string, unknown>>
-): string {
-  return template.replace(VARIABLE_REGEX, (match, nodeId, path, fallback) => {
-    const nodeOutput = context[nodeId];
-    
-    // 1. 节点不存在时的降级策略
-    if (!nodeOutput) {
-      if (fallback !== undefined) {
-        return fallback.trim().replace(/^['"]|['"]$/g, ''); // 提取 Fallback 文本
-      }
-      return match; // 保持占位符原样
-    }
-
-    // 2. 属性值提取与空值回退
-    const value = getNestedProperty(nodeOutput, path);
-    if (value === undefined || value === null) {
-      return fallback !== undefined ? fallback.trim().replace(/^['"]|['"]$/g, '') : '';
-    }
-
-    // 3. 数据类型自适应转换
-    return typeof value === 'object' ? JSON.stringify(value) : String(value);
-  });
-}
-```
-{% endraw %}
+![容错型动态模板变量插值引擎]({{ '/assets/images/template-variable-resolver.png' | relative_url }})
 
 ---
 
@@ -250,43 +133,7 @@ export function resolveTemplateVariables(
 
 ### 2. 核心代码实现
 
-```typescript
-// 逐层遍历执行波次 (层与层之间串行推进)
-for (const layer of executionLayers) {
-  if (signal.aborted) {
-    throw new Error('Workflow execution aborted by user.');
-  }
-
-  // 同一层级内利用 Promise.all 实现完全并发
-  const layerResults = await Promise.all(
-    layer
-      .map((nodeId) => nodeMap.get(nodeId))
-      .filter((n): n is WorkflowNode => n !== undefined)
-      .map((node) => this.executeNodeInternal(node, context, signal))
-  );
-
-  for (const result of layerResults) {
-    if (result.status === 'error') {
-      yield { type: 'NODE_ERROR', payload: { nodeId: result.nodeId, error: result.error } };
-      throw new Error(`Node ${result.nodeId} failed: ${result.error}`);
-    }
-    context[result.nodeId] = result.output;
-    yield { type: 'NODE_COMPLETE', payload: { nodeId: result.nodeId, output: result.output } };
-  }
-}
-```
-
-```typescript
-// 底层支持 In-Flight 运行中立即中断的异步延迟模型
-await new Promise<void>((resolve, reject) => {
-  if (signal.aborted) return reject(new Error('Workflow execution aborted by user.'));
-  const timer = setTimeout(() => resolve(), delayMs);
-  signal.addEventListener('abort', () => {
-    clearTimeout(timer); // 立即清理微任务，拒绝挂起
-    reject(new Error('Workflow execution aborted by user.'));
-  }, { once: true });
-});
-```
+![运行时波次并发调度器与 In-Flight 熔断模型]({{ '/assets/images/runtime-wavefront-scheduler.png' | relative_url }})
 
 ---
 
@@ -294,30 +141,7 @@ await new Promise<void>((resolve, reject) => {
 
 项目通过 Node.js 24 原生测试框架构建了 **5 大测试套件、18 项严密断言**，全量测试在 **574ms** 内全部通过：
 
-```text
-▶ Topological Sort (Kahn's Algorithm) (3.21ms) ────────── 4 passed
-▶ Variable Resolver (1.58ms) ──────────────────────────── 5 passed
-▶ Execution Runtime (Async Scheduling) (122.81ms) ──────── 2 passed
-▶ Advanced Engineering Benchmarks & Chaos (172.20ms) ──── 4 passed
-  ✔ 1. 并发度时序断言: ~max(Ti) (实测 107.7ms，远低于串行累加 200ms)
-  ✔ 2. In-Flight 中止断言: 300ms 任务在 50ms 触发 Abort，实测 63.6ms 瞬间退出
-  ✔ 3. 错误冒泡与下游阻断: 单节点 Reject 触发 NODE_ERROR，下游节点 100% 拒绝执行
-  ✔ 4. 悬空边负向断言: 显式注入非法边 ID，预检阶段 0.18ms 瞬间熔断
-▶ Workflow Zustand Store (3.61ms) ──────────────────────── 3 passed
-
-Total: 18 tests, 5 suites, 18 passed, 0 failed (总耗时: 574ms)
-```
-
-```text
-【1. 并发时序验证】
-并发节点 A & B (各 100ms) ───(Promise.all)───▶ 实测 107ms ≈ max(T) 🚀
-
-【2. In-Flight 中断】
-300ms 异步睡眠 ───────────(50ms 触发 Abort)───▶ 实测 63ms 立即退出 🛑
-
-【3. 异常级联阻断】
-节点 A 报错 Reject ─────────(熔断触发)────────▶ 下游节点 C 零执行 🛡️
-```
+![全量工程基准与混沌压力实测看板]({{ '/assets/images/chaos-benchmark-results.png' | relative_url }})
 
 ---
 
