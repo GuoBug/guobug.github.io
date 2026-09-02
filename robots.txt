@@ -1,0 +1,66 @@
+# robots.txt for https://gu0bug.github.io
+# Welcome search engines and AI crawlers
+
+User-agent: *
+Allow: /
+Disallow: /history/
+Disallow: /preview/
+Disallow: /assets/css/*.map
+
+# Search Engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# AI Search & LLM Crawlers (GEO / AIO)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+# LLM Context Protocol:
+# See https://gu0bug.github.io/llms.txt for AI-native structured context & summaries
+
+Sitemap: https://gu0bug.github.io/sitemap.xml
