@@ -27,15 +27,7 @@ tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Sour
 
 单次对话调用与工作流编排的核心差异在于**“确定性控制”与“系统可观测性”**：
 
-```text
-【传统单次 Prompt（黑盒与概率）】
-用户输入 ──> [ 超长 Context + 复合规则指令 ] ──> 大模型 ──> 脆弱且不可控的输出
-
-【提示流编排 DAG Flow（工程化与确定性）】
-用户输入 ──> [ 意图分类节点 ] ──> [ 变量抽取 ] ──> [ 垂类推理节点 ] ──> [ Critic 质检节点 ] ──> 确定性交付
-                                                           │
-                                                           └──> (质检未通过？精准重试该节点)
-```
+![从单次 Prompt 迷思走向确定性工作流]({{ '/assets/images/single-prompt-vs-dag-flow.png' | relative_url }})
 
 通过 DAG（有向无环图）工作流编排，系统在工程层面实现了四个跃升：
 
@@ -50,22 +42,7 @@ tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Sour
 
 为平衡**“开源零门槛试用”**与**“生产级扩展能力”**，本项目在初期就确立了**双引擎适配器（Dual-Engine Adapter）**架构：
 
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                     Web UI 画布层 (React Flow + Zustand)               │
-│          统一的可视化交互、节点连线、变量插槽抽取与运行状态流转面板            │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                        [ Execution Adapter 统一契约 ]
-                                    │
-         ┌──────────────────────────┴──────────────────────────┐
-         ▼                                                     ▼
-  【 浏览器端纯前端引擎 (Client-Only) 】                 【 本地服务端引擎 (FastAPI) 】
-  • 部署方式：GitHub Pages 纯静态托管                   • 部署方式：本地 Docker / Python
-  • 核心调度：纯 TS 实现 DAG 拓扑排序 (Kahn 算法)       • 脚本执行：真实 Python 沙箱安全运行
-  • 体验模式：内置丰富 Mock 模板 (零门槛免 Key)         • 模型直连：Ollama 本地私有模型免配置
-  • 真实调用：支持浏览器端直连 LLM API (BYOK)          • 数据存储：本地 SQLite / 向量知识库
-```
+![双引擎适配器架构设计]({{ '/assets/images/dual-engine-architecture.png' | relative_url }})
 
 ### 1. 体验层（零成本极速体验）
 * **痛点**：90% 的开发者看到开源项目时，会因为需要配 Python 环境、装 Docker、找 API Key 而放弃尝试。
@@ -83,20 +60,7 @@ tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Sour
 
 目前项目的整体工程骨架已落地如下：
 
-```text
-ai-prompt-orchestrator/
-├── docs/                     # 架构与规范先行
-│   ├── 01-prd/               # PRD: 画布交互、DAG 引擎、双模适配规格书
-│   ├── 02-architecture/      # 架构: 核心 Graph JSON Schema、状态机设计
-│   ├── 03-api/               # 接口: OpenAPI 规范与执行器接口契约
-│   └── 04-dev-notes/         # 决策: ADR 选型评估（React Flow、双引擎权衡）
-├── src/                      # 纯前端核心工程
-│   ├── components/           # 画布、自定义节点 (Input / Prompt / LLM / Code / Output)
-│   ├── engine/               # 拓扑排序、环检测、{{var}} 变量解析与调度器
-│   ├── stores/               # Zustand 全局图拓扑与运行时状态机
-│   └── presets/              # 预设业务场景模板 (客服路由、研报反思等)
-└── .github/workflows/        # GitHub Actions 自动化 CI/CD (Pages 一键发布)
-```
+![规范先行：Vibe Coding 时代的工程骨架与 Schema 约束]({{ '/assets/images/vibe-coding-architecture-tree.png' | relative_url }})
 
 通过将 **Graph Schema（节点、连线、数据协议）** 严格类型化，AI 生成的代码被严格限制在类型系统的沙盒内，大幅降低了大型 Refactor 时的逻辑断层。
 
