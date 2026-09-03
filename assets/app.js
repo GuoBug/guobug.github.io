@@ -5,11 +5,66 @@
 (function () {
     'use strict';
 
-    // 1. Bilingual Language Switcher (Default: English)
-    const DEFAULT_LANG = localStorage.getItem('guobug_lang') || 'en';
+    // 1. Bilingual Language Switcher & URL State Sync
+    function getUrlLang() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const lang = params.get('lang');
+            if (lang === 'zh' || lang === 'en') {
+                return lang;
+            }
+        } catch (e) {}
+        return null;
+    }
 
-    function setLanguage(lang) {
-        const activeLang = lang === 'en' ? 'en' : 'zh';
+    function updateDocumentTitle(activeLang) {
+        const titleEl = document.querySelector('title');
+        if (!titleEl) return;
+        const zhTitle = titleEl.getAttribute('data-title-zh');
+        const enTitle = titleEl.getAttribute('data-title-en');
+        if (activeLang === 'zh' && zhTitle) {
+            document.title = zhTitle;
+        } else if (activeLang === 'en' && enTitle) {
+            document.title = enTitle;
+        } else if (!zhTitle && !enTitle) {
+            const path = window.location.pathname;
+            if (path.includes('/about')) {
+                document.title = activeLang === 'zh'
+                    ? '关于我 · Gu0 Qiang | 资深技术产品经理'
+                    : 'About · Gu0 Qiang | Product Manager & Designer';
+            } else if (path.includes('/posts')) {
+                document.title = activeLang === 'zh'
+                    ? '文章归档 · Gu0 Qiang'
+                    : 'Writings · Gu0 Qiang';
+            } else {
+                document.title = activeLang === 'zh'
+                    ? 'Gu0 Qiang · 资深技术产品经理 · 工作空间'
+                    : 'Gu0 Qiang · Technology Product Manager · Workspace';
+            }
+        }
+    }
+
+    function syncInternalLinks(activeLang) {
+        const links = document.querySelectorAll('a[href]');
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+            if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#') || href.startsWith('javascript:')) {
+                return;
+            }
+            try {
+                const url = new URL(link.href, window.location.href);
+                if (url.origin === window.location.origin) {
+                    url.searchParams.set('lang', activeLang);
+                    link.href = url.pathname + url.search + url.hash;
+                }
+            } catch (e) {}
+        });
+    }
+
+    function setLanguage(lang, updateUrl) {
+        if (updateUrl === undefined) updateUrl = true;
+        const activeLang = lang === 'zh' ? 'zh' : 'en';
         document.documentElement.setAttribute('data-lang', activeLang);
         document.documentElement.setAttribute('lang', activeLang === 'en' ? 'en' : 'zh-CN');
         localStorage.setItem('guobug_lang', activeLang);
@@ -21,18 +76,42 @@
                 btn.classList.remove('active');
             }
         });
+
+        // Update document title dynamically
+        updateDocumentTitle(activeLang);
+
+        // Sync URL query param without reload
+        if (updateUrl && window.history && window.history.replaceState) {
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', activeLang);
+                window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+            } catch (e) {}
+        }
+
+        // Sync internal page links
+        syncInternalLinks(activeLang);
     }
 
     // Attach click listeners to language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             const targetLang = this.getAttribute('data-lang-btn');
-            setLanguage(targetLang);
+            setLanguage(targetLang, true);
         });
     });
 
-    // Initialize Language
-    setLanguage(DEFAULT_LANG);
+    // Handle browser Back/Forward navigation
+    window.addEventListener('popstate', function () {
+        const urlLang = getUrlLang();
+        if (urlLang && urlLang !== document.documentElement.getAttribute('data-lang')) {
+            setLanguage(urlLang, false);
+        }
+    });
+
+    // Initialize Language (URL parameter has highest precedence, then localStorage, default 'en')
+    const INITIAL_LANG = getUrlLang() || localStorage.getItem('guobug_lang') || 'en';
+    setLanguage(INITIAL_LANG, true);
 
     // 2. Mobile Navigation Toggle
     const menuBtn = document.getElementById('menuToggleBtn');
