@@ -2,7 +2,7 @@
 
 ---
 
-# Gu0Bug Terminal Theme
+# GuoBug Terminal Theme
 
 A minimalist, hardcore terminal-aesthetic personal website template powered by Jekyll. Native support for GitHub Pages with absolutely zero configuration required.
 

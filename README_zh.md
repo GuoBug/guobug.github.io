@@ -2,7 +2,7 @@
 
 ---
 
-# Gu0Bug Terminal Theme
+# GuoBug Terminal Theme
 
 这是一个极简、硬核的类终端风格（Terminal Aesthetic） Jekyll 个人网站模板，原生支持 GitHub Pages，完全零配置部署。
 

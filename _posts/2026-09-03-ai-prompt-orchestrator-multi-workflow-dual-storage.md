@@ -7,8 +7,8 @@ summary: "深度复盘 AI 提示流编排器 PatchCat 架构升级：突破单�
 tags: [AI, React Flow, Zustand, FastAPI, SQLAlchemy, StorageAdapter, Architecture, Open Source]
 ---
 
-> **项目开源地址**：[https://github.com/gu0bug/PatchCat](https://github.com/gu0bug/PatchCat)  
-> **在线体验**：[https://gu0bug.github.io/PatchCat/](https://gu0bug.github.io/PatchCat/)  
+> **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  
+> **在线体验**：[https://guobug.github.io/PatchCat/](https://guobug.github.io/PatchCat/)  
 > **往期回顾**：  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）》]({{ '/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/' | relative_url }})  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）》]({{ '/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/' | relative_url }})  
@@ -134,7 +134,7 @@ tags: [AI, React Flow, Zustand, FastAPI, SQLAlchemy, StorageAdapter, Architectur
 通过**抽屉式可视化管理**、**FastAPI 异步底座**与 **StorageAdapter 适配器设计**，PatchCat 成功打破了单画布的限制，具备了应对多流程分类、持久化存储与双模平滑切换的复杂架构能力。
 
 > 💬 **技术交流与反馈**：  
-> 如果你在构建类似低代码画布或复杂状态机架构时有任何疑问或心得，欢迎直接在 GitHub 的 [Issue](https://github.com/gu0bug/PatchCat/issues) 中交流！  
+> 如果你在构建类似低代码画布或复杂状态机架构时有任何疑问或心得，欢迎直接在 GitHub 的 [Issue](https://github.com/GuoBug/PatchCat/issues) 中交流！  
 > 
 > 🛡️ **写在后面（关于安全工程）**：  
 > 在提示流编排器走向更开放的生产级场景时，除了调度与存储，**全链路安全防控**同样是一项重中之重的庞大工程——包括提示词注入防护（Prompt Injection Defense）、沙箱代码执行隔离、API 密钥零信任脱敏、以及端到端安全审计防线。后续我们计划单独写一篇实战记录，全面复盘 PatchCat 在系统安全体系上的构建过程。
@@ -144,4 +144,4 @@ tags: [AI, React Flow, Zustand, FastAPI, SQLAlchemy, StorageAdapter, Architectur
 ---
 
 > 💡 **项目源码完全开源**，欢迎在 GitHub 上 Star 关注与交流：  
-> 🔗 项目仓库：[https://github.com/gu0bug/PatchCat](https://github.com/gu0bug/PatchCat)
+> 🔗 项目仓库：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)

@@ -68,6 +68,6 @@ tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Sour
 
 > 💡 **项目开源与交流**：如果你对前端图计算、轻量级 AI 工作流编排或 Vibe Coding 实践感兴趣，欢迎访问项目仓库并点个 **Star ⭐️** 支持！如果有任何建议或 Bug，欢迎直接在 GitHub 提交 Issue 或 PR 交流。
 >
-> 🔗 **GitHub 仓库地址**：[https://github.com/gu0bug/ai-prompt-orchestrator](https://github.com/gu0bug/ai-prompt-orchestrator)  
+> 🔗 **GitHub 仓库地址**：[https://github.com/GuoBug/ai-prompt-orchestrator](https://github.com/GuoBug/ai-prompt-orchestrator)  
 > 📖 **下一篇深度解析**：[《从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）》]({{ '/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/' | relative_url }})
 

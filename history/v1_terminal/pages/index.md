@@ -3,7 +3,7 @@ layout: default
 title: HOME
 ---
 <div class="lang-block-zh">
-<span class="c-magenta">#</span> <span class="c-green">Gu0Bug</span>
+<span class="c-magenta">#</span> <span class="c-green">GuoBug</span>
 
 这里是独立数字空间的节点。记录从企业体制过渡至远程游牧状态的实践数据。
 
@@ -23,7 +23,7 @@ title: HOME
 </div>
 
 <div class="lang-block-en">
-<span class="c-magenta">#</span> <span class="c-green">Gu0Bug</span>
+<span class="c-magenta">#</span> <span class="c-green">GuoBug</span>
 
 A personal digital outpost documenting the transition from corporate systems to independent digital nomadism.
 

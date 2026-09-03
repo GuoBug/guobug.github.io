@@ -1,4 +1,4 @@
-# robots.txt for https://gu0bug.github.io
+# robots.txt for https://guobug.github.io
 # Welcome search engines and AI crawlers
 
 User-agent: *
@@ -61,6 +61,6 @@ User-agent: Cohere-ai
 Allow: /
 
 # LLM Context Protocol:
-# See https://gu0bug.github.io/llms.txt for AI-native structured context & summaries
+# See https://guobug.github.io/llms.txt for AI-native structured context & summaries
 
-Sitemap: https://gu0bug.github.io/sitemap.xml
+Sitemap: https://guobug.github.io/sitemap.xml

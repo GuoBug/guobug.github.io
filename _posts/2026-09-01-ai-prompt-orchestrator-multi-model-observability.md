@@ -7,7 +7,7 @@ summary: "深入剖析 AI 提示流编排器进阶工程实战：跨厂商启发
 tags: [AI, Multi-Model, DeepSeek, Gemini, Logging, React Flow, TypeScript, Open Source]
 ---
 
-> **项目开源地址**：[https://github.com/gu0bug/ai-prompt-orchestrator](https://github.com/gu0bug/ai-prompt-orchestrator)  
+> **项目开源地址**：[https://github.com/GuoBug/ai-prompt-orchestrator](https://github.com/GuoBug/ai-prompt-orchestrator)  
 > **往期回顾**：  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）》]({{ '/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/' | relative_url }})  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）》]({{ '/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/' | relative_url }})
@@ -227,4 +227,4 @@ export function sanitizeData(data: unknown): unknown {
 
 > 💡 **项目开源与交流**：如果你对前端图计算、轻量级 AI 工作流编排或 Vibe Coding 实践感兴趣，欢迎访问项目仓库并点个 **Star ⭐️** 支持！
 >
-> 🔗 **GitHub 仓库地址**：[https://github.com/gu0bug/ai-prompt-orchestrator](https://github.com/gu0bug/ai-prompt-orchestrator)
+> 🔗 **GitHub 仓库地址**：[https://github.com/GuoBug/ai-prompt-orchestrator](https://github.com/GuoBug/ai-prompt-orchestrator)

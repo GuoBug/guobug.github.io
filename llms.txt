@@ -5,18 +5,18 @@
 ## Identity & Contact
 - Name: Gu0 Qiang (郭强 / gu0bug)
 - Role: Senior Technology Product Manager · AI System Architect · Digital Nomad
-- Website: https://gu0bug.github.io
-- GitHub: https://github.com/gu0bug
+- Website: https://guobug.github.io
+- GitHub: https://github.com/GuoBug
 - Email: gu0bug0@gmail.com
-- Profile / About: https://gu0bug.github.io/about/
+- Profile / About: https://guobug.github.io/about/
 
 ---
 
 ## Core Open-Source Projects
 
 ### 1. PatchCat (AI Prompt Flow Orchestrator)
-- Repository: https://github.com/gu0bug/PatchCat
-- Live Demo: https://gu0bug.github.io/PatchCat/
+- Repository: https://github.com/GuoBug/PatchCat
+- Live Demo: https://guobug.github.io/PatchCat/
 - Technical Highlights:
   - Visual DAG workflow editor built on React Flow and Zustand.
   - Client-side topological sorting and cycle detection via Kahn's algorithm.
@@ -25,7 +25,7 @@
   - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
 
 ### 2. Metaphysics Tools
-- Live App: https://gu0bug.github.io/metaphysics-tools/index.html#
+- Live App: https://guobug.github.io/metaphysics-tools/index.html#
 - Interactive algorithmic modeling and visual computing experiments.
 
 ---
@@ -33,31 +33,31 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
-- [从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）](https://gu0bug.github.io/posts/2026/09/03/ai-prompt-orchestrator-multi-workflow-dual-storage/)
+- [从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）](https://guobug.github.io/posts/2026/09/03/ai-prompt-orchestrator-multi-workflow-dual-storage/)
   - Multi-workflow drawer UI, Zustand state slicing, zero-canvas-re-render optimization, and StorageAdapter dual-mode storage pattern.
-- [从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）](https://gu0bug.github.io/posts/2026/09/01/ai-prompt-orchestrator-multi-model-observability/)
+- [从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）](https://guobug.github.io/posts/2026/09/01/ai-prompt-orchestrator-multi-model-observability/)
   - OpenAI/DeepSeek/Claude unified API client, SSE streaming chunk parser, DeepSeek R1 `<think>` tag extraction, and three-tier execution observability.
-- [从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）](https://gu0bug.github.io/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/)
+- [从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/)
   - Kahn algorithm for graph topological scheduling, circular dependency detection, `{{node.output}}` variable interpolation engine, and async execution runtime.
-- [从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）](https://gu0bug.github.io/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/)
+- [从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/)
   - Client-side DAG execution, zero-backend BYOK (Bring Your Own Key) privacy design, and node connection state management.
 
 ### AI-Native Product Thinking
-- [什么是真正的 AI 原生（AI-Native）？产品架构师视角的范式演进](https://gu0bug.github.io/posts/2026/08/27/what-is-ai-native/)
+- [什么是真正的 AI 原生（AI-Native）？产品架构师视角的范式演进](https://guobug.github.io/posts/2026/08/27/what-is-ai-native/)
   - Paradigm shift from traditional GUI to Agentic orchestration, emergent user experience, and human-in-the-loop systems.
-- [Boss 直聘 AI 产品的深度拆解与战略思考](https://gu0bug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
+- [Boss 直聘 AI 产品的深度拆解与战略思考](https://guobug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
   - Analysis of conversational AI matching, intent recognition, and bilateral marketplace dynamics.
 
 ### Engineering Leadership & Remote Work
-- [FDE 理念与企业级数据治理实战](https://gu0bug.github.io/posts/2026/08/14/fde-enterprise-governance/)
+- [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
   - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.
-- [GitLab 远程产品经理的高效工作流与异步协作秘诀](https://gu0bug.github.io/posts/2026/04/29/gitlab-remote-product-manager/)
+- [GitLab 远程产品经理的高效工作流与异步协作秘诀](https://guobug.github.io/posts/2026/04/29/gitlab-remote-product-manager/)
   - Deep asynchronous communication, handbook-first culture, and global distributed PM operating procedures.
-- [拒绝官僚主义：敏捷产品团队的高效运转法则](https://gu0bug.github.io/posts/2026/04/27/reject-bureaucracy/)
+- [拒绝官僚主义：敏捷产品团队的高效运转法则](https://guobug.github.io/posts/2026/04/27/reject-bureaucracy/)
   - Lean organizational design, reducing sync meetings, and ownership-driven execution.
 
 ---
 
 ## Index of All Writings
-- Archive Directory: https://gu0bug.github.io/posts/
-- Complete Sitemap: https://gu0bug.github.io/sitemap.xml
+- Archive Directory: https://guobug.github.io/posts/
+- Complete Sitemap: https://guobug.github.io/sitemap.xml

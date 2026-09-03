@@ -1,18 +1,18 @@
 /**
- * Neo-Brutalism Portfolio Client Script - Gu0Bug Preview
+ * Neo-Brutalism Portfolio Client Script - GuoBug Preview
  */
 
 (function () {
     'use strict';
 
     // 1. Bilingual Language Switcher (Default: English)
-    const DEFAULT_LANG = localStorage.getItem('gu0bug_lang') || 'en';
+    const DEFAULT_LANG = localStorage.getItem('guobug_lang') || 'en';
 
     function setLanguage(lang) {
         const activeLang = lang === 'en' ? 'en' : 'zh';
         document.documentElement.setAttribute('data-lang', activeLang);
         document.documentElement.setAttribute('lang', activeLang === 'en' ? 'en' : 'zh-CN');
-        localStorage.setItem('gu0bug_lang', activeLang);
+        localStorage.setItem('guobug_lang', activeLang);
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
             if (btn.getAttribute('data-lang-btn') === activeLang) {
