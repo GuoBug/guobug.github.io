@@ -101,4 +101,73 @@
             }
         });
     });
+
+    // 5. Neo-Brutalism Image Lightbox Modal
+    const articleImages = document.querySelectorAll('.medium-body-text img, .post-content img');
+
+    if (articleImages.length > 0) {
+        let overlay = document.getElementById('neoLightbox');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'neoLightbox';
+            overlay.className = 'neo-lightbox-overlay';
+            overlay.setAttribute('aria-hidden', 'true');
+            overlay.innerHTML = `
+                <button type="button" class="neo-lightbox-close" id="neoLightboxClose" aria-label="关闭">[关闭 ✕]</button>
+                <div class="neo-lightbox-content">
+                    <img class="neo-lightbox-img" id="neoLightboxImg" src="" alt="">
+                    <div class="neo-lightbox-caption" id="neoLightboxCaption"></div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        const lightboxImg = document.getElementById('neoLightboxImg');
+        const lightboxCaption = document.getElementById('neoLightboxCaption');
+
+        function openLightbox(src, alt) {
+            if (!src) return;
+            lightboxImg.src = src;
+            lightboxImg.alt = alt || '';
+            if (alt) {
+                lightboxCaption.textContent = alt;
+                lightboxCaption.style.display = 'block';
+            } else {
+                lightboxCaption.style.display = 'none';
+            }
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                if (!overlay.classList.contains('active')) {
+                    lightboxImg.src = '';
+                }
+            }, 220);
+        }
+
+        articleImages.forEach(img => {
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                openLightbox(this.currentSrc || this.src, this.alt);
+            });
+        });
+
+        // Click anywhere within screen (overlay, image, close button) closes it
+        overlay.addEventListener('click', function () {
+            closeLightbox();
+        });
+
+        // Escape key to close
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    }
 })();
