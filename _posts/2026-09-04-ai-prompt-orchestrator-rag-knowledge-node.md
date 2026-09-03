@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "从 0 到 1 打造 AI 编排器（五）：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点"
+title: "从 0 到 1 打造 AI 提示流编排器：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点（开源系列 05）"
 title_en: "Building AI Prompt Orchestrator: Learning Knowledge Architecture from Dify, RAG & Vector Search Node"
 date: 2026-09-04 00:30:00 +0800
 categories: [AI, Architecture, RAG]

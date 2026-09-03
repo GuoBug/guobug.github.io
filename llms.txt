@@ -33,7 +33,7 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
-- [从 0 到 1 打造 AI 编排器（五）：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点](https://guobug.github.io/posts/2026/09/04/ai-prompt-orchestrator-rag-knowledge-node/)
+- [从 0 到 1 打造 AI 提示流编排器：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点（开源系列 05）](https://guobug.github.io/posts/2026/09/04/ai-prompt-orchestrator-rag-knowledge-node/)
   - Learning Dify's 3-tier decoupled model (KnowledgeBase ➔ Document ➔ DocumentChunk), sliding window chunking with 50-char overlap, vector cosine retrieval, and Cyan RAG canvas node.
 - [从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）](https://guobug.github.io/posts/2026/09/03/ai-prompt-orchestrator-multi-workflow-dual-storage/)
   - Multi-workflow drawer UI, Zustand state slicing, zero-canvas-re-render optimization, and StorageAdapter dual-mode storage pattern.
