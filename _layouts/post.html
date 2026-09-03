@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title.size > 35 %}{{ page.title }}{% elsif page.title %}{{ page.title }} · {{ site.author }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.summary %}{{ page.summary }}{% elsif page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
 
