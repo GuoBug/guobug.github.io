@@ -119,23 +119,23 @@ body {
 .nav-logo {
     font-family: var(--font-sans);
     font-weight: 900;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     letter-spacing: -0.04em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--foreground);
     border: 2px solid transparent;
-    padding: 0.15rem 0.35rem;
+    padding: 0.12rem 0.25rem;
     transition: all 0.15s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
     flex-shrink: 0;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 440px) {
     .nav-logo {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         padding: 0.2rem 0.45rem;
         gap: 0.45rem;
     }
@@ -156,7 +156,35 @@ body {
     border-color: var(--border);
 }
 
+.nav-logo-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: inline-block;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+
+@media (min-width: 440px) {
+    .nav-logo-img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (min-width: 768px) {
+    .nav-logo-img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.nav-logo:hover .nav-logo-img {
+    transform: scale(1.08);
+}
+
 .nav-logo-badge {
+    display: none;
     font-family: var(--font-mono);
     font-size: 0.65rem;
     font-weight: 700;
@@ -164,6 +192,12 @@ body {
     background: var(--foreground);
     color: var(--background);
     border-radius: 2px;
+}
+
+@media (min-width: 440px) {
+    .nav-logo-badge {
+        display: inline-block;
+    }
 }
 
 @media (min-width: 480px) {
@@ -388,22 +422,34 @@ body {
     border: 2.5px solid var(--border);
     overflow: hidden;
     flex-shrink: 0;
-    background: #000;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-weight: 900;
-    font-size: clamp(1.35rem, 3.8vw, 2.25rem);
     box-shadow: 3.5px 3.5px 0px 0px var(--accent);
+    padding: 0.2rem;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 @media (min-width: 768px) {
     .hero-avatar {
         border-width: 3px;
         box-shadow: 4px 4px 0px 0px var(--accent);
+        padding: 0.45rem;
     }
+}
+
+.hero-avatar:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px var(--accent);
+}
+
+.hero-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .hero-socials {
@@ -1430,15 +1476,22 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #000;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-weight: 900;
-    font-size: 1.15rem;
+    background: #ffffff;
+    border: 2px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--border);
+    overflow: hidden;
+    padding: 3px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.medium-author-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .medium-author-meta {
