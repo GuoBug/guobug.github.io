@@ -11,8 +11,6 @@ read_time: "14 MIN READ"
 tags: [AI, RAG, Dify, Vector Search, React Flow, FastAPI, Architecture, Open Source]
 ---
 
-> **副标题**：从三层数据模型、滑动分块清洗、向量相似度检索，到前端画布节点设计的“干中学”实战复盘  
-> **作者**：Guo Qiang (GuoBug) & Antigravity (AI Pair Programming)  
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  
 > **在线体验**：[https://guobug.github.io/PatchCat/](https://guobug.github.io/PatchCat/)  
 > **往期回顾**：  
