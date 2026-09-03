@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）"
+title_en: "Building AI Prompt Orchestrator: Kahn Topological Sort & Async Runtime"
 date: 2026-08-28 02:00:00 +0800
 categories: [AI, Architecture, Engineering]
+pub_tag: "AI & Engine"
 summary: "深入剖析轻量级 AI 提示流编排器的核心计算与调度大脑：分层 Kahn 拓扑排序、防原型链投毒的安全变量引擎与波次并发中断运行时实战。"
+summary_en: "Deep dive into the compute and scheduling core: Layered Kahn topological sorting, safe variable interpolation sandbox, and async wave-concurrency runtime."
+read_time: "10 MIN READ"
 tags: [AI, DAG, Topological Sort, Workflow, TypeScript, Runtime, Open Source]
 ---
 

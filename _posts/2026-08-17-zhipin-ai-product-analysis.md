@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "闲暇之余：某平台 AI 助手深度拆解——从数据鉴权与更新口径看特定行业 AI 落地真实水位"
+title_en: "Breakthrough Analysis on BossZhipin & AI Recruitment"
 date: 2026-08-17 20:30:00 +0800
 categories: [AI, Product Analysis, Recruitment]
+pub_tag: "Product Analysis"
 summary: "从技术鉴权、数据口径与商业策略三个维度深度拆解某头部招聘平台的内置 AI 助手，通过多轮 Prompt 压力测试与数据交叉比对，观察特定行业 AI 落地的真实水位与求职破局策略。"
+summary_en: "Trust mechanisms and friction in two-sided marketplaces: How AI creates asymmetric advantages in talent matching."
+read_time: "6 MIN READ"
 tags: [AI, Product Analysis, Prompt Engineering, RAG, Recruitment]
 ---
 

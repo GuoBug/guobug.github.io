@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "头部 AI 公司都在找的 “AI-Native”，到底在找什么？"
+title_en: "What is True AI-Native? From Tooling to Workflow Remodeling"
 date: 2026-08-27 20:20:00 +0800
 categories: [AI, Product, Mental Model]
+pub_tag: "AI-Native"
 summary: "深入剖析头部 AI 公司对人才与产品提出的“AI-Native”要求，从重新定义问题、新型人机协作范式到 Context 即界面的三大底层思维模型，以及如何在作品与面试中体现原生 AI 能力。"
+summary_en: "AI is not just a chat widget. True AI-Native software fundamentally restructures workflows and production relationships."
+read_time: "5 MIN READ"
 tags: [AI, AI-Native, Product Management, Mental Model, Agent, Workflow]
 ---
 

@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）"
+title_en: "Building AI Prompt Orchestrator: Multi-Model Adapters, Streaming Reasoning Chains & Observability"
 date: 2026-09-01 16:30:00 +0800
 categories: [AI, Architecture, Engineering]
+pub_tag: "AI & Observability"
 summary: "深入剖析 AI 提示流编排器进阶工程实战：跨厂商启发式模型回落（解决 404 崩溃）、DeepSeek-R1 双流思维链渲染、三级安全日志脱敏控制台与画布实时环路防死锁设计。"
+summary_en: "Advanced engineering practices for AI prompt orchestration: heuristic cross-provider model fallbacks, DeepSeek-R1 streaming reasoning chain rendering, and sanitized three-tier debug console."
+read_time: "10 MIN READ"
 tags: [AI, Multi-Model, DeepSeek, Gemini, Logging, React Flow, TypeScript, Open Source]
 ---
 

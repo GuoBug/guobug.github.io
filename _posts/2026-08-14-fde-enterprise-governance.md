@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "FDE不是“救世主”：当企业试图用预算逃避治理难题"
+title_en: "Forward Deployed Engineers & Enterprise AI Governance"
 date: 2026-08-14 11:45:00 +0800
 categories: [AI, Enterprise Governance, Engineering]
+pub_tag: "Enterprise AI"
 summary: "很多企业在推进FDE（前置部署工程）和大模型落地时项目烂尾，根源往往不在技术，而是试图用预算购买逃避组织治理难题的假象。本文剖析了痛点厘清、责任机制、能力沉淀与科研纪律等关键症结，阐述企业如何接回属于自己的主责主业。"
+summary_en: "Why enterprise AI adoption is not merely an algorithmic challenge, but an organizational and engineering mission."
+read_time: "8 MIN READ"
 tags: [FDE, AI, Governance, Engineering, Digital Transformation]
 ---
 

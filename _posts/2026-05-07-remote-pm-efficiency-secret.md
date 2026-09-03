@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "远程 PM 的“效率革命”：揭秘远程模式下的高产出与成长秘籍"
+title_en: "Efficiency Secrets of a Remote Product Manager"
 date: 2026-05-07 00:00:00 +0800
 categories: [Product Management, Remote Work]
+pub_tag: "Remote Work"
 summary: "远程办公的成功核心不在于工具，而在于范式转移。本文深度揭秘了 GitLab 远程 PM 释放超常生产力的底层逻辑：通过异步协作协议化、标准化优先级决策框架、HPT 高绩效团队框架以及 CDF 职业发展模型，实现从“管理时间”到“管理产出”的重构。"
+summary_en: "Eliminate meaningless sync meetings. Trade ambiguity for structured specs, contextual docs, and deep work hours."
+read_time: "6 MIN READ"
 tags: [GitLab, Remote Work, PM, Efficiency, Career Growth]
 ---
 

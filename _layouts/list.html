@@ -16,16 +16,28 @@ layout: default
     <a href="{{ post.url | relative_url }}" class="writing-card">
         <div>
             <div class="writing-card-header">
-                <span class="writing-pub-tag">{% if post.categories %}{{ post.categories.first }}{% else %}Article{% endif %}</span>
+                <span class="writing-pub-tag">{% if post.pub_tag %}{{ post.pub_tag }}{% elsif post.categories %}{{ post.categories.first }}{% else %}Article{% endif %}</span>
                 <span class="writing-date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
-            <h3 class="writing-title">{{ post.title }}</h3>
+            <h3 class="writing-title">
+                {% if post.title_en %}
+                <span data-i18n="zh">{{ post.title }}</span>
+                <span data-i18n="en">{{ post.title_en }}</span>
+                {% else %}
+                {{ post.title }}
+                {% endif %}
+            </h3>
             <p class="writing-excerpt">
+                {% if post.summary_en %}
+                <span data-i18n="zh">{{ post.summary | default: post.excerpt | strip_html }}</span>
+                <span data-i18n="en">{{ post.summary_en }}</span>
+                {% else %}
                 {{ post.summary | default: post.excerpt | strip_html | truncatewords: 25 }}
+                {% endif %}
             </p>
         </div>
         <div class="writing-card-footer">
-            <span>{{ post.date | date: "%b %d, %Y" }}</span>
+            <span>{% if post.read_time %}{{ post.read_time }}{% else %}{{ post.date | date: "%b %d, %Y" }}{% endif %}</span>
             <span class="writing-read-more">READ ARTICLE ↗</span>
         </div>
     </a>

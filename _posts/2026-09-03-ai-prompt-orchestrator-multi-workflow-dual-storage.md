@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）"
+title_en: "Building AI Prompt Orchestrator: Multi-Workflow Drawer UI, Decoupled State Machines & Dual-Mode Storage"
 date: 2026-09-03 00:30:00 +0800
 categories: [AI, Architecture, Engineering]
+pub_tag: "AI & State"
 summary: "深度复盘 AI 提示流编排器 PatchCat 架构升级：突破单画布限制，抽屉式多流程可视化管理、useProjectStore 与 useWorkflowStore 状态机分层解耦（0 脏重绘 / 60fps），以及基于 StorageAdapter 契约模式的本地 LocalStorage 与 FastAPI 异步服务双模存储实战。"
+summary_en: "Deep dive into PatchCat's architecture upgrade: overcoming single-canvas limits with drawer-based workflow management, decoupled Zustand stores for 60fps performance, and dual-mode storage via StorageAdapter pattern."
+read_time: "12 MIN READ"
 tags: [AI, React Flow, Zustand, FastAPI, SQLAlchemy, StorageAdapter, Architecture, Open Source]
 ---
 

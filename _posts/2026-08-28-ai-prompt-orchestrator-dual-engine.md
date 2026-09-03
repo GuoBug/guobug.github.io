@@ -1,9 +1,13 @@
 ---
 layout: post
 title: "从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）"
+title_en: "Building AI Prompt Orchestrator: Dual-Engine & Client-Only DAG"
 date: 2026-08-28 01:00:00 +0800
 categories: [AI, Architecture, Engineering]
+pub_tag: "AI & Arch"
 summary: "从单次 Prompt 迷思走向确定性工作流，深入剖析轻量级 AI 提示流编排器的系统架构设计、双引擎适配器（纯前端 Client-Only 与本地 FastAPI）与规范先行的 Vibe Coding 实践。"
+summary_en: "Moving beyond single-prompt fragility to deterministic workflows: Architectural deep dive into dual-engine adapters and spec-first Vibe Coding."
+read_time: "8 MIN READ"
 tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Source]
 ---
 
