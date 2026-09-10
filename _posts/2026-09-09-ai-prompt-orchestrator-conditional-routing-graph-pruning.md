@@ -220,7 +220,7 @@ case 'aggregator': {
 
 为了让 PatchCat 走出纯文本沙盒，我们落地了科技墨绿配色的 **HTTP 请求节点（HttpNode）**。
 
-在右侧属性抽屉中，我们为其配备了 `Params` | `Headers` | `Body` | `Auth` | `Settings` 五维配置面板。而在运行时底层，AI 搭档强调的**协议防线与指数退避重试**成为了核心代码的灵魂所在：
+在右侧属性抽屉中，我们为其配备了 `Params` / `Headers` / `Body` / `Auth` / `Settings` 五维配置面板。而在运行时底层，AI 搭档强调的**协议防线与指数退避重试**成为了核心代码的灵魂所在：
 
 ```typescript
 // src/engine/browser-engine.ts (HTTP 执行器安全校验与退避循环)
