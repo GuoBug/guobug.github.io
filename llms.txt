@@ -33,6 +33,10 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
+- [从 0 到 1 打造 AI 提示流编排器：即时对话调试抽屉、节点级耗时追踪与一键发布生产 API 实战（开源系列 07）](https://guobug.github.io/posts/2026/09/10/ai-prompt-orchestrator-chat-debug-api-publishing/)
+  - Interactive sliding Chat Debug Drawer (Ctrl+Shift+D), SSE typewriter streaming, per-node trace latency breakdown waterfall, FastAPI one-click REST API publishing with workflow API keys and multi-language SDK snippets.
+- [从 0 到 1 打造 AI 提示流编排器：条件分支路由、Kahn 图剪枝与 HTTP 节点实战（开源系列 06）](https://guobug.github.io/posts/2026/09/09/ai-prompt-orchestrator-conditional-routing-graph-pruning/)
+  - Dynamic control flow with 9-operator IF/ELSE condition routing, Kahn topological dynamic branch skipping (NODE_SKIPPED, 0ms), Variable Aggregator reconvergence node without deadlocks, and resilient HTTP node with exponential backoff retry.
 - [从 0 到 1 打造 AI 提示流编排器：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点（开源系列 05）](https://guobug.github.io/posts/2026/09/04/ai-prompt-orchestrator-rag-knowledge-node/)
   - Learning Dify's 3-tier decoupled model (KnowledgeBase ➔ Document ➔ DocumentChunk), sliding window chunking with 50-char overlap, vector cosine retrieval, and Cyan RAG canvas node.
 - [从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）](https://guobug.github.io/posts/2026/09/03/ai-prompt-orchestrator-multi-workflow-dual-storage/)
