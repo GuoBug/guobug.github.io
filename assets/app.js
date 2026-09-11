@@ -159,27 +159,89 @@
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // 4. Code Block Copy & Terminal Enhancer
-    document.querySelectorAll('.code-copy-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const container = this.closest('.neo-code-block') || this.parentElement.parentElement;
-            const codeEl = container.querySelector('pre code') || container.querySelector('pre');
-            if (codeEl) {
-                const textToCopy = codeEl.innerText;
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    const originalText = this.innerHTML;
-                    this.innerHTML = 'COPIED! ✓';
-                    this.style.backgroundColor = '#7fff00';
-                    this.style.color = '#000000';
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.style.backgroundColor = '';
-                        this.style.color = '';
-                    }, 2000);
-                });
-            }
+    // 4. Code Block Copy & Terminal Enhancer (Auto decorate all markdown code blocks)
+    function enhanceAllCodeBlocks() {
+        const articleBodies = document.querySelectorAll('.medium-body-text, .post-content-body, article');
+        if (articleBodies.length === 0) return;
+
+        articleBodies.forEach(body => {
+            const containers = body.querySelectorAll('.highlighter-rouge, pre');
+            containers.forEach(block => {
+                // If it's a pre inside .highlighter-rouge, let parent handle it
+                if (block.tagName === 'PRE' && block.closest('.highlighter-rouge')) {
+                    return;
+                }
+
+                if (block.querySelector('.code-header-bar')) {
+                    return; // Already enhanced
+                }
+
+                const pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
+                if (!pre) return;
+
+                // Detect programming language
+                let lang = 'CODE';
+                const classStr = (block.className || '') + ' ' + (pre.className || '') + ' ' + (pre.querySelector('code')?.className || '');
+                const match = classStr.match(/language-([a-zA-Z0-9_\-]+)/);
+                if (match && match[1]) {
+                    lang = match[1].toUpperCase();
+                }
+
+                // Build header bar
+                const header = document.createElement('div');
+                header.className = 'code-header-bar';
+                header.innerHTML = `
+                    <div class="code-window-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-lang-label">${lang}</span>
+                    <button type="button" class="code-copy-btn">
+                        <span>⎘</span> <span>COPY</span>
+                    </button>
+                `;
+
+                if (block.tagName === 'PRE') {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'neo-code-block';
+                    block.parentNode.insertBefore(wrapper, block);
+                    wrapper.appendChild(header);
+                    wrapper.appendChild(block);
+                } else {
+                    block.insertBefore(header, block.firstChild);
+                }
+
+                // Attach copy handler
+                const copyBtn = header.querySelector('.code-copy-btn');
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', function () {
+                        const codeEl = pre.querySelector('code') || pre;
+                        const textToCopy = codeEl.innerText;
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalHtml = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span>✓</span> <span>COPIED!</span>';
+                            copyBtn.style.backgroundColor = '#7fff00';
+                            copyBtn.style.color = '#000000';
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalHtml;
+                                copyBtn.style.backgroundColor = '';
+                                copyBtn.style.color = '';
+                            }, 2000);
+                        });
+                    });
+                }
+            });
         });
-    });
+
+        // Trigger Prism syntax highlighting if available
+        if (window.Prism && typeof window.Prism.highlightAll === 'function') {
+            window.Prism.highlightAll();
+        }
+    }
+
+    enhanceAllCodeBlocks();
+    window.addEventListener('DOMContentLoaded', enhanceAllCodeBlocks);
 
     // 5. Neo-Brutalism Image Lightbox Modal
     const articleImages = document.querySelectorAll('.medium-body-text img, .post-content img');

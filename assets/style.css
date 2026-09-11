@@ -1740,6 +1740,7 @@ code {
    Neo-Brutalist Terminal Code Blocks
    ========================================================================== */
 .neo-code-block,
+.highlighter-rouge,
 pre {
     position: relative;
     border: 2px solid #000000;
@@ -1748,6 +1749,16 @@ pre {
     margin: 2.25rem 0;
     border-radius: 4px;
     overflow: hidden;
+}
+
+.highlighter-rouge pre,
+.highlighter-rouge pre.highlight,
+.neo-code-block pre {
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background-color: transparent !important;
 }
 
 .code-header-bar {
@@ -1832,17 +1843,101 @@ pre code {
     white-space: pre;
 }
 
-/* Syntax Highlighting Tokens */
-.token-keyword { color: #ff7b72; font-weight: 700; }
-.token-string { color: #a5d6ff; }
-.token-function { color: #d2a8ff; }
-.token-comment { color: #8b949e; font-style: italic; }
-.token-variable { color: #ffa657; }
-.token-number { color: #79c0ff; }
-.token-property { color: #7ee787; }
-.token-boolean { color: #ff7b72; font-weight: 700; }
-.token-operator { color: #79c0ff; }
-.token-accent { color: var(--accent); font-weight: 700; }
+/* ==========================================================================
+   Rouge Syntax Highlighting (Jekyll Kramdown Native Server-side Theme)
+   ========================================================================== */
+.highlight {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+.highlight pre {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+.highlight .c, .highlight .c1, .highlight .ch, .highlight .cm, .highlight .cp, .highlight .cpf, .highlight .cs {
+    color: #8b949e !important;
+    font-style: italic;
+}
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .kv {
+    color: #ff7b72 !important;
+    font-weight: 700;
+}
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss {
+    color: #a5d6ff !important;
+}
+.highlight .nf, .highlight .fm {
+    color: #d2a8ff !important;
+    font-weight: 600;
+}
+.highlight .nc, .highlight .nn, .highlight .nt {
+    color: #ffa657 !important;
+    font-weight: 700;
+}
+.highlight .na, .highlight .nb, .highlight .no, .highlight .nd, .highlight .ne, .highlight .nl, .highlight .nv, .highlight .nx, .highlight .py, .highlight .vi, .highlight .vg, .highlight .vm {
+    color: #7ee787 !important;
+}
+.highlight .bp {
+    color: #79c0ff !important;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+    color: #79c0ff !important;
+}
+.highlight .o, .highlight .ow {
+    color: #ff7b72 !important;
+    font-weight: 700;
+}
+.highlight .p {
+    color: #e6edf3 !important;
+}
+.highlight .kc {
+    color: #ff7b72 !important;
+    font-weight: 700;
+}
+.highlight .ge { font-style: italic; }
+.highlight .gs { font-weight: bold; }
+
+/* ==========================================================================
+   Prism.js Client-Side Syntax Highlighting Tokens
+   ========================================================================== */
+.token.comment, .token.prolog, .token.doctype, .token.cdata {
+    color: #8b949e !important;
+    font-style: italic;
+}
+.token.punctuation {
+    color: #e6edf3 !important;
+}
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted {
+    color: #79c0ff !important;
+}
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted {
+    color: #a5d6ff !important;
+}
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
+    color: #ff7b72 !important;
+}
+.token.atrule, .token.attr-value, .token.keyword {
+    color: #ff7b72 !important;
+    font-weight: 700;
+}
+.token.function, .token.class-name {
+    color: #d2a8ff !important;
+    font-weight: 600;
+}
+.token.regex, .token.important, .token.variable {
+    color: #ffa657 !important;
+}
+
+/* KaTeX Math Blocks in Neo-Brutalism Theme */
+.katex-display {
+    margin: 1.5rem 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0.85rem 1.25rem !important;
+    background: #f8fafc !important;
+    border: 2px solid #000000 !important;
+    border-radius: 6px !important;
+    box-shadow: 3.5px 3.5px 0px #000000 !important;
+}
 
 /* Medium Floating Interaction Pill (Bottom Sticky Bar) */
 .medium-floating-bar {

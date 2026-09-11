@@ -88,7 +88,7 @@ tags: [AI, IndexedDB, Context Pruning, Token Budget, Session Storage, React Flow
 ### 策略 A：成对滑动窗口（Sliding Window）
 大模型交互必须以“用户提问 + 助手回答”成对闭环。滑动窗口按对话轮次执行成对保留：
 
-$$\text{保留最大消息数} = \max(1, \text{maxRounds} \times 2)$$
+![成对滑动窗口容量决策算法]({{ '/assets/images/sliding-window-formula.png' | relative_url }})
 
 有效杜绝了只截出半句回复或丢失上文提问的语义断裂问题。
 
