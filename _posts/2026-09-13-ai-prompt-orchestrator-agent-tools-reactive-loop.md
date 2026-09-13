@@ -99,51 +99,103 @@ const workerScript = `
 
 ### 1. 普通 LLM 节点 vs AI Agent 节点核心差异
 
+为更直观理解两者的分工与能力阶梯，我们通过两张核心维度卡片与对照矩阵进行横向对比：
+
+<div class="comparison-grid">
+  <div class="comparison-card">
+    <div class="comparison-card-header">
+      <span>普通 LLM 节点</span>
+      <span class="comparison-card-badge">单向执行器</span>
+    </div>
+    <div class="comparison-card-body">
+      <p><strong>运行机制</strong>：单次直出模式。输入 Prompt ➔ 模型单次推理 ➔ 立即输出文本并结束当前节点生命周期。</p>
+      <p><strong>能力边界</strong>：纯靠模型静态权重与参数记忆，无法调用外部算力或实时 API；遇到高精度代数计算、日期差值或实时外部事实时极易产生“一本正经的胡说八道”。</p>
+      <p><strong>适用场景</strong>：意图分类分流、文本润色、固定模板转换、摘要提取等规则明确的 SOP 环节。</p>
+    </div>
+  </div>
+
+  <div class="comparison-card accent">
+    <div class="comparison-card-header">
+      <span>AI Agent 节点</span>
+      <span class="comparison-card-badge" style="background: #4f46e5; color: #fff;">闭环决策者</span>
+    </div>
+    <div class="comparison-card-body">
+      <p><strong>运行机制</strong>：ReAct 自主思考循环。<strong>Think（思考）➔ Act（选调工具）➔ Observe（观察回传结果）➔ 再 Think...</strong>，直到大模型认为任务已彻底解决。</p>
+      <p><strong>能力边界</strong>：自带动态<strong>工具箱（Tools）</strong>，遇数学可调沙箱 JS 计算、遇事实可调 REST API、遇企业数据可调度画布既有 RAG 节点，彻底根治算术幻觉。</p>
+      <p><strong>适用场景</strong>：动态多步推理、需要工具求证的复杂业务、外汇牌价折算与费率计算等未知解题步骤的任务。</p>
+    </div>
+  </div>
+</div>
+
 | 核心维度 | 普通 LLM 节点 | AI Agent 节点 |
 | :--- | :--- | :--- |
-| **执行机制** | **单次直出**：一次输入 ➔ 一次推理 ➔ 输出结束 | **ReAct 自主循环**：思考（Think） ➔ 调工具（Act） ➔ 观察结果（Observe） ➔ 再思考 … ➔ 达成目标 |
-| **外部能力** | 纯靠模型参数记忆，无法调用外部算力或实时 API | 自带**工具箱（Tools）**，可运行本地安全沙箱 JS 代码、调用第三方 HTTP 接口、调度画布节点 |
-| **运行形态** | DAG 图中的单一静态步骤 | **将多轮推理+工具执行状态机封装在一个原子节点内**，对下游只暴露出最终合成结果 |
+| **执行机制** | **单次直出**：一次输入 ➔ 一次推理 ➔ 输出结束 | **ReAct 自主循环**：思考 ➔ 调工具 ➔ 观察结果 ➔ 再思考 … ➔ 终答 |
+| **外部能力** | 纯凭模型记忆，无工具调用能力，易产生幻觉 | 自带**动态工具箱**（沙箱 JS、外部 HTTP、画布节点复用） |
+| **画布形态** | DAG 流程中的单一静态步骤 | **将完整状态机与步数看门狗内聚在单节点内**，对下游暴露标准化结果 |
+
+---
 
 ### 2. AI Agent 节点的核心配置（属性面板 4 大配置区）
 
-选中画布上的 Agent 节点后，右侧属性面板包含 4 个关键配置区域：
+选中画布上的 Agent 节点后，右侧抽屉面板提供 4 个决定智能体行为的核心配置区：
 
-#### ① 系统提示词 (System Prompt)
-* **作用**：定义 Agent 的角色定位、任务准则、何时该使用工具以及输出格式要求。
-* **经典示例**：
-  ```text
-  你是一名资深智能财务分析助手。请充分利用已配置的工具查询实时汇率及精确执行数学运算，给出详尽、可靠且条理清晰的最终分析结果。
-  ```
+#### ① 系统提示词 (System Prompt) —— 立规矩与压制幻觉
+与普通 LLM 节点单纯关注“输出格式”不同，Agent 的系统提示词必须承担**“行为准则与授权边界”**的重任。特别是必须明确申明**“工具实证法则”**，杜绝大模型的自负盲猜。
 
-#### ② 工具集绑定 (Tools Management)
-点击面板中的 **+ 添加工具 (+ Add Tool)**，可灵活绑定工具：
+<div class="prompt-box">
+  <div class="prompt-box-header">
+    <span>💬 生产级系统提示词 (System Prompt) 规范示范</span>
+    <span class="prompt-box-badge">最佳实践</span>
+  </div>
+  <div class="prompt-box-body">
+    你是一名资深智能财务分析助手。请充分利用已配置的工具查询实时汇率及精确执行数学运算，给出详尽、可靠且条理清晰的最终分析结果。<strong>在面对数学代数与外部牌价时，严禁凭借记忆盲猜，必须优先调用所提供的工具进行实证。</strong>
+  </div>
+</div>
+
+#### ② 工具集绑定 (Tools Management) —— 赋予手脚
+点击面板中的 **+ 添加工具 (+ Add Tool)**，可灵活绑定前文所述的三大形态工具：
 * **工具名称（Name）**：英文唯一标识（如 `calculate`、`get_exchange_rate`）；
-* **功能描述（Description）**：**极其重要**！LLM 纯粹依靠描述理解何时调用（例如：“*高精度执行数学代数运算，支持加减乘除与百分比折算，接收标准数学算式字符串*”）。
+* **功能描述（Description）**：**至关重要！** 大模型纯粹依靠描述决定何时发起调用（例如：“*高精度执行代数运算与百分比折算，接收标准数学算式字符串*”）。描述越严谨、示例越清晰，调用命中率越高。
 
-#### ③ 最大迭代轮次 (Max Iterations)
-* **作用**：看门狗熔断阈值（建议默认设为 **5 ~ 10** 轮）。
-* **目的**：防止 Agent 在复杂场景下陷入 `调用工具 A -> 失败 -> 再调工具 A` 的无休止死循环，保护 Token 和响应时间。达到上限后引擎强制安全截断并输出当前结论。
+#### ③ 最大迭代轮次 (Max Iterations) —— 步数熔断防线
+* **运行机制**：内核级看门狗熔断阈值（建议默认设为 **5 ~ 10** 轮）。
+* **工程价值**：防止大模型在复杂边界下陷入 `调工具 A -> 报错 -> 再调工具 A` 的无休止死循环。达到轮次阈值后引擎将强制安全截断，保护用户的 Token 账单与响应时间。
 
-#### ④ 模型与采样参数 (Model & Temperature)
-* **模型推荐**：选择具备良好 Function Calling 能力的模型（如 `gpt-4o`、`deepseek-chat`、`gemini-1.5-pro` 等）；
-* **Temperature**：进行工具调用时强烈建议设为 **0.1 ~ 0.3**，过高会导致参数解析偏差甚至格式幻觉。
+#### ④ 模型与采样参数 (Model & Temperature) —— 抑制随机发散
+* **模型推荐**：建议选用对 Function Calling / Tool Calling 具有良好原厂支持的模型（如 `gpt-4o`、`deepseek-chat`、`gemini-1.5-pro` 等）；
+* **Temperature 采样温度**：强烈建议收敛在 **0.1 ~ 0.3**。工具调用需要严谨的 JSON 结构与逻辑确定性，过高的 Temperature 会引发字段解析偏差甚至幻觉报错。
+
+---
 
 ### 3. 画布中的数据流转协议（输入与输出）
 
-#### 输入接收 (Inputs)
-在 Agent 节点的输入框中，使用 `{{上游节点ID.字段}}` 绑定待解决的任务。例如接收来自用户输入节点的提问：
+Agent 节点如何与画布上的其他节点建立数据连接？PatchCat 提供了简洁且强契约的变量流转机制：
+
+<div class="spec-box">
+  <div class="spec-box-header">
+    <span>DATA CONTRACT // AGENT NODE I/O SPECIFICATION</span>
+  </div>
+  <div class="spec-box-content">
+    <p><strong>1. 输入接收 (Inputs Injection)</strong></p>
+    <p>在 Agent 节点的输入参数中，使用双大括号插值语法 <code>{% raw %}{{node_id.field_name}}{% endraw %}</code> 动态引用上游节点的数据。例如将上游 <code>input_user</code> 输入节点的提问注入给 Agent：</p>
+{% raw %}
 ```json
 {
   "prompt": "{{input_user.user_query}}"
 }
 ```
-
-#### 输出暴露 (Outputs)
-Agent 执行完毕后，会将内部多轮探索的成果收敛为标准化对象，供下游节点（如 Output 渲染节点、后续处理节点）无缝读取：
-* `{{agent_node.response}}` 或 `{{agent_node.output}}`：Agent 最终给出的完整自然语言回答；
-* `{{agent_node.iterations}}`：实际消耗的思考与工具调用轮数（例如 `3`）；
-* `{{agent_node.usage}}`：整个 ReAct 循环累加消耗的总 Token 数量。
+{% endraw %}
+    <p style="margin-top: 1.25rem;"><strong>2. 内部自治 (Black-Box Execution)</strong></p>
+    <p>无论 Agent 内部经历了多少次 ReAct 循环往返（例如先查牌价、再算手续费），外部 DAG 拓扑调度器始终将其视作单一异步任务挂起等待，<strong>画布无需任何回边，彻底杜绝死锁与连线污染</strong>。</p>
+    <p style="margin-top: 1.25rem;"><strong>3. 输出暴露 (Outputs Exposure)</strong></p>
+    <p>任务完成后，Agent 节点对外暴露规范对象，下游节点（如 Output 渲染卡片、条件判断分支）可通过变量选择器自由消费：</p>
+    <ul>
+      <li><code>{% raw %}{{agent_node.response}}{% endraw %}</code>：<strong>最终自然语言回答</strong>（多轮推演合成的 Markdown 格式结论）；</li>
+      <li><code>{% raw %}{{agent_node.iterations}}{% endraw %}</code>：<strong>实际迭代步数</strong>（整数，如 <code>3</code>，可用于审计或判断是否触及多轮重试）；</li>
+      <li><code>{% raw %}{{agent_node.usage}}{% endraw %}</code>：<strong>累计 Token 消耗对象</strong>（包含 <code>prompt_tokens</code>、<code>completion_tokens</code> 与 <code>total_tokens</code>，精确统计单次智能体执行成本）。</li>
+    </ul>
+  </div>
+</div>
 
 ---
 

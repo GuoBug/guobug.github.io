@@ -1721,6 +1721,220 @@ img {
     gap: 0.5rem;
 }
 
+/* Medium Article Blockquote & Callout */
+.medium-body-text blockquote {
+    margin: 2.25rem 0;
+    padding: 1.25rem 1.75rem;
+    background-color: #f8fafc;
+    border: 2px solid #000000;
+    border-left: 8px solid var(--accent, #7fff00);
+    box-shadow: 4px 4px 0px 0px #000000;
+    border-radius: 4px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #1e293b;
+}
+
+.medium-body-text blockquote p {
+    margin-bottom: 0.75rem;
+}
+
+.medium-body-text blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Medium Article Tables - Neo-Brutalist Layout */
+.medium-body-text table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.25rem 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    border: 2.5px solid #000000;
+    box-shadow: 5px 5px 0px 0px #000000;
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.medium-body-text th {
+    background-color: #161b22;
+    color: #ffffff;
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0.9rem 1.15rem;
+    border: 1.5px solid #000000;
+    text-align: left;
+}
+
+.medium-body-text td {
+    padding: 0.9rem 1.15rem;
+    border: 1.5px solid #000000;
+    vertical-align: top;
+    color: #1f2937;
+    background-color: #ffffff;
+}
+
+.medium-body-text tbody tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+.medium-body-text tbody tr:hover td {
+    background-color: #f0fdf4;
+}
+
+@media (max-width: 768px) {
+    .medium-body-text table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Specialized Prompt Box (Neo-Brutalist Callout) */
+.prompt-box {
+    margin: 1.75rem 0;
+    border: 2.5px solid #000000;
+    background-color: #f8fafc;
+    box-shadow: 4px 4px 0px 0px #000000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.prompt-box-header {
+    background-color: #e2e8f0;
+    padding: 0.55rem 1rem;
+    border-bottom: 2px solid #000000;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.prompt-box-badge {
+    background-color: #4f46e5;
+    color: #ffffff;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.725rem;
+    font-weight: 700;
+}
+
+.prompt-box-body {
+    padding: 1.1rem 1.35rem;
+    font-family: var(--font-sans);
+    font-size: 1.025rem;
+    line-height: 1.8;
+    color: #0f172a;
+    background: #ffffff;
+    word-break: break-word;
+}
+
+/* Comparison Cards Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2.25rem 0;
+}
+
+@media (min-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.comparison-card {
+    border: 2.5px solid #000000;
+    box-shadow: 5px 5px 0px 0px #000000;
+    border-radius: 4px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.comparison-card.accent {
+    border-color: #000000;
+    box-shadow: 5px 5px 0px 0px #4f46e5;
+}
+
+.comparison-card-header {
+    padding: 0.75rem 1.1rem;
+    border-bottom: 2px solid #000000;
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f1f5f9;
+}
+
+.comparison-card.accent .comparison-card-header {
+    background-color: #e0e7ff;
+    color: #1e1b4b;
+}
+
+.comparison-card-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    border: 1px solid #000000;
+    font-weight: 700;
+}
+
+.comparison-card-body {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.comparison-card-body ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.comparison-card-body li {
+    margin-bottom: 0.5rem;
+}
+
+/* Spec & Dataflow Card */
+.spec-box {
+    margin: 1.75rem 0;
+    border: 2.5px solid #000000;
+    box-shadow: 4px 4px 0px 0px #000000;
+    border-radius: 4px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.spec-box-header {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 0.6rem 1.1rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spec-box-content {
+    padding: 1.25rem;
+}
+
 /* Inline Code */
 .medium-body-text code,
 .post-content-body code,
@@ -1841,6 +2055,13 @@ pre code {
     color: inherit !important;
     border-radius: 0 !important;
     white-space: pre;
+}
+
+pre code.language-text,
+pre code.language-txt,
+.highlight .language-text {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
 }
 
 /* ==========================================================================
