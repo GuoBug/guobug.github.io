@@ -30,16 +30,16 @@
             const path = window.location.pathname;
             if (path.includes('/about')) {
                 document.title = activeLang === 'zh'
-                    ? '关于我 · Gu0 Qiang | 资深技术产品经理'
-                    : 'About · Gu0 Qiang | Product Manager & Designer';
+                    ? '关于我 · Gu0 Qiang | Product Engineer'
+                    : 'About · Gu0 Qiang | Product Engineer';
             } else if (path.includes('/posts')) {
                 document.title = activeLang === 'zh'
                     ? '文章归档 · Gu0 Qiang'
                     : 'Writings · Gu0 Qiang';
             } else {
                 document.title = activeLang === 'zh'
-                    ? 'Gu0 Qiang · 资深技术产品经理 · 工作空间'
-                    : 'Gu0 Qiang · Technology Product Manager · Workspace';
+                    ? 'Gu0 Qiang · Product Engineer · 工作空间'
+                    : 'Gu0 Qiang · Product Engineer · Workspace';
             }
         }
     }
