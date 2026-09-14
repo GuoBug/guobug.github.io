@@ -34,7 +34,7 @@ html {
     -webkit-text-size-adjust: 100%;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
@@ -45,7 +45,7 @@ body {
     -webkit-font-smoothing: antialiased;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 
@@ -94,10 +94,14 @@ body {
 .top-nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background-color: var(--background);
     border-bottom: 2px solid var(--border);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.top-nav.is-scrolled {
+    box-shadow: 0 4px 0px #000000;
 }
 
 .nav-container {
@@ -777,6 +781,18 @@ body {
 .marquee-wrapper.reverse {
     background-color: var(--accent);
     color: #000;
+}
+
+.marquee-wrapper.sticky-banner {
+    position: sticky;
+    top: 51px;
+    z-index: 900;
+}
+
+@media (min-width: 768px) {
+    .marquee-wrapper.sticky-banner {
+        top: 67px;
+    }
 }
 
 .marquee-track {
@@ -2105,3 +2121,145 @@ pre code {
     text-overflow: ellipsis;
     cursor: zoom-out;
 }
+
+/* ==========================================================================
+   NEO-BRUTALIST PARALLAX SCROLLING ENGINE (PREVIEW EXPERIMENT)
+   ========================================================================== */
+
+/* 1. Top HUD Parallax Scroll Indicator */
+.parallax-hud-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.hud-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #FF5722;
+    box-shadow: 0 1px 3px rgba(255, 87, 34, 0.4);
+    transition: width 0.04s ease-out;
+}
+
+.hud-indicator-tag {
+    position: fixed;
+    top: 72px;
+    right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    box-shadow: 3px 3px 0px #000000;
+    padding: 0.25rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    font-weight: 800;
+    color: #000000;
+    z-index: 99;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.hud-indicator-tag.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hud-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 6px #10B981;
+    animation: hud-pulse 1.8s infinite;
+}
+
+@keyframes hud-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+/* 2. Parallax Background Mesh Layer */
+.parallax-bg-mesh {
+    position: fixed;
+    top: -120px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh + 240px);
+    background-image: radial-gradient(#000000 1.2px, transparent 1.2px);
+    background-size: 32px 32px;
+    opacity: 0.055;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+/* 3. Hero Layered Parallax */
+.parallax-hero {
+    position: relative;
+    z-index: 1;
+    perspective: 1000px;
+}
+
+.parallax-hero .parallax-layer {
+    will-change: transform, opacity;
+    transition: transform 0.06s ease-out;
+}
+
+/* 4. Marquee Kinetic Acceleration */
+.parallax-marquee .marquee-track {
+    will-change: transform;
+    transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 5. Vibe Card Parallax & 3D Interactive Tilt */
+.vibe-card.parallax-card {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 900px;
+    will-change: transform, box-shadow;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.1s ease-out;
+}
+
+.vibe-card.parallax-card .vibe-card-bg {
+    overflow: hidden;
+    position: relative;
+}
+
+.vibe-card.parallax-card .vibe-card-img {
+    will-change: transform;
+    transform: translate3d(0, var(--card-parallax-y, 0px), 0) scale(1.08);
+    transition: transform 0.1s ease-out;
+}
+
+/* 6. Mobile & Reduced Motion Fallbacks */
+@media (max-width: 768px) {
+    .hud-indicator-tag {
+        display: none;
+    }
+    .vibe-card.parallax-card {
+        transform: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .parallax-bg-mesh,
+    .parallax-layer,
+    .parallax-marquee .marquee-track,
+    .vibe-card.parallax-card,
+    .vibe-card.parallax-card .vibe-card-img {
+        transform: none !important;
+        transition: none !important;
+        will-change: auto !important;
+    }
+}
+
