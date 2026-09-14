@@ -34,7 +34,7 @@ html {
     -webkit-text-size-adjust: 100%;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
@@ -45,7 +45,7 @@ body {
     -webkit-font-smoothing: antialiased;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 
@@ -94,10 +94,14 @@ body {
 .top-nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background-color: var(--background);
     border-bottom: 2px solid var(--border);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.top-nav.is-scrolled {
+    box-shadow: 0 4px 0px #000000;
 }
 
 .nav-container {

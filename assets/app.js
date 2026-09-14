@@ -131,13 +131,25 @@
         });
     }
 
-    // 3. Smooth Active Link Observer
+    // 3. Smooth Active Link Observer & Top Nav Elevation
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const topNav = document.querySelector('.top-nav');
 
     function handleScroll() {
+        const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+
+        // Sticky Navigation Elevation Shadow
+        if (topNav) {
+            if (scrollY > 12) {
+                topNav.classList.add('is-scrolled');
+            } else {
+                topNav.classList.remove('is-scrolled');
+            }
+        }
+
         let currentSectionId = '';
-        const scrollPosition = window.scrollY + 160;
+        const scrollPosition = scrollY + 160;
 
         sections.forEach(section => {
             const top = section.offsetTop;
@@ -158,6 +170,7 @@
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
     // 4. Code Block Copy & Terminal Enhancer (Auto decorate all markdown code blocks)
     function enhanceAllCodeBlocks() {
