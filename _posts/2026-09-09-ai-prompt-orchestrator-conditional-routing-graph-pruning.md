@@ -72,96 +72,52 @@ tags: [AI, DAG, Kahn Algorithm, Conditional Routing, Variable Aggregator, HTTP, 
 
 ![Kahn 拓扑调度中的动态分支剪枝机制]({{ '/assets/images/conditional-branch-skipping.png' | relative_url }})
 
-### 1. 9 种条件规则匹配器
-我们在 `ConditionNode` 中定义了 9 大常用逻辑算子，满足数值比较、文本包含、正则匹配与判空：
+### 1. 9 种条件规则匹配器 (Rule Matcher Engine)
+为了覆盖业务中各种复杂的判断诉求，我们在 `ConditionNode` 中定义了 9 大常用逻辑算子。我们坚持采用客户端确定性算法，严禁使用不受控的 `eval()`，彻底杜绝原型链污染与代码注入风险：
 
-```typescript
-// src/engine/browser-engine.ts (核心规则评估)
-export function evaluateCondition(rule: ConditionRule, actualVal: unknown): boolean {
-  const op = rule.operator;
-  const targetVal = rule.value;
+| 规则分类 | 算子标识 (`operator`) | 匹配规则与逻辑语义 | 典型应用示例 |
+| :--- | :--- | :--- | :--- |
+| **文本精确比对** | `equals` / `not_equals` | 字符串精确相等/不等（自动 `trim` 消除首尾空白容错） | `category equals 'billing'` |
+| **包含子串关系** | `contains` / `not_contains` | 检查输入字符串是否包含目标子串（模糊意图分流） | `user_query contains '退款'` |
+| **数值大小比较** | `greater_than` / `less_than` | 动态将输入转换为浮点数比对（支持金额、权重与分数） | `amount greater_than 500` |
+| **判空与有效性** | `is_empty` / `is_not_empty` | 检测数据是否为 `null`、`undefined` 或纯空白字符串 | `auth_token is_not_empty` |
+| **正则模式匹配** | `regex_match` | 正则表达式动态求值（内置 `try/catch` 拦截非法模式语法） | `email regex_match '^\w+@\w+\.\w+'` |
 
-  switch (op) {
-    case 'equals':
-      return String(actualVal ?? '').trim() === String(targetVal ?? '').trim();
-    case 'not_equals':
-      return String(actualVal ?? '').trim() !== String(targetVal ?? '').trim();
-    case 'contains':
-      return String(actualVal ?? '').includes(String(targetVal ?? ''));
-    case 'not_contains':
-      return !String(actualVal ?? '').includes(String(targetVal ?? ''));
-    case 'greater_than':
-      return Number(actualVal) > Number(targetVal);
-    case 'less_than':
-      return Number(actualVal) < Number(targetVal);
-    case 'is_empty':
-      return actualVal === null || actualVal === undefined || String(actualVal).trim() === '';
-    case 'is_not_empty':
-      return actualVal !== null && actualVal !== undefined && String(actualVal).trim() !== '';
-    case 'regex_match':
-      try {
-        return new RegExp(String(targetVal)).test(String(actualVal ?? ''));
-      } catch {
-        return false;
-      }
-    default:
-      return false;
-  }
+在数据契约层面，每一个条件规则都被抽象为标准配置对象：
+{% raw %}
+```json
+{
+  "variable": "{{classifier.category}}",
+  "operator": "equals",
+  "value": "billing"
 }
 ```
+{% endraw %}
 
-### 2. 波次调度器中的分支判定与静默跳过（Branch Skipping）
-在执行波次循环中，每个节点在正式开始执行前，都会通过其所有的输入边（Incoming Edges）计算是否应当被“剪枝跳过”：
+### 2. 波次调度器中的分支判定与静默跳过（Dynamic Branch Skipping）
+在基于 Kahn 算法的分层调度循环中，每个波次的节点在正式触发前，必须自上而下计算输入边（Incoming Edges）的状态，其调度逻辑包含 4 步精密推演：
+
+1. **前置状态核验**：遍历当前节点的所有输入边，检测其前序节点是否被标记为 `skippedNodes`，或来源 Handle 是否属于未命中分支；
+2. **两类节点的差异化跳过契约 (Skipping Invariant)**：
+   - **普通执行节点（LLM / Prompt / Code）**：契约是“严格全量依赖就绪”。只要存在任何一条来自未激活分支的输入边，整节点判定为跳过；
+   - **聚合节点（AggregatorNode）**：契约是“多路互斥网关”。只要检测到**至少存在 1 条处于 Active 状态的入度边**，即豁免跳过判定，正常触发调度！
+3. **静默收尾与向下穿透（0ms Termination）**：判定为跳过的节点不会抛出异常中断执行，而是派发 `NODE_SKIPPED` 事件并以 `durationMs: 0` 立即收尾，将其 ID 加入 `skippedNodes` 集合，自动向下游后序依赖链递归传递；
+4. **画布无损决策轨迹回溯**：前端捕获到跳过事件后，卡片呈现淡灰色禁用态，完整保留从路由判断到剪枝跳过的可视化推演脉络。
+
+相比于动辄几十行冗余的遍历判断，其内核判定契约极其精炼：
 
 ```typescript
-// src/engine/browser-engine.ts (分层波次中自上而下的跳过判定)
-const incoming = incomingEdgesMap.get(node.id) || [];
-let shouldSkip = skippedNodes.has(node.id);
-
-if (!shouldSkip && incoming.length > 0) {
-  if (node.data.type === 'aggregator') {
-    // 聚合器节点特殊规约：只要有至少一条入度边未被跳过，节点即可正常激活！
-    const hasActiveIncoming = incoming.some((edge) => {
-      if (skippedNodes.has(edge.source)) return false;
-      const srcNode = nodeMap.get(edge.source);
-      if (srcNode && srcNode.data.type === 'condition') {
-        const activeBranch = nodeActiveBranch.get(edge.source);
-        if (activeBranch && edge.sourceHandle && edge.sourceHandle !== activeBranch) {
-          return false; // 非命中分支的 Handle 视为 Inactive
-        }
-      }
-      return true;
-    });
-    if (!hasActiveIncoming) shouldSkip = true;
-  } else {
-    // 普通节点严格规约：只要存在来自未命中分支或已跳过节点的边，整节点跳过
-    const isAnyIncomingInactive = incoming.some((edge) => {
-      if (skippedNodes.has(edge.source)) return true;
-      const srcNode = nodeMap.get(edge.source);
-      if (srcNode && srcNode.data.type === 'condition') {
-        const activeBranch = nodeActiveBranch.get(edge.source);
-        if (activeBranch && edge.sourceHandle && edge.sourceHandle !== activeBranch) {
-          return true;
-        }
-      }
-      return false;
-    });
-    if (isAnyIncomingInactive) shouldSkip = true;
-  }
-}
+// src/engine/browser-engine.ts (分层波次中自上而下的跳过判定契约)
+const shouldSkip = node.data.type === 'aggregator'
+  ? !incoming.some(edge => isEdgeActive(edge, skippedNodes, nodeActiveBranch)) // 聚合节点：至少1条活跃即触发
+  : incoming.some(edge => isEdgeInactive(edge, skippedNodes, nodeActiveBranch)); // 普通节点：全量依赖严格就绪
 
 if (shouldSkip) {
-  skippedNodes.add(node.id); // 记录跳过节点，自动向下游穿透传播
-  eventQueue.push({
-    type: 'NODE_SKIPPED',
-    payload: { nodeId: node.id, reason: 'Condition branch not matched or upstream node was skipped' },
-  });
+  skippedNodes.add(node.id); // 记录剪枝节点，自动向下游所有后序依赖穿透传播
+  eventQueue.push({ type: 'NODE_SKIPPED', payload: { nodeId: node.id } });
   return { nodeId: node.id, status: 'success', output: {}, durationMs: 0 };
 }
 ```
-
-**这段设计的绝妙之处在于**：
-未命中的分支不会抛出异常中断执行，也不会被从波次队列中硬性抹去，而是以 `durationMs: 0` 和 `NODE_SKIPPED` 事件静默收尾。画布前端收到该事件后，节点卡片立刻呈现优雅的淡灰色禁用视觉，清晰展现出分支路由的决策轨迹。
 
 ---
 
@@ -169,108 +125,65 @@ if (shouldSkip) {
 
 当工作流通过 `ConditionNode` 分叉成多条业务线后，最终往往需要合并到同一个输出或后续处理中。如前所述，普通节点要求上游全量就绪，无法承担“二选一”合流的任务。
 
-为此，我们在画布中引入了 **紫色聚合节点（AggregatorNode）**，并在后端设计了三种自适应聚合策略：
+为此，我们在画布中引入了 **紫色聚合节点（AggregatorNode）**，作为多分支合流的显式网关契约：
 
 ![打破多路汇聚死锁：变量聚合器契约设计]({{ '/assets/images/aggregator-reconvergence.png' | relative_url }})
 
-```typescript
-// src/engine/browser-engine.ts (聚合节点的多模式提取)
-case 'aggregator': {
-  const config = (node.data.config || {}) as unknown as AggregatorNodeConfig;
-  const mode = config.mode || 'first_available';
-  let aggregatedValue: unknown = null;
+针对不同的业务合流场景，我们在运行时底层设计了 **3 种自适应聚合模式**：
 
-  if (mode === 'first_available') {
-    // 模式 1：提取首个未被跳过且产生有效输出的分支数据（互斥分支合并的黄金模式）
-    for (const edge of incomingEdges) {
-      if (!skippedNodes.has(edge.source) && context[edge.source]) {
-        const srcOut = context[edge.source]!;
-        aggregatedValue = srcOut['promptText'] ?? srcOut['output'] ?? srcOut['result'] ?? srcOut;
-        break;
-      }
-    }
-  } else if (mode === 'merge_all') {
-    // 模式 2：将所有活跃上游节点的输出汇聚为一个以 nodeId 为 Key 的统一对象字典
-    const merged: Record<string, unknown> = {};
-    for (const edge of incomingEdges) {
-      if (!skippedNodes.has(edge.source) && context[edge.source]) {
-        merged[edge.source] = context[edge.source]!;
-      }
-    }
-    aggregatedValue = merged;
-  } else if (mode === 'wait_all') {
-    // 模式 3：等待所有分支，若某个分支被跳过，则显式填充为 null 保留键位对齐
-    const merged: Record<string, unknown> = {};
-    for (const edge of incomingEdges) {
-      merged[edge.source] = skippedNodes.has(edge.source) ? null : context[edge.source] ?? null;
-    }
-    aggregatedValue = merged;
-  }
+| 聚合模式 (`mode`) | 执行逻辑与数据契约 | 适用业务场景 |
+| :--- | :--- | :--- |
+| **`first_available`**<br>*(黄金互斥模式)* | 遍历入度连线，自动提取**首个未被跳过且产生有效数据**的分支输出：<br>`output = { result: branch_B_data }` | **IF/ELSE 条件路由后的单一主链路收口**：不论分流走向技术支持还是账单客服，下游统一无感消费； |
+| **`merge_all`**<br>*(全量字典模式)* | 收集所有处于 Active 状态的上游分支输出，以 `nodeId` 为 Key 聚合成统一字典：<br>`output = { [node_id]: branch_output }` | **多模型并发评审 / 多源数据横向比对**：下游节点需横向聚合比对多个活跃分支的数据； |
+| **`wait_all`**<br>*(键位对齐模式)* | 等待所有入度分支，若某个分支被跳过，则显式填充为 `null` 保持键位对齐：<br>`output = { branch_A: null, branch_B: data }` | **强契约固定 Schema 校验与 API 回包**：对下游数据结构的键位完整性有严苛要求的场景。 |
 
-  output = { [config.outputKey || 'result']: aggregatedValue };
-  break;
+下游节点无需感知任何上游的分支逻辑，只需在变量选择器中直接引用标准键位：
+{% raw %}
+```json
+{
+  "summary_prompt": "客户诉求分析完成，专家诊断内容如下：\n{{aggregator_node.result}}\n请基于上述信息为用户生成最终答复。"
 }
 ```
+{% endraw %}
 
-配合 React Flow 的多端口 Handles，聚合节点的左侧能够同时容纳多条连线插槽，下游节点只需引用 `{{aggregator_1.result}}`，即可天然获得互斥分支计算出的最新数据，彻底消除了下游节点的判断负担。
+彻底消除了下游节点编写复杂条件表达式的认知负担，真正实现了职责隔离与低代码优雅组装。
 
 ---
 
 ## 五、 核心技术剖析三：连接真实世界——HTTP 请求节点与指数退避弹性
 
-为了让 PatchCat 走出纯文本沙盒，我们落地了科技墨绿配色的 **HTTP 请求节点（HttpNode）**。
+为了让 PatchCat 走出纯文本沙盒，我们落地了具备科技墨绿配色的 **HTTP 请求节点（HttpNode）**，让工作流能够直接调用真实世界中的 OpenAPI 与企业内部微服务。
 
-在右侧属性抽屉中，我们为其配备了 `Params` / `Headers` / `Body` / `Auth` / `Settings` 五维配置面板。而在运行时底层，AI 搭档强调的**协议防线与指数退避重试**成为了核心代码的灵魂所在：
+![HTTP 弹性请求节点：协议防线与指数退避重试]({{ '/assets/images/http-node-resilience-retry.png' | relative_url }})
+
+在属性抽屉中，我们为其配备了 `Params`（URL 参数）/ `Headers`（请求头）/ `Body`（负载）/ `Auth`（鉴权）/ `Settings`（超时）五维配置面板。而在运行时底层，为了确保工业级健壮性，我们构筑了三道弹性安全防线：
+
+### 1. 协议白名单强制断言（Zero SSRF / XSS）
+浏览器环境直发网络请求存在伪协议安全隐患。如果用户或恶意 Prompt 在 URL 变量中注入了 `file:///etc/passwd`、`javascript:alert(1)` 或 `data:` 伪协议，极易引发本地文件泄露或跨站脚本攻击。
+引擎在发起调用前实行强制正则白名单断言：**非 `http://` 与 `https://` 协议立即抛出 `Security Exception` 拦截熔断**。
+
+### 2. 工业级鉴权与全局超时熔断
+- **鉴权自动注入**：原生支持 `Bearer Token` 与 `Basic Auth`（自动进行 Base64 编码并封装为标准 `Authorization` 请求头）；
+- **看门狗超时熔断**：通过 `AbortController` 绑定可配置的毫秒级超时（默认 30s），且全程监听工作流级全局中断信号 `signal.aborted`，用户点击中止时毫秒级释放连接，杜绝网络悬挂。
+
+### 3. 几何级数指数退避重试（Exponential Backoff Retry）
+面对真实网络中偶发的服务端 500、502、503、504 等瞬态网关抖动，引擎绝不直接报错中断工作流，而是自动触发自愈重试状态机。重试延时遵循经典几何级数公式：
+
+$$\text{Delay} = \text{retryDelayMs} \times 2^{(\text{attempt} - 1)}$$
+
+当基础延迟为 1000ms 时，各轮重试的冷却时间呈现指数级递增：**1s ➔ 2s ➔ 4s……**。既能给外部故障服务留出恢复缓冲期，又有效防止重试风暴引发流量雪崩：
 
 ```typescript
-// src/engine/browser-engine.ts (HTTP 执行器安全校验与退避循环)
-// 1. 安全防线：强制校验协议白名单，阻断恶意伪协议
-if (rawUrl.startsWith('file:') || rawUrl.startsWith('javascript:') || rawUrl.startsWith('data:')) {
-  throw new Error(`Security Exception: Forbidden or unsafe URL protocol "${rawUrl}"`);
-}
-
-// 2. 构造鉴权头 (Bearer / Basic / Custom API-Key)
-if (authType === 'bearer' && authConfig.token) {
-  reqHeaders['Authorization'] = `Bearer ${authConfig.token}`;
-} else if (authType === 'basic' && (authConfig.username || authConfig.password)) {
-  reqHeaders['Authorization'] = `Basic ${btoa(`${authConfig.username}:${authConfig.password}`)}`;
-}
-
-// 3. 面对瞬态故障的指数退避重试 (Exponential Backoff)
-const retryConfig = config.retryConfig || { maxRetries: 1, retryDelayMs: 1000, retryOn: [500, 502, 503, 504] };
-let attempt = 0;
-
-while (attempt <= retryConfig.maxRetries) {
-  if (signal.aborted) throw new Error('Workflow execution aborted by user.');
-
-  try {
-    const timeoutCtrl = new AbortController();
-    const timeoutId = setTimeout(() => timeoutCtrl.abort(), config.timeout || 30000);
-
-    const res = await fetch(targetUrl, { method, headers: reqHeaders, body, signal });
-    clearTimeout(timeoutId);
-
-    // 命中 5xx 临时错误码且未达到最大重试次数时，执行指数级退避延迟
-    if (!res.ok && retryConfig.retryOn.includes(res.status) && attempt < retryConfig.maxRetries) {
-      attempt++;
-      const delay = retryConfig.retryDelayMs * Math.pow(2, attempt - 1); // 1s -> 2s -> 4s...
-      await new Promise((r) => setTimeout(r, delay));
-      continue;
-    }
-
-    const contentType = res.headers.get('content-type') || '';
-    const responseData = contentType.includes('application/json') ? await res.json() : await res.text();
-    output = { status: res.status, data: responseData, headers: respHeaders };
-    break;
-  } catch (err) {
-    if (attempt >= retryConfig.maxRetries) throw err;
-    attempt++;
-    await new Promise((r) => setTimeout(r, retryConfig.retryDelayMs * Math.pow(2, attempt - 1)));
-  }
+// src/engine/browser-engine.ts (HTTP 弹性执行器退避延迟计算核心)
+if (!res.ok && retryConfig.retryOn.includes(res.status) && attempt < retryConfig.maxRetries) {
+  attempt++;
+  const delay = retryConfig.retryDelayMs * Math.pow(2, attempt - 1); // 1s -> 2s -> 4s 指数退避
+  await new Promise((resolve) => setTimeout(resolve, delay));
+  continue; // 重新建立连接发起自愈重试
 }
 ```
 
-通过这一层自愈机制，即使外部微服务偶发 502 网关超时，工作流也不会瞬间溃败，而是会在后台静默完成退避重试，展现出工业级组件应有的稳健度。
+通过这套协议防线与指数退避自愈模型，PatchCat 拥有了直面生产级网络环境的坚固铠甲。
 
 ---
 

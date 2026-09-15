@@ -23,6 +23,7 @@
   - Streaming SSE parser with real-time DeepSeek R1 reasoning chain rendering.
   - Decoupled state machines (`useProjectStore` & `useWorkflowStore`) achieving zero dirty re-renders and smooth 60fps canvas operations.
   - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
+- Video Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
 
 ### 2. Metaphysics Tools
 - Live App: https://guobug.github.io/metaphysics-tools/index.html#
