@@ -49,7 +49,9 @@
 - [从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/)
   - Client-side DAG execution, zero-backend BYOK (Bring Your Own Key) privacy design, and node connection state management.
 
-### AI-Native Product Thinking
+### AI-Native Product Thinking & Human-AI Collaboration
+- [抵抗众数引力：写在自研提示流编排器后的认知重构](https://guobug.github.io/posts/2026/09/16/resisting-mode-gravity/)
+  - Deconstructing Mode Gravity and implicit mediocrity cocoons in Human-AI pair programming. Shifting from Semantic Continuation to Differential Diffing, and decoupling Model (Compute Engine) from Harness (Control Framework & Independent Critic).
 - [什么是真正的 AI 原生（AI-Native）？产品架构师视角的范式演进](https://guobug.github.io/posts/2026/08/27/what-is-ai-native/)
   - Paradigm shift from traditional GUI to Agentic orchestration, emergent user experience, and human-in-the-loop systems.
 - [Boss 直聘 AI 产品的深度拆解与战略思考](https://guobug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
