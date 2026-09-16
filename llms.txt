@@ -50,6 +50,8 @@
   - Client-side DAG execution, zero-backend BYOK (Bring Your Own Key) privacy design, and node connection state management.
 
 ### AI-Native Product Thinking & Human-AI Collaboration
+- [抵抗众数引力：为什么换更强的 AI，反而产出“正确的废话”？（小红书精粹图文集）](https://guobug.github.io/posts/2026/09/17/resisting-mode-gravity-visual-cards/)
+  - A 5-card Neo-Brutalism visual digest deconstructing Mode Gravity in Human-AI collaboration: breaking the triple lock-in flywheel of mediocrity, shifting from Semantic Continuation to Differential Diffing, and decoupling Model from Harness.
 - [抵抗众数引力：写在自研提示流编排器后的认知重构](https://guobug.github.io/posts/2026/09/16/resisting-mode-gravity/)
   - Deconstructing Mode Gravity and implicit mediocrity cocoons in Human-AI pair programming. Shifting from Semantic Continuation to Differential Diffing, and decoupling Model (Compute Engine) from Harness (Control Framework & Independent Critic).
 - [什么是真正的 AI 原生（AI-Native）？产品架构师视角的范式演进](https://guobug.github.io/posts/2026/08/27/what-is-ai-native/)
