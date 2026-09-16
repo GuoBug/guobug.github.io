@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "抵抗众数引力：写在自研提示流编排器后的认知重构"
-title_en: "Resisting Mode Gravity: Cognitive Reconstruction in the Era of AI-Native Engineering"
+title: "抵抗众数引力：写在自研提示流编排器后的一些感悟"
+title_en: "Resisting Mode Gravity: Some Thoughts in the Era of AI-Native Engineering"
 date: 2026-09-16 10:00:00 +0800
 categories: [AI, Architecture, Mental Model]
 pub_tag: "Cognitive Shift"
