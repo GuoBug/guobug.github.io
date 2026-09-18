@@ -34,6 +34,12 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
+- [从 0 到 1 打造 AI 提示流编排器：酒香也怕巷子深，如何让用户真正接受产品？空白画布引导与场景模板实践（开源系列 10）](https://guobug.github.io/posts/2026/09/18/ai-prompt-orchestrator-onboarding-template-gallery/)
+  - Deconstructing onboarding UX and psychological acceptance in technical AI tools: replacing intrusive modal masks with non-blocking adaptive hero cards, and building an 8-scenario template gallery with visual pipeline capsules.
+- [从 0 到 1 打造 AI 提示流编排器：给大模型装上手和脚！Agent 节点与 Tools 工具调用体系设计与实战（开源系列 09）](https://guobug.github.io/posts/2026/09/13/ai-prompt-orchestrator-agent-tools-reactive-loop/)
+  - Endowing LLM nodes with autonomous ReAct reasoning and dynamic Tool Calling, function calling contract schema, multi-turn loop control, and safety recursion guardrails.
+- [从 0 到 1 打造 AI 提示流编排器：IndexedDB 工业级会话存储、动态 Token 修剪与变量注入实战（开源系列 08）](https://guobug.github.io/posts/2026/09/11/ai-prompt-orchestrator-indexeddb-token-pruning/)
+  - Industrial IndexedDB persistence for unlimited chat history, sliding-window dynamic token pruning, and context variable injection.
 - [从 0 到 1 打造 AI 提示流编排器：即时对话调试抽屉、节点级耗时追踪与一键发布生产 API 实战（开源系列 07）](https://guobug.github.io/posts/2026/09/10/ai-prompt-orchestrator-chat-debug-api-publishing/)
   - Interactive sliding Chat Debug Drawer (Ctrl+Shift+D), SSE typewriter streaming, per-node trace latency breakdown waterfall, FastAPI one-click REST API publishing with workflow API keys and multi-language SDK snippets.
 - [从 0 到 1 打造 AI 提示流编排器：条件分支路由、Kahn 图剪枝与 HTTP 节点实战（开源系列 06）](https://guobug.github.io/posts/2026/09/09/ai-prompt-orchestrator-conditional-routing-graph-pruning/)
