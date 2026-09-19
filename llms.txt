@@ -34,6 +34,8 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
+- [从 0 到 1 打造 AI 提示流编排器：鞋里有沙走不远，怎么让画布连线真正顺手？（开源系列 11）](https://guobug.github.io/posts/2026/09/19/ai-prompt-orchestrator-canvas-ergonomics-spatial-collision/)
+  - Deconstructing canvas ergonomics and micro-interactions in PatchCat: Drop-to-Add connection release without snap-back frustration, AABB bounding box collision avoidance with 40px breathing gap and 1800px line wrapping, and atomic node+edge bundling for clean, error-free undo/redo.
 - [从 0 到 1 打造 AI 提示流编排器：酒香也怕巷子深，如何让用户真正接受产品？空白画布引导与场景模板实践（开源系列 10）](https://guobug.github.io/posts/2026/09/18/ai-prompt-orchestrator-onboarding-template-gallery/)
   - Deconstructing onboarding UX and psychological acceptance in technical AI tools: replacing intrusive modal masks with non-blocking adaptive hero cards, and building an 8-scenario template gallery with visual pipeline capsules.
 - [从 0 到 1 打造 AI 提示流编排器：给大模型装上手和脚！Agent 节点与 Tools 工具调用体系设计与实战（开源系列 09）](https://guobug.github.io/posts/2026/09/13/ai-prompt-orchestrator-agent-tools-reactive-loop/)
