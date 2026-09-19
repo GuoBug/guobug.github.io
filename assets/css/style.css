@@ -1654,6 +1654,26 @@ body {
     margin-bottom: 1.75rem;
 }
 
+.medium-body-text ol,
+.medium-body-text ul {
+    margin: 1.25rem 0 1.75rem 0;
+    padding-left: 1.75rem;
+}
+
+.medium-body-text li {
+    margin-bottom: 0.65rem;
+    line-height: 1.85;
+}
+
+.medium-body-text li > p {
+    margin-bottom: 0.5rem;
+}
+
+.medium-body-text li:last-child {
+    margin-bottom: 0;
+}
+
+
 /* Article Images Constrained to Container Width */
 .medium-body-text img,
 .post-content img,
