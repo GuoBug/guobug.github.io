@@ -75,6 +75,32 @@
 - [拒绝官僚主义：敏捷产品团队的高效运转法则](https://guobug.github.io/posts/2026/04/27/reject-bureaucracy/)
   - Lean organizational design, reducing sync meetings, and ownership-driven execution.
 
+### Historical Product & Engineering Essays (2013–2022)
+- [用户注册流程分析（一）-- 完成验证后使用产品](https://guobug.github.io/posts/2022/03/27/sign-up-flow-one/)
+  - Growth funnel analysis on user registration friction, email/phone verification gates, and psychological momentum preservation.
+- [产品经理的学习能力](https://guobug.github.io/posts/2022/03/13/studying-ability-of-the-pm/)
+  - Deconstructing product manager learning loops: from problem solving to cross-functional leadership, information triage, and mental model building.
+- [在腾讯的第一堂产品课——菜鸟产品经理还是有专业度的产品经理](https://guobug.github.io/posts/2015/01/15/beginning-of-mp/)
+  - Tencent product management philosophy: shifting from feature thinking to service lifecycle, ATM cash operations case study, and invisible service architecture.
+- [如何系统的学习linux](https://guobug.github.io/posts/2014/07/30/beginning-of-linux/)
+  - Early reflections on breaking Windows paradigms, systematic textbook learning, and building foundational Unix/Linux mastery through experimentation.
+- [用Golang写爬虫和分析程序](https://guobug.github.io/posts/2014/07/10/golang-spider/)
+  - Concurrent web crawling, XML parsing, and mobile sitemap reconstruction using Go.
+- [Pi 上的 Pidora 中文化](https://guobug.github.io/posts/2014/07/02/raspberry-pi/)
+  - Embedded Linux configuration notes on Raspberry Pi with Pidora distribution.
+- [Html5页面如何图片叠加等](https://guobug.github.io/posts/2014/06/12/some-pages/)
+  - Early mobile frontend image overlay techniques with CSS and positioning.
+- [Swift 入门](https://guobug.github.io/posts/2014/06/05/beginner-of-swift/)
+  - WWDC 2014 first impressions of Swift language design, Xcode Playground interactivity, and future dev paradigms.
+- [Markdown 语法对照](https://guobug.github.io/posts/2014/05/24/markdown-syntax/)
+  - Practical Markdown syntax cheatsheet and escaping guidelines.
+- [音乐视频](https://guobug.github.io/posts/2013/08/18/music-video/)
+  - Early curation of non-commercial indie music videos and retrospective reflections.
+- [Markdown编辑时在页面中插入html](https://guobug.github.io/posts/2013/08/10/test-for-html/)
+  - Explorations in embedding rich media/HTML within markdown and static site generators.
+- [这只是开始](https://guobug.github.io/posts/2013/06/07/music-video/)
+  - The inaugural musical post marking the beginning of this digital workspace.
+
 ---
 
 ## Index of All Writings
