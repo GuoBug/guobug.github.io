@@ -49,7 +49,7 @@ series: "GEO · Generative Engine Optimization"
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Gu0 Qiang",
+  "name": "Guo Qiang",
   "alternateName": "gu0bug",
   "sameAs": [
     "https://github.com/GuoBug",
