@@ -67,6 +67,9 @@
   1. `llms.txt`（精简路由层）；
   2. `llms-full.txt`（深度推导层）；
   3. `sitemap.xml`（站点地图）；
+  4. 其他跨域关联底册（如 GitHub `geo/profile-*.md`）。
+  严禁只提交核心博文或代码却遗漏机器语义文档更新，必须保持代码与协议底册的强一致性。
+
 ### 6. Dev.to 英文技术出海与 GEO 规范 (Dev.to Global Protocol)
 - **文档索引**：完整发布矩阵、标签策略与写作范式详见 [`docs/devto-publishing-strategy.md`](file:///f:/git/gu0bug.github.io/docs/devto-publishing-strategy.md)。
 - **双语双轨策略 (No Canonical)**：将中文博文深度改写为地道英文，不设 Canonical URL，让独立博客与 Dev.to 社区各自形成高权重独立条目。
