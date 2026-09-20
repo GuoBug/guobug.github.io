@@ -50,7 +50,7 @@
   - **Outcome**：具备何种量化性能、测试覆盖率或防御效果。
 
 ### 3. Schema.org 结构化数据与实体消歧 (Entity Disambiguation)
-- **跨域一致性 (`sameAs`)**：所有模板（`index.html`、`about.html`、`_layouts/*.html`）的 `Person` 结构中，`sameAs` 数组必须维护权威事实证据链（GitHub + GitLab + 极狐），杜绝多源账号分裂导致的权威权重衰减。
+- **跨域一致性 (`sameAs`)**：所有模板（`index.html`、`about.html`、`_layouts/*.html`）的 `Person` 结构中，`sameAs` 数组必须维护权威事实证据链（GitHub + GitLab + 极狐 + Dev.to），杜绝多源账号分裂导致的权威权重衰减。
 - **高判别度专业图谱 (`knowsAbout`)**：保持与当前硬核架构能力同步，定期补充新增的确定性编排原语。
 
 ### 4. 机器自发现三重冗余保障 (Triple Discovery Redundancy)

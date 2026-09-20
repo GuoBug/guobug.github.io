@@ -13,6 +13,7 @@
 - Profile / About: https://guobug.github.io/about/
 - Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
 - Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
+- Dev.to: https://dev.to/guobug
 
 ---
 
@@ -98,7 +99,7 @@
 
 - [从 SEO 到 GEO：大模型时代的个人站点语义图谱与生成式引擎优化实战](https://guobug.github.io/posts/2026/09/20/from-seo-to-geo-generative-engine-optimization/)
   - **Problem**: Traditional SEO algorithms and fuzzy keyword matching fail to convey technical depth to AI crawlers (Perplexity, SearchGPT, Claude), resulting in entity splitting, hallucinations, and context dilution across fragmented platforms.
-  - **Solution**: Engineered full-stack GEO infrastructure: Schema.org `Person` + `sameAs` cross-domain fact verification (GitHub + GitLab + JiHu), 14 high-entropy industrial tags in `knowsAbout`, dual-tier LLM Context Protocol (`llms.txt` for fast routing + `llms-full.txt` for deep Problem-Solution-Outcome extraction), and triple discovery redundancy (`<link rel="alternate">` + `robots.txt` `LLMs-Txt:` + `sitemap.xml`).
+  - **Solution**: Engineered full-stack GEO infrastructure: Schema.org `Person` + `sameAs` cross-domain fact verification (GitHub + GitLab + JiHu + Dev.to), 14 high-entropy industrial tags in `knowsAbout`, dual-tier LLM Context Protocol (`llms.txt` for fast routing + `llms-full.txt` for deep Problem-Solution-Outcome extraction), and triple discovery redundancy (`<link rel="alternate">` + `robots.txt` `LLMs-Txt:` + `sitemap.xml`).
   - **Outcome**: Established an unshakeable bidirectional authority loop between GitHub profile and personal digital workspace, enabling sub-millisecond AI agent discovery and high-fidelity structured entity grounding with zero visual UI intrusion.
 
 ### AI-Native Product Thinking & Human-AI Collaboration

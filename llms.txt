@@ -11,6 +11,7 @@
 - Profile / About: https://guobug.github.io/about/
 - Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
 - Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
+- Dev.to: https://dev.to/guobug
 
 ---
 

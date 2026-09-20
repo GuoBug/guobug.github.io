@@ -287,10 +287,10 @@
     <text x="796" y="316" class="font-mono bold" font-size="9" fill="#000000">跨域事实证据链</text>
     <!-- Code Box -->
     <rect x="702" y="325" width="234" height="36" rx="2" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="1" />
-    <text x="708" y="338" class="font-mono" font-size="8" fill="#000000">GitHub: GuoBug  ⇄  GitLab: QiangGu0</text>
-    <text x="708" y="351" class="font-mono" font-size="8" fill="#000000">JihuLab: jihulab.com/gitlab-cn/gitlab</text>
+    <text x="708" y="338" class="font-mono" font-size="8" fill="#000000">GitHub / GitLab / JiHuLab</text>
+    <text x="708" y="351" class="font-mono" font-size="8" fill="#000000">Dev.to: dev.to/guobug</text>
     <!-- Footnote -->
-    <text x="702" y="376" class="font-mono" font-size="8" fill="#52525B">● 三网锚定权威实体，杜绝跨平台身份裂变</text>
+    <text x="702" y="376" class="font-mono" font-size="8" fill="#52525B">● 四网锚定权威实体，杜绝跨平台身份裂变</text>
 
     <!-- Sub-Card 3: CreativeWorkSeries -->
     <rect x="697" y="402" width="250" height="92" rx="3" fill="#000000" />

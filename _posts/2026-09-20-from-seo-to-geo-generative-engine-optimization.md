@@ -54,7 +54,8 @@ series: "GEO · Generative Engine Optimization"
   "sameAs": [
     "https://github.com/GuoBug",
     "https://gitlab.com/QiangGu0",
-    "https://jihulab.com/gitlab-cn/gitlab"
+    "https://jihulab.com/gitlab-cn/gitlab",
+    "https://dev.to/guobug"
   ]
 }
 ```
