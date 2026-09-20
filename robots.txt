@@ -60,7 +60,7 @@ Allow: /
 User-agent: Cohere-ai
 Allow: /
 
-# LLM Context Protocol:
-# See https://guobug.github.io/llms.txt for AI-native structured context & summaries
+# LLM Context Protocol
+LLMs-Txt: https://guobug.github.io/llms.txt
 
 Sitemap: https://guobug.github.io/sitemap.xml

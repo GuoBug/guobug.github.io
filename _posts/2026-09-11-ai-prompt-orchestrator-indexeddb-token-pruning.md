@@ -9,6 +9,7 @@ summary: "深度复盘 AI 提示流编排器 PatchCat 从单次交互迈向多�
 summary_en: "Deep dive into PatchCat's architectural upgrade for multi-turn conversations: breaking sessionStorage's 5MB sync I/O barrier with async IndexedDB storage and Node.js CI memory fallback; implementing sliding window, reverse token budget accumulation, and zero-wiring {{chat_history}} variable injection."
 read_time: "11 MIN READ"
 tags: [AI, IndexedDB, Context Pruning, Token Budget, Session Storage, React Flow, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

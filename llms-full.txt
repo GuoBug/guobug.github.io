@@ -1,0 +1,161 @@
+# Gu0 Qiang (gu0bug) - Technology Product Manager & AI Engineer
+
+> Digital workspace, technical writings, and open-source architecture portfolio of Gu0 Qiang. Senior Technology Product Manager with 10+ years of experience across GitLab, Ctrip, Bilibili, and independent AI development. Specializing in AI-native product architecture, prompt orchestration systems, DAG execution engines, and async remote workflows.
+>
+> This is the **full-context** version of [llms.txt](https://guobug.github.io/llms.txt), providing expanded technical summaries and core engineering conclusions for each article. Optimized for LLMs with extended context windows.
+
+## Identity & Contact
+- Name: Gu0 Qiang (郭强 / gu0bug)
+- Role: Senior Technology Product Manager · AI System Architect · Digital Nomad
+- Website: https://guobug.github.io
+- GitHub: https://github.com/GuoBug
+- Email: gu0bug0@gmail.com
+- Profile / About: https://guobug.github.io/about/
+- Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
+- Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
+
+---
+
+## Core Open-Source Projects
+
+### 1. PatchCat (AI Prompt Flow Orchestrator)
+- Repository: https://github.com/GuoBug/PatchCat
+- Live Demo: https://guobug.github.io/PatchCat/
+- Technical Highlights:
+  - Visual DAG workflow editor built on React Flow and Zustand.
+  - Client-side topological sorting and cycle detection via Kahn's algorithm.
+  - Streaming SSE parser with real-time DeepSeek R1 reasoning chain rendering.
+  - Decoupled state machines (`useProjectStore` & `useWorkflowStore`) achieving zero dirty re-renders and smooth 60fps canvas operations.
+  - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
+- Video Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
+
+### 2. Metaphysics Tools
+- Live App: https://guobug.github.io/metaphysics-tools/index.html#
+- Interactive algorithmic modeling and visual computing experiments.
+
+---
+
+## Key Technical Writings & Architecture Essays (Expanded)
+
+### AI Prompt Orchestrator Series (PatchCat)
+
+- [从 0 到 1 打造 AI 提示流编排器：鞋里有沙走不远，怎么让画布连线真正顺手？（开源系列 11）](https://guobug.github.io/posts/2026/09/19/ai-prompt-orchestrator-canvas-ergonomics-spatial-collision/)
+  - **Problem**: Visual workflow micro-frictions—edge snap-back upon dropping wires in empty space, overlapping node cards obscuring parameters, and naive undo operations leaving dangling orphan edges that crash graph schedulers.
+  - **Solution**: Drop-to-Add connection release (`onConnectEnd`) with screen-to-flow viewport coordinate transformation; Axis-Aligned Bounding Box (AABB) spatial collision algorithm (`resolveAABBCollision`) applying rightward displacement with 40px breathing gap and automatic line wrapping past 1800px with a 20-step loop escape hatch; atomic `HistoryManager` bundling node instantiation and edge creation into single transactional snapshots for clean `Ctrl+Z`/`Ctrl+Y`.
+  - **Outcome**: Validated across 245 comprehensive unit tests with zero orphan edge regressions.
+
+- [从 0 到 1 打造 AI 提示流编排器：酒香也怕巷子深，如何让用户真正接受产品？空白画布引导与场景模板实践（开源系列 10）](https://guobug.github.io/posts/2026/09/18/ai-prompt-orchestrator-onboarding-template-gallery/)
+  - **Problem**: High user drop-off from intimidating empty canvas grids and intrusive modal tour masks triggering user resistance.
+  - **Solution**: Unobtrusive adaptive hero card (`EmptyCanvasHero.tsx`) with 300ms smooth transition exits and `pointer-events-none` DOM pass-through; bifurcated onboarding paths for newcomers (scenario discovery) and veterans (1-click `Input→Prompt→LLM` scaffolding); 8-scenario production template gallery with visual "Pipeline Capsules" displaying end-to-end data flow contracts on gallery cards; two-tier bundle splitting separating lightweight metadata from on-demand workflow factories with 400ms `fitView` auto-centering.
+  - **Outcome**: 245 passing unit tests confirming template instantiation and hero card lifecycle.
+
+- [从 0 到 1 打造 AI 提示流编排器：给大模型装上手和脚！Agent 节点与 Tools 工具调用体系设计与实战（开源系列 09）](https://guobug.github.io/posts/2026/09/13/ai-prompt-orchestrator-agent-tools-reactive-loop/)
+  - **Problem**: Static pipelines cannot solve non-deterministic tasks (dynamic currency math, multi-step fact-checking); canvas back-edges degrade workflows into unmaintainable cyclical "spaghetti graphs".
+  - **Solution**: Autonomous ReAct (Think→Act→Observe) loop encapsulated entirely within a single Agent node preserving pure acyclic Kahn DAG scheduling on the outer canvas; three tool modalities—Web Worker sandboxed JavaScript (`builtin_code`), external REST endpoints (`builtin_http`), and canvas node reuse (`canvas_node`); SSE chunk accumulator for fragmented `delta.tool_calls` JSON frames; watchdog `maxIterations` step limiter (5–10 steps) with `AbortSignal` cancellation and temperature clamping (0.1–0.3).
+  - **Outcome**: Completely eliminated math hallucinations across 195 automated CI tests with 0 TypeScript warnings.
+
+- [从 0 到 1 打造 AI 提示流编排器：IndexedDB 工业级会话存储、动态 Token 修剪与变量注入实战（开源系列 08）](https://guobug.github.io/posts/2026/09/11/ai-prompt-orchestrator-indexeddb-token-pruning/)
+  - **Problem**: Browser UI freezing from `sessionStorage`'s 5MB synchronous I/O cap; cross-workflow conversation context contamination; context window overflow exceptions (`context_length_exceeded`).
+  - **Solution**: Asynchronous `ISessionStorageAdapter` leveraging IndexedDB with composite keypaths (`${workflowId}::${sessionId}`) for strict namespace isolation; in-memory fallback probe enabling DOM-less Node.js CI test execution; three-tier context pruning engine with pairwise sliding windows, reverse token budget accumulation (scanning backwards from latest message to enforce `maxTokenBudget`), and hybrid safety bounds; zero-wiring global variable injection pipeline exposing conversation history via `{{chat_history}}`.
+  - **Outcome**: Fluid 60 FPS multi-turn chat debugging without manual edge wiring.
+
+- [从 0 到 1 打造 AI 提示流编排器：即时对话调试抽屉、节点级耗时追踪与一键发布生产 API 实战（开源系列 07）](https://guobug.github.io/posts/2026/09/10/ai-prompt-orchestrator-chat-debug-api-publishing/)
+  - **Problem**: Critical gap between visual graph experimentation and production delivery; clunky modal form editing for testing.
+  - **Solution**: Non-modal slide-over Chat Debug Drawer (`Ctrl+Shift+D`) driven by `AsyncGenerator` event stream streaming SSE typewriter text alongside per-node trace waterfall latency breakdowns and Markdown diagnostic reports; dual-mode FastAPI execution router (`POST /api/v1/workflows/{id}/run`) supporting synchronous JSON and `text/event-stream` SSE; workflow-scoped API keys (`pk_live_...`) with instant key rotation; instant publishing modal with ready-to-run cURL, Python, and JavaScript snippets.
+  - **Outcome**: Production readiness validated across 115 tests (94 frontend unit + 21 backend pytest integration).
+
+- [从 0 到 1 打造 AI 提示流编排器：条件分支路由、Kahn 图剪枝与 HTTP 节点实战（开源系列 06）](https://guobug.github.io/posts/2026/09/09/ai-prompt-orchestrator-conditional-routing-graph-pruning/)
+  - **Problem**: Static linear DAG pipelines lack dynamic branching; graph reconvergence deadlocks and null-pointer crashes when Kahn topological schedulers encounter unexecuted branches.
+  - **Solution**: 9-operator client-side rule matcher (avoiding insecure `eval`); top-down Dynamic Branch Skipping cascading `NODE_SKIPPED` events (0ms duration) down unselected paths without recalculating static graph topology; explicit Variable Aggregator node (`AggregatorNode`) with three reconvergence contracts (`first_available`, `merge_all`, `wait_all`); HTTP Request Node with protocol whitelisting and exponential backoff retry (Delay = base × 2^(attempt-1)).
+  - **Outcome**: Transformed pipeline into a Turing-complete decision engine; 94 unit tests at 100% pass rate.
+
+- [从 0 到 1 打造 AI 提示流编排器：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点（开源系列 05）](https://guobug.github.io/posts/2026/09/04/ai-prompt-orchestrator-rag-knowledge-node/)
+  - **Problem**: LLM hallucinations on proprietary documentation; unsustainable token expense of injecting unindexed reference manuals into prompt contexts.
+  - **Solution**: Adopted Dify's decoupled three-tier architecture (`KnowledgeBase`→`Document`→`DocumentChunk`) with SQLAlchemy cascading foreign-key deletion; sliding window text chunker with multi-tier fallback (paragraphs to sentences) and 50-character boundary overlap; in-memory cosine vector retrieval engine with zero-division protection and hit-count tracking; dedicated Cyan-colored Knowledge Node on visual canvas.
+  - **Outcome**: Zero-Docker local RAG execution on SQLite with sub-millisecond semantic similarity lookups.
+
+- [从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）](https://guobug.github.io/posts/2026/09/03/ai-prompt-orchestrator-multi-workflow-dual-storage/)
+  - **Problem**: Single-canvas workspace clutter; canvas re-render lag during sidebar interactions; data loss when switching between browser storage and backend databases.
+  - **Solution**: Collapsible multi-workflow drawer UI with inline renaming and fuzzy search; decoupled Zustand stores (`useProjectStore` for metadata/persistence, `useWorkflowStore` for canvas graph state) with optimistic UI updates and debounced synchronization; `StorageAdapter` pattern (`IStorageAdapter`) bridging browser LocalStorage and async FastAPI + SQLAlchemy 2.0 backend with hybrid ORM modeling (relational indexing with JSONB/JSON topologies).
+  - **Outcome**: Completely eliminated dirty canvas re-renders sustaining 60 FPS; zero-friction migration path between local caching and server storage.
+
+- [从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）](https://guobug.github.io/posts/2026/09/01/ai-prompt-orchestrator-multi-model-observability/)
+  - **Problem**: Multi-vendor LLM integration failures where preset models trigger 404s when switching providers; reasoning models (DeepSeek-R1) break downstream JSON parsing by mixing thoughts into outputs; client-side logging exposes sensitive API keys.
+  - **Solution**: Heuristic Fallback Mapping for intelligent auto-downgrade of invalid cross-vendor model names with exponential backoff on 503 transient errors; dual-stream SSE demuxing channeling reasoning tokens into a collapsible terminal drawer; interactive canvas cycle-detection guard running real-time DFS during edge dragging; three-tier developer console with recursive regex data sanitization (`sanitizeData`).
+  - **Outcome**: Seamless cross-provider preset execution; 100% credential masking across logs and exports.
+
+- [从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/)
+  - **Problem**: Scheduling complex multi-node visual DAGs without runtime deadlocks, serial I/O bottlenecks, or prototype pollution vulnerabilities during dynamic data path traversal.
+  - **Solution**: Layer-by-layer topological sorting based on Kahn's theorem computing discrete 2D wavefront concurrency layers with O(|V| + |E|) complexity, combined with pre-flight cycle and dangling edge detection; sandboxed deep-property accessor (`getNestedProperty`) blocking `__proto__` and `constructor` attacks; fallback-aware template variable interpolation engine (`resolveTemplateVariables`); concurrent node waves via async generator runtime bounded by `Promise.all` and `AbortController` cancellation barriers.
+  - **Outcome**: Passed 18 rigorous chaos assertions across 5 test suites in 574ms with sub-millisecond (0.18ms) deadlock interception.
+
+- [从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/)
+  - **Problem**: Fragility and context pollution of monolithic "god prompts"; barrier to entry of heavy containerized orchestration platforms like Dify or Langflow requiring complex Docker environments.
+  - **Solution**: Dual-Engine Adapter model decoupling a zero-setup Client-Only frontend runtime (running purely in-browser via GitHub Pages with BYOK privacy and Kahn DAG mock flows) from an optional local FastAPI compute engine for sandboxed Python and Ollama model execution; spec-first Vibe Coding workflow governed by strictly typed Graph Schemas and Architectural Decision Records (ADRs).
+  - **Outcome**: Enabled atomic context isolation and heterogeneous model routing, slashing composite inference costs by 50%–70% while eliminating setup friction for 90% of developers.
+
+### Generative Engine Optimization (GEO) & Machine Protocols
+
+- [从 SEO 到 GEO：大模型时代的个人站点语义图谱与生成式引擎优化实战](https://guobug.github.io/posts/2026/09/20/from-seo-to-geo-generative-engine-optimization/)
+  - **Problem**: Traditional SEO algorithms and fuzzy keyword matching fail to convey technical depth to AI crawlers (Perplexity, SearchGPT, Claude), resulting in entity splitting, hallucinations, and context dilution across fragmented platforms.
+  - **Solution**: Engineered full-stack GEO infrastructure: Schema.org `Person` + `sameAs` cross-domain fact verification (GitHub + GitLab + JiHu), 14 high-entropy industrial tags in `knowsAbout`, dual-tier LLM Context Protocol (`llms.txt` for fast routing + `llms-full.txt` for deep Problem-Solution-Outcome extraction), and triple discovery redundancy (`<link rel="alternate">` + `robots.txt` `LLMs-Txt:` + `sitemap.xml`).
+  - **Outcome**: Established an unshakeable bidirectional authority loop between GitHub profile and personal digital workspace, enabling sub-millisecond AI agent discovery and high-fidelity structured entity grounding with zero visual UI intrusion.
+
+### AI-Native Product Thinking & Human-AI Collaboration
+
+- [抵抗众数引力：为什么换更强的 AI，反而产出"正确的废话"？（小红书精粹图文集）](https://guobug.github.io/posts/2026/09/17/resisting-mode-gravity-visual-cards/)
+  - **Problem**: Cognitive transmission bottleneck of dense, 4,000-word systems engineering essays for mobile readers and cross-platform developer communities.
+  - **Solution**: 5-card Neo-Brutalism visual architecture digest decomposing the Mode Gravity dilemma: initial cognitive hook, triple lock-in negative flywheel, transition from Semantic Continuation to Differential Diffing, Model vs. Harness decoupling, and three engineering laws of explicit anchors.
+  - **Core Thesis**: Foundation models serve purely as commoditized horsepower; the domain-specific Harness—composed of deterministic quality gates, multi-stage pipelines, and diff-driven retry loops—forms the irreplaceable engineering moat.
+
+- [抵抗众数引力：写在自研提示流编排器后的认知重构](https://guobug.github.io/posts/2026/09/16/resisting-mode-gravity/)
+  - **Problem**: Upgrading to state-of-the-art LLMs still produces fluent yet mediocre boilerplate ("correct nonsense") due to Mode Gravity—the inherent tendency of probability-sampling models to converge toward the statistical mode of internet training corpora.
+  - **Analysis**: Identified the self-reinforcing triple lock-in flywheel amplifying mediocrity: model mode convergence, human comfort-zone confirmation bias, and RLHF sycophancy.
+  - **Framework**: Proposed establishing explicit high-dimensional Target Anchor Scales, transforming human-AI interaction from passive "Semantic Continuation" (token guessing) to active "Differential Diffing" (evaluating distance against target standards). Established the architectural decoupling of hot-swappable raw compute Models from business Harness frameworks (assertive guardrails and independent critics).
+
+- [什么是真正的 AI 原生（AI-Native）？产品架构师视角的范式演进](https://guobug.github.io/posts/2026/08/27/what-is-ai-native/)
+  - Paradigm shift from traditional GUI to Agentic orchestration, emergent user experience, and human-in-the-loop systems.
+
+- [Boss 直聘 AI 产品的深度拆解与战略思考](https://guobug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
+  - Analysis of conversational AI matching, intent recognition, and bilateral marketplace dynamics.
+
+### Engineering Leadership & Remote Work
+- [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
+  - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.
+- [GitLab 远程产品经理的高效工作流与异步协作秘诀](https://guobug.github.io/posts/2026/04/29/gitlab-remote-product-manager/)
+  - Deep asynchronous communication, handbook-first culture, and global distributed PM operating procedures.
+- [拒绝官僚主义：敏捷产品团队的高效运转法则](https://guobug.github.io/posts/2026/04/27/reject-bureaucracy/)
+  - Lean organizational design, reducing sync meetings, and ownership-driven execution.
+
+### Historical Product & Engineering Essays (2013–2022)
+- [用户注册流程分析（一）-- 完成验证后使用产品](https://guobug.github.io/posts/2022/03/27/sign-up-flow-one/)
+  - Growth funnel analysis on user registration friction, email/phone verification gates, and psychological momentum preservation.
+- [产品经理的学习能力](https://guobug.github.io/posts/2022/03/13/studying-ability-of-the-pm/)
+  - Deconstructing product manager learning loops: from problem solving to cross-functional leadership, information triage, and mental model building.
+- [在腾讯的第一堂产品课——菜鸟产品经理还是有专业度的产品经理](https://guobug.github.io/posts/2015/01/15/beginning-of-mp/)
+  - Tencent product management philosophy: shifting from feature thinking to service lifecycle, ATM cash operations case study, and invisible service architecture.
+- [如何系统的学习linux](https://guobug.github.io/posts/2014/07/30/beginning-of-linux/)
+  - Early reflections on breaking Windows paradigms, systematic textbook learning, and building foundational Unix/Linux mastery through experimentation.
+- [用Golang写爬虫和分析程序](https://guobug.github.io/posts/2014/07/10/golang-spider/)
+  - Concurrent web crawling, XML parsing, and mobile sitemap reconstruction using Go.
+- [Pi 上的 Pidora 中文化](https://guobug.github.io/posts/2014/07/02/raspberry-pi/)
+  - Embedded Linux configuration notes on Raspberry Pi with Pidora distribution.
+- [Html5页面如何图片叠加等](https://guobug.github.io/posts/2014/06/12/some-pages/)
+  - Early mobile frontend image overlay techniques with CSS and positioning.
+- [Swift 入门](https://guobug.github.io/posts/2014/06/05/beginner-of-swift/)
+  - WWDC 2014 first impressions of Swift language design, Xcode Playground interactivity, and future dev paradigms.
+- [Markdown 语法对照](https://guobug.github.io/posts/2014/05/24/markdown-syntax/)
+  - Practical Markdown syntax cheatsheet and escaping guidelines.
+- [音乐视频](https://guobug.github.io/posts/2013/08/18/music-video/)
+  - Early curation of non-commercial indie music videos and retrospective reflections.
+- [Markdown编辑时在页面中插入html](https://guobug.github.io/posts/2013/08/10/test-for-html/)
+  - Explorations in embedding rich media/HTML within markdown and static site generators.
+- [这只是开始](https://guobug.github.io/posts/2013/06/07/music-video/)
+  - The inaugural musical post marking the beginning of this digital workspace.
+
+---
+
+## Index of All Writings
+- Archive Directory: https://guobug.github.io/posts/
+- Complete Sitemap: https://guobug.github.io/sitemap.xml
+- Compact Summary Version: https://guobug.github.io/llms.txt

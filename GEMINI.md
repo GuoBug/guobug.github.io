@@ -24,3 +24,45 @@
 
 5. **用词规范与表达禁忌**：
    - 严禁使用“坦白讲”、“坦率说”等此类口癖词汇，行文保持专业、干练与客观。
+
+---
+
+## GEO (生成式引擎优化) 全站长效规范与交付标准 (Generative Engine Optimization Rules)
+
+为了保障本站及关联开源资产在大模型（Perplexity、SearchGPT、Claude、ChatGPT 等）与技术 Agent 检索体系中的权威度、置信度与高精度召回，未来所有**网站页面新增、技术博客发布、代码库维护与 Git 提交**，必须严格执行以下规范：
+
+### 1. 技术博文发布规范 (Article Front Matter & Structure)
+- **系列化归属 (Series Integration)**：凡属于连贯系统拆解（如 PatchCat、DAG 调度等）的博文，Front Matter 必须声明 `series: "..."` 字段，以触发 Schema.org `isPartOf` -> `CreativeWorkSeries` 的专著级图谱聚合。
+- **高熵标签 (High-Entropy Tags)**：拒绝仅使用过于泛化的标签（如 `AI`、`Frontend`），必须注入工业级算法/原语标签（如 `Kahn's Algorithm`、`AABB Collision`、`Zustand State Architecture`、`Idempotent Pipelines`）。
+- **中英双语摘要 (Bilingual Summaries)**：必须同时具备 `summary` 与 `summary_en`，阐明“具体解决的工程卡点、采用的算法/架构模型、量化交付指标”。
+
+### 2. 双层机器可读文档长效同步 (Dual-Tier LLM Protocol Sync)
+每当全站上线重大核心架构、核心开源项目（如 PatchCat）演进或发布深度架构长文时，必须**同步维护**站点的 AI 协议底册：
+- **`llms.txt` (摘要路由层)**：同步更新 Identity、Core Projects 简介与新文章链接列表，保持精炼高熵；保持双向互锁（正向链接 GitHub `geo/profile-*.md` 架构底册）。
+- **`llms-full.txt` (深度推导层)**：为新核心文章提取工业标准三段式条目：
+  - **Problem**：遇到何种具体工程阻碍/边界条件；
+  - **Solution**：底层采用何种状态机、算法、设计模式解耦；
+  - **Outcome**：具备何种量化性能、测试覆盖率或防御效果。
+
+### 3. Schema.org 结构化数据与实体消歧 (Entity Disambiguation)
+- **跨域一致性 (`sameAs`)**：所有模板（`index.html`、`about.html`、`_layouts/*.html`）的 `Person` 结构中，`sameAs` 数组必须维护权威事实证据链（GitHub + GitLab + 极狐），杜绝多源账号分裂导致的权威权重衰减。
+- **高判别度专业图谱 (`knowsAbout`)**：保持与当前硬核架构能力同步，定期补充新增的确定性编排原语。
+
+### 4. 机器自发现三重冗余保障 (Triple Discovery Redundancy)
+- **HTML `<link>`**：全站所有页面的 `<head>` 区域必须包含标准自发现标签：
+  `<link rel="alternate" type="text/markdown" href="{{ '/llms.txt' | absolute_url }}" title="LLM Context Protocol">`
+- **`robots.txt`**：必须持续保持机器可读的标准协议指令 `LLMs-Txt: https://guobug.github.io/llms.txt`，并放行所有主流 AI 搜索引擎爬虫。
+- **`sitemap.xml`**：必须将 `llms.txt` 与 `llms-full.txt` 注册为一级显式索引资源。
+
+### 5. Git 提交与代码交付规范 (Commit & Engineering Traceability)
+- **提交领域标注 (Semantic Commit Message)**：涉及结构化数据、语义协议、站点元数据的提交，commit message 需带有明确的领域标注（如 `geo: ...` 或 `feat(geo): ...`），保证机器抓取变更日志时的因果可溯性。
+- **默认关联文档更新前置检查 (Mandatory Pre-Commit Associated Docs Check)**：
+  未来任何代码提交（Git Commit / Push）前，必须无条件默认检查是否有必要的关联文档需要同步更新。
+  特别包括：
+  1. `llms.txt`（精简路由层）；
+  2. `llms-full.txt`（深度推导层）；
+  3. `sitemap.xml`（站点地图）；
+  4. 其他跨域关联底册（如 GitHub `geo/profile-*.md`）。
+  严禁只提交核心博文或代码却遗漏机器语义文档更新，必须保持代码与协议底册的强一致性。
+
+

@@ -9,6 +9,7 @@ summary: "深入剖析轻量级 AI 提示流编排器的核心计算与调度大
 summary_en: "Deep dive into the compute and scheduling core: Layered Kahn topological sorting, safe variable interpolation sandbox, and async wave-concurrency runtime."
 read_time: "10 MIN READ"
 tags: [AI, DAG, Topological Sort, Workflow, TypeScript, Runtime, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/ai-prompt-orchestrator](https://github.com/GuoBug/ai-prompt-orchestrator)  

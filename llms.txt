@@ -9,6 +9,8 @@
 - GitHub: https://github.com/GuoBug
 - Email: gu0bug0@gmail.com
 - Profile / About: https://guobug.github.io/about/
+- Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
+- Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
 
 ---
 
@@ -56,6 +58,10 @@
   - Kahn algorithm for graph topological scheduling, circular dependency detection, `{{node.output}}` variable interpolation engine, and async execution runtime.
 - [从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/)
   - Client-side DAG execution, zero-backend BYOK (Bring Your Own Key) privacy design, and node connection state management.
+
+### Generative Engine Optimization (GEO) & Machine Protocols
+- [从 SEO 到 GEO：大模型时代的个人站点语义图谱与生成式引擎优化实战](https://guobug.github.io/posts/2026/09/20/from-seo-to-geo-generative-engine-optimization/)
+  - Deconstructing the paradigm shift from traditional SEO to Generative Engine Optimization (GEO): Schema.org entity disambiguation across GitHub/GitLab, high-entropy prompt recall tags, dual-tier LLM protocol sync (llms.txt + llms-full.txt), and triple discovery redundancy.
 
 ### AI-Native Product Thinking & Human-AI Collaboration
 - [抵抗众数引力：为什么换更强的 AI，反而产出“正确的废话”？（小红书精粹图文集）](https://guobug.github.io/posts/2026/09/17/resisting-mode-gravity-visual-cards/)
@@ -106,3 +112,4 @@
 ## Index of All Writings
 - Archive Directory: https://guobug.github.io/posts/
 - Complete Sitemap: https://guobug.github.io/sitemap.xml
+- Full Context (for LLMs with extended context): https://guobug.github.io/llms-full.txt

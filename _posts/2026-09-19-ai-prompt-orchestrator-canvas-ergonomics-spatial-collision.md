@@ -9,6 +9,7 @@ summary: "真正的生产力工具，绝不仅仅是把功能堆齐，更要保�
 summary_en: "A deep dive into PatchCat's canvas ergonomics: transforming brittle drag-and-drop into fluid orchestration with Drop-to-Add connection release, AABB spatial collision avoidance, and clean atomic undo/redo history management."
 read_time: "11 MIN READ"
 tags: [AI, PatchCat, React Flow, Ergonomics, AABB, Canvas, Undo Redo, Frontend, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

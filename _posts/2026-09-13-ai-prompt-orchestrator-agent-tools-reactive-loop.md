@@ -9,6 +9,7 @@ summary: "深度复盘 AI 提示流编排器 PatchCat 从“静态流水线”�
 summary_en: "Deep dive into PatchCat's architectural leap from static DAG pipeline to autonomous agent: avoiding spaghetti graph back-edges by encapsulating the ReAct loop inside a single agent node; introducing three tool modalities (sandboxed code, REST API, canvas node reuse) alongside complete configuration guides, data flow schemas, and runaway iteration guards."
 read_time: "15 MIN READ"
 tags: [AI, Agent, ReAct, Function Calling, Tools, React Flow, DAG, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

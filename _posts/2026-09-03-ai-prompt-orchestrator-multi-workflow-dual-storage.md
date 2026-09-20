@@ -9,6 +9,7 @@ summary: "深度复盘 AI 提示流编排器 PatchCat 架构升级：突破单�
 summary_en: "Deep dive into PatchCat's architecture upgrade: overcoming single-canvas limits with drawer-based workflow management, decoupled Zustand stores for 60fps performance, and dual-mode storage via StorageAdapter pattern."
 read_time: "12 MIN READ"
 tags: [AI, React Flow, Zustand, FastAPI, SQLAlchemy, StorageAdapter, Architecture, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

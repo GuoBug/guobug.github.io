@@ -23,6 +23,20 @@ layout: null
     <priority>0.8</priority>
   </url>
 
+  <!-- AI/LLM Context Protocol Files -->
+  <url>
+    <loc>{{ site.url }}/llms.txt</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>{{ site.url }}/llms-full.txt</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Technical Articles & Posts -->
   {% for post in site.posts %}
   <url>

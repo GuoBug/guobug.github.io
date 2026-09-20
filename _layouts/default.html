@@ -39,7 +39,9 @@
         "name": "{{ site.author }}",
         "url": "{{ site.url }}/about/",
         "sameAs": [
-          "https://github.com/{{ site.github_username }}"
+          "https://github.com/{{ site.github_username }}",
+          "https://gitlab.com/QiangGu0",
+          "https://jihulab.com/gitlab-cn/gitlab"
         ]
       }
     }
@@ -47,6 +49,9 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+
+    <!-- LLM Context Protocol Auto-Discovery -->
+    <link rel="alternate" type="text/markdown" href="{{ '/llms.txt' | absolute_url }}" title="LLM Context Protocol">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">

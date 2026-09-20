@@ -9,6 +9,7 @@ summary: "向顶流开源项目 Dify 学习知识库系统架构，在 PatchCat 
 summary_en: "Learning enterprise RAG architecture from Dify: 3-tier decoupled model, sliding window chunking with 50-char overlap, vector cosine search, and Cyan knowledge node on canvas."
 read_time: "14 MIN READ"
 tags: [AI, RAG, Dify, Vector Search, React Flow, FastAPI, Architecture, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

@@ -9,6 +9,7 @@ summary: "做硬核技术，更要让用户能用上、用明白。剖析技术�
 summary_en: "Exploring the critical role of user onboarding in technical AI projects: replacing intrusive modal masks with adaptive canvas hero cards for new and experienced builders, alongside an 8-scenario template showcase gallery with visual pipeline capsules."
 read_time: "12 MIN READ"
 tags: [AI, PatchCat, Onboarding, React Flow, UX, Template Gallery, Canvas, Product Engineering, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

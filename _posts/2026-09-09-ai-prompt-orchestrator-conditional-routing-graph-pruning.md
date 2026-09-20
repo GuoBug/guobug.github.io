@@ -9,6 +9,7 @@ summary: "深度复盘 AI 提示流编排器 PatchCat 核心引擎跃迁：从�
 summary_en: "Deep dive into PatchCat's core engine evolution: from static DAG to Turing-complete control flow. Implementing 9-operator IF/ELSE condition nodes, Kahn dynamic branch skipping without deadlocks, Variable Aggregator node for branch reconvergence, and resilient HTTP request engine with protocol sanitization and exponential backoff."
 read_time: "12 MIN READ"
 tags: [AI, DAG, Kahn Algorithm, Conditional Routing, Variable Aggregator, HTTP, React Flow, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

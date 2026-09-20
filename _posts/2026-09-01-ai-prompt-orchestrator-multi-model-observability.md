@@ -9,6 +9,7 @@ summary: "深入剖析 AI 提示流编排器进阶工程实战：跨厂商启发
 summary_en: "Advanced engineering practices for AI prompt orchestration: heuristic cross-provider model fallbacks, DeepSeek-R1 streaming reasoning chain rendering, and sanitized three-tier debug console."
 read_time: "10 MIN READ"
 tags: [AI, Multi-Model, DeepSeek, Gemini, Logging, React Flow, TypeScript, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/ai-prompt-orchestrator](https://github.com/GuoBug/ai-prompt-orchestrator)  

@@ -9,6 +9,7 @@ summary: "深度复盘 AI 提示流编排器 PatchCat 从“画布玩具”走�
 summary_en: "Deep dive into PatchCat's journey from canvas toy to production-grade microservice: sliding Chat Debug Drawer with Ctrl+Shift+D, real-time SSE typewriter streaming and per-node trace breakdown, plus FastAPI-powered one-click REST API publishing with workflow API keys and ready-to-run multi-language SDK snippets."
 read_time: "14 MIN READ"
 tags: [AI, Observability, Chat Debug, FastAPI, REST API, SSE Streaming, React Flow, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 > **项目开源地址**：[https://github.com/GuoBug/PatchCat](https://github.com/GuoBug/PatchCat)  

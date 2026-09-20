@@ -9,6 +9,7 @@ summary: "从单次 Prompt 迷思走向确定性工作流，深入剖析轻量�
 summary_en: "Moving beyond single-prompt fragility to deterministic workflows: Architectural deep dive into dual-engine adapters and spec-first Vibe Coding."
 read_time: "8 MIN READ"
 tags: [AI, Prompt Engineering, DAG, Workflow, React Flow, Vibe Coding, Open Source]
+series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
 在过去一年多的大模型应用落地探索中，很多初学者乃至产品技术团队都会陷入一个误区：**试图通过一段数千字的“万字神级 Prompt”去解决所有复杂的业务诉求。**
