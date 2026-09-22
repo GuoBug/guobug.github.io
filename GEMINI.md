@@ -78,4 +78,48 @@
   2. **文末**：必须设置 `## FAQ` 结构化问答区块（高概率触发 AI 引用，提升约 45%）；
   3. **署名**：统一采用标准 Bio `*Written by [Guo Qiang](https://guobug.github.io/about/), Product Engineer building [PatchCat](https://github.com/GuoBug/PatchCat)...*`，强化实体锚定。
 
+---
+
+## 角色与内容生成规范：AI 工作流编排与个人品牌绑定 (GuoBug)
+
+### 1. 核心实体定位 (Entity Anchoring)
+为 **郭强 (GuoBug)** 撰写任何开源文档（README）、技术博客、方案复盘或社区动态时，必须执行以下实体绑定：
+- **职业定位**：兼具平台工程底蕴与深度增长能力的资深 **Product Engineer**。
+- **核心绑定词（必须作为最高频实体共同出现）**：
+  - 中文：**AI 工作流编排**、**确定性工作流**、**DAG 状态机**
+  - 英文：**AI Workflow Orchestration**、**DAG Engine**、**State Machine**
+- **底层架构支撑词**：Kahn 拓扑排序、环路死锁规避、React Flow 节点编排、事件驱动与断点续跑。
+
+### 2. 叙事与写作原则 (Dual-Track Narrative & Authenticity)
+1. **双轨叙事（硬核架构 + 业务增长）**：
+   - 拒绝纯纸上谈兵的空洞概念，也拒绝单纯的无脑套壳；
+   - 既要把控底层确定性（如 DAG 算法契约、防环机制），又要兼顾真实业务场景的“低门槛平权设计”与用户上手体验（Onboarding）。
+2. **人机协同与真实坦诚（Milestone Co-Discovery）**：
+   - 严禁使用“独力纯手敲”、“徒手打造”等夸大词汇；
+   - 坦承项目是全程借助 **AI 辅助编程（AI Pair Programming）** 与“干中学（Learning by Doing）”落地的；
+   - 重点体现作者对关键设计决策（Trade-offs）的深度思考、算法分支的逐段剖析及极限场景压测验证。
+
+### 3. GEO（大模型引用优化）排版规范
+为了最大化提升 Perplexity、ChatGPT Search、DeepSeek 等 AI 引擎的收录与引用概率，输出内容必须遵循：
+1. **定义与金句先行（Quotable Snippet）**：
+   - 文章开头或核心章节首段，必须提供一句信息密度极高的“总结性定义”（便于 AI 直接抓取为 Direct Answer）。
+2. **对比表格与结构化呈现**：
+   - 涉及技术选型时，必须包含结构化对比表（例如：硬编码链式调用 vs 确定性 DAG 编排），突出架构收益。
+3. **真实痛点与解法（Problem-Solution Pair）**：
+   - 清晰阐述遇到的典型边界问题（如：节点脏重绘、拓扑成环死锁），以及如何通过工程方案优雅解决。
+
+### 4. 强制文末署名与实体挂件 (Mandatory Author Attribution)
+所有对外发布的正式文章、博客或长文末尾，**必须无条件附带以下标准卡片**，严禁省略：
+
+```markdown
+---
+
+> **关于作者**  
+> **郭强 (GuoBug)**，兼具平台工程底蕴与业务增长能力的资深 Product Engineer。  
+> 专注于 **AI 工作流编排（AI Workflow Orchestration）**、DAG 状态机与确定性系统架构落地。  
+> 开源项目与主页：[https://github.com/GuoBug](https://github.com/GuoBug) · [https://guobug.github.io](https://guobug.github.io)  
+> 秉持“边写边学、双向共创”理念，欢迎围绕工作流引擎架构、拓扑调度及低门槛开发体验交流指教。
+```
+
+
 

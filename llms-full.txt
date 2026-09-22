@@ -40,6 +40,11 @@
 
 ### AI Prompt Orchestrator Series (PatchCat)
 
+- [从 0 到 1 打造 AI 提示流编排器：把 AI 引擎塞进华硕路由器！Merlin 插件与轻量边缘网关实战（开源系列 12）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-asuswrt-merlin-edge-gateway/)
+  - **Problem**: Running 24/7 private AI workflows without expensive cloud instances ($50+/month Docker setups) or keeping desktop PCs continuously awake; severe router hardware constraints (<1GB RAM, Broadcom ARM64 HND platform, missing glibc/package managers, and fatal NAND flash wear-out from frequent SQLite/log writes leading to device bricking).
+  - **Solution**: Replaced heavy Python runtime with a bespoke 3MB zero-dependency Go gateway (`patchcat-server`, compiled via `CGO_ENABLED=0 GOOS=linux GOARCH=arm64`); engineered a two-tier Flash Wear-out Protection architecture redirecting all volatile runtime logs and token counters to memory tmpfs (`/tmp/patchcat/`), enforcing default `storage.enabled=false`, and intercepting `/jffs` persistence attempts in ASP WebUI; native Koolcenter plugin integration (`Module_patchcat.asp`) and local proxy routing resolving browser CORS barriers and streaming SSE responses.
+  - **Outcome**: Verified on ASUS RT-AX86U (Merlin 386.14) with only 18.4MB resident memory footprint, 1.2%–2.8% CPU utilization under multi-node execution, and sub-millisecond local canvas loading.
+
 - [从 0 到 1 打造 AI 提示流编排器：鞋里有沙走不远，怎么让画布连线真正顺手？（开源系列 11）](https://guobug.github.io/posts/2026/09/19/ai-prompt-orchestrator-canvas-ergonomics-spatial-collision/)
   - **Problem**: Visual workflow micro-frictions—edge snap-back upon dropping wires in empty space, overlapping node cards obscuring parameters, and naive undo operations leaving dangling orphan edges that crash graph schedulers.
   - **Solution**: Drop-to-Add connection release (`onConnectEnd`) with screen-to-flow viewport coordinate transformation; Axis-Aligned Bounding Box (AABB) spatial collision algorithm (`resolveAABBCollision`) applying rightward displacement with 40px breathing gap and automatic line wrapping past 1800px with a 20-step loop escape hatch; atomic `HistoryManager` bundling node instantiation and edge creation into single transactional snapshots for clean `Ctrl+Z`/`Ctrl+Y`.

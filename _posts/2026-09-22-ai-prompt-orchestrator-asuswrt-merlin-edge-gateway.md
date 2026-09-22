@@ -21,6 +21,8 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 ---
 
+![把 AI 引擎塞进路由器：Merlin 插件与轻量边缘网关]({{ '/assets/images/merlin-router-ai-orchestrator-hero.png' | relative_url }})
+
 ## 一、 为什么要把 AI 编排引擎塞进路由器？
 
 在上一篇关于画布工效学的文章里，我们花了不少心思打磨连线防碰撞与撤销重做。但在项目演进的过程中，我和身边的极客朋友始终面临一个很实际的现实矛盾：
@@ -33,14 +35,14 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 这时候，我把目光投向了家里弱电箱里那个常年插着电、默默工作的千兆路由器——**华硕 RT-AX86U**。
 
-坦白讲，做这次移植尝试，内心有两大驱动力：
+促成这次移植尝试，核心源于两大驱动力：
 
 1. **其一，为了验证 PatchCat 到底有多“轻”**：  
    我们从第一天起就确立了 **100% 纯前端 + 边缘优先（Local-First）** 的架构路线，主打冷启动 <300ms、无后台数据库依赖。但这到底是不是“王婆卖瓜”？检验架构轻量性的最好试金石，不是动辄上百核的云服务器，而是算力有限、内存极度金贵的嵌入式边缘设备！
 2. **其二，自己骨子里就是个爱折腾路由器插件的老玩家**：  
    从早年刷 OpenWrt、梅林固件（Asuswrt-Merlin），再到 Koolshare / Koolcenter 的软件中心，我平时就极其热衷于折腾各种路由固件与后台插件。如果能把大模型工作流直接打包成一个标准的路由器插件，让家里的千兆路由秒变本地 AI 调度中枢，这本身就是一件充满乐趣且极酷的事。
 
-而且打个伏笔：**今天既然能塞进路由器，以后顺理成章，我也很想给家庭 NAS（群晖、威联通或极空间）做一套开箱即用的轻量套件。**
+而且打个伏笔：虽然这样做非常拧巴，但是**今天既然能塞进路由器，以后顺理成章，我也很想给家庭 NAS（群晖、威联通或极空间）做一套开箱即用的轻量套件。**
 
 ---
 
@@ -50,27 +52,7 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 在和 AI 伙伴结对推演架构方案时，我们迅速排除了传统方案，确立了必须跨越的四大硬核关卡：
 
-```
-+-----------------------------------------------------------+
-|                   Router Constraints                      |
-|  +--------------------+  +-----------------------------+  |
-|  | Limited RAM (<1GB) |  | NAND Flash Wear-out Threat |  |
-|  +--------------------+  +-----------------------------+  |
-|  +--------------------+  +-----------------------------+  |
-|  | Broadcom ARM64 HND |  | Zero-Dependency Runtime     |  |
-|  +--------------------+  +-----------------------------+  |
-+-----------------------------------------------------------+
-                              |
-                     Engineered Solution
-                              v
-+-----------------------------------------------------------+
-|             PatchCat Asuswrt-Merlin Architecture          |
-|  - 3MB Pure Go Gateway (`linux/arm64`)                    |
-|  - In-Memory RAM Disk (`/tmp`) for Transient Logs         |
-|  - Hard Flash Protection: `/jffs` Persistence Disabled    |
-|  - Single-Binary Native Daemon & ASP Management WebUI     |
-+-----------------------------------------------------------+
-```
+![路由器极端物理约束 vs 系统级工程破局方案]({{ '/assets/images/router-constraints-vs-solution-architecture.png' | relative_url }})
 
 ### （一）选型权衡：彻底放弃 Python，重构 3MB 静态 Go 网关
 
@@ -183,6 +165,12 @@ ps | grep patchcat-server
 
 ---
 
+> **关于作者**  
+> **郭强 (GuoBug)**，兼具平台工程底蕴与业务增长能力的资深 Product Engineer。  
+> 专注于 **AI 工作流编排（AI Workflow Orchestration）**、DAG 状态机与确定性系统架构落地。  
+> 开源项目与主页：[https://github.com/GuoBug](https://github.com/GuoBug) · [https://guobug.github.io](https://guobug.github.io)  
+> 秉持“边写边学、双向共创”理念，欢迎围绕工作流引擎架构、拓扑调度及低门槛开发体验交流指教。
+
 <div align="center">
-  <sub>欢迎在 GitHub 提交 Issue 或 PR，期待与你探讨确定性编排与边缘计算的未来 · Built with ❤️ by GuoBug</sub>
+  <sub>Built with ❤️ by [Guo Qiang](https://guobug.github.io/about/) (GuoBug)</sub>
 </div>
