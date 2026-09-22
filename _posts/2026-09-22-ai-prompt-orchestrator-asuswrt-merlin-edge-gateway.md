@@ -172,5 +172,5 @@ ps | grep patchcat-server
 > 秉持“边写边学、双向共创”理念，欢迎围绕工作流引擎架构、拓扑调度及低门槛开发体验交流指教。
 
 <div align="center">
-  <sub>Built with ❤️ by [Guo Qiang](https://guobug.github.io/about/) (GuoBug)</sub>
+  <sub>Built with ❤️ by <a href="https://guobug.github.io/about/">Guo Qiang</a> (GuoBug)</sub>
 </div>
