@@ -37,6 +37,8 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
+- [从 0 到 1 打造 AI 提示流编排器：别让 Agent 刷爆你的信用卡！运行时看门狗与死循环熔断器设计（开源系列 13）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-agent-runtime-guard-watchdog/)
+  - Deconstructing PatchCat's multi-layered runtime guardrails for autonomous agents: real-time token budget ceiling with graceful termination, fingerprint-based deadlock breakers with graduated reflection hints (N=2) and hard circuit breaking (N=3), 5s Web Worker sandbox watchdog alongside native `AbortSignal.timeout` network kill switch, and sanitized credential migration.
 - [从 0 到 1 打造 AI 提示流编排器：把 AI 引擎塞进华硕路由器！Merlin 插件与轻量边缘网关实战（开源系列 12）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-asuswrt-merlin-edge-gateway/)
   - Porting an AI workflow orchestrator onto an ASUS RT-AX86U router (Asuswrt-Merlin): rewriting Python runtime into a 3MB zero-dependency static Go gateway (`linux/arm64`), addressing physical NAND flash wear-out risks via `/tmp` tmpfs RAM Disk redirection, and turning a home network into an always-on private AI hub with sub-20MB RAM footprint.
 - [从 0 到 1 打造 AI 提示流编排器：鞋里有沙走不远，怎么让画布连线真正顺手？（开源系列 11）](https://guobug.github.io/posts/2026/09/19/ai-prompt-orchestrator-canvas-ergonomics-spatial-collision/)

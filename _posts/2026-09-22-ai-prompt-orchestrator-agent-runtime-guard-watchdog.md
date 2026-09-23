@@ -5,10 +5,10 @@ title_en: "Building AI Prompt Orchestrator: Taming the Rogue Agent — Runtime W
 date: 2026-09-22 23:55:00 +0800
 categories: [AI, Agent, Safety]
 pub_tag: "Runtime Safety"
-summary: "放任自主 Agent 在生产环境自由发挥，往往是深夜账单雪崩与服务僵死的开始。深度拆解 PatchCat 如何构建四重运行时安全纵深：Token 预算硬顶阻断、调用指纹死循环破局器（阶梯式自省提示与硬熔断）、沙箱超时看门狗以及配置脱敏迁移，用确定性工程契约驯服脱缰的大模型。"
-summary_en: "Unchecked autonomous agents often trigger midnight token billing spikes and process hangs. A deep dive into PatchCat's multi-layered runtime guardrails: token budget ceiling, fingerprint-based deadlock breakers with graduated hints, sandbox timeout watchdogs, and credential-sanitized exports."
+summary: "放任自主 Agent 缺乏物理约束地自由发挥，往往是深夜账单雪崩与主线程僵死的开始。本文深度拆解 PatchCat 如何在 AI 工作流编排中构建四重运行时防御纵深架构（Token 预算硬顶、调用签名指纹阶梯熔断状态机、Web Worker 5s 沙箱看门狗与 AbortSignal.timeout 网络中断、集中式安全参数契约与敏感凭据递归脱敏），攻克死循环与挂起卡点，达成 223+ 项自动化测试 100% 通过、毫秒级优雅阻断与零凭据外泄的量化指标，用确定性工程契约驯服脱缰的大模型。"
+summary_en: "Unchecked autonomous agents often trigger midnight token billing spikes and browser main-thread deadlocks. This article deconstructs PatchCat's four-tier runtime defense-in-depth architecture for AI workflow orchestration: real-time token budget ceiling, fingerprint-based graduated circuit breakers (soft reflection hint to hard trip), 5s Web Worker sandbox watchdog & AbortSignal.timeout network kill switch, and credential-sanitized configuration exports. Validated across 223+ automated tests with 100% pass rate, delivering sub-millisecond graceful termination and zero credential leakage."
 read_time: "13 MIN READ"
-tags: [AI, PatchCat, ReAct Agent, Circuit Breaker, Watchdog, Token Budget, Product Engineer, Open Source]
+tags: [AI Workflow Orchestration, DAG State Machine, ReAct Agent, Circuit Breaker, Runtime Watchdog, Token Budget Ceiling, Deadlock Prevention, Product Engineer]
 series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
@@ -20,6 +20,8 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：把 AI 引擎塞进华硕路由器！Merlin 插件与轻量边缘网关实战（开源系列 12）》]({{ '/posts/2026/09/22/ai-prompt-orchestrator-asuswrt-merlin-edge-gateway/' | relative_url }})
 
 ---
+
+![别让 Agent 刷爆信用卡：运行时看门狗与死循环熔断器]({{ '/assets/images/agent-runtime-guard-watchdog-hero.png' | relative_url }})
 
 ## 一、 深夜的心惊肉跳：当 Agent 开始失控
 
@@ -41,7 +43,13 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 ## 二、 四重运行时防御纵深全景
 
+> [!TIP]
+> **核心架构定义 (Quotable Snippet)**  
+> **AI 工作流编排中的 Agent 运行时防御纵深（Runtime Defense-in-Depth）**，是指通过在概率性大模型执行回路外部构建确定性系统契约（Token 消耗硬顶、调用签名哈希与阶梯熔断状态机、异步看门狗与敏感凭证脱敏），对自主 Agent 施加硬性物理约束与状态兜底，确保系统在遭遇非预期逻辑旋涡、接口挂起与长尾死锁时具备毫秒级优雅降级与零扩散容错能力。
+
 为了彻底终结“失控循环”与“账单雪崩”，我们在 PatchCat 的执行内核中构建了层层递进的四重防线：
+
+![PatchCat Agent 四重运行时防御纵深架构全景]({{ '/assets/images/agent-defense-in-depth-architecture.png' | relative_url }})
 
 ```
 +-------------------------------------------------------------------------+
@@ -64,6 +72,18 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 |   --> Safe sanitized sharing (Key-stripped) vs Full device migration.   |
 +-------------------------------------------------------------------------+
 ```
+
+### （一）传统机制 vs 确定性防御纵深对比
+
+| 对比维度 | 传统朴素 Agent 运行机制 (Naive Loop) | PatchCat 确定性防御纵深架构 (Deterministic Guardrails) | 核心架构收益 |
+| :--- | :--- | :--- | :--- |
+| **循环迭代控制** | 仅依赖粗粒度步数限制 (`maxIterations`) | **Token 预算硬顶 + 步数双轨控制** | 杜绝单步返回数万字冗长上下文导致的瞬时账单雪崩 |
+| **工具死循环破局** | 无感知/一刀切抛出全局异常崩溃 | **调用指纹哈希 + N=2 软提示自省 + N=3 强行熔断跳闸** | 既兼容正常的重试与轮询，又能在死锁时截断并强制收敛总结 |
+| **沙箱脚本安全** | 无超时或简单 `eval`，易拖垮主线程 | **独立 Web Worker + 5 秒严格看门狗超时掐断** | 彻底规避用户/模型生成的 `while(true)` 卡死前端画布 |
+| **网络接口请求** | 易因外部 API 挂起导致执行队列假死 | **原生 `AbortSignal.timeout(30s)` 毫秒级网络中断** | 规避内存闭包泄漏，网络故障快速熔断恢复 |
+| **异常退出形态** | 抛出未捕获异常，清空已生成中间结果 | **半成品上下文保留 + 警告信息注入 + 正常流转下游** | 保护已产生 Token 消耗的推理价值，下游节点容错承接 |
+| **配置与凭据安全** | 导出包含真实明文 API Key，易发生泄露 | **脱敏分享版（Key 递归抹除） vs 全量迁移版 双模契约** | 零安全隐患安全共享工作流，保障开发者资产与密钥安全 |
+
 
 ---
 
@@ -101,7 +121,7 @@ if (maxTokenBudget > 0 && totalUsage.total >= maxTokenBudget) {
 
 ## 四、 人机共创关键节点：工具调用死循环破局器（Deadlock Breaker）
 
-如果说 Token 预算是最后的“保险丝”，那么**工具调用的死循环破局器**就是我们在人机协同中推演出的最精妙的“减震器”。
+如果说 Token 预算是最后的“保险丝”，那么在 **AI 工作流编排（AI Workflow Orchestration）** 与 **DAG 状态机** 的整体协同中，**工具调用的死循环破局器**就是我们在人机双向共创中推演出的最精妙的“减震器”。
 
 ### （一）工程痛点：如何区分“正常重试”与“智障死循环”？
 
@@ -112,7 +132,7 @@ if (maxTokenBudget > 0 && totalUsage.total >= maxTokenBudget) {
 
 ### （二）人机双向共创推演
 
-我和 AI 搭档深入推演了底层状态机，最终设计出一套**“调用指纹 + 阶梯式响应（Graduated Hint to Hard Trip）”**模型：
+我和 AI 搭档深入推演了底层 **DAG 状态机** 的控制转移逻辑，基于构建**确定性工作流**的边界防御思想，最终设计出一套**“调用指纹 + 阶梯式响应（Graduated Hint to Hard Trip）”**模型：
 
 1. **精确调用签名指纹（Signature Hash）**：  
    每次工具调用时，动态拼接工具名称与其 JSON 参数字符串：  
@@ -225,6 +245,14 @@ const response = await fetch(url, {
 把 Token 预算锁死、把重复调用的死循环掐断、把挂起超时的请求掐死——这些看似不那么“性感”的脏活累活，恰恰是让一个 AI 工具能够真正走出 Demo 玩具阶段、在真实生产环境中让人睡个安稳觉的核心护城河。
 
 本项目已全量开源，文中所述的风控状态机逻辑与看门狗代码均已合并至主干。欢迎同行与架构师朋友一起探讨交流，求批评、求指教！
+
+---
+
+> **关于作者**  
+> **郭强 (GuoBug)**，兼具平台工程底蕴与业务增长能力的资深 Product Engineer。  
+> 专注于 **AI 工作流编排（AI Workflow Orchestration）**、DAG 状态机与确定性系统架构落地。  
+> 开源项目与主页：[https://github.com/GuoBug](https://github.com/GuoBug) · [https://guobug.github.io](https://guobug.github.io)  
+> 秉持“边写边学、双向共创”理念，欢迎围绕工作流引擎架构、拓扑调度及低门槛开发体验交流指教。
 
 ---
 
