@@ -121,5 +121,28 @@
 > 秉持“边写边学、双向共创”理念，欢迎围绕工作流引擎架构、拓扑调度及低门槛开发体验交流指教。
 ```
 
+---
+
+## 视觉资产与纯图输出规范 (Visual Asset & Illustration Specification)
+
+后续凡涉及文章插图、封面配图、概念装饰或纯图表达输出，**默认统一采用表现主义厚涂重彩油画风格（Impasto Expressionist Oil Painting）**，具体规范如下：
+
+### 1. 核心画风与技法要素
+- **质感与媒介**：表现主义厚涂油画（Impasto Oil Painting），明显的调色刀堆色刮刀肌理（Palette Knife Textures），笔触粗犷厚重、动感强烈、富有雕塑般的实体层次。
+- **色彩与光影系统**：
+  - **核心高反差撞色**：荧光电光青绿（Electric Lime Green / Cyan）与炽烈红橙（Crimson Red / Fiery Orange）强烈对撞；
+  - **背景与阴影基调**：深邃暗紫、深夜幽蓝与炭黑阴影（Midnight Blue / Deep Violet / Black Shadows）；
+  - **能量高光**：耀眼的柠檬黄、亮金与荧光光斑（Bright Lemon Yellow / Gold Highlights）。
+- **意象隐喻与构图（工程与艺术交融）**：
+  - **秩序与确定性**：清晰坚固的白/青色铁轨（Rails）、几何安全金库（Vault）、整齐防护围栏（Fence）、稳固基石；
+  - **混沌与不可控**：暗红/黑色风暴漩涡、弥散翻滚的暗云、破碎飘零的绿色二进制代码流（Binary Streams）；
+  - **人性与探索**：独立的黑色人物剪影（Silhouette），驻足于秩序与混沌的交界处。
+
+### 2. 标准生图 Prompt 模板 (Nano Banana / Gemini Image Generator)
+```text
+A striking, vivid expressionist oil painting with thick impasto palette knife textures. [Scene Subject: e.g., Contrast between deterministic white-box rails and chaotic dark-cloud vortex / Lone silhouette standing at the junction of digital boundaries]. Features bold, energetic brushstrokes and heavy impasto paint. High-contrast vibrant color palette dominated by electric lime green, luminous cyan, crimson red, fiery orange, deep violet, and rich textured shadows. Highly dramatic, fine art aesthetic with conceptual digital/engineering symbolism seamlessly woven into thick oil paint.
+```
+
+
 
 
