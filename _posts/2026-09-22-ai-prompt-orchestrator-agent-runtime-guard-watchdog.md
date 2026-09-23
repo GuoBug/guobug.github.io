@@ -257,5 +257,5 @@ const response = await fetch(url, {
 ---
 
 <div align="center">
-  <sub>欢迎在 GitHub 提交 Issue 或 PR，一起用确定性工程驯服大模型 · Built with ❤️ by GuoBug</sub>
+  <sub>欢迎在 <a href="https://github.com/GuoBug/PatchCat">GitHub</a> 提交 <a href="https://github.com/GuoBug/PatchCat/issues">Issue</a> 或 <a href="https://github.com/GuoBug/PatchCat/pulls">PR</a>，一起用确定性工程驯服大模型 · Built with ❤️ by <a href="https://guobug.github.io/about/">Guo Qiang</a> (<a href="https://github.com/GuoBug">GuoBug</a>)</sub>
 </div>
