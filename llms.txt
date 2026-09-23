@@ -37,6 +37,8 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
+- [谁来为大模型的失控与手滑兜底？一个 Product Engineer 的「零信任」数字生存反思](https://guobug.github.io/posts/2026/09/23/ai-prompt-orchestrator-zero-trust-local-first/)
+  - Deconstructing zero-trust digital survival and local-first architecture for AI workflows: dissecting centralized black-box vulnerabilities (silent code uploads, SaaS credential exfiltration) and human fallibility (internal leaks via public cloud drives, late-night credential push slips, agent infinite loops); architecting a dual defense of 100% Client-Only local data sovereignty and deterministic DAG state machines with recursive credential masking, runtime call fingerprint circuit breaking, and strict bilingual destructive confirmation passphrases.
 - [从 0 到 1 打造 AI 提示流编排器：别让 Agent 刷爆你的信用卡！运行时看门狗与死循环熔断器设计（开源系列 13）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-agent-runtime-guard-watchdog/)
   - Deconstructing PatchCat's multi-layered runtime guardrails for autonomous agents: real-time token budget ceiling with graceful termination, fingerprint-based deadlock breakers with graduated reflection hints (N=2) and hard circuit breaking (N=3), 5s Web Worker sandbox watchdog alongside native `AbortSignal.timeout` network kill switch, and sanitized credential migration.
 - [从 0 到 1 打造 AI 提示流编排器：把 AI 引擎塞进华硕路由器！Merlin 插件与轻量边缘网关实战（开源系列 12）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-asuswrt-merlin-edge-gateway/)
