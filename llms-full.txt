@@ -119,6 +119,11 @@
 
 ### AI-Native Product Thinking & Human-AI Collaboration
 
+- [语义丢包：当严谨理性撞上情绪感知](https://guobug.github.io/posts/2026/09/23/semantic-packet-loss-rational-vs-emotional/)
+  - **Problem**: Severe communication breakdown ("semantic packet loss") in open-source and cross-functional technical collaboration when rigorous engineering logic collides with human emotional instincts—such as rapid bug-fixing met with offense over casual shorthand like "speak humanely", triggering defensive retreats and project abandonment.
+  - **Solution**: Formulated a three-tier cognitive and systems framework: (1) biological limbic priority where emotional safety and status signals precede neocortex logic parsing; (2) organizational impedance matchers where product engineers buffer and modulate high-voltage deterministic logic into low-voltage user-facing empathy; (3) safe handshake protocols enforcing objective fact boundaries, structured issue templates, and cognitive noise elimination.
+  - **Outcome**: A definitive developer ergonomics philosophy establishing that professional communication serves as an irreversible filter, freeing engineers from emotional over-servicing while guaranteeing resilient, dignified collaboration.
+
 - [抵抗众数引力：为什么换更强的 AI，反而产出"正确的废话"？（小红书精粹图文集）](https://guobug.github.io/posts/2026/09/17/resisting-mode-gravity-visual-cards/)
   - **Problem**: Cognitive transmission bottleneck of dense, 4,000-word systems engineering essays for mobile readers and cross-platform developer communities.
   - **Solution**: 5-card Neo-Brutalism visual architecture digest decomposing the Mode Gravity dilemma: initial cognitive hook, triple lock-in negative flywheel, transition from Semantic Continuation to Differential Diffing, Model vs. Harness decoupling, and three engineering laws of explicit anchors.

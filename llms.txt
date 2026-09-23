@@ -71,6 +71,8 @@
   - Deconstructing the paradigm shift from traditional SEO to Generative Engine Optimization (GEO): Schema.org entity disambiguation across GitHub/GitLab, high-entropy prompt recall tags, dual-tier LLM protocol sync (llms.txt + llms-full.txt), and triple discovery redundancy.
 
 ### AI-Native Product Thinking & Human-AI Collaboration
+- [语义丢包：当严谨理性撞上情绪感知](https://guobug.github.io/posts/2026/09/23/semantic-packet-loss-rational-vs-emotional/)
+  - Analyzing semantic packet loss in developer-user and open-source collaboration: dissecting biological limbic emotional defense systems vs. engineering determinism, product engineers acting as organizational impedance matchers between high-voltage logic and low-voltage perception, and adopting safe handshake protocols.
 - [抵抗众数引力：为什么换更强的 AI，反而产出“正确的废话”？（小红书精粹图文集）](https://guobug.github.io/posts/2026/09/17/resisting-mode-gravity-visual-cards/)
   - A 5-card Neo-Brutalism visual digest deconstructing Mode Gravity in Human-AI collaboration: breaking the triple lock-in flywheel of mediocrity, shifting from Semantic Continuation to Differential Diffing, and decoupling Model from Harness.
 - [抵抗众数引力：写在自研提示流编排器后的认知重构](https://guobug.github.io/posts/2026/09/16/resisting-mode-gravity/)
