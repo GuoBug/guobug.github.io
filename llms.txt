@@ -37,6 +37,8 @@
 ## Key Technical Writings & Architecture Essays
 
 ### AI Prompt Orchestrator Series (PatchCat)
+- [从 0 到 1 打造 AI 提示流编排器：搞 Eval 评测前，先让输出闭合！结构化约束与业务契约防线（开源系列 14）](https://guobug.github.io/posts/2026/09/25/ai-prompt-orchestrator-structured-output-eval-prerequisite/)
+  - Deconstructing deterministic structured output and business contracts as the foundational prerequisite for LLM evaluation (Eval) and DAG workflows: deep dive into pre-sampling Logits masking and CFG/EBNF constrained decoding; 3-tier runtime negotiation (Strict json_schema -> JSON mode json_object -> none) across OpenAI, DeepSeek, and local Ollama; client-side lightweight repairJsonL1; and L2 Zod safeParse business defense against out-of-bounds values, empty semantic shells, and cross-field refinement paradoxes without throwing unhandled exceptions.
 - [谁来为大模型的失控与手滑兜底？一个 Product Engineer 的「零信任」数字生存反思](https://guobug.github.io/posts/2026/09/23/ai-prompt-orchestrator-zero-trust-local-first/)
   - Deconstructing zero-trust digital survival and local-first architecture for AI workflows: dissecting centralized black-box vulnerabilities (silent code uploads, SaaS credential exfiltration) and human fallibility (internal leaks via public cloud drives, late-night credential push slips, agent infinite loops); architecting a dual defense of 100% Client-Only local data sovereignty and deterministic DAG state machines with recursive credential masking, runtime call fingerprint circuit breaking, and strict bilingual destructive confirmation passphrases.
 - [从 0 到 1 打造 AI 提示流编排器：别让 Agent 刷爆你的信用卡！运行时看门狗与死循环熔断器设计（开源系列 13）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-agent-runtime-guard-watchdog/)

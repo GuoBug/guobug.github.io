@@ -77,10 +77,27 @@
     }
     </script>
 
-    <!-- KaTeX Math Rendering Support -->
+    <!-- KaTeX Math Rendering Support (Compatible with Kramdown math/tex output) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="
+        renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});
+        document.querySelectorAll('script[type^=\'math/tex\']').forEach(function(el){
+            var isDisplay = el.getAttribute('type').indexOf('mode=display') !== -1;
+            var container = document.createElement(isDisplay ? 'div' : 'span');
+            if (isDisplay) container.className = 'katex-display';
+            try {
+                katex.render(el.textContent, container, { displayMode: isDisplay, throwOnError: false });
+                el.parentNode.replaceChild(container, el);
+            } catch(e) { console.error('KaTeX error:', e); }
+        });
+    "></script>
+
+    <!-- Mermaid.js Diagram Rendering -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif' });
+    </script>
 
     <!-- PrismJS Syntax Highlighting -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
