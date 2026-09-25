@@ -425,12 +425,18 @@ body {
     background: var(--background);
     border-bottom: 2px solid var(--border);
     padding: 1.5rem;
-    z-index: 99;
+    z-index: 999;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .mobile-nav-drawer.open {
     display: block;
+}
+
+@media (min-width: 860px) {
+    .mobile-nav-drawer {
+        display: none !important;
+    }
 }
 
 .mobile-nav-list {
