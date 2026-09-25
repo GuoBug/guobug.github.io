@@ -151,6 +151,42 @@
 A striking, vivid expressionist oil painting with thick impasto palette knife textures. [Scene Subject: e.g., Contrast between deterministic white-box rails and chaotic dark-cloud vortex / Lone silhouette standing at the junction of digital boundaries]. Features bold, energetic brushstrokes and heavy impasto paint. High-contrast vibrant color palette dominated by electric lime green, luminous cyan, crimson red, fiery orange, deep violet, and rich textured shadows. Highly dramatic, fine art aesthetic with conceptual digital/engineering symbolism seamlessly woven into thick oil paint.
 ```
 
+---
+
+## 前端性能与工程交付基准规范 (Frontend Performance & Asset Pipeline)
+
+为了保障全站极致的加载性能、跨设备平稳帧率与网络安全防御，未来所有页面迭代、模板调整及静态资源管理，必须严格遵守以下工程规范：
+
+### 1. 字体与网络阻塞消除 (Zero-Chain Asset Loading)
+- **禁止在 CSS 中使用 `@import` 引入外部字体**：避免形成 `HTML → CSS → 字体 CSS → WOFF2` 的多跳串行网络瀑布流；
+- **全站统一在 `<head>` 中直发预连接**：
+  `<link rel="preconnect" href="https://fonts.googleapis.com">`
+  `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
+- **精简请求字重**：严格审查字重使用情况，不请求 0 次调用的中间字重（如 Space Grotesk 500），降低无效传输。
+
+### 2. 运行时渲染库按需加载 (On-Demand Dependency Injection)
+- **拒绝全站全局无脑挂载重型库**：KaTeX、Mermaid（ESM 2~3MB）与 Prism 严禁在所有文章页无条件全量引入；
+- **正文内容嗅探与 Front Matter 降级**：
+  - 模板必须使用 Liquid 扫描渲染后正文关键标志物（如 `math/tex`、`language-mermaid`、`highlighter-rouge`）；
+  - 同时支持文章 Front Matter 显式字段（`math: true`、`mermaid: true`、`highlight: true`）手动兜底；
+  - 确保 90% 以上的无公式、无拓扑图文章完全免去数兆重型 JS/CSS 的下载与主线程阻塞。
+
+### 3. 子资源完整性校验 (Subresource Integrity, SRI)
+- **外链 CDN 脚本与样式强制 SRI**：凡引入外部 jsDelivr、cdnjs 等静态资源，必须配备真实计算的 `integrity="sha384-..."` 与 `crossorigin="anonymous"`、`referrerpolicy="no-referrer"`；
+- **严禁虚假或随意猜测哈希**：必须由自动化脚本或真实文件经 SHA-384 计算提取，防范 CDN 污染与中间人篡改。
+
+### 4. 布局稳定性与防抖规范 (Zero Cumulative Layout Shift)
+- **图片强制补齐固有物理宽高**：全站所有静态 `<img>` 标签必须显式写入真实的 `width` 与 `height` 属性，确保浏览器在图片下载前完成占位排版，根治 CLS 布局抖动；
+- **首屏敏感资源与非首屏懒加载隔离**：
+  - 核心 LCP 资产（导航 Logo、Hero 头像、作者头像）严禁添加 `loading="lazy"`，确保首屏秒开；
+  - 首屏视口下方的卡片封面、正文配图统一声明 `loading="lazy" decoding="async"`。
+
+### 5. 交互引擎与单帧性能规约 (Single-rAF Event Pipelines)
+- **合并高频滚动监听**：严禁在 `window.onscroll` 中直接同步读取 `offsetTop`、`offsetHeight` 等触发强制重排的几何属性；
+- **单通道 rAF 调度与几何信息缓存**：滚动高亮、HUD 进度、跑马灯惯性与视差漂移必须合并为单一 `requestAnimationFrame` 通道调度；区块几何数据必须缓存在内存中，仅在窗口 resize 或文档高度变化时失效重算；
+- **环境安全防御**：涉及 `localStorage` 与 `navigator.clipboard` 的客户端逻辑必须配备严格的 `try/catch` 与环境特性检测，提供静默降级（如隐私模式下会话级生效、剪贴板 `execCommand` 降级），严禁抛出未捕获异常阻断主流程。
+
+
 
 
 
