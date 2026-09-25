@@ -77,10 +77,27 @@
     }
     </script>
 
+    {%- comment -%}
+      按需加载第三方渲染库：KaTeX / Mermaid / Prism 此前在每篇文章无条件加载，
+      而实际只有极少数文章用到它们。这里按渲染后的正文内容探测，
+      只有在真正需要时才引入，避免无谓的下载与解析开销。
+      如需强制启用，可在文章 front matter 中写 math / mermaid / highlight: true。
+    {%- endcomment -%}
+    {%- assign needs_math = false -%}
+    {%- assign needs_mermaid = false -%}
+    {%- assign needs_highlight = false -%}
+    {%- if page.math -%}{%- assign needs_math = true -%}{%- endif -%}
+    {%- if page.mermaid -%}{%- assign needs_mermaid = true -%}{%- endif -%}
+    {%- if page.highlight -%}{%- assign needs_highlight = true -%}{%- endif -%}
+    {%- if content contains 'math/tex' or content contains '$$' -%}{%- assign needs_math = true -%}{%- endif -%}
+    {%- if content contains 'language-mermaid' or content contains 'class="mermaid"' -%}{%- assign needs_mermaid = true -%}{%- endif -%}
+    {%- if content contains 'highlighter-rouge' or content contains '<pre' -%}{%- assign needs_highlight = true -%}{%- endif -%}
+
+    {%- if needs_math -%}
     <!-- KaTeX Math Rendering Support (Compatible with Kramdown math/tex output) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" referrerpolicy="no-referrer" onload="
         renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\[', right: '\\]', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}]});
         document.querySelectorAll('script[type^=\'math/tex\']').forEach(function(el){
             var isDisplay = el.getAttribute('type').indexOf('mode=display') !== -1;
@@ -92,16 +109,26 @@
             } catch(e) { console.error('KaTeX error:', e); }
         });
     "></script>
+    {%- endif -%}
 
+    {%- if needs_mermaid -%}
     <!-- Mermaid.js Diagram Rendering -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true, theme: 'dark', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif' });
     </script>
+    {%- endif -%}
 
+    {%- if needs_highlight -%}
     <!-- PrismJS Syntax Highlighting -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha384-Uq05+JLko69eOiPr39ta9bh7kld5PKZoU+fF7g0EXTAriEollhZ+DrN8Q/Oi8J2Q" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {%- endif -%}
+
+    <!-- Google Fonts: 直连 + 预连接，避免 CSS @import 的串行阻塞链 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
@@ -118,7 +145,7 @@
     <nav class="top-nav">
         <div class="container nav-container">
             <a href="{{ '/' | relative_url }}" class="nav-logo">
-                <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo" class="nav-logo-img">
+                <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo" class="nav-logo-img" width="1024" height="1024" >
                 <span>GUOQIANG.PRODUCT</span>
                 <span class="nav-logo-badge">SYSTEM</span>
             </a>
@@ -191,7 +218,7 @@
             <div class="medium-author-bar">
                 <div class="medium-author-left">
                     <div class="medium-author-avatar">
-                        <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Guo Qiang" class="medium-author-avatar-img">
+                        <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Guo Qiang" class="medium-author-avatar-img" width="1024" height="1024" >
                     </div>
                     <div class="medium-author-meta">
                         <div class="medium-author-name-row">

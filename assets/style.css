@@ -3,7 +3,9 @@
    Inspired by yanliudesign.live
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* 字体改由各页面 <head> 中的 <link> + preconnect 加载。
+   此处原先使用 @import，会形成 HTML -> style.css -> 字体 CSS -> 字体文件
+   的四段串行阻塞链，比直接 <link> 慢一个完整 RTT。 */
 
 :root {
     --background: #ffffff;

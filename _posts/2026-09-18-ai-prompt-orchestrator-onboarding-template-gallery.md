@@ -77,13 +77,13 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
   <div class="comparison-card" style="border: 2px solid var(--border, #000); border-radius: 8px; padding: 1.25rem; background: var(--card-bg, #fff); box-shadow: 4px 4px 0px 0px #000;">
     <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1.05rem;">🌟 面向新朋友：场景探索卡</div>
-    <img src="{{ '/assets/images/hero_newcomer.png' | relative_url }}" alt="新朋友自适应引导卡片" style="width: 100%; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 0.75rem;" />
+    <img src="{{ '/assets/images/hero_newcomer.png' | relative_url }}" alt="新朋友自适应引导卡片" style="width: 100%; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 0.75rem;" width="1200" height="750" loading="lazy" decoding="async" />
     <p style="font-size: 0.9rem; color: #666; margin: 0;">以成熟场景为切入点，提供画廊入口与自主探索选项，拒绝任何侵入式蒙版遮挡。</p>
   </div>
 
   <div class="comparison-card" style="border: 2px solid var(--border, #000); border-radius: 8px; padding: 1.25rem; background: var(--card-bg, #fff); box-shadow: 4px 4px 0px 0px #000;">
     <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1.05rem;">⚡ 面向老朋友：快速装配脚手架</div>
-    <img src="{{ '/assets/images/hero_veteran.png' | relative_url }}" alt="老朋友快速脚手架卡片" style="width: 100%; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 0.75rem;" />
+    <img src="{{ '/assets/images/hero_veteran.png' | relative_url }}" alt="老朋友快速脚手架卡片" style="width: 100%; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 0.75rem;" width="1200" height="750" loading="lazy" decoding="async" />
     <p style="font-size: 0.9rem; color: #666; margin: 0;">一键自动铺设「输入 ➔ Prompt ➔ LLM」基础链路并连线，免去枯燥的重复劳动。</p>
   </div>
 </div>

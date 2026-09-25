@@ -1,229 +1,555 @@
 /**
  * Neo-Brutalism Portfolio Client Script - GuoBug Preview
+ *
+ * 模块顺序：
+ *   1. 可调参数常量
+ *   2. 通用工具（安全存储 / 剪贴板 / DOM 辅助）
+ *   3. 中英双语切换与 URL 状态同步
+ *   4. 移动端抽屉导航
+ *   5. 滚动引擎（导航高亮 + 视差，合并为单条 rAF 通道）
+ *   6. 代码块增强与复制
+ *   7. 图片灯箱
  */
 
 (function () {
     'use strict';
 
-    // 1. Bilingual Language Switcher & URL State Sync
+    /* ======================================================================
+       1. 可调参数常量
+       ====================================================================== */
+
+    var SCROLL_SHADOW_THRESHOLD = 12;    // 导航栏浮现阴影的滚动距离(px)
+    var SCROLL_SPY_OFFSET = 160;         // 判定"当前区块"时的视口补偿(px)
+    var HUD_INDICATOR_THRESHOLD = 90;    // HUD 指示器激活阈值(px)
+
+    var MESH_DRIFT_FACTOR = 0.12;        // 背景点阵网格随滚动的漂移系数
+    var HERO_DEPTH_MULTIPLIER = 1.5;     // Hero 分层位移放大系数
+    var HERO_FADE_RATIO = 0.95;          // Hero 淡出所用的高度比例
+    var HERO_EXTRA_RANGE = 100;          // Hero 计算范围之外的冗余(px)
+    var HERO_FALLBACK_HEIGHT = 600;      // Hero 高度读取失败时的兜底值(px)
+
+    var MARQUEE_DAMPING = 0.82;          // 跑马灯速度惯性衰减
+    var MARQUEE_ACCELERATION = 0.18;     // 跑马灯速度增量权重
+    var MARQUEE_SHIFT_FACTOR = 0.6;      // 速度到位移的换算系数
+    var MARQUEE_MAX_OFFSET = 200;        // 跑马灯位移上限(px)
+
+    var CARD_PARALLAX_RANGE = 24;        // 卡片内部视差最大位移(px)
+    var TILT_MAX_DEG = 6;                // 3D 倾斜最大角度(deg)
+    var TILT_LIFT_PX = -3;               // 3D 倾斜时的抬升位移(px)
+    var TILT_DEPTH_PX = 8;               // 3D 倾斜时的 Z 轴推进(px)
+    var TILT_PERSPECTIVE_PX = 900;       // 3D 倾斜的透视距离(px)
+
+    var COPY_FEEDBACK_MS = 2000;         // 复制成功提示持续时间(ms)
+    var LIGHTBOX_CLEAR_MS = 220;         // 灯箱关闭后清空 src 的延时(ms)
+
+    var LANG_STORAGE_KEY = 'guobug_lang';
+    var DEFAULT_LANG = 'en';
+
+    /* ======================================================================
+       2. 通用工具
+       ====================================================================== */
+
+    /**
+     * localStorage 在隐私模式或配额耗尽时会直接抛异常，
+     * 读写都必须兜底，否则会中断后续初始化。
+     */
+    function readStoredLang() {
+        try {
+            return window.localStorage.getItem(LANG_STORAGE_KEY);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function writeStoredLang(lang) {
+        try {
+            window.localStorage.setItem(LANG_STORAGE_KEY, lang);
+        } catch (e) {
+            /* 存储不可用时静默降级，仅本次会话生效 */
+        }
+    }
+
+    /**
+     * Clipboard API 仅在安全上下文（HTTPS / localhost）可用，
+     * 缺失时退回 execCommand，避免直接 TypeError 中断点击。
+     */
+    function copyTextToClipboard(text) {
+        if (window.navigator.clipboard && typeof window.navigator.clipboard.writeText === 'function') {
+            return window.navigator.clipboard.writeText(text);
+        }
+
+        return new Promise(function (resolve, reject) {
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.top = '-1000px';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            var ok = false;
+            try {
+                ok = document.execCommand('copy');
+            } catch (e) {
+                ok = false;
+            }
+            document.body.removeChild(textarea);
+            if (ok) {
+                resolve();
+            } else {
+                reject(new Error('copy unavailable'));
+            }
+        });
+    }
+
+    /** 安全取最近的祖先元素：事件目标可能不是 Element（如 document） */
+    function closestFrom(node, selector) {
+        if (!node || typeof node.closest !== 'function') return null;
+        return node.closest(selector);
+    }
+
+    function normalizeLang(lang) {
+        return lang === 'zh' ? 'zh' : DEFAULT_LANG;
+    }
+
+    function toNodeArray(list) {
+        return Array.prototype.slice.call(list || []);
+    }
+
+    /* ======================================================================
+       3. 中英双语切换与 URL 状态同步
+       ====================================================================== */
+
     function getUrlLang() {
         try {
-            const params = new URLSearchParams(window.location.search);
-            const lang = params.get('lang');
-            if (lang === 'zh' || lang === 'en') {
+            var lang = new URLSearchParams(window.location.search).get('lang');
+            if (lang === 'zh' || lang === DEFAULT_LANG) {
                 return lang;
             }
-        } catch (e) {}
+        } catch (e) {
+            /* URLSearchParams 不受支持时回退到存储值 */
+        }
         return null;
     }
 
+    function fallbackTitleForPath(activeLang) {
+        var path = window.location.pathname;
+        if (path.indexOf('/about') !== -1) {
+            return activeLang === 'zh'
+                ? '关于我 · Guo Qiang | Product Engineer'
+                : 'About · Guo Qiang | Product Engineer';
+        }
+        if (path.indexOf('/posts') !== -1) {
+            return activeLang === 'zh'
+                ? '文章归档 · Guo Qiang'
+                : 'Writings · Guo Qiang';
+        }
+        return activeLang === 'zh'
+            ? 'Guo Qiang · Product Engineer · 工作空间'
+            : 'Guo Qiang · Product Engineer · Workspace';
+    }
+
     function updateDocumentTitle(activeLang) {
-        const titleEl = document.querySelector('title');
+        var titleEl = document.querySelector('title');
         if (!titleEl) return;
-        const zhTitle = titleEl.getAttribute('data-title-zh');
-        const enTitle = titleEl.getAttribute('data-title-en');
+
+        var zhTitle = titleEl.getAttribute('data-title-zh');
+        var enTitle = titleEl.getAttribute('data-title-en');
+
         if (activeLang === 'zh' && zhTitle) {
             document.title = zhTitle;
-        } else if (activeLang === 'en' && enTitle) {
+        } else if (activeLang === DEFAULT_LANG && enTitle) {
             document.title = enTitle;
         } else if (!zhTitle && !enTitle) {
-            const path = window.location.pathname;
-            if (path.includes('/about')) {
-                document.title = activeLang === 'zh'
-                    ? '关于我 · Guo Qiang | Product Engineer'
-                    : 'About · Guo Qiang | Product Engineer';
-            } else if (path.includes('/posts')) {
-                document.title = activeLang === 'zh'
-                    ? '文章归档 · Guo Qiang'
-                    : 'Writings · Guo Qiang';
-            } else {
-                document.title = activeLang === 'zh'
-                    ? 'Guo Qiang · Product Engineer · 工作空间'
-                    : 'Guo Qiang · Product Engineer · Workspace';
-            }
+            document.title = fallbackTitleForPath(activeLang);
         }
     }
 
     function syncInternalLinks(activeLang) {
-        const links = document.querySelectorAll('a[href]');
-        links.forEach(link => {
-            const href = link.getAttribute('href');
+        toNodeArray(document.querySelectorAll('a[href]')).forEach(function (link) {
+            var href = link.getAttribute('href');
             if (!href) return;
-            if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#') || href.startsWith('javascript:')) {
-                return;
-            }
+            // 外部协议、锚点、脚本链接不参与语言参数同步
+            if (/^(https?:|mailto:|tel:|#|javascript:)/.test(href)) return;
+
             try {
-                const url = new URL(link.href, window.location.href);
+                var url = new URL(link.href, window.location.href);
                 if (url.origin === window.location.origin) {
                     url.searchParams.set('lang', activeLang);
                     link.href = url.pathname + url.search + url.hash;
                 }
-            } catch (e) {}
+            } catch (e) {
+                /* 非法 href 保持原样 */
+            }
         });
     }
 
     function setLanguage(lang, updateUrl) {
         if (updateUrl === undefined) updateUrl = true;
-        const activeLang = lang === 'zh' ? 'zh' : 'en';
-        document.documentElement.setAttribute('data-lang', activeLang);
-        document.documentElement.setAttribute('lang', activeLang === 'en' ? 'en' : 'zh-CN');
-        localStorage.setItem('guobug_lang', activeLang);
+        var activeLang = normalizeLang(lang);
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            if (btn.getAttribute('data-lang-btn') === activeLang) {
+        document.documentElement.setAttribute('data-lang', activeLang);
+        document.documentElement.setAttribute('lang', activeLang === 'zh' ? 'zh-CN' : 'en');
+        writeStoredLang(activeLang);
+
+        toNodeArray(document.querySelectorAll('.lang-btn')).forEach(function (btn) {
+            var matched = btn.getAttribute('data-lang-btn') === activeLang;
+            if (matched) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
             }
         });
 
-        // Update document title dynamically
         updateDocumentTitle(activeLang);
 
-        // Sync URL query param without reload
         if (updateUrl && window.history && window.history.replaceState) {
             try {
-                const url = new URL(window.location.href);
+                var url = new URL(window.location.href);
                 url.searchParams.set('lang', activeLang);
                 window.history.replaceState(null, '', url.pathname + url.search + url.hash);
-            } catch (e) {}
+            } catch (e) {
+                /* 不支持 replaceState 时跳过 URL 同步 */
+            }
         }
 
-        // Sync internal page links
         syncInternalLinks(activeLang);
     }
 
-    // Attach click listeners to language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    toNodeArray(document.querySelectorAll('.lang-btn')).forEach(function (btn) {
         btn.addEventListener('click', function () {
-            const targetLang = this.getAttribute('data-lang-btn');
-            setLanguage(targetLang, true);
+            setLanguage(this.getAttribute('data-lang-btn'), true);
         });
     });
 
-    // Handle browser Back/Forward navigation
     window.addEventListener('popstate', function () {
-        const urlLang = getUrlLang();
+        var urlLang = getUrlLang();
         if (urlLang && urlLang !== document.documentElement.getAttribute('data-lang')) {
             setLanguage(urlLang, false);
         }
     });
 
-    // Initialize Language (URL parameter has highest precedence, then localStorage, default 'en')
-    const INITIAL_LANG = getUrlLang() || localStorage.getItem('guobug_lang') || 'en';
-    setLanguage(INITIAL_LANG, true);
+    // 初始化优先级：URL 参数 > localStorage > 默认英文
+    setLanguage(getUrlLang() || readStoredLang() || DEFAULT_LANG, true);
 
-    // 2. Mobile Navigation Toggle
-    const menuBtn = document.getElementById('menuToggleBtn');
-    const mobileDrawer = document.getElementById('mobileNavDrawer');
+    /* ======================================================================
+       4. 移动端抽屉导航
+       ====================================================================== */
 
-    if (menuBtn && mobileDrawer) {
+    (function initMobileNav() {
+        var menuBtn = document.getElementById('menuToggleBtn');
+        var mobileDrawer = document.getElementById('mobileNavDrawer');
+        if (!menuBtn || !mobileDrawer) return;
+
+        function closeDrawer() {
+            mobileDrawer.classList.remove('open');
+            menuBtn.textContent = '[MENU]';
+        }
+
         menuBtn.addEventListener('click', function () {
-            const isOpen = mobileDrawer.classList.toggle('open');
+            var isOpen = mobileDrawer.classList.toggle('open');
             menuBtn.textContent = isOpen ? '[CLOSE]' : '[MENU]';
         });
 
-        mobileDrawer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileDrawer.classList.remove('open');
-                menuBtn.textContent = '[MENU]';
-            });
+        // 事件委托：抽屉内链接数量变化时无需重新绑定
+        mobileDrawer.addEventListener('click', function (event) {
+            if (closestFrom(event.target, 'a')) {
+                closeDrawer();
+            }
         });
-    }
+    })();
 
-    // 3. Smooth Active Link Observer & Top Nav Elevation
-    const sections = document.querySelectorAll('section[id], header[id]');
-    const navLinks = document.querySelectorAll('.nav-links .nav-link');
-    const topNav = document.querySelector('.top-nav');
+    /* ======================================================================
+       5. 滚动引擎
+       原实现中"导航高亮"与"视差"各注册了一条 scroll 监听，且各自在回调里
+       重复读取 offsetTop / offsetHeight / scrollHeight，导致每个滚动事件触发
+       多次强制同步布局（layout thrashing），其中高亮那条还没有做 rAF 节流。
+       现合并为单条 rAF 通道：每帧只集中读一次几何信息，并把区块位置缓存到
+       文档高度变化或窗口尺寸变化为止。
+       ====================================================================== */
 
-    function handleScroll() {
-        const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+    (function initScrollEngine() {
+        var topNav = document.querySelector('.top-nav');
+        var sections = toNodeArray(document.querySelectorAll('section[id], header[id]'));
+        var navLinks = toNodeArray(document.querySelectorAll('.nav-links .nav-link'));
 
-        // Sticky Navigation Elevation Shadow
-        if (topNav) {
-            if (scrollY > 12) {
+        var hudProgress = document.getElementById('hudProgressBar');
+        var hudIndicator = document.getElementById('hudIndicator');
+        var hudPercent = document.getElementById('hudScrollPercent');
+        var bgMesh = document.getElementById('parallaxBgMesh');
+        var heroSection = document.getElementById('hero');
+        var heroLayers = toNodeArray(document.querySelectorAll('.parallax-hero .parallax-layer'));
+        var marquees = toNodeArray(document.querySelectorAll('.parallax-marquee'));
+        var vibeCards = toNodeArray(document.querySelectorAll('.vibe-card.parallax-card'));
+
+        var reducedMotion = !!(window.matchMedia
+            && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+        var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        var marqueeOffset = 0;
+        var scrollVelocity = 0;
+
+        var geometry = null;         // 区块几何缓存
+        var geometryDocHeight = -1;  // 缓存对应的文档高度，用于失效判定
+
+        function getGeometry(docHeight) {
+            if (geometry && docHeight === geometryDocHeight) return geometry;
+            geometryDocHeight = docHeight;
+            geometry = {
+                sections: sections.map(function (section) {
+                    return {
+                        id: section.getAttribute('id'),
+                        top: section.offsetTop,
+                        height: section.offsetHeight
+                    };
+                }),
+                heroHeight: heroSection ? (heroSection.offsetHeight || HERO_FALLBACK_HEIGHT) : 0
+            };
+            return geometry;
+        }
+
+        function invalidateGeometry() {
+            geometry = null;
+        }
+
+        function setNavElevation(scrollY) {
+            if (!topNav) return;
+            if (scrollY > SCROLL_SHADOW_THRESHOLD) {
                 topNav.classList.add('is-scrolled');
             } else {
                 topNav.classList.remove('is-scrolled');
             }
         }
 
-        let currentSectionId = '';
-        const scrollPosition = scrollY + 160;
+        function updateScrollSpy(scrollY, cached) {
+            if (navLinks.length === 0) return;
 
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            if (scrollPosition >= top && scrollPosition < top + height) {
-                currentSectionId = section.getAttribute('id');
+            var scrollPosition = scrollY + SCROLL_SPY_OFFSET;
+            var currentSectionId = '';
+
+            cached.sections.forEach(function (section) {
+                if (scrollPosition >= section.top && scrollPosition < section.top + section.height) {
+                    currentSectionId = section.id;
+                }
+            });
+
+            navLinks.forEach(function (link) {
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('active-nav');
+                } else {
+                    link.classList.remove('active-nav');
+                }
+            });
+        }
+
+        function updateMotion(scrollY, winHeight, docHeight, cached) {
+            var maxScroll = docHeight - winHeight;
+
+            // HUD 滚动进度
+            if (maxScroll > 0) {
+                var percent = Math.min(100, Math.max(0, (scrollY / maxScroll) * 100));
+                if (hudProgress) hudProgress.style.width = percent + '%';
+                if (hudPercent) hudPercent.textContent = String(Math.round(percent)).padStart(2, '0') + '%';
+                if (hudIndicator) {
+                    if (scrollY > HUD_INDICATOR_THRESHOLD) {
+                        hudIndicator.classList.add('active');
+                    } else {
+                        hudIndicator.classList.remove('active');
+                    }
+                }
             }
+
+            // 背景点阵网格漂移
+            if (bgMesh) {
+                bgMesh.style.transform = 'translate3d(0, ' + -(scrollY * MESH_DRIFT_FACTOR) + 'px, 0)';
+            }
+
+            // Hero 分层视差
+            if (heroSection && heroLayers.length > 0) {
+                var heroHeight = cached.heroHeight;
+                if (scrollY <= heroHeight + HERO_EXTRA_RANGE) {
+                    heroLayers.forEach(function (layer) {
+                        var depth = parseFloat(layer.getAttribute('data-depth')) || 0.1;
+                        var y = -scrollY * depth * HERO_DEPTH_MULTIPLIER;
+                        var opacity = Math.max(0, 1 - (scrollY / (heroHeight * HERO_FADE_RATIO)));
+                        layer.style.transform = 'translate3d(0, ' + y.toFixed(2) + 'px, 0)';
+                        layer.style.opacity = opacity.toFixed(3);
+                    });
+                }
+            }
+
+            // 跑马灯惯性位移
+            var deltaY = scrollY - lastScrollY;
+            scrollVelocity = scrollVelocity * MARQUEE_DAMPING + deltaY * MARQUEE_ACCELERATION;
+            marqueeOffset += scrollVelocity * MARQUEE_SHIFT_FACTOR;
+            if (Math.abs(marqueeOffset) > MARQUEE_MAX_OFFSET) {
+                marqueeOffset = (marqueeOffset < 0 ? -1 : 1) * MARQUEE_MAX_OFFSET;
+            }
+
+            marquees.forEach(function (mq) {
+                var track = mq.querySelector('.marquee-track');
+                if (!track) return;
+                var speedAttr = parseFloat(mq.getAttribute('data-speed')) || 1;
+                track.style.transform = 'translate3d(' + (marqueeOffset * speedAttr).toFixed(1) + 'px, 0, 0)';
+            });
+
+            // 卡片内部视差（仅处理视口内的卡片）
+            vibeCards.forEach(function (card) {
+                var rect = card.getBoundingClientRect();
+                if (rect.top >= winHeight || rect.bottom <= 0) return;
+                var cardCenter = rect.top + rect.height / 2;
+                var offsetFromCenter = (cardCenter - winHeight / 2) / winHeight;
+                card.style.setProperty('--card-parallax-y', (offsetFromCenter * CARD_PARALLAX_RANGE).toFixed(1) + 'px');
+            });
+        }
+
+        var ticking = false;
+
+        function update() {
+            ticking = false;
+
+            var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            var winHeight = window.innerHeight;
+            var docHeight = document.documentElement.scrollHeight;
+            var cached = getGeometry(docHeight);
+
+            setNavElevation(scrollY);
+            updateScrollSpy(scrollY, cached);
+            if (!reducedMotion) {
+                updateMotion(scrollY, winHeight, docHeight, cached);
+            }
+
+            lastScrollY = scrollY;
+        }
+
+        function requestUpdate() {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(update);
+        }
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+
+        window.addEventListener('resize', function () {
+            invalidateGeometry();
+            requestUpdate();
+        }, { passive: true });
+
+        // 图片加载完成后布局高度会变化，需要让缓存失效
+        window.addEventListener('load', function () {
+            invalidateGeometry();
+            requestUpdate();
         });
 
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === `#${currentSectionId}`) {
-                link.classList.add('active-nav');
-            } else {
-                link.classList.remove('active-nav');
-            }
+        update();
+
+        // 桌面端 3D 卡片倾斜（仅精确指针设备）
+        if (!reducedMotion && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+            vibeCards.forEach(function (card) {
+                var rafId = null;
+
+                card.addEventListener('mousemove', function (event) {
+                    var rect = card.getBoundingClientRect();
+                    var centerX = rect.width / 2;
+                    var centerY = rect.height / 2;
+                    var rotateX = (((event.clientY - rect.top) - centerY) / centerY) * -TILT_MAX_DEG;
+                    var rotateY = (((event.clientX - rect.left) - centerX) / centerX) * TILT_MAX_DEG;
+
+                    if (rafId) window.cancelAnimationFrame(rafId);
+                    rafId = window.requestAnimationFrame(function () {
+                        card.style.transform = 'perspective(' + TILT_PERSPECTIVE_PX + 'px) rotateX('
+                            + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2)
+                            + 'deg) translate3d(0, ' + TILT_LIFT_PX + 'px, ' + TILT_DEPTH_PX + 'px)';
+                        card.style.boxShadow = (8 - rotateY) + 'px ' + (8 + rotateX) + 'px 0px #000000';
+                    });
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    if (rafId) window.cancelAnimationFrame(rafId);
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+        }
+    })();
+
+    /* ======================================================================
+       6. 代码块增强与复制
+       ====================================================================== */
+
+    function buildCodeHeader(lang) {
+        var header = document.createElement('div');
+        header.className = 'code-header-bar';
+        header.innerHTML =
+            '<div class="code-window-dots">' +
+            '<span class="code-dot red"></span>' +
+            '<span class="code-dot yellow"></span>' +
+            '<span class="code-dot green"></span>' +
+            '</div>' +
+            '<span class="code-lang-label"></span>' +
+            '<button type="button" class="code-copy-btn"><span>&#9096;</span> <span>COPY</span></button>';
+        // 用 textContent 写入语言名，避免把内容拼进 innerHTML
+        header.querySelector('.code-lang-label').textContent = lang;
+        return header;
+    }
+
+    function attachCopyHandler(header, pre) {
+        var copyBtn = header.querySelector('.code-copy-btn');
+        if (!copyBtn) return;
+
+        copyBtn.addEventListener('click', function () {
+            var codeEl = pre.querySelector('code') || pre;
+            copyTextToClipboard(codeEl.innerText).then(function () {
+                var originalHtml = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<span>&#10003;</span> <span>COPIED!</span>';
+                copyBtn.style.backgroundColor = '#7fff00';
+                copyBtn.style.color = '#000000';
+                window.setTimeout(function () {
+                    copyBtn.innerHTML = originalHtml;
+                    copyBtn.style.backgroundColor = '';
+                    copyBtn.style.color = '';
+                }, COPY_FEEDBACK_MS);
+            }).catch(function () {
+                /* 复制失败时保持原状，避免未捕获的 Promise 异常 */
+            });
         });
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    // 4. Code Block Copy & Terminal Enhancer (Auto decorate all markdown code blocks)
     function enhanceAllCodeBlocks() {
-        const articleBodies = document.querySelectorAll('.medium-body-text, .post-content-body, article');
+        var articleBodies = document.querySelectorAll('.medium-body-text, .post-content-body, article');
         if (articleBodies.length === 0) return;
 
-        articleBodies.forEach(body => {
-            const containers = body.querySelectorAll('.highlighter-rouge, pre');
-            containers.forEach(block => {
-                // If it's a pre inside .highlighter-rouge or already wrapped in .neo-code-block, skip
-                if (block.tagName === 'PRE' && (block.closest('.highlighter-rouge') || block.closest('.neo-code-block'))) {
+        toNodeArray(articleBodies).forEach(function (body) {
+            var blocks = body.querySelectorAll('.highlighter-rouge, pre');
+
+            toNodeArray(blocks).forEach(function (block) {
+                if (block.tagName === 'PRE'
+                    && (closestFrom(block, '.highlighter-rouge') || closestFrom(block, '.neo-code-block'))) {
                     return;
                 }
 
-                // If already enhanced or has header bar inside or as previous sibling, skip
-                if (block.querySelector('.code-header-bar') || block.classList.contains('neo-code-block') || block.previousElementSibling?.classList.contains('code-header-bar')) {
-                    return;
-                }
+                var prev = block.previousElementSibling;
+                var alreadyEnhanced = block.querySelector('.code-header-bar')
+                    || block.classList.contains('neo-code-block')
+                    || (prev && prev.classList.contains('code-header-bar'));
+                if (alreadyEnhanced) return;
 
-                // Skip mermaid diagrams from code-block decoration
-                const fullClassStr = (block.className || '') + ' ' + (block.querySelector('pre, code')?.className || '');
-                if (fullClassStr.includes('language-mermaid') || fullClassStr.includes('mermaid')) {
-                    return;
-                }
+                var inner = block.querySelector('pre, code');
+                var fullClassStr = (block.className || '') + ' ' + (inner ? inner.className : '');
+                // mermaid 图不做代码块装饰
+                if (fullClassStr.indexOf('mermaid') !== -1) return;
 
-                const pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
+                var pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
                 if (!pre || pre.dataset.enhanced === 'true') return;
                 pre.dataset.enhanced = 'true';
 
-                // Detect programming language
-                let lang = 'CODE';
-                const match = fullClassStr.match(/language-([a-zA-Z0-9_\-]+)/);
-                if (match && match[1]) {
-                    lang = match[1].toUpperCase();
-                }
-
-                // Build header bar
-                const header = document.createElement('div');
-                header.className = 'code-header-bar';
-                header.innerHTML = `
-                    <div class="code-window-dots">
-                        <span class="code-dot red"></span>
-                        <span class="code-dot yellow"></span>
-                        <span class="code-dot green"></span>
-                    </div>
-                    <span class="code-lang-label">${lang}</span>
-                    <button type="button" class="code-copy-btn">
-                        <span>⎘</span> <span>COPY</span>
-                    </button>
-                `;
+                var langMatch = fullClassStr.match(/language-([a-zA-Z0-9_\-]+)/);
+                var lang = (langMatch && langMatch[1]) ? langMatch[1].toUpperCase() : 'CODE';
+                var header = buildCodeHeader(lang);
 
                 if (block.tagName === 'PRE') {
-                    const wrapper = document.createElement('div');
+                    var wrapper = document.createElement('div');
                     wrapper.className = 'neo-code-block';
                     block.parentNode.insertBefore(wrapper, block);
                     wrapper.appendChild(header);
@@ -232,62 +558,56 @@
                     block.insertBefore(header, block.firstChild);
                 }
 
-                // Attach copy handler
-                const copyBtn = header.querySelector('.code-copy-btn');
-                if (copyBtn) {
-                    copyBtn.addEventListener('click', function () {
-                        const codeEl = pre.querySelector('code') || pre;
-                        const textToCopy = codeEl.innerText;
-                        navigator.clipboard.writeText(textToCopy).then(() => {
-                            const originalHtml = copyBtn.innerHTML;
-                            copyBtn.innerHTML = '<span>✓</span> <span>COPIED!</span>';
-                            copyBtn.style.backgroundColor = '#7fff00';
-                            copyBtn.style.color = '#000000';
-                            setTimeout(() => {
-                                copyBtn.innerHTML = originalHtml;
-                                copyBtn.style.backgroundColor = '';
-                                copyBtn.style.color = '';
-                            }, 2000);
-                        });
-                    });
-                }
+                attachCopyHandler(header, pre);
             });
         });
 
-        // Trigger Prism syntax highlighting if available
         if (window.Prism && typeof window.Prism.highlightAll === 'function') {
             window.Prism.highlightAll();
         }
     }
 
-    enhanceAllCodeBlocks();
-    window.addEventListener('DOMContentLoaded', enhanceAllCodeBlocks);
+    // 脚本位于 body 末尾，执行时机可能在 DOMContentLoaded 前后。
+    // 原实现无条件执行两次（立即 + DOMContentLoaded），这里保证只跑一次。
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enhanceAllCodeBlocks);
+    } else {
+        enhanceAllCodeBlocks();
+    }
 
-    // 5. Neo-Brutalism Image Lightbox Modal
-    const articleImages = document.querySelectorAll('.medium-body-text img, .post-content img');
+    /* ======================================================================
+       7. 图片灯箱
+       ====================================================================== */
 
-    if (articleImages.length > 0) {
-        let overlay = document.getElementById('neoLightbox');
+    (function initLightbox() {
+        var articleImages = toNodeArray(document.querySelectorAll('.medium-body-text img, .post-content img'));
+        if (articleImages.length === 0) return;
+
+        var overlay = document.getElementById('neoLightbox');
         if (!overlay) {
             overlay = document.createElement('div');
             overlay.id = 'neoLightbox';
             overlay.className = 'neo-lightbox-overlay';
             overlay.setAttribute('aria-hidden', 'true');
-            overlay.innerHTML = `
-                <button type="button" class="neo-lightbox-close" id="neoLightboxClose" aria-label="关闭">[关闭 ✕]</button>
-                <div class="neo-lightbox-content">
-                    <img class="neo-lightbox-img" id="neoLightboxImg" src="" alt="">
-                    <div class="neo-lightbox-caption" id="neoLightboxCaption"></div>
-                </div>
-            `;
+            overlay.innerHTML =
+                '<button type="button" class="neo-lightbox-close" id="neoLightboxClose" aria-label="关闭">[关闭 &#10005;]</button>' +
+                '<div class="neo-lightbox-content">' +
+                '<img class="neo-lightbox-img" id="neoLightboxImg" src="" alt="">' +
+                '<div class="neo-lightbox-caption" id="neoLightboxCaption"></div>' +
+                '</div>';
             document.body.appendChild(overlay);
         }
 
-        const lightboxImg = document.getElementById('neoLightboxImg');
-        const lightboxCaption = document.getElementById('neoLightboxCaption');
+        var lightboxImg = document.getElementById('neoLightboxImg');
+        var lightboxCaption = document.getElementById('neoLightboxCaption');
+        var clearTimer = null;
 
         function openLightbox(src, alt) {
             if (!src) return;
+            if (clearTimer) {
+                window.clearTimeout(clearTimer);
+                clearTimer = null;
+            }
             lightboxImg.src = src;
             lightboxImg.alt = alt || '';
             if (alt) {
@@ -305,172 +625,50 @@
             overlay.classList.remove('active');
             overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            setTimeout(() => {
+            if (clearTimer) window.clearTimeout(clearTimer);
+            clearTimer = window.setTimeout(function () {
+                clearTimer = null;
                 if (!overlay.classList.contains('active')) {
                     lightboxImg.src = '';
                 }
-            }, 220);
+            }, LIGHTBOX_CLEAR_MS);
         }
 
-        articleImages.forEach(img => {
-            img.addEventListener('click', function (e) {
-                e.stopPropagation();
-                openLightbox(this.currentSrc || this.src, this.alt);
-            });
+        // 让正文图片可被键盘聚焦，Enter / Space 打开灯箱
+        articleImages.forEach(function (img) {
+            if (!img.hasAttribute('tabindex')) {
+                img.setAttribute('tabindex', '0');
+                img.setAttribute('role', 'button');
+            }
         });
 
-        // Click anywhere within screen (overlay, image, close button) closes it
+        function isArticleImage(node) {
+            if (!node || node.tagName !== 'IMG') return false;
+            return !!(closestFrom(node, '.medium-body-text') || closestFrom(node, '.post-content'));
+        }
+
+        document.addEventListener('click', function (event) {
+            if (!isArticleImage(event.target)) return;
+            event.stopPropagation();
+            var img = event.target;
+            openLightbox(img.currentSrc || img.src, img.alt);
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && overlay.classList.contains('active')) {
+                closeLightbox();
+                return;
+            }
+            if ((event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar')
+                && isArticleImage(event.target)) {
+                event.preventDefault();
+                var img = event.target;
+                openLightbox(img.currentSrc || img.src, img.alt);
+            }
+        });
+
         overlay.addEventListener('click', function () {
             closeLightbox();
         });
-
-        // Escape key to close
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
-    }
-
-    // 6. Neo-Brutalist Kinetic Parallax & 3D Tilt Engine
-    (function initParallaxEngine() {
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            return;
-        }
-
-        const hudProgress = document.getElementById('hudProgressBar');
-        const hudIndicator = document.getElementById('hudIndicator');
-        const hudPercent = document.getElementById('hudScrollPercent');
-        const bgMesh = document.getElementById('parallaxBgMesh');
-        const heroSection = document.getElementById('hero');
-        const heroLayers = document.querySelectorAll('.parallax-hero .parallax-layer');
-        const marquees = document.querySelectorAll('.parallax-marquee');
-        const vibeCards = document.querySelectorAll('.vibe-card.parallax-card');
-
-        let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
-        let ticking = false;
-        let scrollVelocity = 0;
-        let marqueeOffset = 0;
-
-        function updateParallax() {
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-            const docHeight = document.documentElement.scrollHeight;
-            const winHeight = window.innerHeight;
-            const maxScroll = docHeight - winHeight;
-
-            // 1. HUD Scroll Progress & Top Nav Sticky Elevation
-            if (maxScroll > 0) {
-                const percent = Math.min(100, Math.max(0, (scrollY / maxScroll) * 100));
-                if (hudProgress) hudProgress.style.width = percent + '%';
-                if (hudPercent) hudPercent.textContent = Math.round(percent).toString().padStart(2, '0') + '%';
-                if (hudIndicator) {
-                    if (scrollY > 90) {
-                        hudIndicator.classList.add('active');
-                    } else {
-                        hudIndicator.classList.remove('active');
-                    }
-                }
-            }
-
-            const topNav = document.querySelector('.top-nav');
-            if (topNav) {
-                if (scrollY > 12) {
-                    topNav.classList.add('is-scrolled');
-                } else {
-                    topNav.classList.remove('is-scrolled');
-                }
-            }
-
-            // 2. Background Dot Mesh Drift
-            if (bgMesh) {
-                const meshY = (scrollY * 0.12);
-                bgMesh.style.transform = `translate3d(0, ${-meshY}px, 0)`;
-            }
-
-            // 3. Hero Layered Parallax
-            if (heroSection) {
-                const heroHeight = heroSection.offsetHeight || 600;
-                if (scrollY <= heroHeight + 100) {
-                    heroLayers.forEach(layer => {
-                        const depth = parseFloat(layer.getAttribute('data-depth')) || 0.1;
-                        const y = -scrollY * depth * 1.5;
-                        const opacity = Math.max(0, 1 - (scrollY / (heroHeight * 0.95)));
-                        layer.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
-                        layer.style.opacity = opacity.toFixed(3);
-                    });
-                }
-            }
-
-            // 4. Kinetic Marquee Momentum
-            const deltaY = scrollY - lastScrollY;
-            scrollVelocity = scrollVelocity * 0.82 + deltaY * 0.18;
-            marqueeOffset += scrollVelocity * 0.6;
-            if (Math.abs(marqueeOffset) > 200) marqueeOffset = Math.sign(marqueeOffset) * 200;
-
-            marquees.forEach(mq => {
-                const speedAttr = parseFloat(mq.getAttribute('data-speed')) || 1;
-                const track = mq.querySelector('.marquee-track');
-                if (track) {
-                    const shiftX = (marqueeOffset * speedAttr).toFixed(1);
-                    track.style.transform = `translate3d(${shiftX}px, 0, 0)`;
-                }
-            });
-
-            // 5. Vibe Card Image Inner Parallax
-            vibeCards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < winHeight && rect.bottom > 0) {
-                    const cardCenter = rect.top + rect.height / 2;
-                    const viewportCenter = winHeight / 2;
-                    const offsetFromCenter = (cardCenter - viewportCenter) / winHeight;
-                    const imgParallaxY = (offsetFromCenter * 24).toFixed(1);
-                    card.style.setProperty('--card-parallax-y', `${imgParallaxY}px`);
-                }
-            });
-
-            lastScrollY = scrollY;
-            ticking = false;
-        }
-
-        function onScroll() {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll, { passive: true });
-        updateParallax();
-
-        // 6. Interactive 3D Card Tilt on Desktop (Pointer Fine)
-        if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
-            vibeCards.forEach(card => {
-                let rafId = null;
-
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-
-                    const rotateX = (((y - centerY) / centerY) * -6).toFixed(2);
-                    const rotateY = (((x - centerX) / centerX) * 6).toFixed(2);
-
-                    if (rafId) cancelAnimationFrame(rafId);
-                    rafId = requestAnimationFrame(() => {
-                        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(0, -3px, 8px)`;
-                        card.style.boxShadow = `${8 - parseFloat(rotateY)}px ${8 + parseFloat(rotateX)}px 0px #000000`;
-                    });
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    if (rafId) cancelAnimationFrame(rafId);
-                    card.style.transform = '';
-                    card.style.boxShadow = '';
-                });
-            });
-        }
     })();
 })();
