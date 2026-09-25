@@ -271,7 +271,7 @@ layout: null
             </div>
 
             <!-- Positioning Badges Grid -->
-            <div class="hero-badges parallax-layer" data-depth="0.04">
+            <div class="hero-badges-matrix parallax-layer" data-depth="0.04">
                 <div class="badge-item">
                     <span class="badge-indicator"></span>
                     <span data-i18n="zh">AI 工作流编排</span>
@@ -461,11 +461,11 @@ layout: null
                             <span class="writing-pub-tag">Deterministic Output</span>
                             <span class="writing-date">2026-09-25</span>
                         </div>
-                        <h3 class="writing-card-title">
+                        <h3 class="writing-title">
                             <span data-i18n="zh">从 0 到 1 打造 AI 提示流编排器：搞 Eval 评测前，先让输出闭合！结构化约束与业务契约防线（开源系列 14）</span>
                             <span data-i18n="en">Building AI Prompt Flow Orchestrator: Before Doing Eval, Close the Output! Constrained Decoding &amp; Business Contract Defense (Series 14)</span>
                         </h3>
-                        <p class="writing-card-desc">
+                        <p class="writing-excerpt">
                             <span data-i18n="zh">深入拆解结构化输出的底层困境与三级运行时协商：从采样前 Logits 掩码语法约束，到轻量级 JSON 修复与 Zod 业务语义契约，让工作流调度在非确定性模型之上依然能够安全闭环。</span>
                             <span data-i18n="en">Deconstructing deterministic structured outputs and 3-tier runtime negotiation: from pre-sampling Logits masking to client-side repair and Zod business contracts, keeping workflows reliable on probabilistic models.</span>
                         </p>
@@ -483,11 +483,11 @@ layout: null
                             <span class="writing-pub-tag">Zero-Trust &amp; Privacy</span>
                             <span class="writing-date">2026-09-23</span>
                         </div>
-                        <h3 class="writing-card-title">
+                        <h3 class="writing-title">
                             <span data-i18n="zh">谁来为大模型的失控与手滑兜底？一个 Product Engineer 的「零信任」数字生存反思</span>
                             <span data-i18n="en">Who Catches the Model When It Hallucinates? A Product Engineer's Reflection on Zero-Trust Digital Survival</span>
                         </h3>
-                        <p class="writing-card-desc">
+                        <p class="writing-excerpt">
                             <span data-i18n="zh">深入剖析中心化黑盒的隐形数据泄露与开发者的手滑盲区；探讨基于纯前端 LocalStorage、密钥递归掩码与 DAG 状态机的 100% 数据主权防御方案。</span>
                             <span data-i18n="en">Deconstructing centralized black-box data risks and human error; exploring a 100% sovereign defense model using client-only LocalStorage, recursive credential masking, and DAG state machines.</span>
                         </p>
@@ -505,11 +505,11 @@ layout: null
                             <span class="writing-pub-tag">Agent Watchdog</span>
                             <span class="writing-date">2026-09-22</span>
                         </div>
-                        <h3 class="writing-card-title">
+                        <h3 class="writing-title">
                             <span data-i18n="zh">从 0 到 1 打造 AI 提示流编排器：别让 Agent 刷爆你的信用卡！运行时看门狗与死循环熔断器设计（开源系列 13）</span>
                             <span data-i18n="en">Building AI Prompt Flow Orchestrator: Don't Let Agents Burn Your Credits! Runtime Guardrails &amp; Deadlock Circuit Breakers (Series 13)</span>
                         </h3>
-                        <p class="writing-card-desc">
+                        <p class="writing-excerpt">
                             <span data-i18n="zh">深入剖析自主 Agent 自循环导致的死锁与 Token 暴击隐患：构建基于调用指纹的死循环熔断器、Web Worker 5秒沙箱看门狗，以及脱敏安全配置导入方案。</span>
                             <span data-i18n="en">Addressing runaway autonomous loops and credit depletion: engineering fingerprint-based deadlock circuit breakers, 5s Web Worker watchdog sandboxes, and sanitized credential imports.</span>
                         </p>
@@ -527,11 +527,11 @@ layout: null
                             <span class="writing-pub-tag">Product Architecture</span>
                             <span class="writing-date">2026-09-16</span>
                         </div>
-                        <h3 class="writing-card-title">
+                        <h3 class="writing-title">
                             <span data-i18n="zh">对抗“模式引力”：为什么我们总把新工具当旧工具用？</span>
                             <span data-i18n="en">Resisting "Mode Gravity": Why Do We Treat New Tools Like Old Ones?</span>
                         </h3>
-                        <p class="writing-card-desc">
+                        <p class="writing-excerpt">
                             <span data-i18n="zh">从马车车厢到 AI 对话框，我们往往受限于旧范式。从认知引力、交互降维与非对称竞争三个维度，探讨如何构建真正释放 AI 能力的原生产品架构。</span>
                             <span data-i18n="en">From horse-drawn carriages to AI chat boxes, legacy metaphors constrain us. Analyzing cognitive gravity, interaction reduction, and asymmetrical advantage to build genuine AI-native systems.</span>
                         </p>
@@ -568,7 +568,7 @@ layout: null
 
             <div class="work-history-list">
                 <!-- 1. GitLab -->
-                <div class="work-history-card">
+                <div class="work-history-item">
                     <div class="work-history-meta">
                         <div>
                             <h3 class="work-history-company">GitLab (CN)</h3>
@@ -577,7 +577,7 @@ layout: null
                                 <span data-i18n="en">Head of Product</span>
                             </div>
                         </div>
-                        <div class="work-history-date">
+                        <div class="work-history-period">
                             2022.04 - 2024.12
                         </div>
                     </div>
@@ -588,7 +588,7 @@ layout: null
                 </div>
 
                 <!-- 2. Bilibili -->
-                <div class="work-history-card">
+                <div class="work-history-item">
                     <div class="work-history-meta">
                         <div>
                             <h3 class="work-history-company">Bilibili (哔哩哔哩)</h3>
@@ -597,7 +597,7 @@ layout: null
                                 <span data-i18n="en">Technical Product Manager</span>
                             </div>
                         </div>
-                        <div class="work-history-date">
+                        <div class="work-history-period">
                             2020.10 - 2022.04
                         </div>
                     </div>
@@ -608,7 +608,7 @@ layout: null
                 </div>
 
                 <!-- 3. Ctrip -->
-                <div class="work-history-card">
+                <div class="work-history-item">
                     <div class="work-history-meta">
                         <div>
                             <h3 class="work-history-company">Ctrip (携程集团)</h3>
@@ -617,7 +617,7 @@ layout: null
                                 <span data-i18n="en">Product Manager</span>
                             </div>
                         </div>
-                        <div class="work-history-date">
+                        <div class="work-history-period">
                             2016.03 - 2020.10
                         </div>
                     </div>

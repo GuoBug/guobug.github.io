@@ -12,15 +12,49 @@
     --foreground: #000000;
     --card: #ffffff;
     --card-foreground: #000000;
-    --secondary: #f4f4f5;
+    --secondary: var(--surface-subtle);
     --secondary-foreground: #000000;
-    --muted: #f4f4f5;
+    --muted: var(--surface-subtle);
     --muted-foreground: #666666;
     --accent: #7fff00; /* Neon Lime / Chartreuse */
     --accent-foreground: #000000;
     --border: #000000;
-    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-mono: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace;
+
+    /* ---- 字号模数 (M-1)：4px 基准，9 档 ---- */
+    --fs-xs: 0.7rem;      /* 11.2px  角标 */
+    --fs-sm: 0.8rem;      /* 12.8px  元信息、日期 */
+    --fs-base: 0.9rem;    /* 14.4px  小正文 */
+    --fs-md: 1rem;        /* 16px    正文 */
+    --fs-lg: 1.125rem;    /* 18px    强调正文 */
+    --fs-xl: 1.25rem;     /* 20px    卡片标题 */
+    --fs-2xl: 1.5rem;     /* 24px    小节标题 */
+    --fs-3xl: 2.25rem;    /* 36px    区块标题（移动端） */
+    --fs-4xl: 3.75rem;    /* 60px    文章主标题 */
+
+    /* ---- 间距刻度 (M-11)：8px 基准，6 档 ---- */
+    --sp-1: 0.5rem;
+    --sp-2: 1rem;
+    --sp-3: 2rem;
+    --sp-4: 3.5rem;
+    --sp-5: 5rem;
+    --sp-6: 7rem;
+
+    /* ---- 边框与硬阴影刻度 (H-5)：3 档 ---- */
+    --border-w: 2px;
+    --border-w-lg: 3px;   /* 仅授权旗舰级卡片使用 */
+    --shadow-sm: 3px 3px 0 0 #000000;
+    --shadow-md: 4px 4px 0 0 #000000;
+    --shadow-lg: 6px 6px 0 0 #000000;
+
+    /* ---- 中性色梯度 (H-6)：47 种硬编码色收敛到 8 个 ---- */
+    --surface: #ffffff;
+    --surface-subtle: #fafafa;   /* 统一替掉 #f9f9fa #f4f4f5 #f3f4f6 #f1f5f9 */
+    --line: #e5e7eb;             /* 统一替掉 #d1d5db #cbd5e1 */
+    --fg: #000000;
+    --fg-body: #222222;          /* 统一替掉 #333333 #374151 #111827 #0f172a */
+    --fg-muted: #666666;
 }
 
 /* Reset & Global Base */
@@ -64,6 +98,29 @@ body {
 /* Bilingual Text Switching */
 [data-lang="zh"] [data-i18n="en"] { display: none !important; }
 [data-lang="en"] [data-i18n="zh"] { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   H-2 / M-9: 中英混排分别设定字距与行高
+   :lang(zh) 命中 <html lang="zh-CN">（app.js:193 在切换语言时写入）。
+   拉丁文保留负字距的紧凑展示效果；汉字改为微正，避免笔画互相咬合粘连。
+   中文段落行高放松至 1.8，改善方块字的呼吸感（L-5 同思路，仅中文生效）。
+   -------------------------------------------------------------------------- */
+:lang(zh) .hero-title,
+:lang(zh) .section-title,
+:lang(zh) .about-heading,
+:lang(zh) .medium-article-title {
+    letter-spacing: 0.01em;
+}
+
+:lang(zh) .medium-body-text h2 {
+    letter-spacing: 0.01em;
+}
+
+:lang(zh) .hero-bio p,
+:lang(zh) .about-content,
+:lang(zh) .medium-body-text {
+    line-height: 1.8;
+}
 
 /* Container */
 .container {
@@ -409,7 +466,7 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2.35rem, 9vw, 9.5rem);
+    font-size: clamp(2.75rem, 11vw, 9.5rem);
     line-height: 0.92;
     font-weight: 900;
     letter-spacing: -0.05em;
@@ -417,6 +474,24 @@ body {
     color: var(--foreground);
     margin: 0;
     word-break: keep-all;
+}
+
+/* H-1: index.html 使用该类但样式表此前未定义，导致副标题在 9.5rem 巨型标题下
+   退回 16px 浏览器默认文本、层级断裂。此处补齐定义，不新增颜色。 */
+.hero-subtitle-tag {
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.8rem, 1.6vw, 1.05rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+    .hero-subtitle-tag {
+        margin-top: 2rem;
+    }
 }
 
 .hero-avatar {
@@ -680,7 +755,7 @@ body {
     justify-content: space-between;
     margin-bottom: 0.5rem;
     padding-bottom: 0.4rem;
-    border-bottom: 1px dashed #d1d5db;
+    border-bottom: 1px dashed var(--line);
 }
 
 .company-tooltip-role {
@@ -690,18 +765,59 @@ body {
     color: #000000;
 }
 
-.company-tooltip-badge {
+/* --------------------------------------------------------------------------
+   H-4: 霓虹绿标签统一组件 .tag-chip
+   此前 .work-history-period / .writing-pub-tag / .vibe-card-badge /
+   .featured-project-badge / .medium-cover-tag / .company-tooltip-badge
+   六个类各写一套，出现 4 种字号、4 种内边距、3 种边框宽度。
+   这里抽公共基础类，尺寸差异用修饰类表达（sm / 默认 / lg 三档）。
+   -------------------------------------------------------------------------- */
+.tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     background: var(--accent);
     color: #000000;
+    border: 1.5px solid var(--border);
+    padding: 0.15rem 0.5rem;
+    line-height: 1.35;
+}
+
+.tag-chip--lg {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.7rem;
+    border-width: 2px;
+}
+
+.tag-chip--sm {
     font-size: 0.65rem;
+    padding: 0.12rem 0.4rem;
+    border-width: 1px;
+}
+
+.company-tooltip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;          /* tag-chip--sm */
     font-weight: 700;
-    padding: 0.15rem 0.4rem;
-    border: 1px solid #000000;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--accent);
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 0.12rem 0.4rem;
+    line-height: 1.35;
 }
 
 .company-tooltip-desc {
-    color: #333333;
+    color: var(--fg-body);
     font-size: 0.8rem;
     line-height: 1.5;
 }
@@ -858,7 +974,7 @@ body {
 }
 
 .section-title {
-    font-size: clamp(2.35rem, 8vw, 6rem);
+    font-size: clamp(2.15rem, 8vw, 6rem);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.05em;
@@ -917,7 +1033,7 @@ body {
     border: 2px solid var(--border);
     background: #ffffff;
     padding: 1.15rem 1.15rem;
-    box-shadow: 3.5px 3.5px 0px 0px #000000;
+    box-shadow: var(--shadow-md);
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.85rem;
@@ -927,7 +1043,7 @@ body {
 @media (min-width: 768px) {
     .work-history-item {
         padding: 1.35rem 1.75rem;
-        box-shadow: 4px 4px 0px 0px #000000;
+        box-shadow: var(--shadow-md);
         gap: 1rem;
     }
 }
@@ -942,7 +1058,7 @@ body {
 
 .work-history-item:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px 0px #000000;
+    box-shadow: var(--shadow-lg);
     background-color: #fafafa;
 }
 
@@ -954,15 +1070,17 @@ body {
 
 .work-history-period {
     font-family: var(--font-mono);
-    font-size: 0.775rem;
+    font-size: 0.725rem;         /* tag-chip 默认档（原 0.775rem） */
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: #000;
     background: var(--accent);
     display: inline-block;
     padding: 0.15rem 0.5rem;
     border: 1.5px solid #000;
     width: fit-content;
-    text-transform: uppercase;
+    line-height: 1.35;
 }
 
 .work-history-company {
@@ -994,7 +1112,7 @@ body {
    VIBE CODING Section (2 Prominent Interactive Cards)
    -------------------------------------------------------------------------- */
 .vibe-section {
-    background-color: #f9f9fa;
+    background-color: var(--surface-subtle);
 }
 
 .vibe-grid {
@@ -1006,13 +1124,6 @@ body {
 @media (min-width: 580px) {
     .vibe-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-@media (min-width: 860px) {
-    .vibe-grid {
-        grid-template-columns: repeat(4, 1fr);
         gap: 1.5rem;
     }
 }
@@ -1029,7 +1140,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     transition: all 0.2s ease;
-    box-shadow: 4px 4px 0px 0px #000000;
+    box-shadow: var(--shadow-md);
 }
 
 @media (min-width: 580px) {
@@ -1040,7 +1151,7 @@ body {
 
 .vibe-card:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 7px 7px 0px 0px #000000;
+    box-shadow: var(--shadow-lg);
 }
 
 .vibe-card-bg {
@@ -1088,13 +1199,16 @@ body {
     top: 0.75rem;
     left: 0.75rem;
     z-index: 10;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;         /* tag-chip 默认档（原 0.7rem） */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     background: var(--accent);
     color: #000;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.15rem 0.45rem;
+    padding: 0.15rem 0.5rem;
     border: 1.5px solid var(--border);
+    line-height: 1.35;
 }
 
 .vibe-card-footer {
@@ -1152,7 +1266,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: auto;
-    box-shadow: 3.5px 3.5px 0px 0px #000;
+    box-shadow: var(--shadow-md);
     transition: all 0.2s ease;
 }
 
@@ -1160,13 +1274,13 @@ body {
     .writing-card {
         padding: 1.75rem;
         min-height: 220px;
-        box-shadow: 4px 4px 0px 0px #000;
+        box-shadow: var(--shadow-md);
     }
 }
 
 .writing-card:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 6px 6px 0px 0px #000;
+    box-shadow: var(--shadow-lg);
     background-color: #fafafa;
 }
 
@@ -1179,13 +1293,15 @@ body {
 
 .writing-pub-tag {
     font-family: var(--font-mono);
-    font-size: 0.725rem;
+    font-size: 0.725rem;         /* tag-chip 默认档 */
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     background: var(--accent);
     color: #000;
     border: 1.5px solid var(--border);
-    padding: 0.12rem 0.45rem;
-    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;     /* 原 0.12rem 0.45rem */
+    line-height: 1.35;
 }
 
 .writing-date {
@@ -1242,7 +1358,7 @@ body {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--muted-foreground);
-    border-top: 1px dashed #d1d5db;
+    border-top: 1px dashed var(--line);
     padding-top: 0.75rem;
 }
 
@@ -1269,7 +1385,7 @@ body {
 }
 
 .about-heading {
-    font-size: clamp(2.35rem, 7vw, 4.5rem);
+    font-size: clamp(1.9rem, 6vw, 4.5rem);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.05em;
@@ -1463,7 +1579,7 @@ body {
 
 /* Article Headline & Subtitle */
 .medium-article-title {
-    font-size: clamp(2.35rem, 5vw, 3.75rem);
+    font-size: clamp(1.85rem, 5.5vw, 3.75rem);
     font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.04em;
@@ -1595,7 +1711,7 @@ body {
 
 .medium-action-btn:hover {
     color: #000;
-    background: #f3f4f6;
+    background: var(--surface-subtle);
 }
 
 /* Medium Cover Visual Frame */
@@ -1622,13 +1738,16 @@ body {
 
 .medium-cover-tag {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.8rem;           /* tag-chip--lg */
     font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     background: var(--accent);
     color: #000000;
-    padding: 0.25rem 0.75rem;
-    border: 1.5px solid #000;
+    padding: 0.25rem 0.7rem;     /* 原 0.25rem 0.75rem */
+    border: 2px solid #000;      /* lg 档（原 1.5px） */
     margin-bottom: 1.25rem;
+    line-height: 1.35;
 }
 
 .medium-cover-graphic-title {
@@ -1741,7 +1860,7 @@ img {
     font-style: italic;
     font-size: 1.25rem;
     line-height: 1.6;
-    color: #111827;
+    color: var(--fg-body);
     box-shadow: 4px 4px 0px 0px #000;
 }
 
@@ -1778,9 +1897,9 @@ code {
     font-family: var(--font-mono);
     font-size: 0.88em;
     font-weight: 600;
-    color: #0f172a;
-    background-color: #f1f5f9;
-    border: 1.5px solid #cbd5e1;
+    color: var(--fg-body);
+    background-color: var(--surface-subtle);
+    border: 1.5px solid var(--line);
     padding: 0.15rem 0.45rem;
     border-radius: 3px;
     word-break: break-word;
@@ -1959,7 +2078,7 @@ pre code {
     padding: 2.25rem;
     margin-top: 4.5rem;
     margin-bottom: 4.5rem;
-    box-shadow: 6px 6px 0px 0px #000000;
+    box-shadow: var(--shadow-lg);
 }
 
 .medium-author-card-top {
@@ -1975,7 +2094,7 @@ pre code {
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.65;
-    color: #374151;
+    color: var(--fg-body);
     margin-bottom: 1.5rem;
 }
 
@@ -2016,11 +2135,12 @@ pre code {
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
 }
 
 .medium-rec-card:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0px 0px #000000;
+    box-shadow: var(--shadow-lg);
     background: #fafafa;
 }
 
@@ -2175,8 +2295,8 @@ pre code {
 .hud-progress-bar {
     height: 100%;
     width: 0%;
-    background: #FF5722;
-    box-shadow: 0 1px 3px rgba(255, 87, 34, 0.4);
+    background: var(--accent);
+    box-shadow: 0 1px 0 #000000;
     transition: width 0.04s ease-out;
 }
 
@@ -2211,8 +2331,7 @@ pre code {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #10B981;
-    box-shadow: 0 0 6px #10B981;
+    background: var(--accent);
     animation: hud-pulse 1.8s infinite;
 }
 
@@ -2376,9 +2495,9 @@ pre code {
    Featured Core Project Card (PatchCat)
    ========================================================================== */
 .featured-project-card {
-    border: 3px solid var(--border);
+    border: var(--border-w-lg) solid var(--border);
     background: #ffffff;
-    box-shadow: 6px 6px 0px var(--border);
+    box-shadow: var(--shadow-md);
     margin-bottom: 2.5rem;
     display: grid;
     grid-template-columns: 1.15fr 1fr;
@@ -2387,7 +2506,7 @@ pre code {
 
 .featured-project-card:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px var(--border);
+    box-shadow: var(--shadow-lg);
 }
 
 .featured-project-media {
@@ -2409,15 +2528,18 @@ pre code {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;           /* tag-chip--lg（原 0.75rem） */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     background: var(--accent);
     color: #000;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.25rem 0.65rem;
+    padding: 0.25rem 0.7rem;     /* 原 0.25rem 0.65rem */
     border: 2px solid #000;
     box-shadow: 3px 3px 0px #000;
-    z-index: 2;
+    line-height: 1.35;
 }
 
 .featured-project-content {
@@ -2456,14 +2578,14 @@ pre code {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
-    background: #f4f4f5;
+    background: var(--surface-subtle);
     border: 1.5px solid #000;
     padding: 0.2rem 0.5rem;
 }
 
 .featured-project-desc {
     font-size: 0.925rem;
-    color: #374151;
+    color: var(--fg-body);
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
