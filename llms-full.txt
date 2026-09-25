@@ -87,7 +87,7 @@
 
 - [从 0 到 1 打造 AI 提示流编排器：即时对话调试抽屉、节点级耗时追踪与一键发布生产 API 实战（开源系列 07）](https://guobug.github.io/posts/2026/09/10/ai-prompt-orchestrator-chat-debug-api-publishing/)
   - **Problem**: Critical gap between visual graph experimentation and production delivery; clunky modal form editing for testing.
-  - **Solution**: Non-modal slide-over Chat Debug Drawer (`Ctrl+Shift+D`) driven by `AsyncGenerator` event stream streaming SSE typewriter text alongside per-node trace waterfall latency breakdowns and Markdown diagnostic reports; dual-mode FastAPI execution router (`POST /api/v1/workflows/{id}/run`) supporting synchronous JSON and `text/event-stream` SSE; workflow-scoped API keys (`pk_live_...`) with instant key rotation; instant publishing modal with ready-to-run cURL, Python, and JavaScript snippets.
+  - **Solution**: Non-modal slide-over Chat Debug Drawer (`Ctrl+Shift+D`) driven by `AsyncGenerator` event stream streaming SSE typewriter text alongside per-node trace waterfall latency breakdowns and Markdown diagnostic reports; dual-mode FastAPI execution router (`POST /api/v1/workflows/{id}/run`) supporting synchronous JSON and `text/event-stream` SSE; workflow-scoped API keys (`wf_live_...`) with instant key rotation; instant publishing modal with ready-to-run cURL, Python, and JavaScript snippets.
   - **Outcome**: Production readiness validated across 115 tests (94 frontend unit + 21 backend pytest integration).
 
 - [从 0 到 1 打造 AI 提示流编排器：条件分支路由、Kahn 图剪枝与 HTTP 节点实战（开源系列 06）](https://guobug.github.io/posts/2026/09/09/ai-prompt-orchestrator-conditional-routing-graph-pruning/)

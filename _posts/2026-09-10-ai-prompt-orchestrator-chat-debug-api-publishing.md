@@ -58,7 +58,7 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 - **AI 搭档指出的生产架构隐患**：
   AI 搭档从生产微服务安全与网络规范角度给出了关键约束：
   1. **双模响应契约**：调用者有的需要一次性拿到 JSON 结果做后台处理，有的需要前端打字机流式呈现，后端必须同时支持普通同步响应与 `text/event-stream` SSE 流式输出；
-  2. **API Key 生命周期隔离**：必须实现基于 Workflow 维度的独立 API Key（形如 `pk_live_...`），而不是让调用者使用管理后台的全局 Token，且必须支持一键撤销、重新生成与随时启停访问；
+  2. **API Key 生命周期隔离**：必须实现基于 Workflow 维度的独立 API Key（形如 `wf_live_...`），而不是让调用者使用管理后台的全局 Token，且必须支持一键撤销、重新生成与随时启停访问；
   3. **参数动态注入契约**：接口输入必须与画布上的首个 `InputNode` 字段自动做反射映射，不能要求外部调用方理解内部复杂的节点 ID。
 
 ---
@@ -195,7 +195,7 @@ async def run_published_workflow(
 # 复制即可直接测试的生产请求示例
 curl -X POST "http://localhost:8000/api/v1/workflows/wf_8f3d12/run" \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: pk_live_9a7b4c6e1f028" \
+  -H "X-API-Key: <YOUR_WORKFLOW_API_KEY>" \
   -d '{"inputs": {"query": "如何申请技术支持退款？"}}'
 ```
 
