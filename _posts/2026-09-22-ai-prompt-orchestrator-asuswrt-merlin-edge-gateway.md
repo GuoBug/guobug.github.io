@@ -186,10 +186,9 @@ ps | grep patchcat-server
 ---
 
 > **关于作者**  
-> **郭强 (GuoBug)**，兼具平台工程底蕴与业务增长能力的资深 Product Engineer。  
-> 专注于 **AI 工作流编排（AI Workflow Orchestration）**、DAG 状态机与确定性系统架构落地。  
+> **郭强 (GuoBug)**，Product Engineer，做平台工程也做业务增长。目前主要在折腾 AI 工作流编排、DAG 状态机与确定性系统架构。  
 > 开源项目与主页：[https://github.com/GuoBug](https://github.com/GuoBug) · [https://guobug.github.io](https://guobug.github.io)  
-> 秉持“边写边学、双向共创”理念，欢迎围绕工作流引擎架构、拓扑调度及低门槛开发体验交流指教。
+> 欢迎就工作流引擎架构、拓扑调度和低门槛开发体验交流指教。
 
 <div align="center">
   <sub>Built with ❤️ by <a href="https://guobug.github.io/about/">Guo Qiang</a> (GuoBug)</sub>
