@@ -1,6 +1,6 @@
-﻿# Theme History & Version Archives
+# Theme History & Version Archives
 
-This folder archives previous theme versions of Gu0 Qiang'\''s personal workspace:
+This folder archives previous theme versions of Guo Qiang's personal workspace:
 
 ## v1_terminal (Archived: 2026-08-28)
 - Original retro CRT green/cyan terminal aesthetic.

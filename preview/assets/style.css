@@ -795,6 +795,14 @@ body {
     }
 }
 
+.marquee-wrapper.sticky-banner.sticky-banner-writings {
+    z-index: 905;
+}
+
+.marquee-wrapper.sticky-banner.sticky-banner-work {
+    z-index: 910;
+}
+
 .marquee-track {
     display: inline-block;
     animation: marqueeScroll 25s linear infinite;
@@ -1295,6 +1303,7 @@ body {
     padding-bottom: 2.75rem;
     position: relative;
     overflow: hidden;
+    z-index: 920;
 }
 
 @media (min-width: 768px) {
@@ -1968,7 +1977,7 @@ pre code {
     margin-bottom: 1.5rem;
 }
 
-/* "More from Gu0 Qiang" 3-Column Recommendations */
+/* "More from Guo Qiang" 3-Column Recommendations */
 .medium-more-section {
     border-top: 2px solid var(--border);
     padding-top: 4rem;
@@ -2285,4 +2294,221 @@ pre code {
         will-change: auto !important;
     }
 }
+
+/* ==========================================================================
+   Footer Machine & AI Context Protocol Bar (Neo-Brutalism)
+   ========================================================================== */
+.footer-protocols-bar {
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+    padding: 0.9rem 1.25rem;
+    border: 1.5px solid #27272a;
+    background: #09090b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.protocol-bar-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #a0a0a0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.protocol-bar-label::before {
+    content: "⚡";
+    color: var(--accent);
+}
+
+.protocol-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.protocol-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: #18181b;
+    border: 1.5px solid #3f3f46;
+    padding: 0.35rem 0.75rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+
+.protocol-tag .protocol-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+}
+
+.protocol-tag:hover {
+    background: var(--accent);
+    color: #000000;
+    border-color: #000000;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px #000000;
+}
+
+.protocol-tag:hover .protocol-dot {
+    background: #000000;
+}
+
+/* ==========================================================================
+   Featured Core Project Card (PatchCat)
+   ========================================================================== */
+.featured-project-card {
+    border: 3px solid var(--border);
+    background: #ffffff;
+    box-shadow: 6px 6px 0px var(--border);
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.featured-project-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--border);
+}
+
+.featured-project-media {
+    position: relative;
+    border-right: 3px solid var(--border);
+    background: #000;
+    overflow: hidden;
+    min-height: 280px;
+}
+
+.featured-project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.featured-project-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.25rem 0.65rem;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    z-index: 2;
+}
+
+.featured-project-content {
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.featured-project-header h3 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.featured-project-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #4b5563;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.featured-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.featured-project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: #f4f4f5;
+    border: 1.5px solid #000;
+    padding: 0.2rem 0.5rem;
+}
+
+.featured-project-desc {
+    font-size: 0.925rem;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.featured-project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.featured-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0.5rem 1rem;
+    border: 2px solid #000;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.15s ease;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.featured-btn-primary {
+    background: var(--accent);
+    color: #000;
+}
+
+.featured-btn-secondary {
+    background: #ffffff;
+    color: #000;
+}
+
+.featured-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000;
+}
+
+@media (max-width: 900px) {
+    .featured-project-card {
+        grid-template-columns: 1fr;
+    }
+    .featured-project-media {
+        border-right: none;
+        border-bottom: 3px solid var(--border);
+    }
+}
+
 

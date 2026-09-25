@@ -124,8 +124,9 @@
             </a>
 
             <div class="nav-links">
-                <a href="{{ '/#vibe' | relative_url }}" class="nav-link">
-                    <span>VIBE CODING</span>
+                <a href="{{ '/projects.html' | relative_url }}" class="nav-link">
+                    <span data-i18n="zh">项目</span>
+                    <span data-i18n="en">PROJECTS</span>
                 </a>
                 <a href="{{ '/posts/' | relative_url }}" class="nav-link active-nav">
                     <span data-i18n="zh">文章</span>
@@ -154,7 +155,7 @@
     <!-- Mobile Drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <ul class="mobile-nav-list">
-            <li><a href="{{ '/#vibe' | relative_url }}">VIBE CODING</a></li>
+            <li><a href="{{ '/projects.html' | relative_url }}"><span data-i18n="zh">项目</span><span data-i18n="en">PROJECTS</span></a></li>
             <li><a href="{{ '/posts/' | relative_url }}"><span data-i18n="zh">文章</span><span data-i18n="en">WRITINGS</span></a></li>
             <li><a href="{{ '/about/' | relative_url }}"><span data-i18n="zh">关于我</span><span data-i18n="en">ABOUT ME</span></a></li>
         </ul>
@@ -245,12 +246,35 @@
         <div class="container" style="position: relative; z-index: 10;">
             <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border-top: none;">
                 <div>
-                    © 2026 Guo Qiang / GuoBug · Built with Vibe Coding
+                    © 2026 Guo Qiang / GuoBug · Product Engineer
                 </div>
                 <div class="footer-social-links">
                     <a href="https://github.com/GuoBug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
                     <a href="https://guobug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
                     <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
+                </div>
+            </div>
+
+            <!-- Exposed Machine & AI Context Protocols (Bottom Terminal Bar) -->
+            <div class="footer-protocols-bar" style="margin-top: 1.5rem;">
+                <span class="protocol-bar-label">MACHINE &amp; AI CONTEXT:</span>
+                <div class="protocol-tags">
+                    <a href="https://guobug.github.io/llms.txt" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>LLMS.TXT</span>
+                    </a>
+                    <a href="https://guobug.github.io/llms-full.txt" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>LLMS-FULL.TXT</span>
+                    </a>
+                    <a href="https://guobug.github.io/sitemap.xml" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>SITEMAP.XML</span>
+                    </a>
+                    <a href="https://guobug.github.io/robots.txt" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>ROBOTS.TXT</span>
+                    </a>
                 </div>
             </div>
         </div>

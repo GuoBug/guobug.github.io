@@ -1,11 +1,12 @@
-# Guo Qiang (gu0bug) - Technology Product Manager & AI Engineer
+# Guo Qiang (GuoBug) - Product Engineer
 
-> Digital workspace, technical writings, and open-source architecture portfolio of Guo Qiang. Senior Technology Product Manager with 10+ years of experience across GitLab, Ctrip, Bilibili, and independent AI development. Specializing in AI-native product architecture, prompt orchestration systems, DAG execution engines, and async remote workflows.
+> Digital workspace, technical writings, and open-source architecture portfolio of Guo Qiang. Senior Product Engineer blending platform engineering foundations with growth mechanics. Specializing in AI Workflow Orchestration, DAG state machines, deterministic architectures, and remote platform engineering.
 
 ## Identity & Contact
-- Name: Guo Qiang (郭强 / gu0bug)
-- Role: Senior Technology Product Manager · AI System Architect · Digital Nomad
+- Name: Guo Qiang (郭强 / GuoBug)
+- Role: Product Engineer · Deterministic Systems Architect
 - Website: https://guobug.github.io
+- Projects & Architecture: https://guobug.github.io/projects.html
 - GitHub: https://github.com/GuoBug
 - Email: gu0bug0@gmail.com
 - Profile / About: https://guobug.github.io/about/

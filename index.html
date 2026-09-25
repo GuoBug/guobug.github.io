@@ -8,7 +8,7 @@ layout: null
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-title-zh="Guo Qiang · Product Engineer · 工作空间" data-title-en="Guo Qiang · Product Engineer · Workspace">Guo Qiang · Product Engineer · Workspace</title>
-    <meta name="description" content="Digital portfolio and workspace of Guo Qiang. Product Engineer, AI-Native Builder, and Independent Nomad.">
+    <meta name="description" content="Digital portfolio and workspace of Guo Qiang. Product Engineer, Deterministic Systems, and AI Workflow Orchestration.">
     <meta name="author" content="Guo Qiang">
 
     <!-- Canonical URL -->
@@ -21,13 +21,13 @@ layout: null
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Guo Qiang · Product Engineer · Workspace">
     <meta property="og:title" content="Guo Qiang · Product Engineer · Workspace">
-    <meta property="og:description" content="Digital portfolio and workspace of Guo Qiang. Product Engineer, AI-Native Builder, and Independent Nomad.">
+    <meta property="og:description" content="Digital portfolio and workspace of Guo Qiang. Product Engineer, Deterministic Systems, and AI Workflow Orchestration.">
     <meta property="og:url" content="https://guobug.github.io/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Guo Qiang · Product Engineer · Workspace">
-    <meta name="twitter:description" content="Digital portfolio and workspace of Guo Qiang. Product Engineer, AI-Native Builder, and Independent Nomad.">
+    <meta name="twitter:description" content="Digital portfolio and workspace of Guo Qiang. Product Engineer, Deterministic Systems, and AI Workflow Orchestration.">
 
     <!-- Structured Data (JSON-LD) for Search Engines & AI Knowledge Graphs -->
     <script type="application/ld+json">
@@ -39,7 +39,7 @@ layout: null
           "@id": "https://guobug.github.io/#website",
           "url": "https://guobug.github.io/",
           "name": "Guo Qiang · Product Engineer · Workspace",
-          "description": "Digital portfolio and workspace of Guo Qiang. Product Engineer, AI-Native Builder, and Independent Nomad.",
+          "description": "Digital portfolio and workspace of Guo Qiang. Product Engineer, Deterministic Systems, and AI Workflow Orchestration.",
           "author": {
             "@id": "https://guobug.github.io/#author"
           }
@@ -48,7 +48,7 @@ layout: null
           "@type": "Person",
           "@id": "https://guobug.github.io/#author",
           "name": "Guo Qiang",
-          "alternateName": "gu0bug",
+          "alternateName": "GuoBug",
           "jobTitle": "Product Engineer",
           "url": "https://guobug.github.io/about/",
           "sameAs": [
@@ -89,24 +89,37 @@ layout: null
 </head>
 
 <body>
+    <!-- Parallax Top HUD Progress Indicator -->
+    <div class="parallax-hud-progress" id="parallaxHud">
+        <div class="hud-progress-bar" id="hudProgressBar"></div>
+        <div class="hud-indicator-tag" id="hudIndicator">
+            <span class="hud-dot"></span>
+            <span class="hud-text">WORKSPACE · <span id="hudScrollPercent">00%</span></span>
+        </div>
+    </div>
+
+    <!-- Parallax Background Mesh Layer -->
+    <div class="parallax-bg-mesh" id="parallaxBgMesh"></div>
+
     <!-- 1. Sticky Navigation Bar -->
     <nav class="top-nav">
         <div class="container nav-container">
-            <a href="#" class="nav-logo">
+            <a href="./" class="nav-logo">
                 <img src="./assets/images/logo.png" alt="Logo" class="nav-logo-img">
                 <span>GUOQIANG.PRODUCT</span>
                 <span class="nav-logo-badge">SYSTEM</span>
             </a>
 
             <div class="nav-links">
-                <a href="#vibe" class="nav-link">
-                    <span>VIBE CODING</span>
+                <a href="./projects.html" class="nav-link">
+                    <span data-i18n="zh">项目</span>
+                    <span data-i18n="en">PROJECTS</span>
                 </a>
                 <a href="./posts/" class="nav-link">
                     <span data-i18n="zh">文章</span>
                     <span data-i18n="en">WRITINGS</span>
                 </a>
-                <a href="./about/" class="nav-link">
+                <a href="./about.html" class="nav-link">
                     <span data-i18n="zh">关于我</span>
                     <span data-i18n="en">ABOUT ME</span>
                 </a>
@@ -129,49 +142,55 @@ layout: null
     <!-- Mobile Drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <ul class="mobile-nav-list">
-            <li><a href="#vibe">VIBE CODING</a></li>
+            <li><a href="./projects.html"><span data-i18n="zh">项目</span><span data-i18n="en">PROJECTS</span></a></li>
             <li><a href="./posts/"><span data-i18n="zh">文章</span><span data-i18n="en">WRITINGS</span></a></li>
-            <li><a href="./about/"><span data-i18n="zh">关于我</span><span data-i18n="en">ABOUT ME</span></a></li>
+            <li><a href="./about.html"><span data-i18n="zh">关于我</span><span data-i18n="en">ABOUT ME</span></a></li>
         </ul>
     </div>
 
-    <!-- 2. Hero Section (Guo Qiang) -->
-    <header class="hero-section" id="hero">
+    <!-- 2. Hero Section: Personal Profile & Positioning -->
+    <header class="hero-section parallax-hero" id="hero">
         <div class="container">
-            <div class="hero-main-title-wrap">
-                <h1 class="hero-title">Guo Qiang</h1>
-                <div class="hero-avatar">
-                    <img src="./assets/images/logo.png" alt="Guo Qiang Logo" class="hero-avatar-img">
-                </div>
+            <div class="hero-avatar parallax-layer" data-depth="0.16">
+                <img src="./assets/images/logo.png" alt="Guo Qiang Logo" class="hero-avatar-img">
             </div>
 
-            <div class="hero-bio">
+            <h1 class="hero-title parallax-layer" data-depth="0.12">
+                Guo Qiang
+            </h1>
+
+            <div class="hero-subtitle-tag parallax-layer" data-depth="0.10">
+                <span data-i18n="zh">Product Engineer · 确定性系统 · AI 工作流编排</span>
+                <span data-i18n="en">Product Engineer · Deterministic Systems · AI Workflow Orchestration</span>
+            </div>
+
+            <div class="hero-bio parallax-layer" data-depth="0.06">
                 <div data-i18n="zh">
                     <p>
-                        你好！我是 <strong>Guo Qiang</strong>，一名专注高确定性系统与一手实现的 <strong>Product Engineer</strong>。曾负责 <strong>GitLab (CN)</strong> SaaS 与研发基建，并在 <strong>哔哩哔哩</strong>、<strong>携程</strong> 等平台深耕高并发架构与核心业务增长。
+                        你好！我是 <strong>Guo Qiang</strong>，一名兼具平台工程底蕴与深度增长能力的资深 <strong>Product Engineer</strong>。曾负责 <strong>GitLab (CN)</strong> SaaS 与研发基建，并在哔哩哔哩、携程等业务中负责高并发架构与核心转化增长。
                     </p>
                     <p>
-                        我的关注点始终在于<strong>复杂系统抽象、状态编排与真实商业约束的闭环统一</strong>。
+                        在 AI 时代，我践行 <strong>AI 辅助编程</strong> 与“干中学”：不再做浮于表面的 Prompt 调优，专注于 <strong>AI 工作流编排</strong>、<strong>DAG 状态机</strong> 与 <strong>确定性工作流</strong> 系统的构建。
                     </p>
                     <p>
-                        在 AI 时代，我践行 <strong>AI Pair Programming</strong> 与“干中学”：告别浮于表面的 Prompt 抽卡，专注于<strong>端侧 DAG 调度引擎、本地 Agent 工具链与确定性系统</strong>的构建。让业务场景定义关键架构，让 AI 启发底层规约与死锁排查，并通过极限压测完成工程闭环。
+                        我将工作流视作确定性状态机流水线：由业务场景定义核心架构，由 AI 提示底层规约与环路死锁排查，并通过实机构造极端边界压测完成验证。
                     </p>
                 </div>
                 <div data-i18n="en">
                     <p>
-                        Hi there! I'm <strong>Guo Qiang</strong>, a <strong>Product Engineer</strong> focused on deterministic systems and hands-on craftsmanship. Previously led <strong>GitLab (CN)</strong> SaaS & platform engineering, and scaled high-concurrency systems and core growth funnels at <strong>Bilibili</strong> and <strong>Ctrip</strong>.
+                        Hi! I'm <strong>Guo Qiang</strong>, a senior <strong>Product Engineer</strong> blending platform engineering foundations with core growth mechanics. Previously led <strong>GitLab (CN)</strong> SaaS & platform engineering, and scaled high-concurrency systems and growth funnels at Bilibili and Ctrip.
                     </p>
                     <p>
-                        My craft centers on the convergence of <strong>complex system abstractions, state orchestration, and grounded commercial reality</strong>.
+                        In this AI era, I build through <strong>AI Pair Programming</strong> and "Learning by Doing"—moving past superficial prompt wrappers toward <strong>AI Workflow Orchestration</strong>, <strong>DAG Engines</strong>, and <strong>Deterministic State Machines</strong>.
                     </p>
                     <p>
-                        In this AI era, I practice <strong>AI Pair Programming</strong> and "Learning by Doing"—moving far beyond superficial chat wrappers toward <strong>client-side DAG engines, local agent primitives, and deterministic architectures</strong>. Workflows define critical architecture, AI reveals edge contracts & deadlock hazards, and rigorous stress testing closes the loop.
+                        Workflows operate as deterministic state machines: business realities define architecture, AI reveals contract edges and deadlock hazards, and rigorous stress testing verifies stability.
                     </p>
                 </div>
             </div>
 
             <!-- Company Highlights Bar with Official Logos & Hover Popovers -->
-            <div class="hero-companies-bar">
+            <div class="hero-companies-bar parallax-layer" data-depth="0.08">
                 <!-- a. GitLab -->
                 <div class="company-brand-item" tabindex="0">
                     <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
@@ -203,58 +222,60 @@ layout: null
                 <!-- b. Bilibili -->
                 <div class="company-brand-item" tabindex="0">
                     <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
-                        <rect width="24" height="24" rx="6" fill="#00A1D6"/>
-                        <path fill="#FFFFFF" d="M7.5 5.5l2.2 2.2h4.6l2.2-2.2a.75.75 0 111.06 1.06l-1.5 1.5H17a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6a2 2 0 012-2h.94l-1.5-1.5a.75.75 0 011.06-1.06zM7 10v6h10v-6H7zm2.5 2a1 1 0 110 2 1 1 0 010-2zm5 0a1 1 0 110 2 1 1 0 010-2z"/>
+                        <path fill="#00A1D6" d="M18.5 4l2.1-2.1c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4L19.9 5.4c1.3 1.3 2.1 3.1 2.1 5.1v7c0 3.6-2.9 6.5-6.5 6.5h-7C4.9 24 2 21.1 2 17.5v-7C2 6.9 4.9 4 8.5 4h1.1L7.5 1.9C7.1 1.5 7.1.9 7.5.5s1-.4 1.4 0L11 2.6c.3-.1.7-.1 1-.1.3 0 .7 0 1 .1L15.1.5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L14.4 4h4.1zM6.5 10c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3c0-.8-.7-1.5-1.5-1.5zm11 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3c0-.8-.7-1.5-1.5-1.5z"/>
                     </svg>
                     <span>Bilibili</span>
 
                     <div class="company-tooltip">
                         <div class="company-tooltip-header">
                             <span class="company-tooltip-role">
-                                <span data-i18n="zh">移动主站产品</span>
-                                <span data-i18n="en">Mobile Product Lead</span>
+                                <span data-i18n="zh">技术产品经理</span>
+                                <span data-i18n="en">Technical Product Manager</span>
                             </span>
                             <span class="company-tooltip-badge">BILIBILI</span>
                         </div>
                         <div class="company-tooltip-desc">
-                            <span data-i18n="zh">负责 Bilibili 移动站、移动商务需求。</span>
-                            <span data-i18n="en">Leading Bilibili Mobile Web platform & mobile commercial requirements.</span>
+                            <span data-i18n="zh">负责直播产品技术，主播工具链路，以及创作者激励与高并发活动互动体系。</span>
+                            <span data-i18n="en">Led live streaming product tech, creator tooling, streamer incentives, and high-concurrency interactive campaigns.</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- c. Ctrip -->
                 <div class="company-brand-item" tabindex="0">
-                    <svg viewBox="240 160 95 100" width="32" height="32" class="company-logo-img" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-rule="evenodd" fill-rule="evenodd">
-                            <path d="m267.32 179.35c10.43-11.62 20.28-14.99 27.09-16.31 8.31-1.55 22.11 2.32 22.11 13.06 0 3.35 7.03-.95 9.12 3.85 2.19 5.03-5.61 9.38-10.09 9.08-1.9.17-4.85-.47-7.13-1.67-.71-.38-.7.33-.21 1.02.83 1.16 2.44 1.57 4.21 1.85 1.69.27 1.19 1.17-.53 1.85-1.82.72-4.9 1.4-7.64 1.7-2.08.22-4.55 1.45-5.17 2.27-2 3.27.74 7.09-4.16 13.15-2.8 3.47-7.78 6.4-12.5 5.82-.87-.11-1.31-.48-.74-1.34 1.21-1.81 2.83-2.57 3.57-4.9.77-2.42-.21-4.11-2.3-3.95-2.74.21-7.84 3.85-11.01 8.49-1.17 1.97-2.14 3.85-2.92 5.66-6.93 16.14 2.65 31.04 18.08 37.07 2.29.89 4.36 1.29 5.48.98.53-.15.85-.36.88-.95-4.97-1.6-10.28-5.16-13.41-9.34-3.44-4.59-4.48-9.99-4.48-15.59 0-5.84 2.7-12.68 3.77-11.96.31.21.8.39.5 1.14-1.57 3.98-1.83 8.56-1.25 12.64 1.02 7.07 4.97 12.51 11.59 15.28 5.05 2.11 10.63 1.78 15.64-.78 6.64-3.4 8.88-7.17 9.72-11.02.42-1.91.24-4.38.59-6.69.43-2.81 1.45-5.14 3.42-6.1 3.38-1.65 6.32-.34 7.73 1.24 3.47 3.88 1.18 13.85-1.21 17.94-1.74 2.98-3.81 5.84-6.07 7.86-6.5 5.8-18.23 9.85-29.4 9.02-14.78-1.1-25.8-7.33-34.5-19.05-6.7-9.03-7.48-17.29-7.74-25.99-.25-8.31 2.94-14.89 5.66-20.3 1.1-2.18.05-4.02-1-4.96-1.47-1.06-2.49-.89-3.42-.83-2.27.15-3.8 1.56-5.87 1.92-1.47.26-2.56-.38-1.4-2.95.32-.71.76-1.49 1.33-2.18 1.69-2.07 4.21-4.19 5.39-4.84 5.9-3.42 14.87-2.64 18.27-1.19zm36.44-4.61c.01-.68-3.7-.97-5.1 1.9-.86 1.78-.74 4.41.85 5.71.6.49 1.3.88 2.06 1.09 1.1.31 1.96.2 2.55-.08.64-.3 1.07-.7.9-.8-2.07-.24-3.36-1.29-3.99-2.73-.75-1.71-.26-4.01 2.73-5.09zm-.74 2.18c-.14.8.31 1.33.9 1.32.49-.01 1.08-.26 1.12-1.05.03-.57-.33-.92-.78-1.02-.49-.11-1.13.09-1.24.75z" fill="#005bac"/>
-                            <path d="m285.75 245.7c.48.23 1 .41 1.57.53 9.19 1.92 19.1-3.78 20.9-11.61.97-4.27 1.03-7.05.86-9.07-.25-2.92.27-6.9 2.59-8.88 3.13-2.66 7.62-.72 8.99 2.91.38 1 .66 2.15.93 3.41-.65.11-1.32.33-2.02.67-1.97.96-2.99 3.3-3.42 6.1-.35 2.32-.18 4.79-.59 6.69-.84 3.85-3.09 7.62-9.72 11.02-5.01 2.56-10.59 2.9-15.64.78-1.65-.68-3.13-1.54-4.45-2.55z" fill="#f08300"/>
-                        </g>
+                    <svg viewBox="0 0 24 24" width="32" height="32" class="company-logo-img">
+                        <path fill="#2577E3" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16.5v-2c0-.55-.45-1-1-1s-1 .45-1 1v2c-3.08-.47-5.53-2.92-6-6h2c.55 0 1-.45 1-1s-.45-1-1-1H5c.47-3.08 2.92-5.53 6-6v2c0 .55.45 1 1 1s1-.45 1-1V4.5c3.08.47 5.53 2.92 6 6h-2c-.55 0-1 .45-1 1s.45 1 1 1h2c-.47 3.08-2.92 5.53-6 6z"/>
+                        <path fill="#FF9900" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
                     </svg>
                     <span>Ctrip</span>
 
                     <div class="company-tooltip">
                         <div class="company-tooltip-header">
                             <span class="company-tooltip-role">
-                                <span data-i18n="zh">产品经理 · 增长黑客</span>
-                                <span data-i18n="en">Product Manager · Growth</span>
+                                <span data-i18n="zh">产品经理</span>
+                                <span data-i18n="en">Product Manager</span>
                             </span>
                             <span class="company-tooltip-badge">CTRIP</span>
                         </div>
                         <div class="company-tooltip-desc">
-                            <span data-i18n="zh">负责移动营销需求包含 分销、APP 推广、SEO、SEM、广告平台/API 平台、订单流程优化等。</span>
-                            <span data-i18n="en">Leading mobile growth: distribution, App growth, SEO/SEM, Ad/API platforms, checkout flow optimization.</span>
+                            <span data-i18n="zh">主导营销广告系统的定向投放大盘、自动化 API、落地转化漏斗与跨渠道归因系统。</span>
+                            <span data-i18n="en">Spearheaded marketing ad targeting infrastructure, automated APIs, funnel conversions, and multi-touch attribution.</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Badges Matrix (Bilingual + Product Engineering) -->
-            <div class="hero-badges-matrix">
+            <!-- Positioning Badges Grid -->
+            <div class="hero-badges parallax-layer" data-depth="0.04">
                 <div class="badge-item">
                     <span class="badge-indicator"></span>
-                    <span data-i18n="zh">产品工程</span>
-                    <span data-i18n="en">PRODUCT ENGINEERING</span>
+                    <span data-i18n="zh">AI 工作流编排</span>
+                    <span data-i18n="en">AI WORKFLOW ORCHESTRATION</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-indicator"></span>
+                    <span data-i18n="zh">DAG 状态机</span>
+                    <span data-i18n="en">DAG STATE MACHINE</span>
                 </div>
                 <div class="badge-item">
                     <span class="badge-indicator"></span>
@@ -263,51 +284,107 @@ layout: null
                 </div>
                 <div class="badge-item">
                     <span class="badge-indicator"></span>
-                    <span data-i18n="zh">AI 原生工作流</span>
-                    <span data-i18n="en">AI-NATIVE WORKFLOW</span>
+                    <span data-i18n="zh">平台工程与增长</span>
+                    <span data-i18n="en">PLATFORM &amp; GROWTH</span>
                 </div>
                 <div class="badge-item">
                     <span class="badge-indicator"></span>
-                    <span data-i18n="zh">一手构建</span>
-                    <span data-i18n="en">HANDS-ON BUILDER</span>
-                </div>
-                <div class="badge-item">
-                    <span class="badge-indicator"></span>
-                    <span data-i18n="zh">分布式体系</span>
-                    <span data-i18n="en">DISTRIBUTED SYSTEMS</span>
-                </div>
-                <div class="badge-item">
-                    <span class="badge-indicator"></span>
-                    <span>VIBE CODING</span>
+                    <span data-i18n="zh">本地优先架构</span>
+                    <span data-i18n="en">LOCAL-FIRST ARCHITECTURE</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Marquee Banner 1 (Accent Reverse) -->
-    <div class="marquee-wrapper reverse">
+    <!-- Marquee Banner 1 (Accent Reverse + Parallax + Sticky) -->
+    <div class="marquee-wrapper reverse parallax-marquee sticky-banner" data-speed="1.2">
         <div class="marquee-track">
-            <span>VIBE CODING • METAPHYSICS • RAPID PROTOTYPES • EXPERIMENTS • CODE SKETCHES • AI TOOLS •&nbsp;</span>
-            <span>VIBE CODING • METAPHYSICS • RAPID PROTOTYPES • EXPERIMENTS • CODE SKETCHES • AI TOOLS •&nbsp;</span>
+            <span>DETERMINISTIC SYSTEMS • AI WORKFLOW ORCHESTRATION • DAG STATE MACHINES • LOCAL-FIRST • KTRON •&nbsp;</span>
+            <span>DETERMINISTIC SYSTEMS • AI WORKFLOW ORCHESTRATION • DAG STATE MACHINES • LOCAL-FIRST • KTRON •&nbsp;</span>
         </div>
     </div>
 
-    <!-- 3. Section: VIBE CODING (Replaces 玄学工具) -->
-    <section class="section-block vibe-section" id="vibe">
+    <!-- 3. Section: PROJECTS & LABS (升维核心开源项目与工坊) -->
+    <section class="section-block" id="projects">
         <div class="container">
             <div class="section-header">
                 <div>
-                    <h2 class="section-title">Vibe<br>Coding</h2>
+                    <h2 class="section-title">Projects<br>&amp; Labs</h2>
                 </div>
                 <p class="section-subtitle">
-                    <span data-i18n="zh">基于直觉与 AI 协同构建的实验工具、玄学计算与代码原型合集。</span>
-                    <span data-i18n="en">A curated collection of rapid AI prototypes, metaphysics tools, and computational experiments.</span>
+                    <span data-i18n="zh">以“AI 辅助编程 + 干中学”落地的确定性开源系统。涵盖 AI 工作流编排、DAG 状态机、受限解码与硬件实验。</span>
+                    <span data-i18n="en">Deterministic open-source systems built via AI Pair Programming &amp; Learning by Doing. Covering AI workflow orchestration, DAG state machines, constrained decoding, and hardware experiments.</span>
                 </p>
             </div>
 
+            <!-- Flagship Project Card: PatchCat -->
+            <div class="featured-project-card">
+                <div class="featured-project-media">
+                    <div class="featured-project-badge">FLAGSHIP · CORE PROJECT</div>
+                    <img src="./assets/images/ai-prompt-orchestrator-cover.jpg" alt="PatchCat Workflow Canvas Cover">
+                </div>
+                <div class="featured-project-content">
+                    <div>
+                        <div class="featured-project-header">
+                            <h3>PatchCat</h3>
+                            <div class="featured-project-subtitle">
+                                <span data-i18n="zh">AI 提示流编排器与 DAG 状态机</span>
+                                <span data-i18n="en">AI Prompt Flow Orchestrator &amp; DAG State Machine</span>
+                            </div>
+                        </div>
+
+                        <div class="featured-project-tags">
+                            <span class="featured-project-tag">DAG State Machine</span>
+                            <span class="featured-project-tag">Kahn's Algorithm</span>
+                            <span class="featured-project-tag">Constrained Decoding</span>
+                            <span class="featured-project-tag">Zod Guard</span>
+                            <span class="featured-project-tag">Local-First</span>
+                        </div>
+
+                        <div class="featured-project-desc">
+                            <div data-i18n="zh">
+                                <p>纯前端、本地优先运行的确定性 AI 工作流编排系统。通过 Kahn 拓扑排序调度避免环路死锁，内置 L1 Logits 掩码受限解码与 L2 Zod 契约双层防线拦截脏输出，提供 5 秒 Web Worker 脚本沙箱与死循环看门狗熔断。</p>
+                            </div>
+                            <div data-i18n="en">
+                                <p>A client-only, local-first deterministic AI workflow orchestrator. Employs Kahn's topological sort for acyclic graph scheduling, two-tier constrained decoding (Logits masking + Zod contract), and Web Worker watchdog sandbox to circuit-break infinite loops.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-project-actions">
+                        <a href="https://guobug.github.io/PatchCat/" target="_blank" rel="noopener noreferrer" class="featured-btn featured-btn-primary">
+                            <span data-i18n="zh">在线体验</span>
+                            <span data-i18n="en">LIVE DEMO</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://github.com/GuoBug/PatchCat" target="_blank" rel="noopener noreferrer" class="featured-btn featured-btn-secondary">
+                            <span>GITHUB REPO ↗</span>
+                        </a>
+                        <a href="./projects.html" class="featured-btn featured-btn-secondary">
+                            <span data-i18n="zh">架构与实验矩阵 ↗</span>
+                            <span data-i18n="en">ARCHITECTURE MATRIX ↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Projects & Labs Grid -->
+            <div style="margin-top: 3.5rem; margin-bottom: 1rem;">
+                <div class="section-header" style="margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; text-transform: uppercase;">Creative Labs &amp; Hardware</h3>
+                    </div>
+                    <a href="./projects.html" class="view-all-link">
+                        <span data-i18n="zh">查看所有项目与实验工坊</span>
+                        <span data-i18n="en">VIEW ALL PROJECTS &amp; LABS</span>
+                        ↗
+                    </a>
+                </div>
+            </div>
+
             <div class="vibe-grid">
-                <!-- Vibe Card 1: Metaphysics Hub -->
-                <a href="https://guobug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="vibe-card">
+                <!-- Project 2: Metaphysics Tools -->
+                <a href="https://guobug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="vibe-card parallax-card">
                     <div class="vibe-card-badge">ONLINE ↗</div>
                     <div class="vibe-card-bg">
                         <img src="./assets/images/metaphysics-tools-cover.jpg" alt="Metaphysics Tools Cover" class="vibe-card-img">
@@ -319,34 +396,14 @@ layout: null
                             <span>↗</span>
                         </div>
                         <div class="vibe-card-tag">
-                            <span data-i18n="zh">八字 / 六爻 / 紫微 / 周易</span>
-                            <span data-i18n="en">Bazi / I Ching / Ziwei</span>
+                            <span data-i18n="zh">八字 / 六爻 / 紫微 / 周易 算法建模</span>
+                            <span data-i18n="en">Bazi / I Ching / Ziwei Algorithm Engine</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- Vibe Card 2: PatchCat (AI Prompt Orchestrator) -->
-                <a href="https://guobug.github.io/PatchCat/" target="_blank" rel="noopener noreferrer" class="vibe-card">
-                    <div class="vibe-card-badge">ONLINE ↗</div>
-                    <div class="vibe-card-bg">
-                        <!-- 封面图配置：当前页面使用白底新野兽派封面 (ai-prompt-orchestrator-cover.jpg)；后续如支持夜间模式，可切换为深色点阵封面 (ai-prompt-orchestrator-cover-dark.jpg) -->
-                        <img src="./assets/images/ai-prompt-orchestrator-cover.jpg" alt="PatchCat Cover" class="vibe-card-img">
-                    </div>
-                    <div class="vibe-card-footer">
-                        <div class="vibe-card-title">
-                            <span data-i18n="zh">PatchCat</span>
-                            <span data-i18n="en">PatchCat</span>
-                            <span>↗</span>
-                        </div>
-                        <div class="vibe-card-tag">
-                            <span data-i18n="zh">结构化输出 / 工作流链条编排</span>
-                            <span data-i18n="en">Structured Outputs / LLM Chains</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Vibe Card 3: Kindle Weather Station (Linked to GitHub) -->
-                <a href="https://github.com/GuoBug/kindle-weather-station" target="_blank" rel="noopener noreferrer" class="vibe-card">
+                <!-- Project 3: Kindle Weather Station -->
+                <a href="https://github.com/GuoBug/kindle-weather-station" target="_blank" rel="noopener noreferrer" class="vibe-card parallax-card">
                     <div class="vibe-card-badge">GITHUB ↗</div>
                     <div class="vibe-card-bg">
                         <img src="./assets/images/kindle-weather-station-cover.jpg" alt="Kindle Weather Station Cover" class="vibe-card-img">
@@ -367,8 +424,8 @@ layout: null
         </div>
     </section>
 
-    <!-- Marquee Banner 2 -->
-    <div class="marquee-wrapper">
+    <!-- Marquee Banner 2 (Parallax + Sticky replacement at Writings ~42%) -->
+    <div class="marquee-wrapper parallax-marquee sticky-banner sticky-banner-writings" data-speed="-1.2">
         <div class="marquee-track">
             <span>WRITINGS • ARTICLES • AI-NATIVE PARADIGMS • REMOTE WORKFLOW • TECH PRACTICES •&nbsp;</span>
             <span>WRITINGS • ARTICLES • AI-NATIVE PARADIGMS • REMOTE WORKFLOW • TECH PRACTICES •&nbsp;</span>
@@ -376,7 +433,7 @@ layout: null
     </div>
 
     <!-- 4. Section: WRITINGS (文章) -->
-    <section class="section-block" id="posts">
+    <section class="section-block" id="writings">
         <div class="container">
             <div class="section-header">
                 <div>
@@ -392,42 +449,99 @@ layout: null
             </div>
 
             <div class="writings-grid">
-                {% for post in site.posts limit: 6 %}
-                <a href="{{ post.url | relative_url }}" class="writing-card">
+                <!-- Post 1 (Latest: 2026-09-25 AI Prompt Flow Orchestrator - Series 14) -->
+                <a href="./posts/2026/09/25/ai-prompt-orchestrator-structured-output-eval-prerequisite/" class="writing-card">
                     <div>
                         <div class="writing-card-header">
-                            <span class="writing-pub-tag">{% if post.pub_tag %}{{ post.pub_tag }}{% elsif post.categories %}{{ post.categories.first }}{% else %}Article{% endif %}</span>
-                            <span class="writing-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                            <span class="writing-pub-tag">Deterministic Output</span>
+                            <span class="writing-date">2026-09-25</span>
                         </div>
-                        <h3 class="writing-title">
-                            {% if post.title_en %}
-                            <span data-i18n="zh">{{ post.title }}</span>
-                            <span data-i18n="en">{{ post.title_en }}</span>
-                            {% else %}
-                            {{ post.title }}
-                            {% endif %}
+                        <h3 class="writing-card-title">
+                            <span data-i18n="zh">从 0 到 1 打造 AI 提示流编排器：搞 Eval 评测前，先让输出闭合！结构化约束与业务契约防线（开源系列 14）</span>
+                            <span data-i18n="en">Building AI Prompt Flow Orchestrator: Before Doing Eval, Close the Output! Constrained Decoding &amp; Business Contract Defense (Series 14)</span>
                         </h3>
-                        <p class="writing-excerpt">
-                            {% if post.summary_en %}
-                            <span data-i18n="zh">{{ post.summary | default: post.excerpt | strip_html }}</span>
-                            <span data-i18n="en">{{ post.summary_en }}</span>
-                            {% else %}
-                            {{ post.summary | default: post.excerpt | strip_html | truncatewords: 25 }}
-                            {% endif %}
+                        <p class="writing-card-desc">
+                            <span data-i18n="zh">深入拆解结构化输出的底层困境与三级运行时协商：从采样前 Logits 掩码语法约束，到轻量级 JSON 修复与 Zod 业务语义契约，让工作流调度在非确定性模型之上依然能够安全闭环。</span>
+                            <span data-i18n="en">Deconstructing deterministic structured outputs and 3-tier runtime negotiation: from pre-sampling Logits masking to client-side repair and Zod business contracts, keeping workflows reliable on probabilistic models.</span>
                         </p>
                     </div>
                     <div class="writing-card-footer">
-                        <span>{{ post.read_time | default: '5 MIN READ' }}</span>
-                        <span class="writing-read-more">READ ARTICLE ↗</span>
+                        <span>SERIES 14</span>
+                        <span>READ ARTICLE ↗</span>
                     </div>
                 </a>
-                {% endfor %}
+
+                <!-- Post 2 (2026-09-23 AI Prompt Flow Orchestrator - Zero Trust & Local First) -->
+                <a href="./posts/2026/09/23/ai-prompt-orchestrator-zero-trust-local-first/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Zero-Trust &amp; Privacy</span>
+                            <span class="writing-date">2026-09-23</span>
+                        </div>
+                        <h3 class="writing-card-title">
+                            <span data-i18n="zh">谁来为大模型的失控与手滑兜底？一个 Product Engineer 的「零信任」数字生存反思</span>
+                            <span data-i18n="en">Who Catches the Model When It Hallucinates? A Product Engineer's Reflection on Zero-Trust Digital Survival</span>
+                        </h3>
+                        <p class="writing-card-desc">
+                            <span data-i18n="zh">深入剖析中心化黑盒的隐形数据泄露与开发者的手滑盲区；探讨基于纯前端 LocalStorage、密钥递归掩码与 DAG 状态机的 100% 数据主权防御方案。</span>
+                            <span data-i18n="en">Deconstructing centralized black-box data risks and human error; exploring a 100% sovereign defense model using client-only LocalStorage, recursive credential masking, and DAG state machines.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>ARCHITECTURE</span>
+                        <span>READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 3 (2026-09-22 AI Prompt Flow Orchestrator - Series 13) -->
+                <a href="./posts/2026/09/22/ai-prompt-orchestrator-agent-runtime-guard-watchdog/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Agent Watchdog</span>
+                            <span class="writing-date">2026-09-22</span>
+                        </div>
+                        <h3 class="writing-card-title">
+                            <span data-i18n="zh">从 0 到 1 打造 AI 提示流编排器：别让 Agent 刷爆你的信用卡！运行时看门狗与死循环熔断器设计（开源系列 13）</span>
+                            <span data-i18n="en">Building AI Prompt Flow Orchestrator: Don't Let Agents Burn Your Credits! Runtime Guardrails &amp; Deadlock Circuit Breakers (Series 13)</span>
+                        </h3>
+                        <p class="writing-card-desc">
+                            <span data-i18n="zh">深入剖析自主 Agent 自循环导致的死锁与 Token 暴击隐患：构建基于调用指纹的死循环熔断器、Web Worker 5秒沙箱看门狗，以及脱敏安全配置导入方案。</span>
+                            <span data-i18n="en">Addressing runaway autonomous loops and credit depletion: engineering fingerprint-based deadlock circuit breakers, 5s Web Worker watchdog sandboxes, and sanitized credential imports.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>SERIES 13</span>
+                        <span>READ ARTICLE ↗</span>
+                    </div>
+                </a>
+
+                <!-- Post 4 (2026-09-16 Resisting Mode Gravity) -->
+                <a href="./posts/2026/09/16/resisting-mode-gravity/" class="writing-card">
+                    <div>
+                        <div class="writing-card-header">
+                            <span class="writing-pub-tag">Product Architecture</span>
+                            <span class="writing-date">2026-09-16</span>
+                        </div>
+                        <h3 class="writing-card-title">
+                            <span data-i18n="zh">对抗“模式引力”：为什么我们总把新工具当旧工具用？</span>
+                            <span data-i18n="en">Resisting "Mode Gravity": Why Do We Treat New Tools Like Old Ones?</span>
+                        </h3>
+                        <p class="writing-card-desc">
+                            <span data-i18n="zh">从马车车厢到 AI 对话框，我们往往受限于旧范式。从认知引力、交互降维与非对称竞争三个维度，探讨如何构建真正释放 AI 能力的原生产品架构。</span>
+                            <span data-i18n="en">From horse-drawn carriages to AI chat boxes, legacy metaphors constrain us. Analyzing cognitive gravity, interaction reduction, and asymmetrical advantage to build genuine AI-native systems.</span>
+                        </p>
+                    </div>
+                    <div class="writing-card-footer">
+                        <span>PERSPECTIVE</span>
+                        <span>READ ARTICLE ↗</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Marquee Banner 3 -->
-    <div class="marquee-wrapper">
+    <!-- Marquee Banner 3 (Sticky replacement at Work) -->
+    <div class="marquee-wrapper sticky-banner sticky-banner-work">
         <div class="marquee-track">
             <span>PROFESSIONAL EXPERIENCE • CAREER ROADMAP • ENTERPRISE SAAS • TECHNICAL PRODUCT LEAD •&nbsp;</span>
             <span>PROFESSIONAL EXPERIENCE • CAREER ROADMAP • ENTERPRISE SAAS • TECHNICAL PRODUCT LEAD •&nbsp;</span>
@@ -442,208 +556,152 @@ layout: null
                     <h2 class="section-title">Work</h2>
                 </div>
                 <p class="section-subtitle">
-                    <span data-i18n="zh">十年以上技术与平台产品经验，覆盖企业级 SaaS、大流量平台与 AI 工作流。</span>
-                    <span data-i18n="en">10+ years of technical & platform product management across enterprise SaaS, high-traffic systems, and AI workflows.</span>
+                    <span data-i18n="zh">深耕企业级 SaaS、大流量高并发架构与 AI 原生系统工程。</span>
+                    <span data-i18n="en">Covering enterprise SaaS, high-concurrency systems, and AI-native engineering.</span>
                 </p>
             </div>
 
-            <!-- Compact Chronological Work History Rows -->
             <div class="work-history-list">
-                <!-- Row 1: Miaoawu Tech Studio -->
-                <div class="work-history-item">
+                <!-- 1. GitLab -->
+                <div class="work-history-card">
                     <div class="work-history-meta">
-                        <span class="work-history-period">2024.09 – PRESENT</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">喵嗷呜科技工作室</span>
-                            <span data-i18n="en">Miaoawu Tech Studio</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">联合创始人 / 技术产品负责人</span>
-                            <span data-i18n="en">Co-founder / Tech Product Lead</span>
+                        <div>
+                            <h3 class="work-history-company">GitLab (CN)</h3>
+                            <div class="work-history-role">
+                                <span data-i18n="zh">产品负责人</span>
+                                <span data-i18n="en">Head of Product</span>
+                            </div>
+                        </div>
+                        <div class="work-history-date">
+                            2022.04 - 2024.12
                         </div>
                     </div>
                     <div class="work-history-desc">
-                        <span data-i18n="zh">主导企业级 AI Agentic Workflow 与自动化工具链搭建，基于 LLM API、n8n 构建自动化流水线，设计跨平台数据同步与统一 API 接口。</span>
-                        <span data-i18n="en">Architected enterprise AI automation pipelines & agentic workflows (LLM APIs, n8n), unified cross-platform API contracts, and managed rapid agile prototypes.</span>
+                        <span data-i18n="zh">主导极狐 GitLab SaaS 平台技术与产品规划，负责平台底座稳定性与研发效率基建；推进跨时区开源社区协作与大型政企私有化部署架构规范。</span>
+                        <span data-i18n="en">Spearheaded GitLab SaaS (CN) platform architecture and product strategy; managed cross-timezone engineering collaboration and enterprise private deployment frameworks.</span>
                     </div>
                 </div>
 
-                <!-- Row 2: JiHu GitLab -->
-                <div class="work-history-item">
+                <!-- 2. Bilibili -->
+                <div class="work-history-card">
                     <div class="work-history-meta">
-                        <span class="work-history-period">2022.02 – 2024.09</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">极狐 GitLab</span>
-                            <span data-i18n="en">JiHu (GitLab)</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">产品专家 / SaaS 与平台产品负责人</span>
-                            <span data-i18n="en">Senior Product Manager / Product Specialist</span>
+                        <div>
+                            <h3 class="work-history-company">Bilibili (哔哩哔哩)</h3>
+                            <div class="work-history-role">
+                                <span data-i18n="zh">技术产品经理</span>
+                                <span data-i18n="en">Technical Product Manager</span>
+                            </div>
+                        </div>
+                        <div class="work-history-date">
+                            2020.10 - 2022.04
                         </div>
                     </div>
                     <div class="work-history-desc">
-                        <span data-i18n="zh">主导中国区 SaaS 平台与本地化企业版产品规划，管理跨时区国际化分布式产研协同，推动路线图制定与高可用企业级功能端到端交付。</span>
-                        <span data-i18n="en">Owned product planning and quarterly roadmaps for China SaaS & Self-Managed enterprise editions, coordinating multi-timezone international R&D teams.</span>
+                        <span data-i18n="zh">通过全流程 A/B 测试优化用户注册与留存链路，结合精细化用户分层运营策略，有效提升注册转化率与次周留存。</span>
+                        <span data-i18n="en">Designed end-to-end A/B tests to optimize registration and onboarding funnels, significantly improving user activation and week-2 retention.</span>
                     </div>
                 </div>
 
-                <!-- Row 3: Shanghai Xianze Analytical Instruments -->
-                <div class="work-history-item">
+                <!-- 3. Ctrip -->
+                <div class="work-history-card">
                     <div class="work-history-meta">
-                        <span class="work-history-period">2019.08 – 2022.02</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">上海仙泽分析仪器</span>
-                            <span data-i18n="en">Shanghai Xianze Analytical Instruments</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">软件与平台产品负责人</span>
-                            <span data-i18n="en">Software & Platform Product Lead</span>
+                        <div>
+                            <h3 class="work-history-company">Ctrip (携程集团)</h3>
+                            <div class="work-history-role">
+                                <span data-i18n="zh">产品经理</span>
+                                <span data-i18n="en">Product Manager</span>
+                            </div>
+                        </div>
+                        <div class="work-history-date">
+                            2016.03 - 2020.10
                         </div>
                     </div>
                     <div class="work-history-desc">
-                        <span data-i18n="zh">面向科研与工业实验室场景，主导高精度光谱分析工作站软件与 SaaS 数据平台的产品架构与交付，搭建 Jira 敏捷管理体系。</span>
-                        <span data-i18n="en">Led product architecture and delivery for optical workstation software and laboratory SaaS data platforms, standardizing Jira-based agile workflows.</span>
-                    </div>
-                </div>
-
-                <!-- Row 4: Shanghai Qinwen Network Technology -->
-                <div class="work-history-item">
-                    <div class="work-history-meta">
-                        <span class="work-history-period">2018.06 – 2019.05</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">上海钦文网络科技</span>
-                            <span data-i18n="en">Shanghai Qinwen Network Technology</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">高级产品经理</span>
-                            <span data-i18n="en">Senior Product Manager</span>
-                        </div>
-                    </div>
-                    <div class="work-history-desc">
-                        <span data-i18n="zh">通过全流程 A/B 测试优化用户注册与付费转化链路，结合精细化用户分层运营策略，推动注册转化率提升 30%+，DAU 提升 20%+。</span>
-                        <span data-i18n="en">Designed end-to-end A/B tests to optimize registration and onboarding funnels, boosting conversion rate by 30%+ and DAU by 20%+.</span>
-                    </div>
-                </div>
-
-                <!-- Row 5: Bilibili -->
-                <div class="work-history-item">
-                    <div class="work-history-meta">
-                        <span class="work-history-period">2016.09 – 2018.03</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">哔哩哔哩 (Bilibili)</span>
-                            <span data-i18n="en">Bilibili</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">高级产品经理</span>
-                            <span data-i18n="en">Senior Product Manager</span>
-                        </div>
-                    </div>
-                    <div class="work-history-desc">
-                        <span data-i18n="zh">负责移动主站跨端组件与 Hybrid 架构升级，确保大流量峰值下的系统流畅度与交付一致性；搭建全栈转化漏斗与埋点监控指标体系。</span>
-                        <span data-i18n="en">Deployed cross-platform UI frameworks and Hybrid infrastructures for peak traffic; established full-stack event tracking and funnel monitoring metrics.</span>
-                    </div>
-                </div>
-
-                <!-- Row 6: Ctrip -->
-                <div class="work-history-item">
-                    <div class="work-history-meta">
-                        <span class="work-history-period">2014.03 – 2016.03</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">携程 (Ctrip)</span>
-                            <span data-i18n="en">Ctrip</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">产品经理 (营销与技术平台)</span>
-                            <span data-i18n="en">Product Manager (Technology PM / Marketing)</span>
-                        </div>
-                    </div>
-                    <div class="work-history-desc">
-                        <span data-i18n="zh">主导 APP 深度链接（Deep Linking）与 URI 路由标准化系统重构，使全站订单转化率提升 70%~80%；规划原生广告全生命周期看板与标准化营销 API。</span>
-                        <span data-i18n="en">Spearheaded APP Deep Linking & URI routing overhaul, boosting order conversion rate by 70%~80%; designed marketing automation APIs and real-time dashboards.</span>
-                    </div>
-                </div>
-
-                <!-- Row 7: Beijing Lianyintong Technology -->
-                <div class="work-history-item">
-                    <div class="work-history-meta">
-                        <span class="work-history-period">2012.07 – 2014.01</span>
-                        <h3 class="work-history-company">
-                            <span data-i18n="zh">北京联银通科技 (上海农商银行)</span>
-                            <span data-i18n="en">Beijing Lianyintong Tech (SRCB)</span>
-                        </h3>
-                        <div class="work-history-role">
-                            <span data-i18n="zh">软件工程师</span>
-                            <span data-i18n="en">Software Engineer</span>
-                        </div>
-                    </div>
-                    <div class="work-history-desc">
-                        <span data-i18n="zh">负责银行核心数据聚合平台（DCP）的后端开发、接口编写、自动化测试与生产环境部署，积累扎实的底层软件架构与数据处理经验。</span>
-                        <span data-i18n="en">Developed backend data aggregation modules and automated test pipelines for core banking platforms, building a solid software architecture foundation.</span>
+                        <span data-i18n="zh">主导 APP 深度链接（Deep Linking）与 URI 路由标准化系统重构，消除跨端跳转断流，大幅拉升营销渠道的落地转化率；规划原生广告看板与标准化营销 API。</span>
+                        <span data-i18n="en">Spearheaded APP Deep Linking & URI routing overhaul, eliminating cross-platform drop-offs and significantly boosting campaign conversion rates; designed marketing automation APIs.</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. Unified Section: CONTACT & ABOUT (截图部分合并，作为联系) -->
-    <div id="contact">
-        <!-- About The Process Block -->
-        <section class="section-block" style="border-bottom: none; padding-bottom: 5rem;">
-            <div class="container">
-                <div class="about-grid">
-                    <div>
-                        <h2 class="about-heading">
-                            About<br>The<br>Process
-                        </h2>
+    <!-- 6. Section: ABOUT THE PROCESS (关于研发理念) -->
+    <section class="section-block" id="about">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">About<br>The Process</h2>
+                </div>
+                <div class="about-content">
+                    <div data-i18n="zh">
+                        <p>
+                            作为一名 <strong>Product Engineer</strong>，我不相信空谈愿景或纯靠 Prompt 抽卡能做出真正可靠的生产级系统。
+                        </p>
+                        <p>
+                            大模型天然具备概率与不确定性，但企业的业务逻辑和自动化流水线必须是确定性的。我的工程目标，就是用 <strong>DAG 状态机、Kahn 拓扑排序和受限解码</strong> 等确定性铁轨，把不可控的概率收敛在安全边界之内。
+                        </p>
+                        <p>
+                            在技术实现上，我坚持“平台底蕴 + 商业增长”的双轨实践：既要把控底层系统的稳定与防死锁，又要站在真实用户视角把上手门槛做低。
+                        </p>
                     </div>
-                    <div class="about-content">
-                        <div data-i18n="zh">
-                            <p>
-                                站在<strong>产品设计、前沿技术与商业逻辑</strong>的交汇点，我专注于将复杂的业务系统与模糊的需求，转化为清晰、确定且具有商业价值的决策路径。
-                            </p>
-                            <p>
-                                我将<strong>设计</strong>视作一种决策结构，将<strong>AI 与自动化技术</strong>视作人类判断力与直觉创造力的倍增器；而<strong>商业约束</strong>则是打磨创新的磨刀石，而非创新的枷锁。
-                            </p>
-                            <p>
-                                目前，我正致力于验证 <strong>"Local Business Stability + Global Remote Nomadism"</strong> 的混合运作模式，持续探索自由与专注并存的独立数字空间。
-                            </p>
-                        </div>
-                        <div data-i18n="en">
-                            <p>
-                                Working at the intersection of <strong>product design, technology, and business strategy</strong>, I focus on turning complex systems into clear decisions that align user needs, technical possibilities, and commercial intent.
-                            </p>
-                            <p>
-                                I see <strong>design</strong> as a decision-making structure, <strong>AI & technology</strong> as a multiplier of human judgment and creativity, and <strong>business constraints</strong> as parameters that sharpen, rather than limit, innovation.
-                            </p>
-                            <p>
-                                Currently validating the hybrid model of <strong>"Local Business Stability + Global Remote Nomadism"</strong>, exploring the frontiers of sovereign digital workflows.
-                            </p>
-                        </div>
+                    <div data-i18n="en">
+                        <p>
+                            As a <strong>Product Engineer</strong>, I don't believe vague vision statements or prompt tinkering alone produce reliable production systems.
+                        </p>
+                        <p>
+                            LLMs are inherently probabilistic, but real business automation requires determinism. My engineering focus is laying white-box rails—<strong>DAG state machines, Kahn topological scheduling, and constrained decoding</strong>—to keep non-deterministic models bounded within safe contracts.
+                        </p>
+                        <p>
+                            In practice, I balance platform engineering rigor with product growth: maintaining rock-solid deadlock prevention beneath the hood while obsessing over zero-friction user onboarding.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Dark Inverted Footer Contact -->
-        <footer class="site-footer">
-            <div class="footer-dot-bg"></div>
-            <div class="container" style="position: relative; z-index: 10;">
-                <p class="footer-top-label">GOT A PROJECT OR IDEA?</p>
-                <a href="mailto:gu0bug0@gmail.com" class="footer-email-link">gu0bug0@gmail.com</a>
+    <!-- Dark Inverted Footer Contact -->
+    <footer class="site-footer">
+        <div class="footer-dot-bg"></div>
+        <div class="container" style="position: relative; z-index: 10;">
+            <p class="footer-top-label">GOT A PROJECT OR IDEA?</p>
+            <a href="mailto:gu0bug0@gmail.com" class="footer-email-link">gu0bug0@gmail.com</a>
 
-                <div class="footer-bottom">
-                    <div>
-                        © 2026 Guo Qiang / GuoBug · Built with Vibe Coding
-                    </div>
-                    <div class="footer-social-links">
-                        <a href="https://github.com/GuoBug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
-                        <a href="https://guobug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
-                        <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
-                    </div>
+            <div class="footer-bottom">
+                <div>
+                    © 2026 Guo Qiang / GuoBug · Product Engineer
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com/GuoBug" target="_blank" rel="noopener noreferrer" class="footer-social-link">GITHUB</a>
+                    <a href="https://guobug.github.io/metaphysics-tools/index.html#" target="_blank" rel="noopener noreferrer" class="footer-social-link">METAPHYSICS</a>
+                    <a href="mailto:gu0bug0@gmail.com" class="footer-social-link">CONTACT</a>
                 </div>
             </div>
-        </footer>
-    </div>
+
+            <!-- Exposed Machine & AI Context Protocols (Bottom Terminal Bar) -->
+            <div class="footer-protocols-bar">
+                <span class="protocol-bar-label">MACHINE &amp; AI CONTEXT:</span>
+                <div class="protocol-tags">
+                    <a href="https://guobug.github.io/llms.txt" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>LLMS.TXT</span>
+                    </a>
+                    <a href="https://guobug.github.io/llms-full.txt" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>LLMS-FULL.TXT</span>
+                    </a>
+                    <a href="https://guobug.github.io/sitemap.xml" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>SITEMAP.XML</span>
+                    </a>
+                    <a href="https://guobug.github.io/robots.txt" target="_blank" class="protocol-tag">
+                        <span class="protocol-dot"></span>
+                        <span>ROBOTS.TXT</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Client Script -->
     <script src="./assets/app.js"></script>

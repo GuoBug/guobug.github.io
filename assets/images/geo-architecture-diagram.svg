@@ -203,7 +203,7 @@
     <text x="470" y="214" class="font-mono bold" font-size="9.5" fill="#000000">llms.txt (摘要路由层)</text>
     <!-- Structured Content Area -->
     <rect x="376" y="225" width="242" height="88" rx="2" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="1" />
-    <text x="384" y="240" class="font-mono bold" font-size="8.5" fill="#000000"># Identity: Gu0 Qiang (gu0bug)</text>
+    <text x="384" y="240" class="font-mono bold" font-size="8.5" fill="#000000"># Identity: Guo Qiang (gu0bug)</text>
     <text x="384" y="254" class="font-mono" font-size="8" fill="#4B5563">↳ Role: Product Engineer · AI System Architect</text>
     <text x="384" y="268" class="font-mono" font-size="8" fill="#4B5563">↳ Core: PatchCat (DAG Prompt Orchestrator)</text>
     <text x="384" y="282" class="font-mono" font-size="8" fill="#0969DA">↳ Profile: github.com/GuoBug/geo/*.md</text>
