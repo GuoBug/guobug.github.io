@@ -180,22 +180,29 @@
         articleBodies.forEach(body => {
             const containers = body.querySelectorAll('.highlighter-rouge, pre');
             containers.forEach(block => {
-                // If it's a pre inside .highlighter-rouge, let parent handle it
-                if (block.tagName === 'PRE' && block.closest('.highlighter-rouge')) {
+                // If it's a pre inside .highlighter-rouge or already wrapped in .neo-code-block, skip
+                if (block.tagName === 'PRE' && (block.closest('.highlighter-rouge') || block.closest('.neo-code-block'))) {
                     return;
                 }
 
-                if (block.querySelector('.code-header-bar')) {
-                    return; // Already enhanced
+                // If already enhanced or has header bar inside or as previous sibling, skip
+                if (block.querySelector('.code-header-bar') || block.classList.contains('neo-code-block') || block.previousElementSibling?.classList.contains('code-header-bar')) {
+                    return;
+                }
+
+                // Skip mermaid diagrams from code-block decoration
+                const fullClassStr = (block.className || '') + ' ' + (block.querySelector('pre, code')?.className || '');
+                if (fullClassStr.includes('language-mermaid') || fullClassStr.includes('mermaid')) {
+                    return;
                 }
 
                 const pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
-                if (!pre) return;
+                if (!pre || pre.dataset.enhanced === 'true') return;
+                pre.dataset.enhanced = 'true';
 
                 // Detect programming language
                 let lang = 'CODE';
-                const classStr = (block.className || '') + ' ' + (pre.className || '') + ' ' + (pre.querySelector('code')?.className || '');
-                const match = classStr.match(/language-([a-zA-Z0-9_\-]+)/);
+                const match = fullClassStr.match(/language-([a-zA-Z0-9_\-]+)/);
                 if (match && match[1]) {
                     lang = match[1].toUpperCase();
                 }

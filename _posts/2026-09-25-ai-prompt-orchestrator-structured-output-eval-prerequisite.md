@@ -236,37 +236,13 @@ export const TicketContractSchema = z.object({
 
 L1 和 L2 拼起来，就是 LLM 节点发起调用时的完整前置防线：
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Engine as DAG 编排引擎
-    participant Node as LLM 节点执行器
-    participant L1 as L1 协商与物理修补
-    participant Provider as 大模型 API (云端/端侧)
-    participant L2 as L2 Zod 语义守卫
-
-    Engine->>Node: 调度触发执行 (含 Prompt 与契约)
-    Node->>L1: 协商 responseFormat
-    L1-->>Node: 返回协商参数 (json_schema / json_object / none)
-    Node->>Provider: 发起流式/标准网络请求
-    Provider-->>Node: 返回生成文本流
-    Node->>L1: 传入原始文本
-    L1->>L1: repairJsonL1 清洗 Markdown 与闭合修剪
-    L1-->>Node: 输出合法 JSON 字符串
-    Node->>L2: schema.safeParse(parsedJson)
-    alt 契约完全满足 (success: true)
-        L2-->>Engine: 传递强类型确定性 Payload
-    else 契约违规 (success: false)
-        L2-->>Node: 返回结构化违规明细 (Issues)
-        Note over Node: 触发后续自愈状态机或降级路由 (下一篇详述)
-    end
-```
+![运行时交互时序：L1 与 L2 防线协同流水线]({{ '/assets/images/flowchart-runtime-sequence-dag-l1-l2.svg' | relative_url }})
 
 ### 实测：故意喂脏数据
 
 我构造了几组用例：括号故意不闭合、`urgency` 注入 9、`summary` 给空串、`isRefundRequested` 为 false 却带退款金额。跑下来，L1 把结构补齐，L2 拦住非法字段并给出 issue 明细，主事件循环全程没抛异常。
 
-![实测 Mock 注入与防线拦截]({{ '/assets/images/structured-output-mock-injection-pass.png' | relative_url }})
+![实测 Mock 注入与防线拦截]({{ '/assets/images/04-token-truncated-never-throw.png' | relative_url }})
 
 需要说明的是，这些是 Mock 注入的结果，不是线上真实流量的统计。真实分布还得等跑起来再看。
 
