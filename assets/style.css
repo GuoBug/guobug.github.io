@@ -19,6 +19,11 @@
     --accent: #7fff00; /* Neon Lime / Chartreuse */
     --accent-foreground: #000000;
     --border: #000000;
+    /* M-4: 导航条实测高度（用定宽 iframe + headless Chrome 量得，非估算）。
+       .mobile-nav-drawer / .marquee-wrapper.sticky-banner 的 top 统一引用它，
+       消除原先 61px / 51px / 67px 三个硬编码值带来的 3~9px 缝隙或压盖。 */
+    --nav-h: 51.75px;
+
     --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
     --font-mono: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace;
 
@@ -228,6 +233,19 @@ body {
     transition: transform 0.15s ease;
 }
 
+/* --nav-h 断点覆盖：与导航条自身断点保持一致 */
+@media (min-width: 440px) {
+    :root { --nav-h: 58.34px; }
+}
+
+@media (min-width: 480px) {
+    :root { --nav-h: 60.56px; }
+}
+
+@media (min-width: 768px) {
+    :root { --nav-h: 76px; }
+}
+
 @media (min-width: 440px) {
     .nav-logo-img {
         width: 24px;
@@ -401,7 +419,7 @@ body {
 .mobile-nav-drawer {
     display: none;
     position: fixed;
-    top: 61px;
+    top: var(--nav-h);
     left: 0;
     width: 100%;
     background: var(--background);
@@ -452,7 +470,7 @@ body {
 .hero-main-title-wrap {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 0.75rem;
     position: relative;
     z-index: 10;
@@ -460,7 +478,6 @@ body {
 
 @media (min-width: 768px) {
     .hero-main-title-wrap {
-        justify-content: flex-start;
         gap: 1.5rem;
     }
 }
@@ -903,14 +920,8 @@ body {
 
 .marquee-wrapper.sticky-banner {
     position: sticky;
-    top: 51px;
+    top: var(--nav-h);
     z-index: 900;
-}
-
-@media (min-width: 768px) {
-    .marquee-wrapper.sticky-banner {
-        top: 67px;
-    }
 }
 
 .marquee-wrapper.sticky-banner.sticky-banner-writings {
