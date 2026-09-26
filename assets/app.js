@@ -9,6 +9,7 @@
  *   5. 滚动引擎（导航高亮 + 视差，合并为单条 rAF 通道）
  *   6. 代码块增强与复制
  *   7. 图片灯箱
+ *   8. 文章归档分页（每页上限 12 篇，URL 状态同步，双语与平滑翻页）
  */
 
 (function () {
@@ -670,5 +671,205 @@
         overlay.addEventListener('click', function () {
             closeLightbox();
         });
+    })();
+
+    /* ======================================================================
+       8. 文章归档分页 (Writings Pagination)
+       支持 URL 参数同步 (?page=X & ?lang=zh)、浏览器前进后退 (popstate)、
+       每页上限 12 篇、平滑滚动定位与中英双语标签。
+       ====================================================================== */
+
+    (function initWritingsPagination() {
+        var postsGrid = document.getElementById('postsArchiveGrid');
+        var paginationNav = document.getElementById('postsPagination');
+        if (!postsGrid || !paginationNav) return;
+
+        var cards = toNodeArray(postsGrid.querySelectorAll('.writing-card'));
+        if (cards.length === 0) return;
+
+        var perPage = parseInt(postsGrid.getAttribute('data-per-page'), 10) || 12;
+        var totalPages = Math.ceil(cards.length / perPage);
+
+        // 如果文章数未超单页上限，不需要分页控制器
+        if (totalPages <= 1) {
+            paginationNav.style.display = 'none';
+            return;
+        }
+
+        function getPageFromUrl() {
+            try {
+                var param = new URLSearchParams(window.location.search).get('page');
+                if (param) {
+                    var parsed = parseInt(param, 10);
+                    if (!isNaN(parsed) && parsed >= 1) {
+                        return Math.min(parsed, totalPages);
+                    }
+                }
+            } catch (e) {
+                /* URLSearchParams 不受支持时回退到第 1 页 */
+            }
+            return 1;
+        }
+
+        function buildPageUrl(targetPage) {
+            try {
+                var url = new URL(window.location.href);
+                if (targetPage <= 1) {
+                    url.searchParams.delete('page');
+                } else {
+                    url.searchParams.set('page', targetPage);
+                }
+                return url.pathname + url.search + url.hash;
+            } catch (e) {
+                return targetPage <= 1 ? window.location.pathname : '?page=' + targetPage;
+            }
+        }
+
+        function getPageItems(current, total) {
+            if (total <= 7) {
+                var pages = [];
+                for (var i = 1; i <= total; i++) pages.push(i);
+                return pages;
+            }
+            if (current <= 4) {
+                return [1, 2, 3, 4, 5, '...', total];
+            }
+            if (current >= total - 3) {
+                return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+            }
+            return [1, '...', current - 1, current, current + 1, '...', total];
+        }
+
+        var currentPage = getPageFromUrl();
+
+        function renderPage(page, options) {
+            options = options || {};
+            currentPage = Math.max(1, Math.min(page, totalPages));
+
+            var startIndex = (currentPage - 1) * perPage;
+            var endIndex = currentPage * perPage;
+
+            for (var i = 0; i < cards.length; i++) {
+                if (i >= startIndex && i < endIndex) {
+                    cards[i].classList.remove('page-hidden');
+                } else {
+                    cards[i].classList.add('page-hidden');
+                }
+            }
+
+            var html = '';
+            html += '<div class="pagination-status">';
+            html += '<span data-i18n="zh">第 ' + currentPage + ' / ' + totalPages + ' 页 · 共 ' + cards.length + ' 篇</span>';
+            html += '<span data-i18n="en">PAGE ' + currentPage + ' OF ' + totalPages + ' · ' + cards.length + ' ARTICLES</span>';
+            html += '</div>';
+
+            html += '<div class="pagination-controls" role="navigation" aria-label="Pagination">';
+
+            // 上一页
+            if (currentPage > 1) {
+                html += '<a href="' + buildPageUrl(currentPage - 1) + '" class="pagination-btn pagination-prev" data-page="' + (currentPage - 1) + '" aria-label="Previous page">';
+                html += '<span aria-hidden="true">&larr;</span> ';
+                html += '<span data-i18n="zh">上一页</span><span data-i18n="en">PREV</span>';
+                html += '</a>';
+            } else {
+                html += '<span class="pagination-btn pagination-prev disabled" aria-disabled="true" tabindex="-1">';
+                html += '<span aria-hidden="true">&larr;</span> ';
+                html += '<span data-i18n="zh">上一页</span><span data-i18n="en">PREV</span>';
+                html += '</span>';
+            }
+
+            // 数字页码
+            var items = getPageItems(currentPage, totalPages);
+            for (var j = 0; j < items.length; j++) {
+                var it = items[j];
+                if (it === '...') {
+                    html += '<span class="pagination-ellipsis" aria-hidden="true">&hellip;</span>';
+                } else if (it === currentPage) {
+                    html += '<span class="pagination-btn pagination-num active" aria-current="page">' + it + '</span>';
+                } else {
+                    html += '<a href="' + buildPageUrl(it) + '" class="pagination-btn pagination-num" data-page="' + it + '" aria-label="Page ' + it + '">' + it + '</a>';
+                }
+            }
+
+            // 下一页
+            if (currentPage < totalPages) {
+                html += '<a href="' + buildPageUrl(currentPage + 1) + '" class="pagination-btn pagination-next" data-page="' + (currentPage + 1) + '" aria-label="Next page">';
+                html += '<span data-i18n="zh">下一页</span><span data-i18n="en">NEXT</span>';
+                html += ' <span aria-hidden="true">&rarr;</span>';
+                html += '</a>';
+            } else {
+                html += '<span class="pagination-btn pagination-next disabled" aria-disabled="true" tabindex="-1">';
+                html += '<span data-i18n="zh">下一页</span><span data-i18n="en">NEXT</span>';
+                html += ' <span aria-hidden="true">&rarr;</span>';
+                html += '</span>';
+            }
+
+            html += '</div>';
+
+            paginationNav.innerHTML = html;
+            paginationNav.style.display = 'flex';
+
+            // 同步当前语言链接参数
+            var activeLang = document.documentElement.getAttribute('data-lang') || 'en';
+            syncInternalLinks(activeLang);
+
+            // 更新历史记录 URL
+            if (options.pushState && window.history && window.history.pushState) {
+                try {
+                    var currentUrl = new URL(window.location.href);
+                    if (currentPage <= 1) {
+                        currentUrl.searchParams.delete('page');
+                    } else {
+                        currentUrl.searchParams.set('page', currentPage);
+                    }
+                    var fullPath = currentUrl.pathname + currentUrl.search + currentUrl.hash;
+                    if (fullPath !== window.location.pathname + window.location.search + window.location.hash) {
+                        window.history.pushState({ page: currentPage }, '', fullPath);
+                    }
+                } catch (e) {}
+            }
+
+            // 平滑滚动回列表顶部
+            if (options.scroll) {
+                var header = document.querySelector('.section-header') || postsGrid;
+                if (header) {
+                    var targetY = header.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - 70;
+                    var currentY = window.pageYOffset || document.documentElement.scrollTop;
+                    if (currentY > targetY) {
+                        window.scrollTo({
+                            top: Math.max(0, targetY),
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }
+        }
+
+        // 事件委托：处理页码与上下页点击
+        paginationNav.addEventListener('click', function (e) {
+            if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+            var btn = closestFrom(e.target, '.pagination-btn');
+            if (!btn || btn.classList.contains('disabled') || btn.classList.contains('active')) return;
+
+            var pageAttr = btn.getAttribute('data-page');
+            if (!pageAttr) return;
+
+            var target = parseInt(pageAttr, 10);
+            if (target >= 1 && target <= totalPages && target !== currentPage) {
+                e.preventDefault();
+                renderPage(target, { scroll: true, pushState: true });
+            }
+        });
+
+        // 监听浏览器前进/后退
+        window.addEventListener('popstate', function () {
+            var urlPage = getPageFromUrl();
+            if (urlPage !== currentPage) {
+                renderPage(urlPage, { scroll: false, pushState: false });
+            }
+        });
+
+        // 首次加载立即执行分页
+        renderPage(currentPage, { scroll: false, pushState: false });
     })();
 })();

@@ -1385,6 +1385,119 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   WRITINGS Pagination (Neo-Brutalism Style)
+   -------------------------------------------------------------------------- */
+.writing-card.page-hidden {
+    display: none !important;
+}
+
+.pagination-wrapper {
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    user-select: none;
+}
+
+.pagination-status {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted-foreground);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    font-weight: 700;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 2px solid #000000;
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    box-shadow: 3px 3px 0 0 #000000;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.pagination-btn.pagination-num {
+    padding: 0 0.5rem;
+}
+
+.pagination-btn:hover:not(.disabled):not(.active) {
+    background-color: var(--accent);
+    color: #000000;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 0 #000000;
+}
+
+.pagination-btn:active:not(.disabled):not(.active) {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 0 #000000;
+}
+
+.pagination-btn.active {
+    background-color: #000000;
+    color: var(--accent);
+    border-color: #000000;
+    cursor: default;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 0 #000000;
+}
+
+.pagination-btn.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    border-color: #999999;
+    color: #888888;
+}
+
+.pagination-ellipsis {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0 0.25rem;
+    color: var(--muted-foreground);
+    line-height: 2.5rem;
+}
+
+@media (max-width: 640px) {
+    .pagination-wrapper {
+        margin-top: 2.25rem;
+        gap: 1rem;
+    }
+    .pagination-btn {
+        min-width: 2.2rem;
+        height: 2.2rem;
+        font-size: 0.75rem;
+        padding: 0 0.45rem;
+    }
+    .pagination-btn.pagination-prev,
+    .pagination-btn.pagination-next {
+        padding: 0 0.6rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
    ABOUT Section
    -------------------------------------------------------------------------- */
 .about-grid {

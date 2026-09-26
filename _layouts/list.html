@@ -3,7 +3,10 @@ layout: default
 ---
 <div class="section-header" style="margin-bottom: 2.5rem;">
     <div>
-        <h1 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Writings</h1>
+        <h1 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">
+            <span data-i18n="zh">文章归档</span>
+            <span data-i18n="en">Writings</span>
+        </h1>
     </div>
     <p class="section-subtitle">
         <span data-i18n="zh">所有独立撰写的关于 AI 原生、产品架构与游民工作流的思考归档。</span>
@@ -11,7 +14,7 @@ layout: default
     </p>
 </div>
 
-<div class="writings-grid">
+<div class="writings-grid" id="postsArchiveGrid" data-per-page="12">
 {% for post in site.posts %}
     <a href="{{ post.url | relative_url }}" class="writing-card">
         <div>
@@ -43,3 +46,5 @@ layout: default
     </a>
 {% endfor %}
 </div>
+
+<nav class="pagination-wrapper" id="postsPagination" aria-label="Writings pagination" style="display: none;"></nav>
