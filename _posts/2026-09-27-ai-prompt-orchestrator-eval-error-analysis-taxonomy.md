@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "从 0 到 1 打造 AI 提示流编排器：合规率暴涨 23.9%，语义准确率却跌了 7.1%？自愈病理学与双轴归因复盘（开源系列 17）"
-title_en: "Building AI Prompt Orchestrator: Compliance Up 23.9%, Semantic Accuracy Down 7.1%? Self-Healing Pathology & Dual-Axis Post-Mortem (Part 17)"
+title: "从 0 到 1 打造 AI 提示流编排器：合规暴涨 23.9% 语义却跌 7.1%？自愈病理诊断与双轴归因报告（番外系列 1）"
+title_en: "Building AI Prompt Orchestrator: Compliance Up 23.9%, Semantic Accuracy Down 7.1%? Self-Healing Pathology & Dual-Axis Attribution Report (Special 1)"
 date: 2026-09-27 00:30:00 +0800
 categories: [AI, Architecture, Testing]
 pub_tag: "Eval Pathology"

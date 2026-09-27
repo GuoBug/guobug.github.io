@@ -167,7 +167,7 @@ export function getSchema(name: string): z.ZodTypeAny | undefined {
 
 至此，关于确定性结构化输出与自愈状态机的探讨告一段落。
 
-下一篇：📖 [《从 0 到 1 打造 AI 提示流编排器：合规率暴涨 23.9%，语义准确率却跌了 7.1%？自愈病理学与双轴归因复盘（开源系列 17）》]({{ '/posts/2026/09/27/ai-prompt-orchestrator-eval-error-analysis-taxonomy/' | relative_url }})。
+下一篇：📖 [《从 0 到 1 打造 AI 提示流编排器：合规暴涨 23.9% 语义却跌 7.1%？自愈病理诊断与双轴归因报告（番外系列 1）》]({{ '/posts/2026/09/27/ai-prompt-orchestrator-eval-error-analysis-taxonomy/' | relative_url }})。
 
 欢迎社区同行与开发者参与 Review，共同探讨工作流引擎的设计与落地。
 
