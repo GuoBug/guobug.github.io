@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "从 0 到 1 打造 AI 提示流编排器：用一次“假药对照”，我们在大模型自愈中抓出了真凶（开源系列 18）"
-title_en: "Building AI Prompt Orchestrator: With a Placebo Control, We Caught the Real Culprit in LLM Self-Healing (Part 18)"
+title: "从 0 到 1 打造 AI 提示流编排器：用一次“假药对照”，我们在大模型自愈中抓出了真凶（番外系列 2）"
+title_en: "Building AI Prompt Orchestrator: With a Placebo Control, We Caught the Real Culprit in LLM Self-Healing (Special 2)"
 date: 2026-09-27 21:00:00 +0800
 categories: [AI, Architecture, Testing]
 pub_tag: "Empirical Causal Closure"

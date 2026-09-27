@@ -273,7 +273,7 @@ Case #7 的意图分类错误发生在第 1 轮（R1），此时自愈状态机�
 
 只有同时把控底层 **确定性工作流** 的严密性，以及面向业务语义的无死角度量，**DAG 状态机** 的编排节点才能真正承载起高可靠的企业级任务。
 
-下一篇：📖 [《从 0 到 1 打造 AI 提示流编排器：用一次“假药对照”，我们在大模型自愈中抓出了真凶（开源系列 18）》]({{ '/posts/2026/09/27/ai-prompt-orchestrator-placebo-control-and-empirical-closure/' | relative_url }})。
+下一篇：📖 [《从 0 到 1 打造 AI 提示流编排器：用一次“假药对照”，我们在大模型自愈中抓出了真凶（番外系列 2）》]({{ '/posts/2026/09/27/ai-prompt-orchestrator-placebo-control-and-empirical-closure/' | relative_url }})。
 
 ---
 
