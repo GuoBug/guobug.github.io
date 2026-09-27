@@ -1956,6 +1956,37 @@ img {
     box-shadow: 6px 6px 0px 0px #000000;
 }
 
+/* Responsive Image / Diagram Breakout (Expands on wide desktop up to 1020px) */
+.img-breakout {
+    margin: 2.75rem 0;
+    width: 100%;
+}
+
+@media (min-width: 860px) {
+    .img-breakout {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1000px, calc(100vw - 3rem));
+    }
+}
+
+@media (min-width: 1120px) {
+    .img-breakout {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1020px;
+    }
+}
+
+.img-breakout img {
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
 /* Responsive Video / Iframe Embed */
 .video-responsive-wrapper {
     position: relative;
@@ -2142,6 +2173,277 @@ pre code {
 .token-boolean { color: #ff7b72; font-weight: 700; }
 .token-operator { color: #79c0ff; }
 .token-accent { color: var(--accent); font-weight: 700; }
+
+/* ==========================================================================
+   Pages-Style Data Table Card & Responsive Breakout Layout
+   ========================================================================== */
+
+/* 全局 Markdown 原生表格保底 */
+.medium-body-text table,
+.post-content-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.925rem;
+    line-height: 1.5;
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 0 #000000;
+    background: #ffffff;
+}
+
+.medium-body-text th,
+.post-content-body th {
+    background-color: var(--surface-subtle);
+    color: #000000;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: 0.825rem;
+    letter-spacing: 0.03em;
+    padding: 0.85rem 1rem;
+    border-bottom: 2px solid var(--border);
+    border-right: 1.5px solid var(--line);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.medium-body-text th:last-child,
+.post-content-body th:last-child {
+    border-right: none;
+}
+
+.medium-body-text td,
+.post-content-body td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1.5px solid var(--line);
+    border-right: 1.5px solid var(--line);
+    vertical-align: middle;
+    color: var(--fg-body);
+}
+
+.medium-body-text td:last-child,
+.post-content-body td:last-child {
+    border-right: none;
+}
+
+.medium-body-text tbody tr:nth-child(even),
+.post-content-body tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.medium-body-text tbody tr:hover,
+.post-content-body tbody tr:hover {
+    background-color: #f4f4f5;
+}
+
+/* Pages 风格图表卡片（包含外框、标头栏、滚动容器与宽屏展开） */
+.pages-table-frame {
+    margin: 3rem 0;
+    width: 100%;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: 4px 4px 0px 0px #000000;
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* 宽屏响应式突破：在宽屏下允许表格宽度大于 760px 文章宽度，居中对称展开至 1020px，不可无限宽 */
+@media (min-width: 860px) {
+    .pages-table-frame {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1000px, calc(100vw - 3rem));
+    }
+}
+
+@media (min-width: 1120px) {
+    .pages-table-frame {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1020px;
+    }
+}
+
+/* 标头栏 (Pages Table Header Bar) */
+.table-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f6;
+    padding: 0.65rem 1.15rem;
+    border-bottom: 2px solid #000000;
+    user-select: none;
+}
+
+.table-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.table-window-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.table-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid #000000;
+    display: inline-block;
+}
+
+.table-dot.red { background-color: #ff5f56; }
+.table-dot.yellow { background-color: #ffbd2e; }
+.table-dot.green { background-color: #27c93f; }
+
+.table-title-label {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.table-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    background: var(--accent);
+    color: #000000;
+    border: 1.5px solid #000000;
+    padding: 0.15rem 0.5rem;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    box-shadow: 1.5px 1.5px 0 0 #000000;
+}
+
+/* 横向滑动容器 */
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 内部表格样式重置与排版 */
+.pages-table-frame table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    font-size: 0.925rem;
+    line-height: 1.55;
+    background: #ffffff;
+}
+
+.pages-table-frame thead th {
+    background-color: #fafafa;
+    color: #000000;
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.85rem 1rem;
+    border-bottom: 2px solid #000000;
+    border-right: 1.5px solid var(--line);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.pages-table-frame thead th:last-child {
+    border-right: none;
+}
+
+.pages-table-frame tbody td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1.5px solid var(--line);
+    border-right: 1.5px solid var(--line);
+    vertical-align: middle;
+    font-family: var(--font-sans);
+    color: #222222;
+}
+
+.pages-table-frame tbody td:last-child {
+    border-right: none;
+}
+
+.pages-table-frame tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.pages-table-frame tbody tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+.pages-table-frame tbody tr:hover {
+    background-color: #f4f4f5;
+}
+
+/* 单元格微排版与增益芯片 */
+.pages-table-frame .table-val {
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+.pages-table-frame .table-sub {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--muted-foreground);
+    margin-left: 0.2rem;
+}
+
+.pages-table-frame .metric-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-weight: 800;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    border: 1.5px solid #000000;
+    white-space: nowrap;
+}
+
+.pages-table-frame .metric-chip.positive {
+    background-color: #bbf7d0;
+    color: #14532d;
+    box-shadow: 1.5px 1.5px 0 0 #000000;
+}
+
+.pages-table-frame .metric-chip.warning {
+    background-color: #fef08a;
+    color: #713f12;
+    box-shadow: 1.5px 1.5px 0 0 #000000;
+}
+
+.pages-table-frame .metric-chip.neutral {
+    background-color: #e4e4e7;
+    color: #18181b;
+}
+
+/* 底部脚注栏 */
+.table-footer-bar {
+    padding: 0.6rem 1.15rem;
+    background-color: #fafafa;
+    border-top: 1.5px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 
 /* Medium Floating Interaction Pill (Bottom Sticky Bar) */
 .medium-floating-bar {
@@ -2365,14 +2667,16 @@ pre code {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 95vw;
-    max-height: 90vh;
+    justify-content: center;
+    max-width: 96vw;
+    max-height: 94vh;
     cursor: zoom-out;
 }
 
 .neo-lightbox-img {
-    max-width: 95vw;
-    max-height: 84vh;
+    width: auto;
+    max-width: min(94vw, 1440px);
+    max-height: 86vh;
     object-fit: contain;
     border: 3px solid #000000;
     border-radius: 10px;
@@ -2381,6 +2685,13 @@ pre code {
     cursor: zoom-out;
     transform: scale(0.96);
     transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+    .neo-lightbox-img[src$=".svg"] {
+        width: min(92vw, 1440px);
+        height: auto;
+    }
 }
 
 .neo-lightbox-overlay.active .neo-lightbox-img {

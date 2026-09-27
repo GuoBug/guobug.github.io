@@ -568,12 +568,59 @@
         }
     }
 
-    // 脚本位于 body 末尾，执行时机可能在 DOMContentLoaded 前后。
-    // 原实现无条件执行两次（立即 + DOMContentLoaded），这里保证只跑一次。
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', enhanceAllCodeBlocks);
-    } else {
+    function enhanceAllTables() {
+        var articleBodies = document.querySelectorAll('.medium-body-text, .post-content-body, article');
+        if (articleBodies.length === 0) return;
+
+        toNodeArray(articleBodies).forEach(function (body) {
+            var tables = body.querySelectorAll('table');
+            toNodeArray(tables).forEach(function (table) {
+                // 如果已经位于 .pages-table-frame 内部，不重复包裹
+                if (closestFrom(table, '.pages-table-frame')) return;
+
+                var title = table.getAttribute('data-title') || 'DATA TABLE // EVALUATION BENCHMARK';
+                var badge = table.getAttribute('data-badge') || 'METRICS';
+
+                var wrapper = document.createElement('div');
+                wrapper.className = 'pages-table-frame';
+
+                var header = document.createElement('div');
+                header.className = 'table-header-bar';
+                header.innerHTML =
+                    '<div class="table-header-left">' +
+                    '<div class="table-window-dots">' +
+                    '<span class="table-dot red"></span>' +
+                    '<span class="table-dot yellow"></span>' +
+                    '<span class="table-dot green"></span>' +
+                    '</div>' +
+                    '<span class="table-title-label"></span>' +
+                    '</div>' +
+                    '<span class="table-badge"></span>';
+
+                header.querySelector('.table-title-label').textContent = title;
+                header.querySelector('.table-badge').textContent = badge;
+
+                var scrollWrapper = document.createElement('div');
+                scrollWrapper.className = 'table-scroll-wrapper';
+
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(header);
+                scrollWrapper.appendChild(table);
+                wrapper.appendChild(scrollWrapper);
+            });
+        });
+    }
+
+    function runContentEnhancements() {
         enhanceAllCodeBlocks();
+        enhanceAllTables();
+    }
+
+    // 脚本位于 body 末尾，执行时机可能在 DOMContentLoaded 前后。
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runContentEnhancements);
+    } else {
+        runContentEnhancements();
     }
 
     /* ======================================================================

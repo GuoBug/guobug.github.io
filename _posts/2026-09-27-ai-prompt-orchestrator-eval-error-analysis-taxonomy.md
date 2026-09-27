@@ -39,12 +39,70 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 两组的系统提示词完全一致，唯一的变量就是结构化防御机制本身。测试跑完后，四个核心维度的数据摆在了桌面上：
 
-| 评估维度 | 核心指标 | A 组（基线） | B 组（自愈防御） | 净变化 | 工程含义 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **契约合规** | 端到端契约合规率 | 69.0% (29/42) | 92.9% (39/42) | **+23.9pt** | 格式崩溃与字段越界大幅压减 |
-| **语义正确** | 意图分类（category）准确率 | 85.7% (36/42) | 78.6% (33/42) | **−7.1pt** ⚠️ | 语义理解发生反常退化 |
-| **工程稳定** | 用例级输出稳定性 | 85.7% (12/14) | 100.0% (14/14) | +14.3pt | 完全消除了模型的采样抖动 |
-| **算力成本** | 平均 Token 消耗 | 333 tokens | 966 tokens | ×2.90 | 修复需消耗额外多轮轮次 |
+<div class="pages-table-frame">
+  <div class="table-header-bar">
+    <div class="table-header-left">
+      <div class="table-window-dots">
+        <span class="table-dot red"></span>
+        <span class="table-dot yellow"></span>
+        <span class="table-dot green"></span>
+      </div>
+      <span class="table-title-label">EVAL BENCHMARK // 42 配对样本实测质量报告</span>
+    </div>
+    <span class="table-badge">QWEN2.5-7B · N=42</span>
+  </div>
+  <div class="table-scroll-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>评估维度</th>
+          <th>核心指标</th>
+          <th>A 组（基线）</th>
+          <th>B 组（自愈防御）</th>
+          <th>净变化</th>
+          <th>工程含义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>契约合规</strong></td>
+          <td>端到端契约合规率</td>
+          <td><span class="table-val">69.0%</span> <span class="table-sub">(29/42)</span></td>
+          <td><span class="table-val">92.9%</span> <span class="table-sub">(39/42)</span></td>
+          <td><span class="metric-chip positive">+23.9pt</span></td>
+          <td>格式崩溃与字段越界大幅压减</td>
+        </tr>
+        <tr>
+          <td><strong>语义正确</strong></td>
+          <td>意图分类（category）准确率</td>
+          <td><span class="table-val">85.7%</span> <span class="table-sub">(36/42)</span></td>
+          <td><span class="table-val">78.6%</span> <span class="table-sub">(33/42)</span></td>
+          <td><span class="metric-chip warning">-7.1pt ⚠️</span></td>
+          <td>语义理解发生反常退化</td>
+        </tr>
+        <tr>
+          <td><strong>工程稳定</strong></td>
+          <td>用例级输出稳定性</td>
+          <td><span class="table-val">85.7%</span> <span class="table-sub">(12/14)</span></td>
+          <td><span class="table-val">100.0%</span> <span class="table-sub">(14/14)</span></td>
+          <td><span class="metric-chip positive">+14.3pt</span></td>
+          <td>完全消除了模型的采样抖动</td>
+        </tr>
+        <tr>
+          <td><strong>算力成本</strong></td>
+          <td>平均 Token 消耗</td>
+          <td><span class="table-val">333 tokens</span></td>
+          <td><span class="table-val">966 tokens</span></td>
+          <td><span class="metric-chip neutral">×2.90</span></td>
+          <td>修复需消耗额外多轮轮次</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer-bar">
+    <span>注：在硅基流动托管 Qwen/Qwen2.5-7B-Instruct 实测；14 个测试用例 × 3 轮独立采样（n=42 配对样本）。</span>
+  </div>
+</div>
 
 合规率从 69.0% 飙升到了 92.9%，但意图分类准确率却暴跌了 7.1 个百分点。
 
@@ -60,7 +118,9 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 把“降级托底”和“输入歧义”并列，是典型的概念交叉。降级托底是执行结局，而输入歧义是病因。为此，我们建立了双轴正交分析框架：
 
-![双轴正交分析框架与病理图谱]({{ '/assets/images/flowchart-dual-axis-error-taxonomy.svg' | relative_url }})
+<div class="img-breakout">
+  <img src="{{ '/assets/images/flowchart-dual-axis-error-taxonomy.svg' | relative_url }}" alt="双轴正交分析框架与病理图谱：终止状态轴 vs 根因病理轴" width="1440" height="900" loading="lazy" decoding="async">
+</div>
 
 ### 1. **终止状态轴（Termination States）**：定义任务的最终结局
 终止轴记录样本流转结束时的工程状态，互斥且穷尽：
@@ -139,10 +199,51 @@ Case #11 是导致 B 组 3 次重试耗尽、最终触发 S3 降级托底的唯�
 ### 1. 成果：消除生产方差（Case-level Stability）
 虽然意图分类存在退化，但评测矩阵揭示了第二项关键成果：
 
-| 评估组别 | 稳定通过 (3/3) | 稳定失败 (0/3) | 采样随机抖动 | 用例级稳定性 |
-| :--- | :--- | :--- | :--- | :--- |
-| **A 组（基线）** | 10 个用例 | 2 个用例 | 2 个用例（#7、#12） | 85.7% |
-| **B 组（防御）** | 13 个用例 | 1 个用例（#11） | 0 个用例 | 100.0% |
+<div class="pages-table-frame">
+  <div class="table-header-bar">
+    <div class="table-header-left">
+      <div class="table-window-dots">
+        <span class="table-dot red"></span>
+        <span class="table-dot yellow"></span>
+        <span class="table-dot green"></span>
+      </div>
+      <span class="table-title-label">STABILITY MATRIX // 用例级跨轮次采样稳定性矩阵</span>
+    </div>
+    <span class="table-badge">14 CASES × 3 RUNS</span>
+  </div>
+  <div class="table-scroll-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>评估组别</th>
+          <th>稳定通过 (3/3)</th>
+          <th>稳定失败 (0/3)</th>
+          <th>采样随机抖动</th>
+          <th>用例级稳定性</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A 组（基线）</strong></td>
+          <td>10 个用例</td>
+          <td>2 个用例</td>
+          <td>2 个用例 <span class="table-sub">(#7、#12)</span></td>
+          <td><span class="table-val">85.7%</span></td>
+        </tr>
+        <tr>
+          <td><strong>B 组（防御）</strong></td>
+          <td>13 个用例</td>
+          <td>1 个用例 <span class="table-sub">(#11)</span></td>
+          <td>0 个用例</td>
+          <td><span class="table-val">100.0%</span> <span class="metric-chip positive">+14.3pt</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer-bar">
+    <span>注：同一输入独立测试 3 轮；抖动定义为 3 轮输出中既有成功用例又有失败用例。</span>
+  </div>
+</div>
 
 在基线组中，Case #7 和 Case #12 出现了跨轮次结果翻转（同一输入测试 3 次，有时成功、有时失败）。在工业级工程落地中，稳定可复现的失败往往比忽好忽坏的偶发成功更具调试价值。B 组通过契约守卫将这种采样层面的随机方差完全吸收，稳定性达到 100%。
 

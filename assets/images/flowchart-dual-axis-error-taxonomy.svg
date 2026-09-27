@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 550" width="960" height="550" style="background: transparent; display: block;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900" style="background: transparent; display: block;">
   <defs>
     <!-- Background Dot Grid -->
-    <pattern id="dot-grid-eval" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.1" fill="#D4D4D8" />
+    <pattern id="dot-grid-eval" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.5" fill="#D4D4D8" />
     </pattern>
 
     <!-- Marker Arrowheads -->
@@ -20,116 +20,121 @@
       .font-mono { font-family: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'PingFang SC', monospace; }
       .font-heading { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif; }
       .bold { font-weight: 700; }
-      .border-main { stroke: #000000; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; }
-      .border-card { stroke: #000000; stroke-width: 2; }
-      .border-thin { stroke: #000000; stroke-width: 1.5; }
+      .bolder { font-weight: 800; }
+      .black { font-weight: 900; }
+      .border-main { stroke: #000000; stroke-width: 3; stroke-linecap: square; stroke-linejoin: miter; }
+      .border-card { stroke: #000000; stroke-width: 2.5; }
+      .border-thin { stroke: #000000; stroke-width: 2; }
     </style>
   </defs>
 
-  <!-- ================= Outer Container ================= -->
-  <rect x="14" y="14" width="932" height="522" rx="6" fill="#000000" />
-  <rect x="10" y="10" width="932" height="522" rx="6" fill="#FAF9F5" class="border-main" />
-  <rect x="13" y="13" width="926" height="516" rx="4" fill="url(#dot-grid-eval)" />
+  <!-- ================= Outer Container & Shadow ================= -->
+  <rect x="22" y="22" width="1400" height="860" rx="8" fill="#000000" />
+  <rect x="16" y="16" width="1400" height="860" rx="8" fill="#FAF9F5" class="border-main" />
+  <rect x="20" y="20" width="1392" height="852" rx="6" fill="url(#dot-grid-eval)" />
 
-  <!-- ================= Header Bar ================= -->
-  <rect x="26" y="24" width="900" height="42" rx="4" fill="#000000" />
-  <rect x="23" y="21" width="900" height="42" rx="4" fill="#FFFFFF" class="border-card" />
+  <!-- ================= Top Header Bar ================= -->
+  <rect x="42" y="40" width="1350" height="58" rx="6" fill="#000000" />
+  <rect x="38" y="36" width="1350" height="58" rx="6" fill="#FFFFFF" class="border-card" />
 
-  <rect x="32" y="29" width="175" height="26" rx="3" fill="#7FFF00" class="border-thin" />
-  <text x="119" y="46" class="font-mono bold" font-size="10" fill="#000000" text-anchor="middle" letter-spacing="1">EVAL PATHOLOGY // MOD-1</text>
+  <rect x="52" y="47" width="230" height="36" rx="4" fill="#7FFF00" class="border-thin" />
+  <text x="167" y="70" class="font-mono bolder" font-size="13" fill="#000000" text-anchor="middle" letter-spacing="1">EVAL PATHOLOGY // MOD-1</text>
 
-  <text x="218" y="47" class="font-heading bold" font-size="13" fill="#000000" letter-spacing="0.5">DUAL-AXIS ORTHOGONAL ERROR TAXONOMY &amp; SEMANTIC MASKING</text>
-  <text x="765" y="47" class="font-mono" font-size="10" fill="#52525B">N=42 PAIRED SAMPLES</text>
+  <text x="302" y="71" class="font-heading black" font-size="18" fill="#000000" letter-spacing="0.5">DUAL-AXIS ORTHOGONAL ERROR TAXONOMY &amp; SEMANTIC MASKING</text>
+  <text x="1200" y="71" class="font-mono bold" font-size="13" fill="#52525B">N=42 PAIRED SAMPLES</text>
 
   <!-- ================= Metrics Contrast Banner ================= -->
-  <!-- Left Metric: Compliance -->
-  <rect x="26" y="76" width="440" height="64" rx="4" fill="#000000" />
-  <rect x="23" y="73" width="440" height="64" rx="4" fill="#F0FDF4" class="border-card" />
-  <rect x="33" y="81" width="130" height="18" rx="2" fill="#7FFF00" class="border-thin" />
-  <text x="98" y="94" class="font-mono bold" font-size="9" fill="#000000" text-anchor="middle">CONTRACT COMPLIANCE</text>
-  <text x="33" y="125" class="font-heading bold" font-size="20" fill="#15803D">69.0% ➔ 92.9%</text>
-  <text x="200" y="125" class="font-mono bold" font-size="13" fill="#15803D">(+23.9pt, p=0.00195)</text>
-  <text x="360" y="123" class="font-mono" font-size="9" fill="#52525B">L3 自愈贡献 +19.0pt</text>
+  <!-- Left Metric: Compliance Gain -->
+  <rect x="42" y="116" width="662" height="98" rx="6" fill="#000000" />
+  <rect x="38" y="112" width="662" height="98" rx="6" fill="#F0FDF4" class="border-card" />
+  <rect x="52" y="124" width="180" height="26" rx="3" fill="#7FFF00" class="border-thin" />
+  <text x="142" y="141" class="font-mono bolder" font-size="11" fill="#000000" text-anchor="middle">CONTRACT COMPLIANCE</text>
+  <text x="52" y="188" class="font-heading black" font-size="30" fill="#15803D">69.0% ➔ 92.9%</text>
+  <text x="300" y="187" class="font-mono black" font-size="18" fill="#15803D">(+23.9pt, p=0.00195)</text>
+  <text x="525" y="185" class="font-mono bold" font-size="13" fill="#52525B">L3 自愈贡献 +19.0pt</text>
 
-  <!-- Right Metric: Accuracy Drop -->
-  <rect x="486" y="76" width="440" height="64" rx="4" fill="#000000" />
-  <rect x="483" y="73" width="440" height="64" rx="4" fill="#FEF2F2" class="border-card" />
-  <rect x="493" y="81" width="140" height="18" rx="2" fill="#FF4D4D" class="border-thin" />
-  <text x="563" y="94" class="font-mono bold" font-size="9" fill="#FFFFFF" text-anchor="middle">SEMANTIC ACCURACY ⚠️</text>
-  <text x="493" y="125" class="font-heading bold" font-size="20" fill="#B91C1C">85.7% ➔ 78.6%</text>
-  <text x="660" y="125" class="font-mono bold" font-size="13" fill="#B91C1C">(−7.1pt 意图退化)</text>
-  <text x="815" y="123" class="font-mono" font-size="9" fill="#52525B">★ F6 语义掩盖</text>
+  <!-- Right Metric: Semantic Accuracy Regression -->
+  <rect x="730" y="116" width="662" height="98" rx="6" fill="#000000" />
+  <rect x="726" y="112" width="662" height="98" rx="6" fill="#FEF2F2" class="border-card" />
+  <rect x="740" y="124" width="200" height="26" rx="3" fill="#FF4D4D" class="border-thin" />
+  <text x="840" y="141" class="font-mono bolder" font-size="11" fill="#FFFFFF" text-anchor="middle">SEMANTIC ACCURACY ⚠️</text>
+  <text x="740" y="188" class="font-heading black" font-size="30" fill="#B91C1C">85.7% ➔ 78.6%</text>
+  <text x="988" y="187" class="font-mono black" font-size="18" fill="#B91C1C">(−7.1pt 意图退化)</text>
+  <text x="1210" y="185" class="font-mono bolder" font-size="13" fill="#DC2626">★ F6 语义掩盖</text>
 
   <!-- ================= Left Column: Termination State Axis (结局) ================= -->
-  <rect x="26" y="152" width="310" height="290" rx="4" fill="#000000" />
-  <rect x="23" y="149" width="310" height="290" rx="4" fill="#FFFFFF" class="border-card" />
+  <rect x="42" y="232" width="450" height="476" rx="6" fill="#000000" />
+  <rect x="38" y="228" width="450" height="476" rx="6" fill="#FFFFFF" class="border-card" />
   
-  <rect x="33" y="159" width="190" height="22" rx="2" fill="#000000" />
-  <text x="128" y="174" class="font-mono bold" font-size="10" fill="#7FFF00" text-anchor="middle">TERMINATION STATES // 终止轴</text>
+  <rect x="52" y="242" width="280" height="34" rx="3" fill="#000000" />
+  <text x="192" y="264" class="font-mono bolder" font-size="13.5" fill="#7FFF00" text-anchor="middle">TERMINATION STATES // 终止轴</text>
 
   <!-- S1 -->
-  <rect x="33" y="191" width="290" height="68" rx="3" fill="#F0FDF4" class="border-thin" />
-  <text x="43" y="209" class="font-mono bold" font-size="11" fill="#15803D">S1 · 首轮直通 (73.8% · 31/42)</text>
-  <text x="43" y="227" class="font-mono" font-size="9.5" fill="#3F3F46">一次性通过 L1 物理受限 + L2 契约守卫</text>
-  <text x="43" y="244" class="font-mono" font-size="8.5" fill="#71717A">基线 29 ➔ 31 首轮通过 (+4.8pt 来自语法约束)</text>
+  <rect x="52" y="290" width="422" height="122" rx="4" fill="#F0FDF4" class="border-thin" />
+  <text x="68" y="320" class="font-mono black" font-size="16" fill="#15803D">S1 · 首轮直通 (73.8% · 31/42)</text>
+  <text x="68" y="350" class="font-mono bold" font-size="14" fill="#1F2937">一次性通过 L1 物理受限 + L2 契约守卫</text>
+  <text x="68" y="376" class="font-mono" font-size="13" fill="#4B5563">基线 29 ➔ 31 首轮通过 (+4.8pt 来自语法约束)</text>
+  <text x="68" y="398" class="font-mono bolder" font-size="12.5" fill="#15803D">✓ 零额外轮次延迟，模型直接输出合法语义结构</text>
 
   <!-- S2 -->
-  <rect x="33" y="267" width="290" height="74" rx="3" fill="#EFF6FF" class="border-thin" />
-  <text x="43" y="285" class="font-mono bold" font-size="11" fill="#1D4ED8">S2 · 自愈收敛 (19.0% · 8/42)</text>
-  <text x="43" y="303" class="font-mono" font-size="9.5" fill="#3F3F46">首轮被 L2 拦截，L3 三元组纠错成功挽救</text>
-  <text x="43" y="320" class="font-mono" font-size="8.5" fill="#71717A">典型主证：Case #13 情绪工单 5→3 成功收敛</text>
-  <text x="43" y="333" class="font-mono" font-size="8.5" fill="#DC2626">伴生代价：Case #7 次生合规掩盖原生错分类</text>
+  <rect x="52" y="426" width="422" height="132" rx="4" fill="#EFF6FF" class="border-thin" />
+  <text x="68" y="456" class="font-mono black" font-size="16" fill="#1D4ED8">S2 · 自愈收敛 (19.0% · 8/42)</text>
+  <text x="68" y="486" class="font-mono bold" font-size="14" fill="#1F2937">首轮被 L2 拦截，L3 三元组纠错成功挽救</text>
+  <text x="68" y="512" class="font-mono" font-size="13" fill="#4B5563">典型主证：Case #13 情绪工单 5→3 成功收敛</text>
+  <text x="68" y="536" class="font-mono bolder" font-size="13" fill="#DC2626">伴生代价：Case #7 次生合规掩盖原生错分类</text>
 
   <!-- S3 -->
-  <rect x="33" y="349" width="290" height="78" rx="3" fill="#FFFBEB" class="border-thin" />
-  <text x="43" y="367" class="font-mono bold" font-size="11" fill="#B45309">S3 · 降级托底 (7.1% · 3/42)</text>
-  <text x="43" y="385" class="font-mono" font-size="9.5" fill="#3F3F46">3 次预算耗尽，L4 Never-Throw 返回兜底</text>
-  <text x="43" y="402" class="font-mono" font-size="8.5" fill="#71717A">集中于 Case #11 (示例占位符约束锁死)</text>
-  <text x="43" y="417" class="font-mono" font-size="8.5" fill="#15803D">保证下游 DAG 拓扑绝不崩溃，主线程保活</text>
+  <rect x="52" y="572" width="422" height="120" rx="4" fill="#FFFBEB" class="border-thin" />
+  <text x="68" y="602" class="font-mono black" font-size="16" fill="#B45309">S3 · 降级托底 (7.1% · 3/42)</text>
+  <text x="68" y="632" class="font-mono bold" font-size="14" fill="#1F2937">3 次预算耗尽，L4 Never-Throw 返回兜底</text>
+  <text x="68" y="658" class="font-mono" font-size="13" fill="#4B5563">集中于 Case #11 (示例占位符约束锁死)</text>
+  <text x="68" y="679" class="font-mono bolder" font-size="12.5" fill="#15803D">保证下游 DAG 拓扑绝不崩溃，主流程高可用保活</text>
 
   <!-- ================= Right Column: Root Cause Pathology Axis (病根) ================= -->
-  <rect x="356" y="152" width="570" height="290" rx="4" fill="#000000" />
-  <rect x="353" y="149" width="570" height="290" rx="4" fill="#FFFFFF" class="border-card" />
+  <rect x="512" y="232" width="880" height="476" rx="6" fill="#000000" />
+  <rect x="508" y="228" width="880" height="476" rx="6" fill="#FFFFFF" class="border-card" />
 
-  <rect x="363" y="159" width="180" height="22" rx="2" fill="#000000" />
-  <text x="453" y="174" class="font-mono bold" font-size="10" fill="#00E5FF" text-anchor="middle">ROOT CAUSES // 根因病理轴</text>
+  <rect x="522" y="242" width="280" height="34" rx="3" fill="#000000" />
+  <text x="662" y="264" class="font-mono bolder" font-size="13.5" fill="#00E5FF" text-anchor="middle">ROOT CAUSES // 根因病理轴</text>
 
   <!-- F1 & F5 Row -->
-  <rect x="363" y="191" width="270" height="52" rx="3" fill="#F8FAFC" class="border-thin" />
-  <text x="373" y="208" class="font-mono bold" font-size="10" fill="#0F172A">F1 · 结构歧义 (Structural Ambiguity)</text>
-  <text x="373" y="225" class="font-mono" font-size="8.5" fill="#64748B">复数实体诱导输出 Array；B 组 L1 彻底清零 (0 崩溃)</text>
+  <rect x="522" y="290" width="418" height="82" rx="4" fill="#F8FAFC" class="border-thin" />
+  <text x="536" y="318" class="font-mono black" font-size="14.5" fill="#0F172A">F1 · 结构歧义 (Structural Ambiguity)</text>
+  <text x="536" y="344" class="font-mono" font-size="13" fill="#475569">复数实体诱导输出 Array；B 组 L1 彻底清零 (0 崩溃)</text>
+  <text x="536" y="362" class="font-mono bold" font-size="12" fill="#64748B">→ 治理：采用物理受限解码规范根节点 JSON 契约</text>
 
-  <rect x="643" y="191" width="270" height="52" rx="3" fill="#F8FAFC" class="border-thin" />
-  <text x="653" y="208" class="font-mono bold" font-size="10" fill="#0F172A">F5 · 采样随机方差 (Sampling Variance)</text>
-  <text x="653" y="225" class="font-mono" font-size="8.5" fill="#64748B">A 组用例稳定性 85.7%；B 组吸收抖动至 100%</text>
+  <rect x="954" y="290" width="418" height="82" rx="4" fill="#F8FAFC" class="border-thin" />
+  <text x="968" y="318" class="font-mono black" font-size="14.5" fill="#0F172A">F5 · 采样随机方差 (Sampling Variance)</text>
+  <text x="968" y="344" class="font-mono" font-size="13" fill="#475569">A 组用例稳定性 85.7%；B 组防御层吸收抖动至 100%</text>
+  <text x="968" y="362" class="font-mono bolder" font-size="12" fill="#15803D">✓ 完全消除由于模型采样随机性导致的跨轮次翻转</text>
 
   <!-- F2: Placeholder Lock-in -->
-  <rect x="363" y="251" width="550" height="58" rx="3" fill="#FEF3C7" class="border-thin" />
-  <text x="373" y="269" class="font-mono bold" font-size="10.5" fill="#92400E">F2 · 示例占位符约束锁死 (Case #11 降级根因)</text>
-  <text x="373" y="287" class="font-mono" font-size="9" fill="#451A03">• 防幻觉占位符无法示范生成型扩写；四重指令（改字数/禁局部微调/禁照抄）剥夺解空间</text>
-  <text x="373" y="301" class="font-mono" font-size="8.5" fill="#78350F">➔ 治理：落地上游 groundedInInput 原语，从用户原文抽取具象事实，而非使用无语义占位符</text>
+  <rect x="522" y="386" width="850" height="96" rx="4" fill="#FEF3C7" class="border-thin" />
+  <text x="538" y="414" class="font-mono black" font-size="15" fill="#92400E">F2 · 示例占位符约束锁死 (Case #11 降级根因)</text>
+  <text x="538" y="442" class="font-mono bold" font-size="13.5" fill="#451A03">• 防幻觉占位符无法示范生成型扩写；四重指令（改字数/禁局部微调/禁照抄）剥夺解空间</text>
+  <text x="538" y="468" class="font-mono bolder" font-size="13" fill="#78350F">➔ 治理：落地上游 groundedInInput 原语，从用户原文抽取具象事实，而非使用无语义占位符</text>
 
   <!-- F3: Ground Truth Ambiguity -->
-  <rect x="363" y="317" width="550" height="54" rx="3" fill="#F1F5F9" class="border-thin" />
-  <text x="373" y="335" class="font-mono bold" font-size="10.5" fill="#334155">F3 · 评测集标注定义争议 (Case #6, #8)</text>
-  <text x="373" y="352" class="font-mono" font-size="9" fill="#1E293B">• A/B 两组跨轮次 6/6 一致违背 GT（说明书丢失/外包破损）；先怀疑标签而非模型能力</text>
-  <text x="373" y="364" class="font-mono" font-size="8.5" fill="#64748B">➔ 治理：针对混合诉求在 Schema 契约中建立显式仲裁消歧准则</text>
+  <rect x="522" y="494" width="850" height="94" rx="4" fill="#F1F5F9" class="border-thin" />
+  <text x="538" y="522" class="font-mono black" font-size="15" fill="#334155">F3 · 评测集标注定义争议 (Case #6, #8)</text>
+  <text x="538" y="550" class="font-mono bold" font-size="13.5" fill="#1E293B">• A/B 两组跨轮次 6/6 一致违背 GT（说明书丢失/外包破损）；先怀疑标注标签而非模型能力</text>
+  <text x="538" y="574" class="font-mono bolder" font-size="13" fill="#475569">➔ 治理：针对混合诉求在 Schema 契约中建立显式仲裁消歧准则（如售后退换优先于咨询）</text>
 
   <!-- ★ F6: Semantic Masking -->
-  <rect x="363" y="379" width="550" height="52" rx="3" fill="#FEE2E2" class="border-thin" />
-  <text x="373" y="396" class="font-mono bold" font-size="10.5" fill="#991B1B">★ F6 · 语义错误被合规性掩盖 (Semantic Masking — −7.1pt 根因)</text>
-  <text x="373" y="413" class="font-mono" font-size="9" fill="#7F1D1D">• 校验器仅懂局部规则（logistics ⇒ urgency≤3），将次生违规修好的同时，合法化了错误意图</text>
-  <text x="373" y="425" class="font-mono" font-size="8.5" fill="#991B1B">➔ 治理：严禁在自愈加禁止篡改指令；在 Schema field description 开展 R1 首轮语义消歧</text>
+  <rect x="522" y="600" width="850" height="96" rx="4" fill="#FEE2E2" stroke="#DC2626" stroke-width="2.5" />
+  <text x="538" y="628" class="font-mono black" font-size="15.5" fill="#991B1B">★ F6 · 语义错误被合规性掩盖 (Semantic Masking — −7.1pt 核心根因)</text>
+  <text x="538" y="656" class="font-mono bold" font-size="13.5" fill="#7F1D1D">• 校验器仅懂局部规则（logistics ⇒ urgency≤3），将次生违规修好的同时，合法化了错误意图</text>
+  <text x="538" y="681" class="font-mono bolder" font-size="13" fill="#991B1B">➔ 治理：严禁在自愈加禁止篡改指令；在 Schema field description 开展 R1 首轮语义消歧</text>
 
   <!-- ================= Bottom Architectural Banner ================= -->
-  <rect x="26" y="452" width="900" height="74" rx="4" fill="#000000" />
-  <rect x="23" y="449" width="900" height="74" rx="4" fill="#FFFFFF" class="border-card" />
+  <rect x="42" y="726" width="1350" height="126" rx="6" fill="#000000" />
+  <rect x="38" y="722" width="1350" height="126" rx="6" fill="#FFFFFF" class="border-card" />
 
-  <rect x="33" y="457" width="160" height="20" rx="2" fill="#7FFF00" class="border-thin" />
-  <text x="113" y="471" class="font-mono bold" font-size="9.5" fill="#000000" text-anchor="middle">ENGINEERING TRADE-OFF</text>
+  <rect x="52" y="736" width="220" height="30" rx="3" fill="#7FFF00" class="border-thin" />
+  <text x="162" y="756" class="font-mono bolder" font-size="12" fill="#000000" text-anchor="middle">ENGINEERING TRADE-OFF</text>
 
-  <text x="204" y="471" class="font-heading bold" font-size="11.5" fill="#000000">自愈状态机的验收判据是「通过校验器」而非「语义正确」：必须同时报告退化指标！</text>
+  <text x="286" y="758" class="font-heading black" font-size="16.5" fill="#000000">自愈状态机的验收判据是「通过校验器」而非「语义正确」：必须同时报告退化指标！</text>
 
-  <text x="33" y="497" class="font-mono" font-size="9" fill="#52525B">• 成本代价：Token 消耗从 333 ➔ 966 (×2.90)，每修复一样本边际成本 2658 tok，延迟 +16%</text>
-  <text x="33" y="513" class="font-mono" font-size="9" fill="#52525B">• 严谨统计：b=4, c=0 时 McNemar p=0.125 是数学下限；真实工程必须承认场景样本量边界，拒绝伪造普惠结论</text>
+  <text x="52" y="798" class="font-mono bold" font-size="14" fill="#3F3F46">• 算力开销：Token 消耗从 333 ➔ 966 (×2.90)，每修复一样本边际成本 2658 tok，端到端耗时 +16%</text>
+  <text x="52" y="826" class="font-mono bold" font-size="14" fill="#3F3F46">• 统计学界限：b=4, c=0 时 McNemar p=0.125 是数学理论下限；真实工程必须直面样本量边界，拒绝伪造普惠结论</text>
 </svg>
