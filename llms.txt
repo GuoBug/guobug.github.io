@@ -93,6 +93,10 @@
 - [Boss 直聘 AI 产品的深度拆解与战略思考](https://guobug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
   - Analysis of conversational AI matching, intent recognition, and bilateral marketplace dynamics.
 
+### Community Governance & Product Engineering
+- [社区的生命周期：从礼貌共识到好恶筛除](https://guobug.github.io/posts/2026/09/28/community-lifecycle-physical-constraints/)
+  - Deconstructing community lifecycles from early-stage polite consensus to inevitable friction: analyzing governance regression in modern platforms, firsthand lessons from Bilibili and early BBS history (Tianya, Xici), the breakdown of unconstrained blank input fields (10-page text dump crushing lightweight dialogue), and the fatal 'peacemaker trap' versus deterministic physical constraints (input limits and Proof-of-Work anchors) to protect high-signal shared affinity.
+
 ### Engineering Leadership & Remote Work
 - [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
   - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.

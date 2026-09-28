@@ -165,6 +165,13 @@
 - [Boss 直聘 AI 产品的深度拆解与战略思考](https://guobug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
   - Analysis of conversational AI matching, intent recognition, and bilateral marketplace dynamics.
 
+### Community Governance & Product Engineering
+
+- [社区的生命周期：从礼貌共识到好恶筛除](https://guobug.github.io/posts/2026/09/28/community-lifecycle-physical-constraints/)
+  - **Problem**: (1) Governance amnesia in new tech platforms: modern social products adopt cutting-edge stacks but repeat 20-year-old forum failures due to a lack of governance continuity; (2) The cold-start illusion of polite consensus: early homogeneous cohorts maintain high signal through unwritten moral norms, misleading teams into assuming high signal sustains organically; (3) Input friction collapse: unconstrained blank input boxes induce users to paste monolithic, multi-page resumes/essays, suffocating lightweight reciprocal interactions and driving introverted participants out; (4) The peacemaker trap: teams attempting to please both legacy and incoming cohorts induce mutual exhaustion, degrading the platform into an abandoned shell.
+  - **Solution**: (1) Dissected the fundamental driver of human aggregation as granular "shared affinity and distaste" rather than sanitized "seeking common ground"; (2) Replaced moral appeals with deterministic physical constraints: strict input character truncation proportional to display cards, forcing concise high-density expression; (3) Instituted objective Proof-of-Work (PoW) verification to supplant subjective self-promotion, establishing clear physical boundaries for compatible users.
+  - **Outcome**: Articulated the engineering trade-off: accepting front-end registration friction and surface-level traffic drop-offs to filter for sustainable, high-signal community culture; provided an evolutionary taxonomy distinguishing the fatal peacemaker trap from deterministic mechanism design.
+
 ### Engineering Leadership & Remote Work
 - [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
   - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.
