@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640" style="background: transparent; display: block; max-width: 100%; height: auto;">
+  <defs>
+    <!-- Dot Grid Pattern -->
+    <pattern id="dot-grid-ce" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1.2" fill="#D4D4D8" />
+    </pattern>
+
+    <!-- Arrow Marker -->
+    <marker id="arrow-blk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7FFF00" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#06B6D4" stroke="#000000" stroke-width="1"/>
+    </marker>
+
+    <style>
+      .font-mono { font-family: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'PingFang SC', monospace; }
+      .font-heading { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif; }
+      .bold { font-weight: 700; }
+      .bolder { font-weight: 800; }
+      .black { font-weight: 900; }
+      .border-main { stroke: #000000; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; }
+      .border-card { stroke: #000000; stroke-width: 2; }
+      .border-thin { stroke: #000000; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <!-- Outer Shadow & Background Frame -->
+  <rect x="14" y="14" width="932" height="612" rx="8" fill="#000000" />
+  <rect x="10" y="10" width="932" height="612" rx="8" fill="#FAF9F5" class="border-main" />
+  <rect x="14" y="14" width="924" height="604" rx="6" fill="url(#dot-grid-ce)" />
+
+  <!-- ================= Top Header Bar ================= -->
+  <rect x="28" y="26" width="896" height="52" rx="6" fill="#000000" />
+  <rect x="25" y="23" width="896" height="52" rx="6" fill="#FFFFFF" class="border-card" />
+
+  <rect x="36" y="31" width="180" height="34" rx="4" fill="#7FFF00" class="border-thin" />
+  <text x="126" y="53" class="font-mono bolder" font-size="12" fill="#000000" text-anchor="middle" letter-spacing="1">ANTHROPIC SPEC // CE</text>
+
+  <text x="232" y="54" class="font-heading black" font-size="16" fill="#000000" letter-spacing="0.5">EFFECTIVE CONTEXT ENGINEERING ARCHITECTURE FOR AGENTS</text>
+  <text x="895" y="53" class="font-mono bold" font-size="11" fill="#71717A" text-anchor="end">TOKEN UTILITY OPTIMIZATION</text>
+
+  <!-- ================= Section 1: Paradigm Shift Banner ================= -->
+  <!-- Left: Prompt Engineering Box -->
+  <rect x="28" y="93" width="370" height="88" rx="6" fill="#000000" />
+  <rect x="25" y="90" width="370" height="88" rx="6" fill="#F4F4F5" class="border-card" />
+  <rect x="37" y="100" width="145" height="22" rx="3" fill="#E4E4E7" class="border-thin" />
+  <text x="109" y="115" class="font-mono bold" font-size="10.5" fill="#3F3F46" text-anchor="middle">PROMPT ENGINEERING</text>
+  <text x="37" y="142" class="font-heading bold" font-size="14" fill="#18181B">单轮采样与静态词句打磨 (One-Shot)</text>
+  <text x="37" y="162" class="font-mono" font-size="11" fill="#71717A">目标：撰写系统提示词 · 静态分类/生成</text>
+
+  <!-- Center Arrow Indicator -->
+  <rect x="415" y="112" width="130" height="44" rx="4" fill="#000000" />
+  <rect x="412" y="109" width="130" height="44" rx="4" fill="#7FFF00" class="border-thin" />
+  <text x="477" y="127" class="font-mono bolder" font-size="11" fill="#000000" text-anchor="middle">AGENT LOOP</text>
+  <text x="477" y="143" class="font-heading bold" font-size="10" fill="#000000" text-anchor="middle">多轮自主循环驱动 ➔</text>
+
+  <!-- Right: Context Engineering Box -->
+  <rect x="562" y="93" width="362" height="88" rx="6" fill="#000000" />
+  <rect x="559" y="90" width="362" height="88" rx="6" fill="#ECFDF5" class="border-card" />
+  <rect x="571" y="100" width="155" height="22" rx="3" fill="#7FFF00" class="border-thin" />
+  <text x="648" y="115" class="font-mono bolder" font-size="10.5" fill="#000000" text-anchor="middle">CONTEXT ENGINEERING</text>
+  <text x="571" y="142" class="font-heading black" font-size="14" fill="#047857">动态 Token 全生命周期编排与精简</text>
+  <text x="571" y="162" class="font-mono" font-size="11" fill="#065F46">全量状态掌控：Prompts + Tools + MCP + History</text>
+
+  <!-- ================= Section 2: Core Constraints & Retrieval ================= -->
+  <!-- Middle Left: The Attention Budget & Context Rot Constraint -->
+  <rect x="28" y="198" width="440" height="186" rx="6" fill="#000000" />
+  <rect x="25" y="195" width="440" height="186" rx="6" fill="#FEF2F2" class="border-card" />
+  
+  <rect x="37" y="206" width="220" height="24" rx="3" fill="#FF4D4D" class="border-thin" />
+  <text x="147" y="222" class="font-mono bolder" font-size="11" fill="#FFFFFF" text-anchor="middle">ATTENTION BUDGET &amp; ROT</text>
+  <text x="435" y="223" class="font-mono bold" font-size="11" fill="#DC2626" text-anchor="end">O(n²) PAIRWISE</text>
+
+  <rect x="37" y="240" width="414" height="62" rx="4" fill="#FFFFFF" class="border-thin" />
+  <text x="47" y="259" class="font-heading bold" font-size="12" fill="#991B1B">Transformer 架构瓶颈：</text>
+  <text x="47" y="276" class="font-mono" font-size="10.5" fill="#7F1D1D">• 全局注意力矩阵 n² 交互稀释，长程上下文召回衰减</text>
+  <text x="47" y="292" class="font-mono" font-size="10.5" fill="#7F1D1D">• 训练集短序列偏置 + 位置编码插值误差 ➔ 渐进式性能衰退</text>
+
+  <rect x="37" y="310" width="414" height="60" rx="4" fill="#FFF1F2" class="border-thin" />
+  <text x="47" y="329" class="font-heading bold" font-size="12" fill="#B91C1C">上下文工程黄金法度 (Goldilocks Rule)：</text>
+  <text x="47" y="347" class="font-mono" font-size="10.5" fill="#881337">寻找触发期望行为的「最小有效高信噪比 Token 集合」</text>
+  <text x="47" y="361" class="font-mono" font-size="10.5" fill="#881337">拒绝脆弱臃肿提示词，以合适高度 (Altitude) 结构化引导</text>
+
+  <!-- Middle Right: Just-In-Time & Progressive Disclosure -->
+  <rect x="484" y="198" width="440" height="186" rx="6" fill="#000000" />
+  <rect x="481" y="195" width="440" height="186" rx="6" fill="#F0F9FF" class="border-card" />
+
+  <rect x="493" y="206" width="220" height="24" rx="3" fill="#0284C7" class="border-thin" />
+  <text x="603" y="222" class="font-mono bolder" font-size="11" fill="#FFFFFF" text-anchor="middle">JIT &amp; PROGRESSIVE DISCLOSURE</text>
+  <text x="891" y="223" class="font-mono bold" font-size="11" fill="#0369A1" text-anchor="end">AGENTIC SEARCH</text>
+
+  <rect x="493" y="240" width="414" height="62" rx="4" fill="#FFFFFF" class="border-thin" />
+  <text x="503" y="259" class="font-heading bold" font-size="12" fill="#075985">即时按需加载 (Just-In-Time)：</text>
+  <text x="503" y="276" class="font-mono" font-size="10.5" fill="#0369A1">• 不盲目预载全量数据，仅保留轻量句柄 (路径/查询/URL)</text>
+  <text x="503" y="292" class="font-mono" font-size="10.5" fill="#0369A1">• 借助 head/tail/grep/glob 动态下发工具分析，零爆仓</text>
+
+  <rect x="493" y="310" width="414" height="60" rx="4" fill="#E0F2FE" class="border-thin" />
+  <text x="503" y="329" class="font-heading bold" font-size="12" fill="#0369A1">渐进式探索与混合架构 (Hybrid)：</text>
+  <text x="503" y="347" class="font-mono" font-size="10.5" fill="#0C4A6E">• 前置预载核心约定 (如 CLAUDE.md) 确立基线行为</text>
+  <text x="503" y="361" class="font-mono" font-size="10.5" fill="#0C4A6E">• 运行时赋权智能体通过工具自主发现，多层次组装认知</text>
+
+  <!-- ================= Section 3: Long-Horizon Triad Defense ================= -->
+  <!-- Bottom Container: Long-Horizon Triad Header -->
+  <rect x="28" y="398" width="896" height="212" rx="6" fill="#000000" />
+  <rect x="25" y="395" width="896" height="212" rx="6" fill="#FFFFFF" class="border-card" />
+
+  <rect x="37" y="405" width="280" height="26" rx="4" fill="#000000" />
+  <text x="177" y="422" class="font-mono bolder" font-size="11" fill="#7FFF00" text-anchor="middle">LONG-HORIZON TASK TRIAD DEFENSE // 三级防御</text>
+  <text x="330" y="423" class="font-heading bold" font-size="12" fill="#52525B">长周期与大任务跨轮次上下文治理体系</text>
+
+  <!-- Pillar 1: Compaction (上下文压实) -->
+  <rect x="37" y="440" width="280" height="152" rx="5" fill="#F4F4F5" class="border-card" />
+  <rect x="47" y="449" width="130" height="22" rx="3" fill="#3B82F6" class="border-thin" />
+  <text x="112" y="464" class="font-mono bolder" font-size="10.5" fill="#FFFFFF" text-anchor="middle">1. COMPACTION</text>
+  <text x="47" y="490" class="font-heading black" font-size="13" fill="#1E3A8A">上下文周期压实 / 总结重置</text>
+  <text x="47" y="509" class="font-mono" font-size="10.5" fill="#334155">• 逼近窗口上限时启动无损摘要</text>
+  <text x="47" y="525" class="font-mono" font-size="10.5" fill="#334155">• 保留决策、未修复 Bug、5个活跃文件</text>
+  <text x="47" y="541" class="font-mono" font-size="10.5" fill="#334155">• 清除历史工具结果 (Result Clearing)</text>
+  <rect x="47" y="556" width="260" height="24" rx="3" fill="#DBEAFE" />
+  <text x="177" y="572" class="font-mono bold" font-size="10" fill="#1D4ED8" text-anchor="middle">适配：多轮深层往复对话流</text>
+
+  <!-- Pillar 2: Structured Note-taking (结构化外部记忆) -->
+  <rect x="333" y="440" width="280" height="152" rx="5" fill="#FEFCE8" class="border-card" />
+  <rect x="343" y="449" width="150" height="22" rx="3" fill="#EAB308" class="border-thin" />
+  <text x="418" y="464" class="font-mono bolder" font-size="10.5" fill="#000000" text-anchor="middle">2. AGENTIC MEMORY</text>
+  <text x="343" y="490" class="font-heading black" font-size="13" fill="#854D0E">结构化笔记与外部持久化</text>
+  <text x="343" y="509" class="font-mono" font-size="10.5" fill="#713F12">• 跨窗口持久化 (NOTES.md / Todo)</text>
+  <text x="343" y="525" class="font-mono" font-size="10.5" fill="#713F12">• 沉淀里程碑进度与战斗/执行策略</text>
+  <text x="343" y="541" class="font-mono" font-size="10.5" fill="#713F12">• 窗口重置后主动重载关键锚点</text>
+  <rect x="343" y="556" width="260" height="24" rx="3" fill="#FEF08A" />
+  <text x="473" y="572" class="font-mono bold" font-size="10" fill="#A16207" text-anchor="middle">适配：里程碑清晰的迭代开发</text>
+
+  <!-- Pillar 3: Sub-Agent Architectures (子智能体分工隔离) -->
+  <rect x="629" y="440" width="280" height="152" rx="5" fill="#F0FDF4" class="border-card" />
+  <rect x="639" y="449" width="150" height="22" rx="3" fill="#10B981" class="border-thin" />
+  <text x="714" y="464" class="font-mono bolder" font-size="10.5" fill="#000000" text-anchor="middle">3. SUB-AGENTS</text>
+  <text x="639" y="490" class="font-heading black" font-size="13" fill="#065F46">分层子智能体认知隔离</text>
+  <text x="639" y="509" class="font-mono" font-size="10.5" fill="#047857">• 主控 Agent 负责全局编排与规划</text>
+  <text x="639" y="525" class="font-mono" font-size="10.5" fill="#047857">• 子 Agent 独立干净窗口深挖技术细节</text>
+  <text x="639" y="541" class="font-mono" font-size="10.5" fill="#047857">• 仅回传 1K-2K Token 高密度摘要</text>
+  <rect x="639" y="556" width="260" height="24" rx="3" fill="#D1FAE5" />
+  <text x="769" y="572" class="font-mono bold" font-size="10" fill="#047857" text-anchor="middle">适配：高并发复杂调研与分支探索</text>
+
+</svg>

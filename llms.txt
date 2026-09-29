@@ -37,6 +37,10 @@
 
 ## Key Technical Writings & Architecture Essays
 
+### AI Architecture & Engineering Translations
+- [构建高效 AI Agent 的上下文工程：从 Prompt 到 Context 的范式演进（Anthropic 官方工程实践精译）](https://guobug.github.io/posts/2026/09/29/effective-context-engineering-for-ai-agents/)
+  - Comprehensive technical translation of Anthropic Applied AI's guide on context engineering for AI agents: dissecting transformer attention budget limits and context rot ($O(n^2)$ pairwise degradation); evaluating prompt engineering vs. context engineering in autonomous agent loops; deploying just-in-time (JIT) runtime data retrieval and progressive disclosure over bloated static context; and formalizing long-horizon task triad defenses across compaction (tool result clearing), structured note-taking (agentic memory), and sub-agent architectures.
+
 ### AI Prompt Orchestrator Series (PatchCat)
 - [从 0 到 1 打造 AI 提示流编排器：用一次“假药对照”，我们在大模型自愈中抓出了真凶（番外系列 2）](https://guobug.github.io/posts/2026/09/27/ai-prompt-orchestrator-placebo-control-and-empirical-closure/)
   - Single-variable isolation and clinical placebo control in AI workflow orchestration: testing position bias by shuffling enum order in E0b (proving structural reordering yielded 0.0pt gain as a pure placebo); injecting substantive decision criteria in Schema descriptions (recovering intent accuracy from 78.6% to 92.9%, +14.3pt, Fisher $p=0.003$); deploying a non-intrusive Sentinel Watch-List with zero collateral damage on external cases; and white-box refuting diagnostic misconceptions between fixed-point lock-ins and oscillations.
