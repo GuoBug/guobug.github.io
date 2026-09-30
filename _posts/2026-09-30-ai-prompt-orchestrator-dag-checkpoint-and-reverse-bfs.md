@@ -187,7 +187,7 @@ const prunedNodeIds = new Set<string>([...targetNodesToRun, ...targetDescendants
 ---
 
 > 下一篇预告  
-> 📖 《从 0 到 1 打造 AI 提示流编排器：别让 Agent 原地鬼打墙！连续 3 次相同工具调用的柔性引导与硬熔断（开源系列 19）》
+> 📖 [《从 0 到 1 打造 AI 提示流编排器：别让 Agent 原地鬼打墙！连续 3 次相同工具调用的柔性引导与硬熔断（开源系列 19）》]({{ '/posts/2026/10/01/ai-prompt-orchestrator-agent-deadlock-and-circuit-breaker/' | relative_url }})
 
 ---
 
