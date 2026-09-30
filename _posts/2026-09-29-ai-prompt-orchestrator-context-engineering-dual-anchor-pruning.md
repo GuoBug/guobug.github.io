@@ -238,7 +238,7 @@ npm run typecheck
 ---
 
 > 下一篇预告  
-> 📖 《从 0 到 1 打造 AI 提示流编排器：多智能体拓扑调度与状态隔离 —— 递归子图与并发隔离实战（开源系列 18）》
+> 📖 [《从 0 到 1 打造 AI 提示流编排器：失败了别全盘重来！逆向 BFS 拓扑回溯与 DAG 检查点断点续跑（开源系列 18）》]({{ '/posts/2026/09/30/ai-prompt-orchestrator-dag-checkpoint-and-reverse-bfs/' | relative_url }})
 
 ---
 
