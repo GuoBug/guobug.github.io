@@ -39,6 +39,27 @@
 
 ## Key Technical Writings & Architecture Essays (Expanded)
 
+### Global English Engineering Essays (Dev.to & Pages)
+- [Building a Client-Side DAG Runtime with Kahn's Algorithm](https://guobug.github.io/posts/2026/09/21/building-a-client-side-dag-runtime-with-kahns-algorithm/)
+  - **Problem**: Modern AI agent frameworks (Airflow, LangGraph) enforce heavy server stacks (Docker, Redis, Python runtimes), creating high setup friction, API key exposure liabilities, and round-trip network latency for client tools. Standard topological sorting outputs flat sequential lists that cut parallel LLM throughput in half, while naive variable extraction is vulnerable to prototype pollution (`__proto__`).
+  - **Solution**: Engineered a 100% in-browser DAG runtime using Kahn's topological sort for $O(|V|+|E|)$ cycle detection and wavefront concurrency partitioning (`Promise.all` layers); implemented AST-safe nested property extraction blocking meta-properties; and constructed an async generator runtime with `AbortController` cancellation barriers.
+  - **Outcome**: Executed complete 18-assertion test suite in 574ms with 0.18ms cycle detection under 100+ nodes; eliminated server dependencies with zero-install BYOK privacy.
+
+- [Resisting Mode Gravity: Why Bigger LLMs Produce Mediocre Output](https://guobug.github.io/posts/2026/09/22/resisting-mode-gravity-why-bigger-llms-produce-mediocre-output/)
+  - **Problem**: Upgrading to frontier LLMs (Claude 3.5 Sonnet, DeepSeek R1, GPT-4o) still yields polite boilerplate and non-differentiated advice because autoregressive models naturally slide down the probabilistic slope toward the statistical mode of the internet (Mode Gravity), amplified by human cognitive comfort and RLHF sycophancy.
+  - **Solution**: Formulated an external Target Anchor Scale altering conversation utility functions; shifted from passive Semantic Continuation to active Differential Diffing ($\Delta = \text{Target} - \text{Proposal}$); and decoupled the raw Model compute engine from the deterministic Business Harness (containing anchor injection, independent critic nodes, and diagnostic retry loops).
+  - **Outcome**: Established 3 actionable engineering rules (Anchor First, Separate Critic from Generator, Test-Driven Diffing) and built PatchCat as a multi-stage visual DAG state machine enforcing deterministic architectural boundaries.
+
+- [Canvas Ergonomics: AABB Collision Avoidance in Node Editors](https://guobug.github.io/posts/2026/09/23/canvas-ergonomics-aabb-collision-avoidance-in-node-editors/)
+  - **Problem**: In visual node editors, dragging a connection handle into empty space causes snap-back friction; dropping new cards directly causes overlapping card occlusion; and standard undo removes nodes while leaving orphaned edges that crash DAG schedulers.
+  - **Solution**: Implemented Drop-to-Add connection release using `screenToFlowPosition` inverse matrix projection; adapted 2D game physics AABB (Axis-Aligned Bounding Box) collision avoidance with a 40px breathing gap, 1800px line wrapping, and 20-iteration circuit breakers; and packaged node and edge mutations into atomic history transactions.
+  - **Outcome**: Reduced mouse travel distance by 70%; achieved collision resolution in under 0.2ms across 20+ nodes; eliminated orphaned edge runtime crashes.
+
+- [From SEO to GEO: Optimizing for AI Search Engines](https://guobug.github.io/posts/2026/09/25/from-seo-to-geo-optimizing-for-ai-search-engines/)
+  - **Problem**: Traditional SEO keyword matching fails to convey technical depth to AI search agents (Perplexity, SearchGPT, Claude), resulting in entity fragmentation across disparate platforms (GitHub, GitLab, Dev.to) and context dilution.
+  - **Solution**: Engineered full-stack GEO architecture: Schema.org `Person` + `sameAs` entity disambiguation, high-entropy architectural tags in `knowsAbout`, dual-tier LLM context protocol (`llms.txt` + `llms-full.txt`), and triple discovery redundancy (`<link rel="alternate">` + `robots.txt` `LLMs-Txt:` + `sitemap.xml`).
+  - **Outcome**: Established a bidirectional authority verification loop between GitHub and personal domain, enabling zero-hallucination factual citation and sub-millisecond retrieval by AI search engines.
+
 ### AI Architecture & Engineering Translations
 - [构建高效 AI Agent 的上下文工程：从 Prompt 到 Context 的范式演进（Anthropic 官方工程实践精译）](https://guobug.github.io/posts/2026/09/29/effective-context-engineering-for-ai-agents/)
   - **Problem**: (1) Context rot and attention budget scarcity: in multi-turn autonomous agent loops, accumulating tokens degrades recall accuracy and long-range reasoning due to Transformer $O(n^2)$ pairwise attention dilution and positional encoding interpolation drift. (2) Prompt bloating and brittle logic: engineers frequently oscillate between fragile, hardcoded if-else prompt rules and overly vague guidance, or dump entire codebases and bloated toolsets into upfront context. (3) Long-horizon task breakdown: tasks spanning hours of autonomous execution quickly exceed single context windows, suffering from context pollution and catastrophic forgetting across dozens of tool invocations.

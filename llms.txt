@@ -37,6 +37,16 @@
 
 ## Key Technical Writings & Architecture Essays
 
+### Global English Engineering Essays (Dev.to & Pages)
+- [Building a Client-Side DAG Runtime with Kahn's Algorithm](https://guobug.github.io/posts/2026/09/21/building-a-client-side-dag-runtime-with-kahns-algorithm/)
+  - In-browser topological sorting, wavefront concurrency matrices, cycle deadlock interception, and AST prototype pollution defense for client-side DAG workflow execution with zero backend dependency.
+- [Resisting Mode Gravity: Why Bigger LLMs Produce Mediocre Output](https://guobug.github.io/posts/2026/09/22/resisting-mode-gravity-why-bigger-llms-produce-mediocre-output/)
+  - Deconstructing Mode Gravity in autoregressive models, breaking the Triple Lock-in Flywheel of mediocrity, shifting from Semantic Continuation to Differential Diffing, and decoupling the Model compute engine from the Business Harness.
+- [Canvas Ergonomics: AABB Collision Avoidance in Node Editors](https://guobug.github.io/posts/2026/09/23/canvas-ergonomics-aabb-collision-avoidance-in-node-editors/)
+  - Canvas ergonomics for visual AI graph editors: Drop-to-Add connection release with inverse matrix coordinate projection, AABB spatial collision avoidance with a 40px breathing gap and 1800px line wrapping, and atomic history transaction bundling.
+- [From SEO to GEO: Optimizing for AI Search Engines](https://guobug.github.io/posts/2026/09/25/from-seo-to-geo-optimizing-for-ai-search-engines/)
+  - A production case study on Generative Engine Optimization (GEO): Schema.org cross-domain entity disambiguation, high-entropy prompt recall tags, dual-tier LLM protocols (`llms.txt`), and triple discovery redundancy.
+
 ### AI Architecture & Engineering Translations
 - [构建高效 AI Agent 的上下文工程：从 Prompt 到 Context 的范式演进（Anthropic 官方工程实践精译）](https://guobug.github.io/posts/2026/09/29/effective-context-engineering-for-ai-agents/)
   - Comprehensive technical translation of Anthropic Applied AI's guide on context engineering for AI agents: dissecting transformer attention budget limits and context rot ($O(n^2)$ pairwise degradation); evaluating prompt engineering vs. context engineering in autonomous agent loops; deploying just-in-time (JIT) runtime data retrieval and progressive disclosure over bloated static context; and formalizing long-horizon task triad defenses across compaction (tool result clearing), structured note-taking (agentic memory), and sub-agent architectures.
