@@ -7,7 +7,7 @@ categories: [AI, Architecture, Engineering]
 pub_tag: "Model Routing & Cascade"
 math: true
 read_time: "15 MIN READ"
-summary: "全量顶配模型通跑成本高昂，纯轻量模型面对复杂长难工单频频翻车，粗暴级联则会导致 20% 契约合规但语义错误的异常工单静默放行。本文复盘 PatchCat 在端侧落地确定性模型级联路由与状态机的完整工程演进：通过 Cheap-First 试探策略让 90% 规则清晰工单在免费/低成本模型通过受限自愈完成闭环；设计 F7 动作优先权门禁拦截描述词掩盖退款的语义偏航；带着现场诊断三元组无缝升级至跨厂商强模型多候选轮换队列，并在首选模型契约失败时于 1.3 秒内自动故障转移救回。4 轮严格实测达到未升级用例 100% 一致性与受处理子集 3/3 救回，同时坦承 Token 开销与公网延迟波动的工程权衡。"
+summary: "全量顶配模型通跑成本高昂，纯轻量模型面对复杂长难工单频频翻车，粗暴级联则会导致 20% 契约合规但语义错误的异常工单静默放行。本文复盘 PatchCat 在端侧落地确定性模型级联路由与状态机的完整工程演进：通过 Cheap-First 试探策略让 90% 规则清晰工单在免费/低成本模型通过受限自愈平稳跑通；设计 F7 动作优先权门禁拦截描述词掩盖退款的语义偏航；带着现场诊断三元组无缝升级至跨厂商强模型多候选轮换队列，并在首选模型契约失败时于 1.3 秒内自动故障转移救回。4 轮严格实测达到未升级用例 100% 一致性与受处理子集 3/3 救回，同时坦承 Token 开销与公网延迟波动的工程权衡。"
 summary_en: "Running all queries through flagship models explodes inference bills, while relying solely on lightweight models causes brittle failures on complex reasoning tasks, and naive cascade silently leaks 20% of contract-passing but semantically inverted edge cases. This article dissects PatchCat's deterministic runtime cascade engine: adopting a Cheap-First speculative strategy enabling 90% routine traffic to close on zero-cost tiers via bounded self-healing; deploying F7 semantic priority gates to intercept symptom-masked intent inversions; inheriting runtime diagnostic triplets to upgrade seamlessly to multi-candidate strong model failover pools with sub-second failover recovery; and proving 100% consistency on un-escalated cases with 3/3 treated cohort recovery while acknowledging token overhead and public API latency variance."
 tags: [AI Workflow Orchestration, DAG State Machine, Model Routing, Cheap-First Cascade, Failover Pool, Semantic Gate, Product Engineer, PatchCat]
 series: "PatchCat · AI Prompt Flow Orchestrator"
@@ -27,7 +27,7 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 ---
 
-> 导读：大模型应用落地最现实的困境是成本与质量的撕裂：顶配大模型通跑成本难以承受，轻量小模型面对长尾难例频频溃败，而粗暴的重试级联又会把大量格式合规但业务全错的工单静默漏给用户。本文复盘 PatchCat 在端侧搭建模型级联路由与状态机的真实历程：如何用 Cheap-First 试探让 90% 流量在免费通道完成自愈闭环，如何用动作优先权门禁阻断语义倒置，以及如何通过多候选轮换队列在首选模型契约失败时完成秒级故障转移。
+> 导读：大模型应用落地最现实的困境是成本与质量的撕裂：顶配大模型通跑成本难以承受，轻量小模型面对长尾难例频频溃败，而粗暴的重试级联又会把大量格式合规但业务全错的工单静默漏给用户。本文复盘 PatchCat 在端侧搭建模型级联路由与状态机的真实历程：如何用 Cheap-First 试探让 90% 流量在免费通道完成自愈与消化，如何用动作优先权门禁阻断语义倒置，以及如何通过多候选轮换队列在首选模型契约失败时完成秒级故障转移。
 
 ---
 
@@ -50,6 +50,8 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 ## 二、 关键节点的双向共创：从产品门禁到状态机调度
 
 这一架构的成型并非单向的代码堆砌，而是源于人和 AI 在关键架构节点上的双向推演。
+
+![人机双向共创如星海寻锚，最亮的一颗星标定确定性航向]({{ '/assets/images/model-routing-brightest-guiding-star.jpg' | relative_url }})
 
 作为系统设计者，我提出的关键要求根植于实际产品定位与使用门槛：
 1. 零成本启动体验：PatchCat 面向个人开发者与中小团队，必须做到即使用户不配置昂贵的付费 API Key，依靠各厂商的免费试用配额，也能把工作流平稳跑通；
@@ -78,11 +80,11 @@ AI 搭档则在底层工程规约上指出了数个致命隐患：
 - 如果输出完全合法，直接结束调用；
 - 如果出现轻微 JSON 语法缺失或类型偏差，进入由两轮以内微型循环组成的局部自愈状态机。系统注入轻量修正指令，尝试在经济模型内部消化格式瑕疵。
 
-在我们的基准测试集中，这一层接住了 90.0% (27/30) 的日常请求，实现了真正的零额外账单闭环。
+在我们的基准测试集中，这一层接住了 90.0% (27/30) 的日常请求，实现了真正的零额外账单拦截与平稳交付。
 
 ### 2. 双道升级准入与现场诊断三元组继承
 
-当请求无法在经济层闭环时，调度器不会盲目升级，而是由双道准入机制判定升级路径：
+当请求无法在经济层平稳收敛时，调度器通过双道准入机制判定具体升级路径：
 - 路径 A (`cheap_budget_exhausted`)：经济层重试次数耗尽，输出依然无法通过 Zod Schema 或业务规则断言；
 - 路径 B (`semantic_conflict_gate`)：触发 F7 动作优先权门禁。输入中若检测到退款与瑕疵描述词的强对抗特征，且经济模型判定结果与动作词冲突时，拦截放行并强行标记为升级。
 
@@ -94,7 +96,7 @@ interface DiagnosticTriplet {
   errorRule: string;      // 被违反的业务断言说明（如 退款工单 urgency 必须 ≥ 4）
 }
 ```
-强模型接收到的系统上下文不再是一张白纸，而是清晰标注了前序尝试的失败原因。强模型可以直接在错误现场上进行针对性纠偏，避免了重新推导带来的 Token 浪费。
+强模型接收到的系统上下文清晰标注了前序尝试的失败原因。强模型可以直接在错误现场上进行针对性纠偏，避免了重新推导带来的 Token 浪费。
 
 ### 3. 多候选强模型轮换队列与秒级容灾
 
@@ -177,12 +179,14 @@ interface DiagnosticTriplet {
 
 大模型本身像一台充满灵性却不可预测的引擎。如果放任它单打独斗，开发者要么被昂贵账单拖垮，要么在无穷无尽的长尾边缘错误中疲于奔命。
 
+![山巅远眺的古代骑兵：在概率与不确定性风暴中守望确定性阵地]({{ '/assets/images/model-routing-ancient-cavalry-lookout.jpg' | relative_url }})
+
 PatchCat 的工程实践给出的答案是分层设防：用经济模型接住大体量的规则性常态，用业务门禁守住底线逻辑，用多候选状态机在危机时刻从容调度后备力量。唯有让不确定性的探索受到确定性架构的牵引，AI 提示流编排器才能真正走出实验室玩具的范畴，成为开发者手中坚实可靠的生产力基石。
 
 ---
 
 > 下一篇预告  
-> 📖 《从 0 到 1 打造 AI 提示流编排器：大模型也能秒级自检！Flow Preflight 语法静态分析与画布连线自查（开源系列 21）》
+> 📖 [《从 0 到 1 打造 AI 提示流编排器：大模型也能秒级自检！Flow Preflight 语法静态分析与画布连线自查（开源系列 21）》]({{ '/posts/2026/10/03/ai-prompt-orchestrator-flow-preflight-lint-and-simulation/' | relative_url }})
 
 ---
 
