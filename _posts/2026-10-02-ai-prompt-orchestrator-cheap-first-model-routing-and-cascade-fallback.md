@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "从 0 到 1 打造 AI 提示流编排器：90% 流量零成本闭环！经济模型试探、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）"
-title_en: "Building AI Prompt Orchestrator: 90% Traffic at Zero Cost — Cheap-First Speculation, Semantic Inversion Gates, and Multi-Candidate Cascade Failover (Open Source Series 20)"
+title: "从 0 到 1 打造 AI 提示流编排器：模型级联路由、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）"
+title_en: "Building AI Prompt Orchestrator: Deterministic Model Routing, Semantic Inversion Gates, and Multi-Candidate Cascade Failover (Open Source Series 20)"
 date: 2026-10-02 10:00:00 +0800
 categories: [AI, Architecture, Engineering]
 pub_tag: "Model Routing & Cascade"
 math: true
 read_time: "15 MIN READ"
-summary: "全量顶配模型通跑成本高昂，纯轻量模型面对复杂长难工单频频翻车，粗暴级联则会导致 20% 契约合规但语义错误的异常工单静默放行。本文复盘 PatchCat 在端侧落地确定性模型级联路由与状态机的完整工程演进：通过 Cheap-First 试探策略让 90% 规则清晰工单在免费/低成本模型通过受限自愈平稳跑通；设计 F7 动作优先权门禁拦截描述词掩盖退款的语义偏航；带着现场诊断三元组无缝升级至跨厂商强模型多候选轮换队列，并在首选模型契约失败时于 1.3 秒内自动故障转移救回。4 轮严格实测达到未升级用例 100% 一致性与受处理子集 3/3 救回，同时坦承 Token 开销与公网延迟波动的工程权衡。"
-summary_en: "Running all queries through flagship models explodes inference bills, while relying solely on lightweight models causes brittle failures on complex reasoning tasks, and naive cascade silently leaks 20% of contract-passing but semantically inverted edge cases. This article dissects PatchCat's deterministic runtime cascade engine: adopting a Cheap-First speculative strategy enabling 90% routine traffic to close on zero-cost tiers via bounded self-healing; deploying F7 semantic priority gates to intercept symptom-masked intent inversions; inheriting runtime diagnostic triplets to upgrade seamlessly to multi-candidate strong model failover pools with sub-second failover recovery; and proving 100% consistency on un-escalated cases with 3/3 treated cohort recovery while acknowledging token overhead and public API latency variance."
+summary: "全量顶配模型通跑成本高昂，纯轻量模型面对复杂长难工单频频翻车，粗暴级联则会导致 20% 契约合规但语义错误的异常工单静默放行。本文复盘 PatchCat 在端侧落地确定性模型级联路由与状态机的工程演进：通过 Cheap-First 试探策略由低成本模型承接常规工单，配合受限自愈平稳跑通；设计 F7 动作优先权门禁拦截描述词掩盖退款的语义偏航；带着现场诊断三元组升级至跨厂商强模型多候选轮换队列，并在首选模型契约失败时自动触发多候选故障转移。实测记录未升级用例 100% 一致性与受处理子集 3/3 救回，同时如实交代 Token 额外开销与公网延迟波动的工程权衡。"
+summary_en: "Running all queries through flagship models explodes inference bills, while relying solely on lightweight models causes brittle failures on complex reasoning tasks, and naive cascade silently leaks 20% of contract-passing but semantically inverted edge cases. This article dissects PatchCat's deterministic runtime cascade engine: adopting a Cheap-First speculative strategy to route baseline traffic to economic models with bounded self-healing; deploying F7 semantic priority gates to intercept symptom-masked intent inversions; inheriting runtime diagnostic triplets to upgrade seamlessly to multi-candidate strong model failover pools; and documenting consistency on un-escalated cases alongside 3/3 treated cohort recovery while acknowledging token overhead and public API latency variance."
 tags: [AI Workflow Orchestration, DAG State Machine, Model Routing, Cheap-First Cascade, Failover Pool, Semantic Gate, Product Engineer, PatchCat]
 series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
@@ -27,11 +27,11 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 
 ---
 
-> 导读：大模型应用落地最现实的困境是成本与质量的撕裂：顶配大模型通跑成本难以承受，轻量小模型面对长尾难例频频溃败，而粗暴的重试级联又会把大量格式合规但业务全错的工单静默漏给用户。本文复盘 PatchCat 在端侧搭建模型级联路由与状态机的真实历程：如何用 Cheap-First 试探让 90% 流量在免费通道完成自愈与消化，如何用动作优先权门禁阻断语义倒置，以及如何通过多候选轮换队列在首选模型契约失败时完成秒级故障转移。
+> 导读：大模型应用落地最现实的困境是成本与质量的撕裂：顶配大模型通跑成本难以承受，轻量小模型面对长尾难例频频溃败，而粗暴的重试级联又会把大量格式合规但业务全错的工单静默漏给用户。本文复盘 PatchCat 在端侧搭建模型级联路由与状态机的真实历程：如何用 Cheap-First 试探让常规流量在低成本通道完成自愈与消化，如何用动作优先权门禁阻断语义倒置，以及如何通过多候选轮换队列在首选模型契约失败时完成多候选故障转移。
 
 ---
 
-![90% 流量零成本闭环！经济模型试探、语义门禁拦截与强模型轮换池自愈升级]({{ '/assets/images/model-routing-cascade-failover-cover.jpg' | relative_url }})
+![模型级联路由、语义门禁拦截与强模型轮换池自愈升级]({{ '/assets/images/model-routing-cascade-failover-cover.jpg' | relative_url }})
 
 ## 一、 工业现实的痛点：模型成本与质量的三难困境
 
@@ -106,7 +106,7 @@ interface DiagnosticTriplet {
 在实际公网环境中，单一模型极易受到免费配额耗尽、瞬时 429 限流或小概率契约拒绝的影响。调度器通过链式循环执行调用：
 1. 优先请求候选队列的第一顺位模型；
 2. 若调用成功且输出满足结构化契约，直接标记为升级成功并返回；
-3. 若首选模型抛出 429 异常，或返回文本未能满足业务约束断言（`contract_fail`），看门狗立即捕获异常，并在 1.3 秒内无缝顺延调度第二候选模型。
+3. 若首选模型抛出 429 异常，或返回文本未能满足业务约束断言（`contract_fail`），看门狗立即捕获异常，并在 1.4~3.6 秒内无缝顺延调度第二候选模型（整轮自愈恢复耗时 3.5–5.3s）。
 
 这一多候选容灾池设计，从根本上隔离了不同大模型云服务在免费层上的并发抖动，保障了全流程的连续性。
 
@@ -129,17 +129,17 @@ interface DiagnosticTriplet {
 | 契约合规率 | 90.0% (27/30) | 100.0% (30/30) | +10.0% | $p = 0.25$（3 例真实救回，无采样噪声） |
 | 分类准确率 | 76.7% (23/30) | 86.7% (26/30) | +10.0% | $p = 0.25$（3 例真实救回，无反向恶化） |
 | 长难复杂例穿透率 | 50.0% (1/2) | 100.0% (2/2) | +50.0% | 单例驱动（#27 契约崩溃被救回，#30 两臂均成） |
-| 经济层闭环率 | 100.0% | 90.0% (27/30) | 保持高闭环 | 绝大多数请求被锁定在零成本通道 |
-| 强模型升级率 | 0.0% | 10.0% (3/30) | 精准升级 | 仅针对困难长尾触发，无误杀扩散 |
+| 经济层闭环率 | 100.0% | 90.0% (27/30) | -10.0% | 10% 困难样本触发升级分流，常规样本在低成本层闭环 |
+| 强模型升级率 | 0.0% | 10.0% (3/30) | +10.0% | 仅针对困难长尾触发，无误杀扩散 |
 | 累计 Token 消耗 | 39,765 | 48,436 | +21.8% | 额外消耗严格收敛于 3 例升级工单 |
 | 平均端到端耗时 | 9,073ms | 10,047ms | +974ms (+10.7%) | 处于公网延迟正常波动区间 (±42%) |
 
-### 2. 故障转移实况：秒级自动救回
+### 2. 故障转移实况：多候选自动救回
 
 在实验组触发升级的 3 个长尾用例中，有两例真实复现了多候选轮换队列的故障转移全过程：
 
-- Case #16（退款诉求长句）：首选候选 `gemini-3.5-flash-lite` 执行后耗时 1640ms，因未能满足业务红线中的文本长度断言，状态机标记为 `contract_fail`。调度器携带失败现场立即故障转移至候选 2 `gemini-3.1-flash-lite`，后者在 3644ms 内成功纠正格式并返回合法结果；
-- Case #27（假货暗损与退款冲突）：首选候选 `gemini-3.5-flash-lite` 耗时 2161ms，未能满足退款工单紧急度属性的合规约束，状态机同样在 1381ms 内由候选 2 接管并完成合法输出。
+- Case #16（退款诉求长句）：首选候选 `gemini-3.5-flash-lite` 执行后耗时 1640ms，因未能满足业务红线中的文本长度断言，状态机标记为 `contract_fail`。调度器携带失败现场立即故障转移至候选 2 `gemini-3.1-flash-lite`，后者在 3644ms 内成功纠正格式并返回合法结果（整轮自愈耗时约 5.3s，含失败候选 1640ms）；
+- Case #27（假货暗损与退款冲突）：首选候选 `gemini-3.5-flash-lite` 耗时 2161ms，未能满足退款工单紧急度属性的合规约束，状态机在 1381ms 内由候选 2 接管并完成合法输出（整轮自愈耗时约 3.5s，含失败候选 2161ms）。
 
 实测证实，多候选队列能够将突发契约未通过的风险在运行时完全消化，无需人工介入或向前端报错。
 
@@ -157,7 +157,7 @@ interface DiagnosticTriplet {
 
 实测数据显示，全量 30 例测试的 Token 总量增加了 **+21.8%**。这笔额外开销完全集中在触发升级的 3 个用例上，平均每挽救 1 例契约崩溃任务，需要额外消耗约 2,890 tokens。
 - 在当前利用免费额度的模式下，财务支出为零；
-- 如果未来在纯商业付费环境下运行，这相当于用少量廉价试探的 Token 成本，换取了 90% 流量不必流向高价模型的巨大财务节约。对于涉及资金安全的退款争议单，这笔开销极具性价比；但若将其用于吞吐极高、错误容忍度极高的粗粒度内容抽取场景，就需要适度调小重试次数。
+- 如果未来在纯商业付费环境下运行，这相当于用少量廉价试探的 Token 成本，换取了常规流量不必流向高价模型的财务节约。对于涉及资金安全的退款争议单，这笔开销极具性价比；但若将其用于吞吐极高、错误容忍度极高的粗粒度内容抽取场景，就需要适度调小重试次数。
 
 ### 2. 延迟指标与公网波动的免责声明
 

@@ -17,7 +17,7 @@ series: "PatchCat · AI Prompt Flow Orchestrator"
 > 在线体验：[https://guobug.github.io/PatchCat/](https://guobug.github.io/PatchCat/)  
 > 往期回顾：  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：大模型也能秒级自检！Flow Preflight 语法静态分析与画布连线自查（开源系列 21）》]({{ '/posts/2026/10/03/ai-prompt-orchestrator-flow-preflight-lint-and-simulation/' | relative_url }})  
-> 📖 [《从 0 到 1 打造 AI 提示流编排器：90% 流量零成本闭环！经济模型试探、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）》]({{ '/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/' | relative_url }})  
+> 📖 [《从 0 到 1 打造 AI 提示流编排器：模型级联路由、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）》]({{ '/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/' | relative_url }})  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：别让 Agent 原地鬼打墙！连续 3 次相同工具调用的柔性引导与硬熔断（开源系列 19）》]({{ '/posts/2026/10/01/ai-prompt-orchestrator-agent-deadlock-and-circuit-breaker/' | relative_url }})  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：失败了别全盘重来！逆向 BFS 拓扑回溯与 DAG 检查点断点续跑（开源系列 18）》]({{ '/posts/2026/09/30/ai-prompt-orchestrator-dag-checkpoint-and-reverse-bfs/' | relative_url }})  
 > 📖 [《从 0 到 1 打造 AI 提示流编排器：告别“有进无出的上下文黑洞” —— 双锚点滑动窗口与原子事务裁剪实战（开源系列 17）》]({{ '/posts/2026/09/29/ai-prompt-orchestrator-context-engineering-dual-anchor-pruning/' | relative_url }})  

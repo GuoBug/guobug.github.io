@@ -261,7 +261,7 @@ PatchCat 践行的原则是：在非确定性的模型内核之外，包裹一�
 ---
 
 > 下一篇预告  
-> 📖 [《从 0 到 1 打造 AI 提示流编排器：90% 流量零成本闭环！经济模型试探、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）》]({{ '/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/' | relative_url }})
+> 📖 [《从 0 到 1 打造 AI 提示流编排器：模型级联路由、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）》]({{ '/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/' | relative_url }})
 
 ---
 
