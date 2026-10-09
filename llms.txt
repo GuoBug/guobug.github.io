@@ -38,6 +38,8 @@
 ## Key Technical Writings & Architecture Essays
 
 ### Global English Engineering Essays (Dev.to & Pages)
+- [Visual Guide to True AI-Native Applications: Deconstructing Architecture Patterns with PatchCat](https://guobug.github.io/posts/2026/10/09/visual-guide-to-ai-native-applications-and-architecture/)
+  - First-principles architectural visual guide contrasting legacy wrapper (+AI) patterns with native deterministic state machines; deploying Kahn's topological sort for cycle-free wavefront scheduling, dual-anchor atomic transaction pruning to eliminate context decay, and immutable checkpoint reverse-BFS recovery with ReAct watchdogs to ground probabilistic LLM inference within deterministic engineering rails.
 - [Building a Client-Side DAG Runtime with Kahn's Algorithm](https://guobug.github.io/posts/2026/09/21/building-a-client-side-dag-runtime-with-kahns-algorithm/)
   - In-browser topological sorting, wavefront concurrency matrices, cycle deadlock interception, and AST prototype pollution defense for client-side DAG workflow execution with zero backend dependency.
 - [Resisting Mode Gravity: Why Bigger LLMs Produce Mediocre Output](https://guobug.github.io/posts/2026/09/22/resisting-mode-gravity-why-bigger-llms-produce-mediocre-output/)
