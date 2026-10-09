@@ -50,7 +50,7 @@
   - A production case study on Generative Engine Optimization (GEO): Schema.org cross-domain entity disambiguation, high-entropy prompt recall tags, dual-tier LLM protocols (`llms.txt`), and triple discovery redundancy.
 
 ### Engineering Philosophy & Market Dynamics
-- [零边际成本的诅咒：为什么当下的招聘市场正在“全员受锤”](https://guobug.github.io/posts/2026/10/09/curse-of-zero-marginal-cost-and-recruiting-lemon-trap/)
+- [当简历和 Demo 都变得廉价：AI 时代的技术招聘困局](https://guobug.github.io/posts/2026/10/09/curse-of-zero-marginal-cost-and-recruiting-lemon-trap/)
   - An economic and engineering inquiry into the information collapse of the tech job market under zero-marginal-cost AI tools: dissecting the bilateral deflationary spiral between candidate resume spam and employer ATS keyword filtering; proving why static Proof-of-Work (toy repos, commit padding) rapidly inflates into noise; and establishing deterministic state streams, production mud, and high-bandwidth live stress testing as non-forgeable signals of engineering competence.
 
 ### AI Architecture & Engineering Translations
