@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" style="background: transparent; display: block;">
+  <defs>
+    <!-- Dot Grid Pattern -->
+    <pattern id="dot-grid-lemon" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#D4D4D8" />
+    </pattern>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF4D4D" stroke="#000000" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7FFF00" stroke="#000000" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#18181B" stroke="#000000" stroke-width="1.5"/>
+    </marker>
+
+    <style>
+      .font-mono { font-family: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'PingFang SC', monospace; }
+      .font-heading { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif; }
+      .bold { font-weight: 700; }
+      .border-main { stroke: #000000; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; }
+      .border-card { stroke: #000000; stroke-width: 2; }
+      .border-thin { stroke: #000000; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <!-- Outer Frame Shadow & Container -->
+  <rect x="14" y="14" width="932" height="492" rx="6" fill="#000000" />
+  <rect x="10" y="10" width="932" height="492" rx="6" fill="#FAF9F5" class="border-main" />
+  <rect x="13" y="13" width="926" height="486" rx="4" fill="url(#dot-grid-lemon)" />
+
+  <!-- Header Bar -->
+  <rect x="26" y="24" width="900" height="44" rx="4" fill="#000000" />
+  <rect x="23" y="21" width="900" height="44" rx="4" fill="#FFFFFF" class="border-card" />
+
+  <rect x="33" y="29" width="162" height="28" rx="3" fill="#FFE600" class="border-thin" />
+  <text x="114" y="47" class="font-mono bold" font-size="11" fill="#000000" text-anchor="middle" letter-spacing="1">MARKET DYNAMICS</text>
+
+  <text x="210" y="48" class="font-heading bold" font-size="14" fill="#000000" letter-spacing="0.5">ZERO MARGINAL COST SPIRAL vs DETERMINISTIC STATE STREAM</text>
+  <text x="760" y="48" class="font-mono" font-size="10.5" fill="#52525B">SIGNAL THEORY v1.0</text>
+
+  <!-- ================= LANE 1: Deflationary Spiral ================= -->
+  <g id="lane-deflation">
+    <rect x="26" y="81" width="900" height="174" rx="5" fill="#000000" />
+    <rect x="23" y="78" width="900" height="174" rx="5" fill="#FFF5F5" class="border-card" />
+
+    <!-- Lane Badge -->
+    <rect x="35" y="88" width="220" height="24" rx="3" fill="#FF4D4D" class="border-thin" />
+    <text x="145" y="104" class="font-mono bold" font-size="10.5" fill="#000000" text-anchor="middle">双向零成本通缩圈 (通胀噪声陷阱)</text>
+
+    <!-- Node 1: 求职端 -->
+    <rect x="38" y="124" width="230" height="108" rx="4" fill="#000000" />
+    <rect x="35" y="121" width="230" height="108" rx="4" fill="#FFFFFF" class="border-thin" />
+    <rect x="43" y="128" width="110" height="18" rx="2" fill="#F4F4F5" />
+    <text x="98" y="141" class="font-mono bold" font-size="9.5" fill="#71717A" text-anchor="middle">求职端 // 投递边际趋0</text>
+    <text x="150" y="165" class="font-heading bold" font-size="13" fill="#000000" text-anchor="middle">AI 生成履历 + 脚本海投</text>
+    <text x="150" y="186" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">关键词重合度 95% 批量组装</text>
+    <text x="150" y="204" class="font-mono bold" font-size="10" fill="#DC2626" text-anchor="middle">结果：单份简历注意力稀释归零</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="270" y1="175" x2="335" y2="175" stroke="#FF4D4D" stroke-width="2.5" marker-end="url(#arrow-red)" />
+    <text x="302" y="165" class="font-mono bold" font-size="9" fill="#DC2626" text-anchor="middle">信噪比雪崩</text>
+
+    <!-- Node 2: 企业端 -->
+    <rect x="348" y="124" width="234" height="108" rx="4" fill="#000000" />
+    <rect x="345" y="121" width="234" height="108" rx="4" fill="#FFFFFF" class="border-thin" />
+    <rect x="353" y="128" width="112" height="18" rx="2" fill="#F4F4F5" />
+    <text x="409" y="141" class="font-mono bold" font-size="9.5" fill="#71717A" text-anchor="middle">企业端 // 过滤边际趋0</text>
+    <text x="462" y="165" class="font-heading bold" font-size="13" fill="#000000" text-anchor="middle">ATS 关键词机筛 + 幽灵岗</text>
+    <text x="462" y="186" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">死卡第一学历与年龄防线</text>
+    <text x="462" y="204" class="font-mono bold" font-size="10" fill="#DC2626" text-anchor="middle">代价：识别真实工程能力成本暴增</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="584" y1="175" x2="650" y2="175" stroke="#FF4D4D" stroke-width="2.5" marker-end="url(#arrow-red)" />
+    <text x="617" y="165" class="font-mono bold" font-size="9" fill="#DC2626" text-anchor="middle">误报漏报双杀</text>
+
+    <!-- Node 3: 柠檬市场崩溃 -->
+    <rect x="663" y="124" width="248" height="108" rx="4" fill="#000000" />
+    <rect x="660" y="121" width="248" height="108" rx="4" fill="#18181B" class="border-thin" />
+    <rect x="668" y="128" width="120" height="18" rx="2" fill="#27272A" />
+    <text x="728" y="141" class="font-mono bold" font-size="9.5" fill="#A1A1AA" text-anchor="middle">终局 // 柠檬市场崩溃</text>
+    <text x="784" y="165" class="font-heading bold" font-size="13" fill="#FFFFFF" text-anchor="middle">公域渠道退化为垃圾站</text>
+    <text x="784" y="186" class="font-mono" font-size="10" fill="#D4D4D8" text-anchor="middle">面霸涌入 / 务实构建者撤离</text>
+    <text x="784" y="204" class="font-mono bold" font-size="10" fill="#F87171" text-anchor="middle">被迫倒退回高边际成本熟人圈</text>
+  </g>
+
+  <!-- ================= LANE 2: State Stream Defense ================= -->
+  <g id="lane-defense">
+    <rect x="26" y="271" width="900" height="210" rx="5" fill="#000000" />
+    <rect x="23" y="268" width="900" height="210" rx="5" fill="#F0FDF4" class="border-card" />
+
+    <!-- Lane Badge -->
+    <rect x="35" y="278" width="230" height="24" rx="3" fill="#7FFF00" class="border-thin" />
+    <text x="150" y="294" class="font-mono bold" font-size="10.5" fill="#000000" text-anchor="middle">状态流高信用防御 (不可伪造的工程资产)</text>
+
+    <!-- Node 1: 时间拓扑演进 -->
+    <rect x="38" y="316" width="254" height="142" rx="4" fill="#000000" />
+    <rect x="35" y="313" width="254" height="142" rx="4" fill="#FFFFFF" class="border-thin" />
+    <rect x="43" y="320" width="132" height="20" rx="2" fill="#DCFCE7" />
+    <text x="109" y="334" class="font-mono bold" font-size="9.5" fill="#15803D" text-anchor="middle">长周期演化 // 拒绝快照</text>
+    <text x="162" y="360" class="font-heading bold" font-size="13.5" fill="#000000" text-anchor="middle">版本拓扑与重构负债史</text>
+    <text x="162" y="382" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">• 真实时间跨度的提交图谱</text>
+    <text x="162" y="402" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">• 底层调度从最简原型到推倒重写</text>
+    <text x="162" y="422" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">• 单次 Prompt 无法凭空生成的上下文</text>
+    <text x="162" y="442" class="font-mono bold" font-size="10" fill="#16A34A" text-anchor="middle">特征：历史提交具备严谨因果链</text>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="294" y1="384" x2="346" y2="384" stroke="#7FFF00" stroke-width="2.5" marker-end="url(#arrow-green)" />
+    <text x="320" y="374" class="font-mono bold" font-size="9" fill="#15803D" text-anchor="middle">约束对齐</text>
+
+    <!-- Node 2: 真实环境摩擦 -->
+    <rect x="358" y="316" width="258" height="142" rx="4" fill="#000000" />
+    <rect x="355" y="313" width="258" height="142" rx="4" fill="#FFFFFF" class="border-thin" />
+    <rect x="363" y="320" width="138" height="20" rx="2" fill="#DCFCE7" />
+    <text x="432" y="334" class="font-mono bold" font-size="9.5" fill="#15803D" text-anchor="middle">生产摩擦 // 拒绝 Happy Path</text>
+    <text x="484" y="360" class="font-heading bold" font-size="13.5" fill="#000000" text-anchor="middle">泥泞实战与边界决策权衡</text>
+    <text x="484" y="382" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">• 脏数据穿透与并发脏重绘</text>
+    <text x="484" y="402" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">• DAG 状态机拓扑防环死锁治理</text>
+    <text x="484" y="422" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">• 存储契约与断点续跑容错妥协</text>
+    <text x="484" y="442" class="font-mono bold" font-size="10" fill="#16A34A" text-anchor="middle">特征：深入非优雅真实泥潭</text>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="618" y1="384" x2="670" y2="384" stroke="#7FFF00" stroke-width="2.5" marker-end="url(#arrow-green)" />
+    <text x="644" y="374" class="font-mono bold" font-size="9" fill="#15803D" text-anchor="middle">双向验证</text>
+
+    <!-- Node 3: 动态对抗验证 -->
+    <rect x="682" y="316" width="230" height="142" rx="4" fill="#000000" />
+    <rect x="679" y="313" width="230" height="142" rx="4" fill="#18181B" class="border-thin" />
+    <rect x="687" y="320" width="126" height="20" rx="2" fill="#27272A" />
+    <text x="750" y="334" class="font-mono bold" font-size="9.5" fill="#A1A1AA" text-anchor="middle">终局防御 // 动态对抗</text>
+    <text x="794" y="360" class="font-heading bold" font-size="13.5" fill="#FFFFFF" text-anchor="middle">高带宽现场压力测试</text>
+    <text x="794" y="382" class="font-mono" font-size="10" fill="#D4D4D8" text-anchor="middle">• 现场突发故障推演排障</text>
+    <text x="794" y="402" class="font-mono" font-size="10" fill="#D4D4D8" text-anchor="middle">• 公开构建 (Build in Public)</text>
+    <text x="794" y="422" class="font-mono" font-size="10" fill="#D4D4D8" text-anchor="middle">• 名誉下注与业务点对点连接</text>
+    <text x="794" y="442" class="font-mono bold" font-size="10" fill="#4ADE80" text-anchor="middle">边际伪造成本 > 0</text>
+  </g>
+</svg>
