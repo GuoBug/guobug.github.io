@@ -2051,6 +2051,50 @@ img {
     gap: 0.5rem;
 }
 
+/* ==========================================================================
+   Neo-Brutalist Blockquote & TL;DR Cards
+   ========================================================================== */
+.medium-body-text blockquote,
+.post-content-body blockquote,
+blockquote {
+    position: relative;
+    margin: 2.25rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #FAF9F5;
+    border: 2px solid #000000;
+    border-left: 6px solid var(--accent);
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px 0px #000000;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #18181B;
+    box-sizing: border-box;
+}
+
+.medium-body-text blockquote p,
+.post-content-body blockquote p,
+blockquote p {
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+}
+
+.medium-body-text blockquote p:last-child,
+.post-content-body blockquote p:last-child,
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+    .medium-body-text blockquote,
+    .post-content-body blockquote,
+    blockquote {
+        margin: 1.75rem 0;
+        padding: 1rem 1.15rem;
+        font-size: 0.98rem;
+        box-shadow: 3px 3px 0px 0px #000000;
+    }
+}
+
 /* Inline Code */
 .medium-body-text code,
 .post-content-body code,

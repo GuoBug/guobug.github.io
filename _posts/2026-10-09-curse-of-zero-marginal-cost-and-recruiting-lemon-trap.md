@@ -13,7 +13,7 @@ summary_en: "Generative AI has made resumes, code, and prototypes cheaper to pro
 tags: [Information Asymmetry, Signaling Theory, Proof of Work, AI Workflow Orchestration, DAG State Machine, Deterministic Systems, Product Engineer]
 ---
 
-> **TL;DR：** AI 正在降低简历、代码和项目原型的制作成本，但招聘真正需要的不是更多材料，而是更可靠的能力判断。简历可以被优化，Demo 可以被快速拼装，自动筛选也可以处理海量申请；然而，这些变化并没有消除求职者与企业之间的信息不对称，反而可能让双方更难识别真实能力。与其继续堆叠材料和过滤规则，不如把注意力放到工程决策、问题排查、长期项目演进以及真实业务反馈上。
+> **TL;DR**: AI 正在降低简历、代码和项目原型的制作成本，但招聘真正需要的不是更多材料，而是更可靠的能力判断。简历可以被优化，Demo 可以被快速拼装，自动筛选也可以处理海量申请；然而，这些变化并没有消除求职者与企业之间的信息不对称，反而可能让双方更难识别真实能力。与其继续堆叠材料和过滤规则，不如把注意力放到工程决策、问题排查、长期项目演进以及真实业务反馈上。
 
 ---
 
