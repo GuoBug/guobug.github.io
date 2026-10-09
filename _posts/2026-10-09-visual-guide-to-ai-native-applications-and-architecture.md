@@ -41,7 +41,7 @@ To visualize this generational divide, the architectural differences between a l
 
 ---
 
-![Traditional + AI Wrapper vs True AI-Native Deterministic Architecture Diagram]({{ '/assets/images/flowchart-ai-native-vs-traditional-app.svg' | relative_url }})
+![Traditional + AI Wrapper vs True AI-Native Deterministic Architecture Diagram]({{ '/assets/images/flowchart-ai-native-vs-traditional-app-en.svg' | relative_url }})
 
 ---
 

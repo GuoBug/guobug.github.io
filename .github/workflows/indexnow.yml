@@ -1,0 +1,37 @@
+name: Notify IndexNow on Push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '_posts/**'
+      - 'llms.txt'
+      - 'llms-full.txt'
+      - 'index.html'
+      - 'about.html'
+      - 'projects.html'
+      - 'sitemap.xml'
+  workflow_dispatch:
+
+jobs:
+  indexnow:
+    name: Submit URLs to IndexNow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run IndexNow Submission
+        env:
+          GIT_BEFORE: ${{ github.event.before }}
+          GIT_AFTER: ${{ github.event.after }}
+        run: |
+          python .github/scripts/trigger_indexnow.py
