@@ -72,7 +72,7 @@ The engineering challenge is complete separation of concerns:
 - The Presentation Layer (UI): Zero visual intrusion. Clean typography, fast loading speeds, and uninterrupted developer reading flow.
 - The Semantic Layer (Protocol): High-density, mathematically rigorous schema graphs and machine protocols residing purely in the document header and HTTP endpoints.
 
-![GEO Architecture Overview]({{ '/assets/images/geo-architecture-diagram.svg' | relative_url }})
+![GEO Architecture Overview]({{ '/assets/images/geo-architecture-diagram-en.svg' | relative_url }})
 
 ---
 
