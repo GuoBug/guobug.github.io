@@ -187,7 +187,7 @@ RRF 的优越性体现在三点：
 ---
 
 > 下一篇预告  
-> 📖 《从 0 到 1 打造 AI 提示流编排器：单机开发到企业协同无缝跨越！双模持久化架构与统一数据契约实战（开源系列 23）》
+> 📖 [《PatchCat 工程复盘：用 Web Crypto API 加密本地 API Key（开源系列 23）》]({{ '/posts/2026/10/10/ai-prompt-orchestrator-web-crypto-vault-and-zero-plaintext/' | relative_url }})
 
 ---
 
