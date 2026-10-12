@@ -449,9 +449,9 @@ PatchCat 不托管用户的主口令，也没有保存可以用于恢复本地�
 
 ---
 
-> 下一篇预告
+> 下一篇：
 >
-> 📖 《从 0 到 1 打造 AI 提示流编排器：Cross-Encoder 交叉重排 API 统一适配与位次跃迁遥测实战（开源系列 24）》
+> 📖 [开源系列 24：纯前端端侧向量嵌入与三模混合检索实战]({{ '/posts/2026/10/12/patchcat-browser-native-vector-embedding-and-hybrid-search/' | relative_url }})
 
 ---
 
