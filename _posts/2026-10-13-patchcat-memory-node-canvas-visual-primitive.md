@@ -209,7 +209,7 @@ for await (const evt of subEngine.executeWorkflow(targetGraph, {
 
 > 下一篇预告
 >
-> 📖 《从 0 到 1 打造 AI 提示流编排器：IndexedDB 工作流版本快照与拓扑可视化 Diff 实战（开源系列 26）》
+> 📖 [《PatchCat 工程复盘：IndexedDB 工作流版本快照、拓扑规范化指纹与结构化 DAG Diff 实战（开源系列 26）》]({{ '/posts/2026/10/16/patchcat-workflow-version-snapshots-and-structural-diff/' | relative_url }})
 
 ---
 
