@@ -1224,6 +1224,41 @@ body {
     border: 1px solid #d4d4ce;
 }
 
+.work-story-proof {
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1.5px dashed #000000;
+    font-size: 0.88rem;
+    line-height: 1.65;
+}
+
+.work-story-proof-title {
+    font-weight: 800;
+    margin-bottom: 0.45rem;
+    color: #000000;
+    letter-spacing: 0.02em;
+}
+
+.work-story-proof-list {
+    margin: 0 0 0.65rem 0;
+    padding-left: 1.25rem;
+}
+
+.work-story-proof-list li {
+    margin-bottom: 0.35rem;
+}
+
+.work-story-proof a {
+    color: #000000;
+    font-weight: 700;
+    text-decoration: underline;
+    transition: background 0.15s ease;
+}
+
+.work-story-proof a:hover {
+    background: var(--accent);
+}
+
 
 /* --------------------------------------------------------------------------
    VIBE CODING Section (2 Prominent Interactive Cards)
