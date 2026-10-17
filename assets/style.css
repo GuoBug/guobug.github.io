@@ -1069,7 +1069,7 @@ body {
     .work-history-item {
         grid-template-columns: 320px 1fr;
         gap: 2.5rem;
-        align-items: center;
+        align-items: start;
     }
 }
 
@@ -1124,6 +1124,106 @@ body {
     color: #222222;
     margin: 0;
 }
+
+.work-story-prologue {
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: #fafafa;
+    border: 1.5px solid var(--border);
+    border-left: 5px solid var(--accent);
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: #333333;
+}
+
+.work-story-drawer {
+    margin-top: 0.85rem;
+}
+
+.work-story-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #000000;
+    background: #f4f4f0;
+    border: 1.5px solid #000000;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+}
+
+.work-story-summary::-webkit-details-marker {
+    display: none;
+}
+
+.work-story-summary::marker {
+    content: "";
+}
+
+.work-story-summary:hover,
+.work-story-drawer[open] > .work-story-summary {
+    background: var(--accent);
+    box-shadow: 2px 2px 0px #000000;
+    transform: translate(-1px, -1px);
+}
+
+.work-story-toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    background: #000000;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 900;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.work-story-toggle-icon::before {
+    content: "+";
+}
+
+.work-story-drawer[open] .work-story-toggle-icon::before {
+    content: "−";
+}
+
+.work-story-body {
+    margin-top: 0.85rem;
+    padding: 1.15rem 1.35rem;
+    background: #ffffff;
+    border: 1.5px solid #000000;
+    border-left: 4px solid #000000;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.08);
+    font-size: 0.94rem;
+    line-height: 1.8;
+    color: #1f1f1f;
+}
+
+.work-story-body p {
+    margin: 0 0 0.85rem 0;
+}
+
+.work-story-body p:last-child {
+    margin-bottom: 0;
+}
+
+.work-story-body code {
+    font-family: var(--font-mono);
+    font-size: 0.84em;
+    background: #f0f0ec;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid #d4d4ce;
+}
+
 
 /* --------------------------------------------------------------------------
    VIBE CODING Section (2 Prominent Interactive Cards)

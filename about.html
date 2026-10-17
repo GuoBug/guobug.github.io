@@ -354,6 +354,12 @@
                 </p>
             </div>
 
+            <!-- Prologue Note -->
+            <div class="work-story-prologue">
+                <span data-i18n="zh">纸面履历其实是挺单薄的东西——Title 既能掩盖平庸，也很容易吞掉具体做事的人在极限约束下做的创新与取舍。点击下方各阶段 <strong>[+]</strong> 展开对应的工程现场手记，只聊真实的生产现场、架构权衡与商业教训：</span>
+                <span data-i18n="en">Paper resumes are flat—titles can mask mediocrity just as easily as they erase real innovation under extreme constraints. Click <strong>[+]</strong> on any milestone below to read the raw engineering field notes, architectural trade-offs, and commercial lessons:</span>
+            </div>
+
             <!-- Compact Chronological Work History Rows -->
             <div class="work-history-list">
                 <!-- Row 1: Miaoawu Tech Studio -->
@@ -371,7 +377,31 @@
                     </div>
                     <div class="work-history-desc">
                         <span data-i18n="zh">主导企业级 AI Agentic Workflow 与自动化工具链搭建，基于 LLM API、n8n 构建自动化流水线，设计跨平台数据同步与统一 API 接口。</span>
-                        <span data-i18n="en">Architected enterprise AI automation pipelines & agentic workflows (LLM APIs, n8n), unified cross-platform API contracts, and managed rapid agile prototypes.</span>
+                        <span data-i18n="en">Architected enterprise AI automation pipelines &amp; agentic workflows (LLM APIs, n8n), unified cross-platform API contracts, and managed rapid agile prototypes.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：十余年经验与 AI 碰撞，长出开源的 DAG 编排器 PatchCat</span>
+                                <span data-i18n="en">FIELD NOTES: How 14 Years of Experience &amp; AI Converged into PatchCat</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>从极狐离开后，我没有急着找下一份常规工作，而是把过去十几年的工程、产品与增长经验，全部投入到了自己的跨境私域电商业务与技术工作室中。</p>
+                                    <p>这门业务起初高度依赖人工运营。随着单量和客群规模扩大，现成平台自带的工具彻底不够用了。我开始全面引入 <strong>AI 工作流编排</strong> 与辅助编程（AI Pair Programming）：先快速写出自动化小程序跑通拉新与社群促活；但到了统一管理多平台分散的订单、物流和客户资产时，撞上了真正的硬骨头——各平台数据异构且接口封闭。</p>
+                                    <p>放在几年前，这种跨平台异构数据清洗与会员体系打通，非得拉一支专门的研发团队不可。但在与 Claude 等大模型结对编程的过程中，我一步步完成了演化：从最初用 n8n 串联脚本，到过渡至 Dify，再到发现通用工具在复杂状态控制上的局限后，干脆自己动手在本地架构了一套基于 <strong>DAG 状态机</strong> 的可视化编排系统，把多平台订单同步、异构用户映射与异常重试跑成了高可靠的 <strong>确定性工作流</strong>。</p>
+                                    <p>在这个过程中，我提出业务场景与交互痛点（如多流程抽屉隔离、零配置本地 LocalStorage 隐私运行），AI 协助排查底层工程隐患（如 Kahn 拓扑排序环路死锁规避、React Flow 60fps 零脏重绘状态切片、AABB 空间防碰撞算法）。把涉及具体电商平台规则的业务逻辑剥离、脱敏后，我将这套底层核心开源了出来——也就是现在的 <a href="https://github.com/GuoBug/PatchCat" target="_blank" rel="noopener noreferrer" style="color: #000; font-weight: 700; text-decoration: underline;">PatchCat</a>（AI Prompt Flow Orchestrator）。</p>
+                                    <p>它是过去十几年里，我把底层代码、增长工程、To B/To C 业务体感与 AI 揉在一起后，真真切切从自己手里长出来的作品。现在业务流水线已经稳定运转，AI 接管了绝大部分重复劳动，我那颗喜欢从 0 到 1 折腾硬骨头的心又开始跳了——期待与气场对路的团队一起，去探索下一代 AI Native 产品的边界。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>After leaving JiHu GitLab, instead of immediately jumping into another corporate role, I poured over a decade of engineering, product, and growth experience into my own cross-border private-domain e-commerce business and technical studio.</p>
+                                    <p>Initially, operations relied heavily on manual effort. As order volume and customer segments scaled, off-the-shelf platform tools hit a wall. I brought in <strong>AI Workflow Orchestration</strong> and AI Pair Programming: first building automated mini-programs for acquisition and community engagement, then tackling the hardest bottleneck—unifying fragmented orders, logistics, and customer identities across closed, heterogeneous platforms.</p>
+                                    <p>Years ago, cross-platform ETL and unified membership mapping would have required a dedicated R&amp;D squad. Pairing with Claude, I evolved the stack step by step: starting with n8n script chains, migrating to Dify, and after hitting state-control limits in generic tools, architecting my own local visual orchestrator powered by a deterministic <strong>DAG Engine</strong> and <strong>State Machine</strong>.</p>
+                                    <p>Throughout this milestone co-discovery process, I defined the product ergonomics and operational scenarios (multi-flow drawer isolation, zero-config local LocalStorage privacy execution), while AI helped surface deep algorithmic edge cases (Kahn's topological cycle detection, React Flow 60fps zero-dirty-rerender state slicing, and AABB spatial collision avoidance). After stripping and anonymizing proprietary commerce rules, I open-sourced the core engine as <a href="https://github.com/GuoBug/PatchCat" target="_blank" rel="noopener noreferrer" style="color: #000; font-weight: 700; text-decoration: underline;">PatchCat</a>.</p>
+                                    <p>With the business pipeline now running autonomously under AI orchestration, my builder's itch to tackle new 0-to-1 challenges is back in full force.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -390,7 +420,27 @@
                     </div>
                     <div class="work-history-desc">
                         <span data-i18n="zh">主导中国区 SaaS 平台与本地化企业版产品规划，管理跨时区国际化分布式产研协同，推动路线图制定与高可用企业级功能端到端交付。</span>
-                        <span data-i18n="en">Owned product planning and quarterly roadmaps for China SaaS & Self-Managed enterprise editions, coordinating multi-timezone international R&D teams.</span>
+                        <span data-i18n="en">Owned product planning and quarterly roadmaps for China SaaS &amp; Self-Managed enterprise editions, coordinating multi-timezone international R&amp;D teams.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：国际化远程开源文化、SaaS GTM 与战略转向</span>
+                                <span data-i18n="en">FIELD NOTES: All-Remote Open-Source Culture, SaaS GTM &amp; Strategic Pivot</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>极狐 GitLab 是我待过的唯一一家全远程（All-Remote）国际化开源公司，也是我至今非常喜欢的一家公司。做研发的人多少都用过 GitLab 的 CI/CD，进去后我负责 Ops 相关产品线与中国区 SaaS 平台。GitLab 有个我特别喜欢的文化叫“Dogfooding（吃自己的狗粮）”——自己开发工具自己先重度使用，全球跨时区团队全靠极度透明的文档、Issue 和 Merge Request 异步协同。</p>
+                                    <p>当时极狐 GitLab 的国内 SaaS 商业化潜力很大，但早期增长还没跑出来。为了把 SaaS 做起来，我把当年市场增长那套 GTM（Go-To-Market）与工程基建本领全拿了出来：对外管官网与技术社区，做渠道与 SEO 拉升自然流量；对内重构注册与 Onboarding 转化漏斗。因为产品架构特殊、无法直接套用现成的第三方统计工具，我干脆自己动手写了一套独立的数据采集与全链路转化分析系统，从流量入口到激活留存全程盯盘。也是在这段时间，我们开始深入探索企业级 AI 研发辅助产品的落地方案。</p>
+                                    <p>后来公司发生顶层战略转向，国内管理层也经历了调整，非核心自研线迎来全面收缩。那是我第一次切身经历“产品本身没问题、市场也有需求，但当公司大战略转向时，过往搭起的所有体系可以在一夜之间归零”。这段经历让我真正学会了站在公司现金流与战略矩阵的高度去审视产品定位。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>JiHu GitLab was my first all-remote, international open-source company—and still one of my favorite engineering cultures. Stepping in to lead Ops product lines and China SaaS, I was immersed in GitLab's radical "Dogfooding" ethos, where distributed global teams collaborate asynchronously through transparent handbooks, Issues, and Merge Requests.</p>
+                                    <p>To unlock China SaaS growth, I combined platform product engineering with full-funnel GTM mechanics: managing both the official marketing site and developer community, scaling organic acquisition via technical SEO, and overhauling the trial onboarding funnel. Because GitLab's architecture couldn't rely on off-the-shelf third-party trackers, I built an independent telemetry and full-funnel conversion analytics system from scratch, while initiating early enterprise AI DevSecOps explorations.</p>
+                                    <p>Later, a top-level corporate strategy shift and executive reorganization led to the sunsetting of local self-developed product lines. Seeing healthy products and painstakingly built funnels zeroed out overnight by macro strategic pivots taught me to evaluate every product line through the lens of corporate cash flow and strategic gravity.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -404,12 +454,32 @@
                         </h3>
                         <div class="work-history-role">
                             <span data-i18n="zh">软件与平台产品负责人</span>
-                            <span data-i18n="en">Software & Platform Product Lead</span>
+                            <span data-i18n="en">Software &amp; Platform Product Lead</span>
                         </div>
                     </div>
                     <div class="work-history-desc">
                         <span data-i18n="zh">面向科研与工业实验室场景，主导高精度光谱分析工作站软件与 SaaS 数据平台的产品架构与交付，搭建 Jira 敏捷管理体系。</span>
                         <span data-i18n="en">Led product architecture and delivery for optical workstation software and laboratory SaaS data platforms, standardizing Jira-based agile workflows.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：跨界硬核仪器研发，从 STM32 寄存器、示波器到上位机架构</span>
+                                <span data-i18n="en">FIELD NOTES: From STM32 Registers &amp; Oscilloscopes to C# .NET Workstation</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>这一站跨度很大：一家面向制药与科研院所的分析仪器公司，研发高精度药物光谱分析仪与配套工作站软件。因为前期已有明确的意向订单与极强的行业资源，我决定接下这个挑战，从互联网产品跨入硬核工业软硬件研发。</p>
+                                    <p>那还是 2019 年，没有现在的 Vibe Coding。为了把软硬件全链路吃透，我从底层步进电机驱动和 STM32 寄存器啃起：老老实实翻芯片手册、看时序图、调寄存器；电机转不起来，就拿示波器一点点抓波形排查。没有捷径，全靠硬磨。随后一路往上搭：客制化的实时系统调度、上下位机串口/总线通讯协议，再到基于 C# .NET 构建的光谱分析上位机工作站软件与实验室数据管理平台。</p>
+                                    <p>期间遇上疫情爆发，全球硬件供应链近乎停摆，连定制的机械法兰都比预期晚到很久。我把开发板和仪器模块搬回家继续调代码、搭 Jira 研发管理体系，硬着头皮把软件架构交付了出来。受限于疫情期间的供应链与资金周期，商业化扩张最终放缓；但这段经历给我留下的最大资产是：我再也不怕从零去啃任何硬核的未知技术黑盒了。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>This chapter was a bold leap into deep-tech hardware: building high-precision pharmaceutical spectroscopy instruments and companion workstation software for research labs. Backed by early commercial intent orders, I dove headfirst from internet software into bare-metal industrial R&amp;D.</p>
+                                    <p>In 2019—long before vibe coding—mastering the full hardware-software stack meant starting at STM32 registers and stepper motor drivers: reading datasheets, analyzing timing diagrams, and probing signal waveforms with an oscilloscope whenever a motor stalled. From the bare metal up, I worked across custom real-time scheduling, serial/bus communication protocols, and the C# .NET desktop spectroscopy workstation and lab data platform.</p>
+                                    <p>When COVID-19 hit, hardware supply chains froze—even custom mechanical flanges were delayed for months. I took the dev boards and optical modules home to keep debugging firmware and standardizing our Jira R&amp;D workflows. While supply-chain headwinds eventually slowed hardware scaling, that period forged an irreversible confidence: no technical black box is too intimidating to learn from scratch.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -429,6 +499,26 @@
                     <div class="work-history-desc">
                         <span data-i18n="zh">通过全流程 A/B 测试优化用户注册与付费转化链路，结合精细化用户分层运营策略，推动注册转化率提升 30%+，DAU 提升 20%+。</span>
                         <span data-i18n="en">Designed end-to-end A/B tests to optimize registration and onboarding funnels, boosting conversion rate by 30%+ and DAU by 20%+.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：To B 商业化探索与流量场景心智的顿悟</span>
+                                <span data-i18n="en">FIELD NOTES: B2B2C Commercialization &amp; User Intent Awakening</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>离开 B 站后，我想跳出纯流量逻辑，去看看真金白银交付的 To B 生意，于是加入了爱乐奇（钦文网络）的创新业务团队。</p>
+                                    <p>我们当时做了一套面向教育机构的增长与管理方案：用小程序跑绘本阅读打卡、社群运营与裂变获客，背后配套一套从零搭建的轻量化 CRM 与用户画像系统，再结合权威版权内容与录播课卖给机构。获客、体验、留存转化，链条极短；结合精细化的 A/B 测试，注册转化率拉升了 30% 以上。同期我还深入接触过线下扫码终端与阿里、京东等电商大平台的渠道返利对接，深刻体会到小团队对接巨头平台时的漫长流程，也看清了“急迫场景（如即时租借）”与“慢决策场景（如返利下单）”在用户心智上的天然排斥。</p>
+                                    <p>后来随着教培行业外部大盘收紧，新业务线战略收缩。这次经历让我从大厂的流量温室里彻底清醒过来：以前在携程和 B 站，主航道和流量红利是既定的，你只需要把产品细节做好；但脱离了绝对流量的庇护后，场景心智对不对、行业周期站在哪一边，往往比功能本身更决定生死。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>After Bilibili, I wanted to step outside pure consumer traffic plays and test myself in B2B2C monetization—joining the innovation arm at Alo7 (Qinwen Network).</p>
+                                    <p>We built a full-stack growth and retention suite sold directly to educational institutions: WeChat Mini-Programs driving daily reading check-ins and viral community loops on the front end, backed by a custom-built lightweight CRM, user profiling engine, and licensed video curriculum. Systematic A/B testing lifted registration conversion by over 30%. Around the same period, I also explored offline QR-terminal traffic monetization integrated with major e-commerce APIs (Alibaba/JD), learning firsthand why high-urgency offline micro-moments clash with slow-decision e-commerce rebate funnels.</p>
+                                    <p>As regulatory headwinds hit the education sector, the innovation line was scaled back. Stepping outside the traffic greenhouse of mega-platforms taught me a sobering truth: when you no longer have guaranteed organic traffic, matching user psychological intent and macro industry cycles matters far more than feature polish alone.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -448,6 +538,28 @@
                     <div class="work-history-desc">
                         <span data-i18n="zh">负责移动主站跨端组件与 Hybrid 架构升级，确保大流量峰值下的系统流畅度与交付一致性；搭建全栈转化漏斗与埋点监控指标体系。</span>
                         <span data-i18n="en">Deployed cross-platform UI frameworks and Hybrid infrastructures for peak traffic; established full-stack event tracking and funnel monitoring metrics.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：把移动站体验做到极致，然后直面战略取舍</span>
+                                <span data-i18n="en">FIELD NOTES: Crafting a Top-Tier Mobile Web &amp; Facing Strategic Gravity</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>去 B 站时它正处于高速增长期。我带着携程的移动增长与归因经验过去，接手重构整个 B 站移动 H5 主站。</p>
+                                    <p>当时的念头很纯粹：既然做，就做到业内顶级。在架构翻新时，我提前把渠道流量统计、分销渠道包等底层基建全部埋了进去。后来市场部过来提需求，本以为要花很多口舌排期，结果发现他们想要的统计和分发能力全都是现成的。这种提前预判业务演进、把地基先铺好的感觉确实很爽。期间因为数据链路打通，我们还顺藤摸瓜抓出了一条魔幻的灰产：当时有人靠盗链白嫖 B 站的韩剧源视频流，在外面生生养活了好几个盗版 App。数据这东西，一旦建成体系，水面下的暗流就全都能看见。</p>
+                                    <p>但商业上的矛盾也出在这里：H5 在当时公司大盘里的核心定位是获客漏斗——目标是把用户往原生 App 引，而不是让用户留在网页里。所以我把 H5 的播放和交互体验打磨得越丝滑，用户就越缺乏下载 App 的动力。</p>
+                                    <p>这是一堂很真实的商业课：在公司的顶层战略面前，局部的极致体验随时需要让路。但我不后悔那段投入，至少证明过自己能把一套高并发前端产品与数据基建打磨到顶级。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>Joining Bilibili during its hyper-growth phase, I brought my mobile attribution experience from Ctrip to overhaul Bilibili's entire mobile web (H5) platform.</p>
+                                    <p>My goal was simple: make it industry-leading. During the architectural rewrite, I proactively embedded channel telemetry and distribution package attribution ahead of business requests. When the marketing team later came asking for campaign tracking, they were stunned to find the entire attribution infrastructure already live. Having end-to-end telemetry also uncovered wild underground anomalies—including third-party pirate apps hotlinking Bilibili's Korean drama video streams to power their own businesses. Once observability is in place, nothing stays hidden.</p>
+                                    <p>Yet that excellence created a strategic paradox: strategically, Mobile Web existed as a top-of-funnel acquisition bridge to drive native App installs. The smoother and more complete I made the H5 playback experience, the less incentive users had to download the native App.</p>
+                                    <p>It was a defining lesson in product strategy: local craftsmanship always yields to company-level strategic gravity—though proving we could engineer a top-tier high-concurrency mobile web stack remains a proud milestone.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -466,7 +578,27 @@
                     </div>
                     <div class="work-history-desc">
                         <span data-i18n="zh">主导 APP 深度链接（Deep Linking）与 URI 路由标准化系统重构，使全站订单转化率提升 70%~80%；规划原生广告全生命周期看板与标准化营销 API。</span>
-                        <span data-i18n="en">Spearheaded APP Deep Linking & URI routing overhaul, boosting order conversion rate by 70%~80%; designed marketing automation APIs and real-time dashboards.</span>
+                        <span data-i18n="en">Spearheaded APP Deep Linking &amp; URI routing overhaul, boosting order conversion rate by 70%~80%; designed marketing automation APIs and real-time dashboards.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：半夜论坛聊出的 Offer，在蛮荒时代啃下渠道归因与 DeepLink 雏形</span>
+                                <span data-i18n="en">FIELD NOTES: Pioneering Deferred Deep Linking &amp; Cross-BU Attribution</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>在银行机房倒班的最后阶段，有天半夜值班时在技术论坛跟人闲聊，对方说“要不你过来面试看看”，去了才发现是携程。进去时合同签的是 PHP 工程师，一半时间写代码，一半时间做营销产品经理，不久后转为全职产品。因为自己写过底层代码，后来跟研发对齐方案和接口契约时，基本没人能拿技术排期忽悠我。</p>
+                                    <p>那会儿正赶上梁建章回归的“二次创业”，全公司重心猛砸移动端。我接到了一个非常底层的硬骨头：在各个业务线（BU）推行基础数据采集和订单渠道归因。当时携程每个大 BU 都有自己的排期利益，我一个人同时面对 4 个核心 BU，带着市场部研发挨个去跟各事业部的产品、研发拉锯对齐。把这套数据地基打下来后，我又牵头落地了两件当时挺超前的事：一是全站多样式 H5 触达引擎；二是 H5 自动唤起 App 并完整保留渠道上下文参数——这其实就是后来行业标配的 DeepLink 延迟归因（Deferred Deep Linking）雏形，直接带动全站相关链路转化率大幅提升。</p>
+                                    <p>当年市面上几乎没有现成方案可抄，从 0 到 1 把这几套增长基建跑通后，整个人做产品的精气神一下就提上来了。等系统进入平稳维护期，我发现自己骨子里还是更喜欢从 0 到 1 拓荒的过程，守摊子反而坐不住。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>During a 2 a.m. night shift at the bank data center, a casual technical forum chat turned into an interview invite—which turned out to be Ctrip. I joined initially on a hybrid PHP Engineer / Marketing PM contract before transitioning full-time into product management. Having written production code myself meant engineering teams could never bluff me on API contracts or sprint estimates.</p>
+                                    <p>Right as James Liang returned to lead Ctrip's mobile-first resurgence, I was handed a foundational challenge: standardizing event telemetry and order channel attribution across 4 fiercely independent Business Units (BUs). After aligning the cross-BU data foundation, I spearheaded two ahead-of-their-time growth engines: a site-wide dynamic H5 engagement system, and seamless H5-to-App invocation preserving full channel context—an early production implementation of Deferred Deep Linking that lifted order conversion across the funnel by 70%~80%.</p>
+                                    <p>Building those 0-to-1 growth infrastructures when no industry playbook existed revealed my core DNA: I thrive on 0-to-1 architectural pioneering far more than routine maintenance.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
 
@@ -486,6 +618,27 @@
                     <div class="work-history-desc">
                         <span data-i18n="zh">负责银行核心数据聚合平台（DCP）的后端开发、接口编写、自动化测试与生产环境部署，积累扎实的底层软件架构与数据处理经验。</span>
                         <span data-i18n="en">Developed backend data aggregation modules and automated test pipelines for core banking platforms, building a solid software architecture foundation.</span>
+
+                        <details class="work-story-drawer">
+                            <summary class="work-story-summary">
+                                <span class="work-story-toggle-icon" aria-hidden="true"></span>
+                                <span data-i18n="zh">工程现场手记：靠 Linux 内核代码入行，在机房学会敬畏生产环境</span>
+                                <span data-i18n="en">FIELD NOTES: Linux 0.11 Kernel Roots &amp; Respecting Production Cutovers</span>
+                            </summary>
+                            <div class="work-story-body">
+                                <div data-i18n="zh">
+                                    <p>毕业后我的第一份工作是到上海后找的。大学时我啃过 Linux 0.11 内核的内存管理模块，面试时聊了对那段源码的理解，面试官觉得不是背八股文的，当场就发了 Offer。</p>
+                                    <p>进去后主要给银行做核心数据聚合平台（DCP），技术栈现在听起来很古典：IBM DB2 主机、C、PL/SQL，外加一堆银行专用中间件。真正让我对“生产环境”四个字产生敬畏，是在系统割接上线那天：所有在文档和代码里看起来很美的东西，只要在生产环境跑不稳，就一文不值。</p>
+                                    <p>那天系统切流不到 10 分钟就报警了——大量消息堵死在队列里，下游全部超时。现场气氛极其窒息，银行副行长和几个科长全站在我们身后，直接放话：“今天要是解决不了，新核心全部回滚。”团队火线冲进机房排查，最后定位到是上线配置漏改了队列宽度参数。当场调大队列宽度、看着积压数据瞬间泄洪，才算有惊无险地过关。</p>
+                                    <p>最后几个月在数据中心倒班运维的画面至今印象很深：半夜 2 点被闹钟叫醒，爬起来盯着黑底绿字的终端检查 <code>crontab</code> 跑批是否正常结束，没出结果就得手动介入；偶尔还会有老鼠从机房桌面上溜过去（从那之后我就再也不吃放在公司过夜的食物了）。项目交付后，看着外面移动互联网正在起势，我决定跳出机房看看更大的世界。</p>
+                                </div>
+                                <div data-i18n="en">
+                                    <p>My first job after graduation in Shanghai started with an unexpected interview discussion on Linux 0.11 kernel memory management—proving I actually read source code rather than memorizing textbook answers landed me an immediate offer.</p>
+                                    <p>Working on the bank's Data Core Platform (IBM DB2 mainframes, C, PL/SQL, and banking middleware) taught me lifelong reverence for the word "Production." On cutover night, less than 10 minutes after traffic switched over, alarms lit up—over 90% of messages jammed in the queue and downstream systems timed out. With the bank's Vice President standing right behind us warning of a full rollback, we traced the bottleneck to an unadjusted queue-width parameter in the production config. Widening the queue and watching the backlog drain in real time was an unforgettable baptism by fire.</p>
+                                    <p>Months of 2 a.m. night shifts—waking up to monitor green-on-black terminal <code>crontab</code> batch jobs and occasionally spotting a mouse darting across the server room desk—instilled an instinct for operational reliability before I leaped into the rising mobile internet wave.</p>
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
             </div>
