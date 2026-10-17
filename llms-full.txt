@@ -42,32 +42,32 @@
 > Full interactive field notes available at: [https://guobug.github.io/about/#work](https://guobug.github.io/about/#work)
 
 - **07 / Miaoawu Tech Studio & PatchCat (2024.09 – Present | Co-founder / Product Engineer)**
-  - **Problem**: Managing cross-border private-domain e-commerce across closed, heterogeneous platforms created severe order, logistics, and customer identity fragmentation that off-the-shelf SaaS and generic workflow tools (n8n, Dify) could not deterministically control.
+  - **Problem**: Managing multi-channel e-commerce and private-domain operations across heterogeneous channels created severe order, logistics, and customer identity fragmentation that off-the-shelf SaaS and generic workflow tools (n8n, Dify) could not deterministically control.
   - **Solution**: Paired with frontier LLMs (Claude) to evolve from automated acquisition mini-programs to n8n/Dify pipelines, and ultimately architected a local visual **DAG Engine** and **State Machine** (Kahn's topological cycle detection, React Flow 60fps zero-dirty-rerender state slicing, AABB spatial collision avoidance, LocalStorage/FastAPI dual-mode persistence).
-  - **Outcome**: Automated multi-platform order synchronization and unified membership mapping in production; stripped proprietary commerce rules and open-sourced the deterministic orchestration core as **[PatchCat](https://github.com/GuoBug/PatchCat)**.
+  - **Outcome**: Automated multi-source order ETL synchronization and unified membership mapping in production; stripped business-specific commerce rules and open-sourced the deterministic orchestration core as **[PatchCat](https://github.com/GuoBug/PatchCat)**, continuing to advance deterministic AI-Native product architectures.
 - **06 / JiHu GitLab (2022.02 – 2024.09 | Senior Product Manager / SaaS & Platform Product Lead)**
   - **Problem**: Scaling China SaaS under strict regulatory compliance while third-party analytics could not be directly applied to GitLab's architecture.
   - **Solution**: Practiced radical all-remote "Dogfooding"; directed multi-tenant Trust & Safety risk gates (merged upstream into GitLab Global); built an independent full-funnel UTM telemetry and conversion analytics pipeline from scratch; managed official marketing site, developer community, technical SEO, and early enterprise AI DevSecOps explorations.
-  - **Outcome**: Lifted enterprise onboarding completion by +8% and week-one retention by +10%; gained macro strategic perspective when a corporate-level strategy pivot consolidated local self-developed product lines.
+  - **Outcome**: Lifted enterprise onboarding completion by +8% and week-one retention by +10%; developed macro strategic perspective on aligning product lifecycles with corporate cash flow and core business focus.
 - **05 / Shanghai Xianze Analytical Instruments (2019.08 – 2022.02 | Software & Platform Product Lead)**
-  - **Problem**: Delivering high-precision pharmaceutical spectroscopy instruments and laboratory data platforms across bare-metal hardware and desktop software during COVID-19 supply-chain freezes.
+  - **Problem**: Delivering high-precision pharmaceutical spectroscopy instruments and laboratory data platforms across bare-metal hardware and desktop software during COVID-19 supply-chain disruptions.
   - **Solution**: Started at STM32 registers and stepper motor drivers (debugging signal waveforms with oscilloscopes and timing diagrams), built custom real-time scheduling and serial/bus protocols, and architected the C# .NET spectroscopy workstation software and Jira R&D workflows.
-  - **Outcome**: Delivered the integrated hardware-software workstation architecture despite pandemic supply-chain delays, forging deep-tech adaptability from bare-metal registers to cloud SaaS.
+  - **Outcome**: Delivered the integrated hardware-software workstation architecture despite global supply-chain delays, forging deep-tech adaptability from bare-metal registers to cloud SaaS.
 - **04 / Shanghai Qinwen Network · Alo7 (2018.06 – 2019.05 | Senior Product Manager)**
   - **Problem**: Building direct-to-institution B2B2C monetization outside the organic traffic greenhouse of consumer mega-platforms.
   - **Solution**: Shipped WeChat Mini-Program viral reading check-in loops paired with a custom-built lightweight CRM, user profiling engine, and licensed video courses; explored offline QR-terminal traffic monetization with Alibaba/JD e-commerce APIs.
   - **Outcome**: Lifted registration conversion by +30% and DAU by +20% via A/B testing; developed critical judgment on user psychological intent and macro industry cycles.
 - **03 / Bilibili (2016.09 – 2018.03 | Senior Product Manager)**
   - **Problem**: Modernizing Bilibili's high-concurrency mobile web (H5) stack while balancing web retention against native App acquisition goals.
-  - **Solution**: Overhauled the mobile web architecture (+80% Avg PV) and proactively pre-embedded channel telemetry and distribution package attribution ahead of marketing requests—exposing underground pirate apps hotlinking Korean drama streams.
-  - **Outcome**: Doubled App download conversion (+100%) and grew SEO/channel traffic by +30%, while learning how local product craftsmanship interacts with company-level strategic gravity.
+  - **Solution**: Overhauled the mobile web architecture (+80% Avg PV) and proactively pre-embedded channel telemetry and distribution package attribution ahead of marketing requests—identifying external pirate apps hotlinking internal video streams via anomaly telemetry.
+  - **Outcome**: Doubled App download conversion (+100%) and grew SEO/channel traffic by +30%, while aligning local technical excellence with company-level strategic gravity.
 - **02 / Ctrip (2014.03 – 2016.03 | Product Manager — Technology PM / Marketing)**
   - **Problem**: Fragmented mobile event tracking and broken H5-to-App attribution across 4 independent Business Units (BUs) during Ctrip's mobile resurgence.
   - **Solution**: Leveraged hybrid PHP coding and PM fluency to align 4 core BUs onto unified telemetry and order attribution; spearheaded a site-wide dynamic H5 engagement engine and an early production **Deferred Deep Linking** system preserving channel context across H5-to-App invocation.
   - **Outcome**: Boosted order conversion rate across the funnel by 70%~80%.
-- **01 / Beijing Lianyintong Tech · SRCB Core Banking (2012.07 – 2014.01 | Software Engineer)**
+- **01 / Beijing Lianyintong Tech · Commercial Bank Core Systems (2012.07 – 2014.01 | Software Engineer)**
   - **Problem**: High-stakes core banking data aggregation (IBM DB2 mainframes, C, PL/SQL) and production cutover stability.
-  - **Solution**: Entered the industry via deep source-code analysis of Linux 0.11 kernel memory management; diagnosed and resolved a critical production cutover message-queue width bottleneck under rollback pressure, and maintained 2 a.m. data center `crontab` batch operations.
+  - **Solution**: Entered the industry via deep source-code analysis of Linux 0.11 kernel memory management; diagnosed and resolved a critical cutover message-queue width bottleneck under intense pressure, and maintained 2 a.m. data center `crontab` batch operations.
   - **Outcome**: Built a foundational engineering instinct for production reliability, configuration contracts, and fault tolerance.
 
 ---

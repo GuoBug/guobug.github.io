@@ -10,7 +10,7 @@
 - GitHub: https://github.com/GuoBug
 - Email: gu0bug0@gmail.com
 - Profile / About (7-Stage Engineering & Product Odyssey): https://guobug.github.io/about/#work
-- Career Trajectory: SRCB Core Banking (Linux/C/DB2) -> Ctrip (Deferred Deep Linking & Cross-BU Attribution) -> Bilibili (Mobile Web Architecture & Telemetry) -> Alo7 (B2B2C CRM & Growth) -> Xianze Instruments (STM32 Bare-Metal & C# .NET Workstation) -> JiHu GitLab (All-Remote SaaS GTM, Trust & Safety & Upstream DevSecOps) -> Miaoawu Studio & PatchCat (Deterministic AI Workflow Orchestration & DAG Engine)
+- Career Trajectory: Lianyintong Tech (Commercial Bank Core Systems: Linux/C/DB2) -> Ctrip (Deferred Deep Linking & Cross-BU Attribution) -> Bilibili (Mobile Web Architecture & Telemetry) -> Alo7 (B2B2C CRM & Growth) -> Xianze Instruments (STM32 Bare-Metal & C# .NET Workstation) -> JiHu GitLab (All-Remote SaaS GTM, Trust & Safety & Upstream DevSecOps) -> Miaoawu Studio & PatchCat (Deterministic AI Workflow Orchestration & DAG Engine)
 - Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
 - Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
 - Dev.to: https://dev.to/guobug
