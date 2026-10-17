@@ -39,7 +39,8 @@
 
 ## Career Odyssey & Product Engineering Trajectory (2012–Present)
 
-> Full interactive field notes available at: [https://guobug.github.io/about/#work](https://guobug.github.io/about/#work)
+> **14-Year Evolution Trajectory**: Evolving from low-level systems (2012–2014 Commercial banking core DCP, C/DB2/Linux) ➔ product growth & user intent (2014–2019 Ctrip deferred deep linking, Bilibili mobile web telemetry, Alo7 B2B2C growth) ➔ specialized systems & platform governance (2019–2024 Lab instruments & JiHu GitLab SaaS Trust & Safety / upstream MRs) ➔ AI-native hands-on engineering (2024–Present PatchCat open-source deterministic DAG runtime).  
+> Full interactive field notes and verified work items available at: [https://guobug.github.io/about/#work](https://guobug.github.io/about/#work)
 
 - **07 / Miaoawu Tech Studio & PatchCat (2024.09 – Present | Co-founder / Product Engineer)**
   - **Problem**: Managing multi-channel e-commerce and private-domain operations across heterogeneous channels created severe order, logistics, and customer identity fragmentation that off-the-shelf SaaS and generic workflow tools (n8n, Dify) could not deterministically control.
