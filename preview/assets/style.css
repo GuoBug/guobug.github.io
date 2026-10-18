@@ -1019,7 +1019,7 @@ body {
     position: relative;
     border: 2px solid var(--border);
     background: var(--card);
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
@@ -1032,7 +1032,7 @@ body {
 
 @media (min-width: 580px) {
     .vibe-card {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 3 / 2;
     }
 }
 
@@ -1042,8 +1042,9 @@ body {
 }
 
 .vibe-card-bg {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    flex: 1;
+    min-height: 0;
     background: #0f1115;
     display: flex;
     align-items: center;
@@ -2265,6 +2266,8 @@ pre code {
 .vibe-card.parallax-card .vibe-card-bg {
     overflow: hidden;
     position: relative;
+    flex: 1;
+    min-height: 0;
 }
 
 .vibe-card.parallax-card .vibe-card-img {
