@@ -43,6 +43,8 @@
 ## Key Technical Writings & Architecture Essays
 
 ### Global English Engineering Essays (Dev.to & Pages)
+- [Zero-Backend AI: Running Local Embeddings, BM25, and Hybrid RRF Search 100% in the Browser](https://guobug.github.io/posts/2026/10/18/zero-backend-browser-native-hybrid-search-bm25-rrf/)
+  - Production architecture and TypeScript guide to running zero-backend hybrid search entirely inside the browser: replacing expensive cloud vector databases (Pinecone, Qdrant) with an in-memory smoothed BM25 inverted index, a Web Worker-isolated neural embedding model (quantized BGE-small via ONNX), and Reciprocal Rank Fusion (RRF); solving dense vector blind spots on exact identifiers (e.g., `DAG_CYCLE_DETECTED`) and lexical synonym gaps; achieving sub-50ms query latency and 100% client data sovereignty; and transparently analyzing browser heap footprint (~150MB) and cold-start model download trade-offs.
 - [Visual Guide to True AI-Native Applications: Deconstructing Architecture Patterns with PatchCat](https://guobug.github.io/posts/2026/10/09/visual-guide-to-ai-native-applications-and-architecture/)
   - First-principles architectural visual guide contrasting legacy wrapper (+AI) patterns with native deterministic state machines; deploying Kahn's topological sort for cycle-free wavefront scheduling, dual-anchor atomic transaction pruning to eliminate context decay, and immutable checkpoint reverse-BFS recovery with ReAct watchdogs to ground probabilistic LLM inference within deterministic engineering rails.
 - [Building a Client-Side DAG Runtime with Kahn's Algorithm](https://guobug.github.io/posts/2026/09/21/building-a-client-side-dag-runtime-with-kahns-algorithm/)
