@@ -26,7 +26,7 @@ While building PatchCat—an open-source **AI Workflow Orchestration** studio de
 
 Here is the condensed architecture, the core logic, and the practical trade-offs.
 
-![PatchCat Dual-Channel Hybrid Retrieval](https://guobug.github.io/assets/images/flowchart-bm25-rrf-hybrid-search.svg)
+![PatchCat Dual-Channel Hybrid Retrieval]({{ '/assets/images/flowchart-bm25-rrf-hybrid-search.png' | relative_url }})
 
 ## 1. Why Pure Vector Search Fails on Real Workflows
 
