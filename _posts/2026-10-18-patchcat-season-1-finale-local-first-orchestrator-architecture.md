@@ -13,29 +13,22 @@ tags: [AI Workflow Orchestration, DAG Engine, State Machine, Local-First, Softwa
 series: "PatchCat · AI Prompt Flow Orchestrator"
 ---
 
-> 项目开源地址：[GitHub - PatchCat](https://github.com/GuoBug/PatchCat)
->
-> 在线体验：[PatchCat 在线工作台](https://guobug.github.io/PatchCat/)
->
-> 往期回顾：
->
-> 📖 [开源系列 26：IndexedDB 工作流版本快照与结构化 DAG Diff 实战]({{ '/posts/2026/10/16/patchcat-workflow-version-snapshots-and-structural-diff/' | relative_url }})
->
-> 📖 [开源系列 25：从隐式注入到画布显式原语——MemoryNode 架构设计与确定性会话调度]({{ '/posts/2026/10/13/patchcat-memory-node-canvas-visual-primitive/' | relative_url }})
->
-> 📖 [开源系列 24：纯前端端侧向量嵌入与三模混合检索]({{ '/posts/2026/10/12/patchcat-browser-native-vector-embedding-and-hybrid-search/' | relative_url }})
->
-> 📖 [开源系列 23：用 Web Crypto API 加密本地 API Key]({{ '/posts/2026/10/10/ai-prompt-orchestrator-web-crypto-vault-and-zero-plaintext/' | relative_url }})
->
-> 📖 [开源系列 22：纯前端实现 BM25 倒排索引与 RRF 排名融合]({{ '/posts/2026/10/06/ai-prompt-orchestrator-zero-dependency-bm25-and-rrf/' | relative_url }})
->
-> 📖 [开源系列 21：Flow Preflight 语法静态分析与画布连线检查]({{ '/posts/2026/10/03/ai-prompt-orchestrator-flow-preflight-lint-and-simulation/' | relative_url }})
->
-> 📖 [开源系列 20：模型级联路由与失败回退]({{ '/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/' | relative_url }})
->
-> 📖 [开源系列 19：Agent 重复调用检测与熔断]({{ '/posts/2026/10/01/ai-prompt-orchestrator-agent-deadlock-and-circuit-breaker/' | relative_url }})
->
-> 📖 [开源系列 18：DAG 检查点与断点续跑]({{ '/posts/2026/09/30/ai-prompt-orchestrator-dag-checkpoint-and-reverse-bfs/' | relative_url }})
+> 项目开源地址：[GitHub - PatchCat](https://github.com/GuoBug/PatchCat) · 在线体验：[PatchCat 在线工作台](https://guobug.github.io/PatchCat/)  
+> 前篇回顾：📖 [开源系列 26：IndexedDB 工作流版本快照与结构化 DAG Diff 实战]({{ '/posts/2026/10/16/patchcat-workflow-version-snapshots-and-structural-diff/' | relative_url }})
+
+<details>
+<summary><b>📚 点击展开查看第一季往期复盘精选 (系列 18 ~ 25)</b></summary>
+
+- 📖 [开源系列 25：从隐式注入到画布显式原语——MemoryNode 架构设计与确定性会话调度]({{ '/posts/2026/10/13/patchcat-memory-node-canvas-visual-primitive/' | relative_url }})
+- 📖 [开源系列 24：纯前端端侧向量嵌入与三模混合检索]({{ '/posts/2026/10/12/patchcat-browser-native-vector-embedding-and-hybrid-search/' | relative_url }})
+- 📖 [开源系列 23：用 Web Crypto API 加密本地 API Key]({{ '/posts/2026/10/10/ai-prompt-orchestrator-web-crypto-vault-and-zero-plaintext/' | relative_url }})
+- 📖 [开源系列 22：纯前端实现 BM25 倒排索引与 RRF 排名融合]({{ '/posts/2026/10/06/ai-prompt-orchestrator-zero-dependency-bm25-and-rrf/' | relative_url }})
+- 📖 [开源系列 21：Flow Preflight 语法静态分析与画布连线检查]({{ '/posts/2026/10/03/ai-prompt-orchestrator-flow-preflight-lint-and-simulation/' | relative_url }})
+- 📖 [开源系列 20：模型级联路由与失败回退]({{ '/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/' | relative_url }})
+- 📖 [开源系列 19：Agent 重复调用检测与熔断]({{ '/posts/2026/10/01/ai-prompt-orchestrator-agent-deadlock-and-circuit-breaker/' | relative_url }})
+- 📖 [开源系列 18：DAG 检查点与断点续跑]({{ '/posts/2026/09/30/ai-prompt-orchestrator-dag-checkpoint-and-reverse-bfs/' | relative_url }})
+
+</details>
 
 ---
 
