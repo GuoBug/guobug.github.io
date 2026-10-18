@@ -226,9 +226,9 @@ const walkAndStrip = (obj: Record<string, unknown>): void => {
 
 ---
 
-> 下一篇预告
+> 下一篇（第一季收官）：
 >
-> 📖 《PatchCat 工程复盘：画布子图折叠封装与可复用组件契约设计（开源系列 27）》
+> 📖 [开源第一季收官：从零构建纯端侧 AI 工作流引擎的架构全景与“边写边学”实战手记]({{ '/posts/2026/10/18/patchcat-season-1-finale-local-first-orchestrator-architecture/' | relative_url }})
 
 ---
 
