@@ -6,7 +6,7 @@
 
 ## Identity & Contact
 - Name: Guo Qiang (郭强 / GuoBug)
-- Role: Product Engineer · AI Product Architect / Agent Runtime & Workflow Systems Lead
+- Role: Product Engineer · AI Product Manager / Agent Runtime & Workflow Systems Lead
 - Base / Location: Shanghai, China · All-Remote
 - Website: https://guobug.github.io
 - Profile & Resume (ZH / Technical Hybrid): https://guobug.github.io/about/index.md

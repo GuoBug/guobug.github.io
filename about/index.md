@@ -2,14 +2,14 @@ Last Updated: 2026-10-22
 
 # Guo Qiang (郭强 / GuoBug)
 
-**Product Engineer · AI 产品架构师 / Agent Runtime & 工作流系统负责人**  
+**Product Engineer · AI产品经理 / Agent Runtime & 工作流系统负责人**  
 上海 · 远程 (All-Remote) ｜ 邮箱：[gu0bug0@gmail.com](mailto:gu0bug0@gmail.com) ｜ [GitHub](https://github.com/GuoBug) ｜ [个人主页](https://guobug.github.io) ｜ [在线交互简历](https://guobug.github.io/about/)
 
 ---
 
 ## 个人定位与技术特质 (Profile & Positioning)
 
-我是一名兼具平台工程底蕴与深度增长能力的资深 **Product Engineer** / **AI 产品架构师**。拥有 14 年从底层系统、商业增长、SaaS 平台治理到一手构建确定性 AI 系统的复合经验。
+我是一名兼具平台工程底蕴与深度增长能力的资深 **Product Engineer** / **AI产品经理**。拥有 14 年从底层系统、商业增长、SaaS 平台治理到一手构建确定性 AI 系统的复合经验。
 
 曾任 **极狐 GitLab (CN)** 产品专家，负责中国区 SaaS 平台规划、多租户安全风控与产品增长；此前在 **哔哩哔哩**、**携程** 主导高并发业务架构与千万级用户增长漏斗；早年在商业银行核心系统积累了扎实的 C 语言与 Linux 内核工程底子。
 
@@ -53,7 +53,7 @@ Last Updated: 2026-10-22
 
 ## 职业演进历史 (Work Experience)
 
-### 喵嗷呜科技工作室 · PatchCat 开源项目｜联合创始人 / AI 产品架构师 & 主理人｜2024.09 至今
+### 喵嗷呜科技工作室 · PatchCat 开源项目｜联合创始人 / AI产品经理 & 主理人｜2024.09 至今
 - 主导开源端侧 Agent 工作流引擎 PatchCat 的从 0 到 1 架构规划与交付；
 - 搭建企业级自动化流水线，基于确定性 DAG 状态机、端侧 RAG 检索与沙箱隔离实现高可靠业务闭环；
 - 剥离具体电商业务规则后，将核心编排底座完全开源，持续引领端侧智能体与本地优先架构演进。

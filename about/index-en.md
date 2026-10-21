@@ -2,14 +2,14 @@ Last Updated: 2026-10-22
 
 # Guo Qiang (GuoBug)
 
-**Product Engineer · AI Product Architect / Agent Runtime & Workflow Systems Lead**  
+**Product Engineer · AI Product Manager / Agent Runtime & Workflow Systems Lead**  
 Shanghai, China · Remote (All-Remote) | Email: [gu0bug0@gmail.com](mailto:gu0bug0@gmail.com) | [GitHub](https://github.com/GuoBug) | [Personal Workspace](https://guobug.github.io) | [Interactive Profile](https://guobug.github.io/about/)
 
 ---
 
 ## Profile & Architectural Positioning
 
-I am a senior **Product Engineer** & **AI Product Architect** blending platform engineering foundations with commercial growth mechanics. Over a 14-year career evolution, I have navigated low-level systems programming, high-concurrency mobile growth, enterprise SaaS platform leadership, and hands-on deterministic AI engineering.
+I am a senior **Product Engineer** & **AI Product Manager** blending platform engineering foundations with commercial growth mechanics. Over a 14-year career evolution, I have navigated low-level systems programming, high-concurrency mobile growth, enterprise SaaS platform leadership, and hands-on deterministic AI engineering.
 
 Previously served as Senior Product Manager at **JiHu GitLab (CN)**, leading product strategy, multi-tenant risk governance, and PLG growth for the China SaaS platform. Prior to that, scaled high-concurrency architectures and core growth funnels at **Bilibili** and **Ctrip**. Began my career in commercial banking core systems, building deep intuition for C, DB2, and Linux kernel memory models.
 
@@ -53,7 +53,7 @@ Bridging product strategy with systems engineering for executive talent discover
 
 ## Work Experience & Professional Trajectory
 
-### Miaoawu Tech Studio · PatchCat Open-Source Project | Co-founder / AI Product Architect & Lead Builder | 2024.09 – Present
+### Miaoawu Tech Studio · PatchCat Open-Source Project | Co-founder / AI Product Manager & Lead Builder | 2024.09 – Present
 - Led 0-to-1 product architecture and delivery of PatchCat, an open-source browser-native Agent workflow runtime;
 - Engineered enterprise automation pipelines for multi-channel commerce, using deterministic DAG state machines, client-side RAG, and execution sandboxes to achieve reliable business automation;
 - Abstracted and open-sourced the underlying workflow runtime to advance client-side agent architectures.
