@@ -37,6 +37,12 @@ layout: null
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>{{ site.url }}/about/index-en.md</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>{{ site.url }}/llms.txt</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>weekly</changefreq>

@@ -9,7 +9,8 @@
 - Role: Product Engineer · AI Product Architect / Agent Runtime & Workflow Systems Lead
 - Base / Location: Shanghai, China · All-Remote
 - Website: https://guobug.github.io
-- Profile & Resume (Markdown): https://guobug.github.io/about/index.md
+- Profile & Resume (ZH / Technical Hybrid): https://guobug.github.io/about/index.md
+- Profile & Resume (EN / Global Context): https://guobug.github.io/about/index-en.md
 - Interactive Profile & Career Roadmap (HTML): https://guobug.github.io/about/
 - Projects & Architecture: https://guobug.github.io/projects.html
 - GitHub: https://github.com/GuoBug
