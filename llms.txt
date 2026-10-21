@@ -4,12 +4,14 @@
 
 ## Identity & Contact
 - Name: Guo Qiang (郭强 / GuoBug)
-- Role: Product Engineer / Product Architect
+- Role: Product Engineer · AI Product Architect / Agent Runtime & Workflow Systems Lead
+- Base / Location: Shanghai, China · All-Remote
 - Website: https://guobug.github.io
+- Profile & Resume (Markdown): https://guobug.github.io/about/index.md
+- Interactive Profile & Career Roadmap (HTML): https://guobug.github.io/about/
 - Projects & Architecture: https://guobug.github.io/projects.html
 - GitHub: https://github.com/GuoBug
 - Email: gu0bug0@gmail.com
-- Profile / About (7-Stage Engineering & Product Odyssey): https://guobug.github.io/about/#work
 - Career Evolution (14-Year Trajectory):
   - 2012–2014: Low-level engineering base (Commercial Bank Core DCP Backend: Linux 0.11 kernels, C, DB2, production cutover resilience)
   - 2014–2019: Product growth & user intent (Ctrip deferred deep linking -> Bilibili high-concurrency mobile web telemetry -> Alo7 B2B2C growth)
