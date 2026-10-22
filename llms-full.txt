@@ -1,4 +1,4 @@
-# Guo Qiang (GuoBug) - Product Engineer
+﻿# Guo Qiang (GuoBug) - Product Engineer
 
 > Digital workspace, technical writings, and open-source architecture portfolio of Guo Qiang. Product Engineer / Product Architect blending platform engineering foundations with growth mechanics. Specializing in AI Workflow Orchestration, DAG state machines, deterministic architectures, and remote platform engineering.
 >
@@ -34,7 +34,16 @@
   - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
 - Video Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
 
-### 2. Metaphysics Tools
+### 2. FerryCat (Contract-Driven Cross-Host AI Agent Handoff & Review Bus)
+- Repository: https://github.com/GuoBug/FerryCat
+- Empirical Trajectory Archive: https://github.com/GuoBug/FerryCat/blob/main/docs/real-mesh-trajectory.json
+- Technical Highlights:
+  - Deterministic 6-state contract bus (SUBMITTED, CLAIMED, COMPLETED, POINTER_STALE, VALIDATION_FAILED, TIMED_OUT) over MCP stdio and zero-addon 
+ode:sqlite (WAL mode).
+  - Full-file SHA-256 fingerprint verification, 3-second dirty-buffer warning with first/last line snapshots, and TOCTOU re-verification upon contract fulfillment to eliminate silent blind reviews on stale files.
+  - Bounded Ajv JSON Schema output validation (RETRY_NEEDED <= 2) with human-scheduled instant atomic polling (poll_next_task).
+
+### 3. Metaphysics Tools
 - Live App: https://guobug.github.io/metaphysics-tools/index.html#
 - Interactive algorithmic modeling and visual computing experiments.
 
@@ -125,6 +134,12 @@
   - **Problem**: (1) Context rot and attention budget scarcity: in multi-turn autonomous agent loops, accumulating tokens degrades recall accuracy and long-range reasoning due to Transformer $O(n^2)$ pairwise attention dilution and positional encoding interpolation drift. (2) Prompt bloating and brittle logic: engineers frequently oscillate between fragile, hardcoded if-else prompt rules and overly vague guidance, or dump entire codebases and bloated toolsets into upfront context. (3) Long-horizon task breakdown: tasks spanning hours of autonomous execution quickly exceed single context windows, suffering from context pollution and catastrophic forgetting across dozens of tool invocations.
   - **Solution**: (1) Paradigm shift from static prompt engineering to dynamic context engineering, optimizing the minimal viable high-signal token subset; (2) Calibrating system prompts to the "right altitude" using explicit XML section demarcation and curating self-contained, unambiguous tool contracts; (3) Implementing just-in-time (JIT) runtime data loading with lightweight handles (file paths, Grep/Glob commands) and progressive disclosure to incrementally discover information; (4) Architecting a long-horizon triad defense: compaction (lossless summarization and tool result clearing when approaching context limits), structured note-taking (external persistent memory like `NOTES.md` and memory tools surviving context resets), and sub-agent architectures (isolating noisy exploration in clean context windows, returning 1K~2K token distilled summaries to the lead planner).
   - **Outcome**: Delivered a complete, verified Chinese technical translation and architectural formalization of Anthropic's production agent guidelines; integrated Neo-Brutalist industrial architecture diagrams and comparative decision frameworks to guide production AI workflow orchestration.
+
+### Cross-Host AI Collaboration Series (FerryCat)
+- [为什么我开始做 FerryCat：当你的电脑上同时开着两个 AI 编程软件](https://guobug.github.io/posts/2026/10/22/why-we-built-ferrycat-cross-host-agent-review-bus/)
+  - **Problem**: (1) Single-Model Self-Audit Blind Spots: Having the same LLM review code it just generated fails because its context window is already anchored to its own assumptions. (2) Manual Cross-Host Friction: Opening multiple desktop AI coding hosts (e.g., a primary reasoning Agent for coding and Codex/Antigravity/WorkBuddy mounting heterogeneous models for auditing) forces the developer into exhausting clipboard copy-pasting, duplicated token burn, silent blind reviews on unsaved or modified disk files (stale context), and 2,000-word unstructured essay replies. (3) Desktop Process Isolation: Desktop MCP stdio hosts run as isolated child processes that cannot be passively woken up by a background server without hitting client timeout limits.
+  - **Solution**: Co-designed FerryCat (https://github.com/GuoBug/FerryCat) around an honest "Human as Scheduler, Contract Bus as Guarantor" product boundary: (1) Context Offloading by Reference with Dual Snapshot Locks: Passing only file paths and line ranges while locking full-file SHA-256 fingerprints and first/last line snapshots at dispatch, claim, and fulfillment (TOCTOU defense); (2) Structured Contract Gatekeeping: Requiring strict pass/fail and actionable suggestion checklists validated against JSON schemas with bounded retries ($\le 2$); (3) Instant Atomic Polling: Accepting 3 manual window switches (~15–25s human trigger overhead) in exchange for 100% deterministic handoffs across isolated desktop hosts.
+  - **Outcome**: Validated FerryCat v0.1 in production by dispatching 3 real self-audit contracts from the primary coding Agent to 3 heterogeneous audit models (Deepseek-V4.1-Flash in 241.5s, Step-5-Preview in 354.1s, Hy3 in 463.6s), uncovering and fixing 9 real boundary vulnerabilities (archived in docs/real-mesh-trajectory.json), laying the deterministic contract foundation for the ultimate product evolution: zero-intervention cross-agent dialogue that notifies the developer only upon final completion.
 
 ### AI Prompt Orchestrator Series (PatchCat)
 - [PatchCat 第一季收官复盘：从零构建纯端侧 AI 工作流引擎的架构全景与“边写边学”实战手记](https://guobug.github.io/posts/2026/10/18/patchcat-season-1-finale-local-first-orchestrator-architecture/)

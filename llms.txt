@@ -1,4 +1,4 @@
-# Guo Qiang (GuoBug) - Product Engineer
+﻿# Guo Qiang (GuoBug) - Product Engineer
 
 > Digital workspace, technical writings, and open-source architecture portfolio of Guo Qiang. Product Engineer / Product Architect blending platform engineering foundations with commercial growth. 14-year evolution from low-level systems and commercial growth, to platform product leadership, and back into production code to engineer deterministic AI systems.
 
@@ -37,7 +37,16 @@
   - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
 - Video Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
 
-### 2. Metaphysics Tools
+### 2. FerryCat (Contract-Driven Cross-Host AI Agent Handoff & Review Bus)
+- Repository: https://github.com/GuoBug/FerryCat
+- Empirical Trajectory Archive: https://github.com/GuoBug/FerryCat/blob/main/docs/real-mesh-trajectory.json
+- Technical Highlights:
+  - Deterministic 6-state contract bus (SUBMITTED, CLAIMED, COMPLETED, POINTER_STALE, VALIDATION_FAILED, TIMED_OUT) over MCP stdio and zero-addon 
+ode:sqlite (WAL mode).
+  - Full-file SHA-256 fingerprint verification, 3-second dirty-buffer warning with first/last line snapshots, and TOCTOU re-verification upon contract fulfillment to eliminate silent blind reviews on stale files.
+  - Bounded Ajv JSON Schema output validation (RETRY_NEEDED <= 2) with human-scheduled instant atomic polling (poll_next_task).
+
+### 3. Metaphysics Tools
 - Live App: https://guobug.github.io/metaphysics-tools/index.html#
 - Interactive algorithmic modeling and visual computing experiments.
 
@@ -68,6 +77,10 @@
 ### AI Architecture & Engineering Translations
 - [构建高效 AI Agent 的上下文工程：从 Prompt 到 Context 的范式演进（Anthropic 官方工程实践精译）](https://guobug.github.io/posts/2026/09/29/effective-context-engineering-for-ai-agents/)
   - Comprehensive technical translation of Anthropic Applied AI's guide on context engineering for AI agents: dissecting transformer attention budget limits and context rot ($O(n^2)$ pairwise degradation); evaluating prompt engineering vs. context engineering in autonomous agent loops; deploying just-in-time (JIT) runtime data retrieval and progressive disclosure over bloated static context; and formalizing long-horizon task triad defenses across compaction (tool result clearing), structured note-taking (agentic memory), and sub-agent architectures.
+
+### Cross-Host AI Collaboration Series (FerryCat)
+- [为什么我开始做 FerryCat：当你的电脑上同时开着两个 AI 编程软件](https://guobug.github.io/posts/2026/10/22/why-we-built-ferrycat-cross-host-agent-review-bus/)
+  - Product genesis and real-world demand analysis behind FerryCat (https://github.com/GuoBug/FerryCat): dissecting why having a single LLM audit its own code fails due to context inertia ("grading one's own homework"), and why opening multiple desktop AI coding hosts (Codex, Antigravity, WorkBuddy) manually traps developers in clipboard copy-paste fatigue, silent blind reviews on unsaved stale disk files, and unstructured 2,000-word essay responses; co-discovering the physical constraints of passive stdio desktop IDE processes to establish an honest "Human as Scheduler, Contract Bus as Guarantor" workflow; proving real-world utility via an archived 3-model self-audit (Deepseek-V4.1-Flash, Step-5-Preview, Hy3) that caught 9 production edge-case bugs; and transparently defining operational boundaries (15–25s 3-window-switch overhead, shared local disk requirement, vs. unattended DAG engines like PatchCat) while outlining the ultimate roadmap toward zero-intervention cross-agent dialogue and completion notification.
 
 ### AI Prompt Orchestrator Series (PatchCat)
 - [PatchCat 第一季收官复盘：从零构建纯端侧 AI 工作流引擎的架构全景与“边写边学”实战手记](https://guobug.github.io/posts/2026/10/18/patchcat-season-1-finale-local-first-orchestrator-architecture/)

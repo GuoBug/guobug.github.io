@@ -108,6 +108,8 @@ series: "Product Engineering & Architecture Insights"
 
 ![潮水退去后的基石与责任 概念油画]({{ '/assets/images/illustration-engineering-responsibility-and-dawn.jpg' | relative_url }})
 
+> 下一篇：📖 [为什么我开始做 FerryCat：当你的电脑上同时开着两个 AI 编程软件]({{ '/posts/2026/10/22/why-we-built-ferrycat-cross-host-agent-review-bus/' | relative_url }})
+
 ---
 
 > **关于作者**  
