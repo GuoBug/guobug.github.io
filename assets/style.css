@@ -721,6 +721,7 @@ body {
     padding: 0.85rem 1rem;
     font-family: var(--font-mono);
     font-size: 0.8rem;
+    font-weight: 400;
     line-height: 1.5;
     color: #000000;
     opacity: 0;
@@ -766,10 +767,17 @@ body {
 }
 
 .company-brand-item:hover .company-tooltip,
-.company-brand-item:focus .company-tooltip {
+.company-brand-item:focus-visible .company-tooltip {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
+}
+
+@media (hover: none) {
+    .company-brand-item:hover .company-tooltip {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 
 .company-tooltip-header {
@@ -842,6 +850,7 @@ body {
 .company-tooltip-desc {
     color: var(--fg-body);
     font-size: 0.8rem;
+    font-weight: 400;
     line-height: 1.5;
 }
 
