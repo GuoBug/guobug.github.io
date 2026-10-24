@@ -8,6 +8,49 @@
     <meta name="description" content="Featured projects and open-source systems by Guo Qiang, featuring deterministic AI workflow orchestration, DAG state machines, and local-first architecture.">
     <meta name="author" content="Guo Qiang">
 
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://guobug.github.io/projects.html#webpage",
+          "url": "https://guobug.github.io/projects.html",
+          "name": "Projects · Guo Qiang | Product Engineer",
+          "description": "Featured projects and open-source systems by Guo Qiang, featuring deterministic AI workflow orchestration, DAG state machines, cross-host agent review bus, and local-first architecture.",
+          "isPartOf": {
+            "@id": "https://guobug.github.io/#website"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://guobug.github.io/#author",
+          "name": "Guo Qiang",
+          "alternateName": "GuoBug",
+          "jobTitle": ["Product Engineer", "AI Product Manager"],
+          "url": "https://guobug.github.io/about/",
+          "sameAs": [
+            "https://github.com/GuoBug",
+            "https://gitlab.com/QiangGu0",
+            "https://jihulab.com/gitlab-cn/gitlab",
+            "https://dev.to/guobug"
+          ],
+          "knowsAbout": [
+            "Deterministic AI Workflows",
+            "DAG Workflow Engines",
+            "Product Architecture",
+            "Model Context Protocol (MCP)",
+            "Cross-Host Agent Review Bus",
+            "SQLite WAL State Machines",
+            "Deterministic DAG Scheduling (Kahn's Algorithm)",
+            "Local-First & BYOK Architecture"
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://guobug.github.io/projects.html">
 
@@ -119,8 +162,8 @@
                     <h1 class="section-title">Featured<br>Projects</h1>
                 </div>
                 <p class="section-subtitle">
-                    <span data-i18n="zh">以“AI 辅助编程 + 干中学”落地的确定性开源系统。涵盖 AI 工作流编排、DAG 状态机、受限解码与硬件实验。</span>
-                    <span data-i18n="en">Deterministic open-source systems built via AI Pair Programming &amp; Learning by Doing. Covering AI workflow orchestration, DAG state machines, constrained decoding, and hardware experiments.</span>
+                    <span data-i18n="zh">以“AI 辅助编程 + 干中学”落地的确定性开源系统。涵盖 AI 工作流编排、DAG 状态机、跨宿主 Agent 评审总线与硬件实验。</span>
+                    <span data-i18n="en">Deterministic open-source systems built via AI Pair Programming &amp; Learning by Doing. Covering AI workflow orchestration, DAG state machines, cross-host agent review bus, and hardware experiments.</span>
                 </p>
             </div>
 
@@ -169,6 +212,52 @@
                         </a>
                         <a href="./posts/" class="featured-btn featured-btn-secondary">
                             <span data-i18n="zh">14 篇架构专栏 📖</span>
+                            <span data-i18n="en">ARCHITECTURE ESSAYS 📖</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flagship Project Card: FerryCat -->
+            <div class="featured-project-card">
+                <div class="featured-project-media">
+                    <div class="featured-project-badge">FLAGSHIP · CORE PROJECT</div>
+                    <img src="./assets/images/ferrycat-cover.jpg" alt="FerryCat Cross-Host Agent Review Bus Cover" width="1376" height="768" loading="lazy" decoding="async">
+                </div>
+                <div class="featured-project-content">
+                    <div>
+                        <div class="featured-project-header">
+                            <h3>FerryCat</h3>
+                            <div class="featured-project-subtitle">
+                                <span data-i18n="zh">契约驱动的跨宿主 AI Agent 评审总线</span>
+                                <span data-i18n="en">Contract-Driven Cross-Host AI Agent Review Bus</span>
+                            </div>
+                        </div>
+
+                        <div class="featured-project-tags">
+                            <span class="featured-project-tag">MCP Bus</span>
+                            <span class="featured-project-tag">SQLite WAL</span>
+                            <span class="featured-project-tag">7-State Machine</span>
+                            <span class="featured-project-tag">Deterministic Review</span>
+                            <span class="featured-project-tag">Zero Native Addon</span>
+                        </div>
+
+                        <div class="featured-project-desc">
+                            <div data-i18n="zh">
+                                <p>基于 MCP 与 Node.js 内置 SQLite WAL 状态机构建的确定性跨宿主 AI Agent 工单交接与代码审查总线。消除多桌面 IDE 隔离造成的上下文断裂，通过全量 SHA-256 指纹强校验与软失败缓冲阻断陈旧代码盲审，以 Ajv Schema 结构化交付根治复制粘贴膨胀。</p>
+                            </div>
+                            <div data-i18n="en">
+                                <p>A deterministic cross-host AI agent review bus built on Model Context Protocol (MCP) and Node.js native SQLite WAL state machine. Eliminates stale-pointer blind reviews via full-file SHA-256 fingerprint verification and Ajv-enforced structured deliveries across isolated desktop IDE hosts.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-project-actions">
+                        <a href="https://github.com/GuoBug/FerryCat" target="_blank" rel="noopener noreferrer" class="featured-btn featured-btn-primary">
+                            <span>GITHUB REPO ↗</span>
+                        </a>
+                        <a href="./posts/2026/10/22/why-we-built-ferrycat-cross-host-agent-review-bus/" class="featured-btn featured-btn-secondary">
+                            <span data-i18n="zh">架构专栏 📖</span>
                             <span data-i18n="en">ARCHITECTURE ESSAYS 📖</span>
                         </a>
                     </div>
