@@ -123,6 +123,8 @@ series: "FerryCat · Cross-Host AI Contract Bus"
 
 FerryCat 的第一块契约基石已经跑通并开源，每一条防呆规则都是被真实的日常痛点逼出来的。如果你平时写代码也习惯在电脑上同时开着多个 AI 窗口互相挑刺，欢迎拉下代码试试这条正在进化的“摆渡船”，更欢迎随时提 Issue 拍砖指教。
 
+> 下篇预告：📖 [什么是 MCP：从“大模型的通用 USB 接口”到现实世界的架构代价]({{ '/posts/2026/10/24/what-is-model-context-protocol-mcp-architecture-and-tradeoffs/' | relative_url }})
+
 ---
 
 > **关于作者**  

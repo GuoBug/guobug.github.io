@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640" style="background:#090d16; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <linearGradient id="mcpBgEn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    <filter id="mcpShadowEn" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="3" dy="4" stdDeviation="0" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="960" height="640" fill="url(#mcpBgEn)"/>
+  <rect x="12" y="12" width="936" height="616" rx="8" fill="none" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Top Title Banner -->
+  <rect x="28" y="24" width="904" height="54" rx="6" fill="#0f172a" stroke="#334155" stroke-width="2" filter="url(#mcpShadowEn)"/>
+  <text x="44" y="57" font-size="15" font-weight="800" fill="#f8fafc" letter-spacing="0.5">MODEL CONTEXT PROTOCOL (MCP) · ARCHITECTURE &amp; PRIMITIVE DECONSTRUCTION</text>
+  <rect x="684" y="36" width="232" height="30" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="702" y="56" font-size="11" font-weight="700" fill="#6ee7b7">OPEN PROTOCOL · JSON-RPC 2.0</text>
+
+  <!-- ================= SECTION 1: TOPOLOGY EVOLUTION (M*N vs M+N) ================= -->
+  <g transform="translate(28, 92)">
+    <rect width="904" height="210" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5" filter="url(#mcpShadowEn)"/>
+    
+    <!-- Left: Before MCP (M * N Mesh Hell) -->
+    <rect x="16" y="14" width="426" height="182" rx="6" fill="#18111e" stroke="#e11d48" stroke-width="1.5"/>
+    <rect x="26" y="22" width="194" height="22" rx="3" fill="#be123c"/>
+    <text x="34" y="37" font-size="10.5" font-weight="800" fill="#ffffff">❌ LEGACY SILOS: M × N MESH</text>
+    <text x="228" y="37" font-size="10" fill="#fda4af">Custom connectors built per client &amp; per source</text>
+
+    <!-- Hosts Box -->
+    <rect x="26" y="54" width="112" height="128" rx="4" fill="#2d1222" stroke="#f43f5e" stroke-width="1"/>
+    <text x="36" y="74" font-size="11" font-weight="700" fill="#fb7185">Host Ecosystem (M)</text>
+    <rect x="34" y="84" width="96" height="22" rx="3" fill="#3f122d"/>
+    <text x="40" y="99" font-size="9.5" fill="#fecdd3">Claude Desktop</text>
+    <rect x="34" y="112" width="96" height="22" rx="3" fill="#3f122d"/>
+    <text x="40" y="127" font-size="9.5" fill="#fecdd3">Cursor / Zed</text>
+    <rect x="34" y="140" width="96" height="22" rx="3" fill="#3f122d"/>
+    <text x="40" y="155" font-size="9.5" fill="#fecdd3">Antigravity / IDE</text>
+
+    <!-- Tangled Lines -->
+    <path d="M 138 95 L 304 95" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 95 L 304 123" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 95 L 304 151" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 123 L 304 95" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 123 L 304 123" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 123 L 304 151" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 151 L 304 95" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 151 L 304 123" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 138 151 L 304 151" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <rect x="186" y="112" width="70" height="22" rx="3" fill="#090508" stroke="#be123c" stroke-width="1"/>
+    <text x="194" y="127" font-size="9" font-weight="700" fill="#f43f5e">M × N Glue</text>
+
+    <!-- Services Box -->
+    <rect x="304" y="54" width="126" height="128" rx="4" fill="#2d1222" stroke="#f43f5e" stroke-width="1"/>
+    <text x="314" y="74" font-size="11" font-weight="700" fill="#fb7185">Target Resources (N)</text>
+    <rect x="312" y="84" width="110" height="22" rx="3" fill="#3f122d"/>
+    <text x="318" y="99" font-size="9.5" fill="#fecdd3">PostgreSQL / DB</text>
+    <rect x="312" y="112" width="110" height="22" rx="3" fill="#3f122d"/>
+    <text x="318" y="127" font-size="9.5" fill="#fecdd3">GitHub / GitLab</text>
+    <rect x="312" y="140" width="110" height="22" rx="3" fill="#3f122d"/>
+    <text x="318" y="155" font-size="9.5" fill="#fecdd3">Local FileSystem</text>
+
+    <!-- Right: After MCP (M + N Star Protocol) -->
+    <rect x="460" y="14" width="428" height="182" rx="6" fill="#0b1b1e" stroke="#059669" stroke-width="1.5"/>
+    <rect x="470" y="22" width="206" height="22" rx="3" fill="#047857"/>
+    <text x="478" y="37" font-size="10.5" font-weight="800" fill="#ffffff">✅ MCP STANDARD: M + N STAR</text>
+    <text x="684" y="37" font-size="10" fill="#a7f3d0">LSP-style decoupling: Write once, plug-and-play</text>
+
+    <!-- Hosts Box -->
+    <rect x="470" y="54" width="108" height="128" rx="4" fill="#063228" stroke="#10b981" stroke-width="1"/>
+    <text x="478" y="74" font-size="11" font-weight="700" fill="#34d399">Any Host (M)</text>
+    <rect x="478" y="84" width="92" height="22" rx="3" fill="#064e3b"/>
+    <text x="484" y="99" font-size="9.5" fill="#a7f3d0">Claude Desktop</text>
+    <rect x="478" y="112" width="92" height="22" rx="3" fill="#064e3b"/>
+    <text x="484" y="127" font-size="9.5" fill="#a7f3d0">Cursor / Zed</text>
+    <rect x="478" y="140" width="92" height="22" rx="3" fill="#064e3b"/>
+    <text x="484" y="155" font-size="9.5" fill="#a7f3d0">Antigravity / IDE</text>
+
+    <!-- Central MCP Bus Hub -->
+    <line x1="578" y1="95" x2="628" y2="118" stroke="#10b981" stroke-width="2"/>
+    <line x1="578" y1="123" x2="628" y2="118" stroke="#10b981" stroke-width="2"/>
+    <line x1="578" y1="151" x2="628" y2="118" stroke="#10b981" stroke-width="2"/>
+
+    <rect x="628" y="66" width="116" height="104" rx="6" fill="#042f2e" stroke="#06b6d4" stroke-width="2"/>
+    <text x="640" y="90" font-size="12" font-weight="800" fill="#67e8f9">MCP BUS</text>
+    <text x="640" y="106" font-size="9" fill="#99f6e4">Unified Contract</text>
+    <rect x="636" y="114" width="100" height="20" rx="3" fill="#083344"/>
+    <text x="642" y="128" font-size="9" font-weight="700" fill="#38bdf8">JSON-RPC 2.0</text>
+    <text x="640" y="152" font-size="8.5" fill="#5eead4">stdio / SSE Pipes</text>
+
+    <line x1="744" y1="118" x2="794" y2="95" stroke="#10b981" stroke-width="2"/>
+    <line x1="744" y1="118" x2="794" y2="123" stroke="#10b981" stroke-width="2"/>
+    <line x1="744" y1="118" x2="794" y2="151" stroke="#10b981" stroke-width="2"/>
+
+    <!-- MCP Servers Box -->
+    <rect x="794" y="54" width="84" height="128" rx="4" fill="#063228" stroke="#10b981" stroke-width="1"/>
+    <text x="800" y="74" font-size="10.5" font-weight="700" fill="#34d399">MCP Servers (N)</text>
+    <rect x="800" y="84" width="72" height="22" rx="3" fill="#064e3b"/>
+    <text x="806" y="99" font-size="9" fill="#a7f3d0">Postgres Svr</text>
+    <rect x="800" y="112" width="72" height="22" rx="3" fill="#064e3b"/>
+    <text x="806" y="127" font-size="9" fill="#a7f3d0">GitHub Svr</text>
+    <rect x="800" y="140" width="72" height="22" rx="3" fill="#064e3b"/>
+    <text x="806" y="155" font-size="9" fill="#a7f3d0">FS / FerryCat</text>
+  </g>
+
+  <!-- ================= SECTION 2: THREE CORE PRIMITIVES & RUNTIME ================= -->
+  <g transform="translate(28, 314)">
+    <rect width="904" height="298" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5" filter="url(#mcpShadowEn)"/>
+    <rect x="16" y="12" width="410" height="26" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="26" y="29" font-size="11" font-weight="800" fill="#f8fafc" letter-spacing="0.5">⚙️ MCP THREE CAPABILITY PRIMITIVES &amp; RUNTIME DATAFLOW</text>
+
+    <!-- Card 1: Tools -->
+    <rect x="16" y="48" width="280" height="236" rx="6" fill="#111c2e" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="26" y="58" width="112" height="22" rx="3" fill="#1d4ed8"/>
+    <text x="32" y="73" font-size="10.5" font-weight="800" fill="#ffffff">1. Tools (Actions)</text>
+    <text x="146" y="73" font-size="10" font-weight="700" fill="#60a5fa">Model-invoked functions</text>
+    <text x="26" y="100" font-size="9.5" fill="#94a3b8">• Essence: Executable functions with validation</text>
+    <text x="26" y="116" font-size="9.5" fill="#94a3b8">• Mechanism: JSON Schema defines input &amp; return</text>
+    <text x="26" y="132" font-size="9.5" fill="#94a3b8">• Property: Has side effects (Shell/DB/File writes)</text>
+    
+    <rect x="26" y="146" width="260" height="92" rx="4" fill="#070d18" stroke="#1e3a8a" stroke-width="1"/>
+    <text x="34" y="163" font-size="8.5" font-family="monospace" fill="#38bdf8">client.call_tool({</text>
+    <text x="44" y="179" font-size="8.5" font-family="monospace" fill="#93c5fd">  name: "dispatch_contract",</text>
+    <text x="44" y="195" font-size="8.5" font-family="monospace" fill="#93c5fd">  arguments: { file_path: "..." }</text>
+    <text x="34" y="211" font-size="8.5" font-family="monospace" fill="#38bdf8">}) -&gt; { content: [{ text: "..." }] }</text>
+    
+    <rect x="26" y="246" width="260" height="26" rx="3" fill="#1e293b"/>
+    <text x="34" y="263" font-size="9" font-weight="700" fill="#f59e0b">⚠️ Risk: Tool bloat inflates prompt context</text>
+
+    <!-- Card 2: Resources -->
+    <rect x="312" y="48" width="280" height="236" rx="6" fill="#112224" stroke="#0d9488" stroke-width="1.5"/>
+    <rect x="322" y="58" width="136" height="22" rx="3" fill="#0f766e"/>
+    <text x="328" y="73" font-size="10.5" font-weight="800" fill="#ffffff">2. Resources (Context)</text>
+    <text x="466" y="73" font-size="10" font-weight="700" fill="#2dd4bf">Passive data pipelines</text>
+    <text x="322" y="100" font-size="9.5" fill="#94a3b8">• Essence: REST-style read-only data objects</text>
+    <text x="322" y="116" font-size="9.5" fill="#94a3b8">• Mechanism: Standard URIs (file://, sqlite://)</text>
+    <text x="322" y="132" font-size="9.5" fill="#94a3b8">• Property: Zero side effects; live subscription feed</text>
+    
+    <rect x="322" y="146" width="260" height="92" rx="4" fill="#051314" stroke="#134e4a" stroke-width="1"/>
+    <text x="330" y="163" font-size="8.5" font-family="monospace" fill="#2dd4bf">client.read_resource({</text>
+    <text x="340" y="179" font-size="8.5" font-family="monospace" fill="#5eead4">  uri: "contract://mesh/active_tasks"</text>
+    <text x="330" y="195" font-size="8.5" font-family="monospace" fill="#2dd4bf">}) -&gt; { contents: [{ mimeType: "...",</text>
+    <text x="340" y="211" font-size="8.5" font-family="monospace" fill="#5eead4">  text: "{\"claimed\": 1}" }] }</text>
+
+    <rect x="322" y="246" width="260" height="26" rx="3" fill="#1e293b"/>
+    <text x="330" y="263" font-size="9" font-weight="700" fill="#10b981">💡 Advantage: On-demand context hydration</text>
+
+    <!-- Card 3: Prompts -->
+    <rect x="608" y="48" width="280" height="236" rx="6" fill="#1e1824" stroke="#a855f7" stroke-width="1.5"/>
+    <rect x="618" y="58" width="134" height="22" rx="3" fill="#7e22ce"/>
+    <text x="624" y="73" font-size="10.5" font-weight="800" fill="#ffffff">3. Prompts (Guides)</text>
+    <text x="764" y="73" font-size="10" font-weight="700" fill="#c084fc">Pre-built workflows</text>
+    <text x="618" y="100" font-size="9.5" fill="#94a3b8">• Essence: Parameterized system prompt templates</text>
+    <text x="618" y="116" font-size="9.5" fill="#94a3b8">• Mechanism: Served by Server, invoked in Host UI</text>
+    <text x="618" y="132" font-size="9.5" fill="#94a3b8">• Property: Packages best practices and constraints</text>
+    
+    <rect x="618" y="146" width="260" height="92" rx="4" fill="#0d0812" stroke="#581c87" stroke-width="1"/>
+    <text x="626" y="163" font-size="8.5" font-family="monospace" fill="#c084fc">client.get_prompt({</text>
+    <text x="636" y="179" font-size="8.5" font-family="monospace" fill="#e9d5ff">  name: "code_review_prompt",</text>
+    <text x="636" y="195" font-size="8.5" font-family="monospace" fill="#e9d5ff">  arguments: { severity: "strict" }</text>
+    <text x="626" y="211" font-size="8.5" font-family="monospace" fill="#c084fc">}) -&gt; { messages: [ ... ] }</text>
+
+    <rect x="618" y="246" width="260" height="26" rx="3" fill="#1e293b"/>
+    <text x="626" y="263" font-size="9" font-weight="700" fill="#38bdf8">🔗 Synergy: Bundles Tools &amp; Resources into flow</text>
+  </g>
+</svg>
