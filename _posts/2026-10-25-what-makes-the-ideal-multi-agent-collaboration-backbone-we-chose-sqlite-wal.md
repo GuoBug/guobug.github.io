@@ -178,7 +178,7 @@ UPDATE contracts SET status = 'TIMED_OUT' WHERE ... AND ? > deadline;
 
 底座的数据总线已经稳固扎根，但另一个关键问题随之而来：当多个下属 Agent 走进这间会议室开会时，我们如何确保它们手里拿到的代码文件是最新存盘的基线，而不是各执一词的陈旧幻象？
 
-下一篇，我们将深入代码防脏读的核心防线：拆解全文件 SHA-256 物理指纹与 ADR-0004 缓冲机制。
+下一篇，我们将深入代码防脏读的核心防线：📖 [先对齐最新基线：FerryCat 如何杜绝多 Agent 协作中的静默脏读]({{ '/posts/2026/10/26/align-baseline-first-eliminate-silent-dirty-reads-in-multi-agent-collaboration/' | relative_url }})。
 
 ---
 
