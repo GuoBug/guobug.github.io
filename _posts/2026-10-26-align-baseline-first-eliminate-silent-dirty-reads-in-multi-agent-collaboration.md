@@ -167,7 +167,7 @@ if you have fixes to deliver, provide them via structured_output.fixes.
 
 但下一个硬核工程卡点立刻浮出水面：当系统里有多个下属 Agent 跑在不同终端，在同一毫秒内冲进这间会议室争抢同一张待办工单时，在没有 Redis 等外部中心锁服务的单机环境下，我们如何确保工单不被重复认领、不错乱、不撞车？
 
-下一篇，我们将深入 FerryCat 的并发治理中枢：拆解基于 UUID 独占租约令牌的无锁并发设计。
+下一篇，我们将深入 FerryCat 的并发治理中枢：📖 [抢麦发言防撞车：基于 UUID 租约令牌的多 Agent 无锁并发治理]({{ '/posts/2026/10/26/prevent-concurrency-collisions-uuid-lease-tokens/' | relative_url }})。
 
 ---
 
