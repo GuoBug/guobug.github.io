@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="960" height="520" style="background:#0b0f19; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="signalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="mvpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#701a75"/>
+      <stop offset="100%" stop-color="#4a044e"/>
+    </linearGradient>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#06b6d4"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrow-fuchsia" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#d946ef"/>
+    </marker>
+  </defs>
+
+  <!-- Frame Background -->
+  <rect x="20" y="20" width="920" height="480" rx="12" fill="#0f172a" stroke="#334155" stroke-width="2" filter="url(#card-shadow)"/>
+
+  <!-- Header -->
+  <text x="50" y="56" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.5">DAN KOE DIGITAL ARTISAN WORKFLOW PIPELINE</text>
+  <text x="50" y="78" fill="#94a3b8" font-size="12">Transforming Raw Experience into High-Entropy Perspectives, Market Probing, and Lean MVP Value Exchange</text>
+  <line x1="50" y1="92" x2="910" y2="92" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Column 1: Idea Museum (Input Engine) -->
+  <g transform="translate(50, 110)">
+    <rect x="0" y="0" width="190" height="360" rx="8" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="14" y="14" width="162" height="24" rx="4" fill="#0369a1"/>
+    <text x="22" y="30" fill="#f0f9ff" font-size="11" font-weight="700">01. 灵感博物馆 (MUSEUM)</text>
+    
+    <!-- Sub-box 1: Validated Board -->
+    <rect x="14" y="50" width="162" height="85" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text x="24" y="70" fill="#38bdf8" font-size="11" font-weight="700">已验证看板 (Market)</text>
+    <text x="24" y="88" fill="#94a3b8" font-size="10">• 市场爆款行文骨架</text>
+    <text x="24" y="104" fill="#94a3b8" font-size="10">• 中体量博主数据锚点</text>
+    <text x="24" y="120" fill="#94a3b8" font-size="10">• 已经受检验的注意力结构</text>
+
+    <!-- Formula Node -->
+    <text x="95" y="156" fill="#38bdf8" font-size="18" text-anchor="middle" font-weight="700">×</text>
+
+    <!-- Sub-box 2: Favorite Board -->
+    <rect x="14" y="172" width="162" height="85" rx="6" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text x="24" y="192" fill="#38bdf8" font-size="11" font-weight="700">偏爱看板 (Conviction)</text>
+    <text x="24" y="210" fill="#94a3b8" font-size="10">• 沉淀经典与反向常识</text>
+    <text x="24" y="226" fill="#94a3b8" font-size="10">• 真实踩坑与个人执念</text>
+    <text x="24" y="242" fill="#94a3b8" font-size="10">• 无法复制的独立主张</text>
+
+    <!-- Metric / Tip -->
+    <rect x="14" y="272" width="162" height="74" rx="6" fill="#082f49" stroke="#0369a1" stroke-width="1"/>
+    <text x="24" y="294" fill="#bae6fd" font-size="10" font-weight="700">输入法则 (Input)</text>
+    <text x="24" y="312" fill="#7dd3fc" font-size="9.5">拒绝即食平庸多巴胺</text>
+    <text x="24" y="328" fill="#7dd3fc" font-size="9.5">建立 24h 闪念固化管线</text>
+  </g>
+
+  <!-- Flow Connector 1 -> 2 -->
+  <line x1="240" y1="280" x2="275" y2="280" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Column 2: 5-Lens Refraction Matrix -->
+  <g transform="translate(280, 110)">
+    <rect x="0" y="0" width="205" height="360" rx="8" fill="url(#prismGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="14" y="14" width="177" height="24" rx="4" fill="#047857"/>
+    <text x="22" y="30" fill="#ecfdf5" font-size="11" font-weight="700">02. 5维切角棱镜 (REFRACTION)</text>
+    
+    <!-- 5 Prisms Items -->
+    <rect x="14" y="48" width="177" height="48" rx="5" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="22" y="66" fill="#a7f3d0" font-size="10.5" font-weight="700">1. 智者棱镜 (Sage)</text>
+    <text x="22" y="82" fill="#6ee7b7" font-size="9.5">先贤哲学与顶尖大师重构</text>
+
+    <rect x="14" y="102" width="177" height="48" rx="5" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="22" y="120" fill="#a7f3d0" font-size="10.5" font-weight="700">2. 穿越棱镜 (Time-Travel)</text>
+    <text x="22" y="136" fill="#6ee7b7" font-size="9.5">给 3 年前懵懂的自己讲透</text>
+
+    <rect x="14" y="156" width="177" height="48" rx="5" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="22" y="174" fill="#a7f3d0" font-size="10.5" font-weight="700">3. 重定义棱镜 (Redefinition)</text>
+    <text x="22" y="190" fill="#6ee7b7" font-size="9.5">颠覆表层定义，直击底层机制</text>
+
+    <rect x="14" y="210" width="177" height="48" rx="5" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="22" y="228" fill="#a7f3d0" font-size="10.5" font-weight="700">4. 反共识棱镜 (Anti-Consensus)</text>
+    <text x="22" y="244" fill="#6ee7b7" font-size="9.5">推翻主流常识，摆出硬核证据</text>
+
+    <rect x="14" y="264" width="177" height="48" rx="5" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="22" y="282" fill="#a7f3d0" font-size="10.5" font-weight="700">5. 现实棱镜 (Reality-Check)</text>
+    <text x="22" y="298" fill="#6ee7b7" font-size="9.5">绑定普通个体生存与核心利益</text>
+
+    <rect x="14" y="318" width="177" height="28" rx="4" fill="#022c22"/>
+    <text x="22" y="336" fill="#34d399" font-size="9.5">输出：高熵独家视角社交内容</text>
+  </g>
+
+  <!-- Flow Connector 2 -> 3 -->
+  <line x1="485" y1="280" x2="520" y2="280" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Column 3: Market Sensor Network -->
+  <g transform="translate(525, 110)">
+    <rect x="0" y="0" width="195" height="360" rx="8" fill="url(#signalGrad)" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="14" y="14" width="167" height="24" rx="4" fill="#b45309"/>
+    <text x="22" y="30" fill="#fffbeb" font-size="11" font-weight="700">03. 零成本传感器 (PROBING)</text>
+
+    <rect x="14" y="50" width="167" height="85" rx="6" fill="#1c1917" stroke="#d97706" stroke-width="1"/>
+    <text x="24" y="70" fill="#fbbf24" font-size="11" font-weight="700">公共内容探针</text>
+    <text x="24" y="88" fill="#cbd5e1" font-size="10">• 观点分发作为探测雷达</text>
+    <text x="24" y="104" fill="#cbd5e1" font-size="10">• 零额外调研预算测试</text>
+    <text x="24" y="120" fill="#cbd5e1" font-size="10">• 过滤被动围观，识别共鸣</text>
+
+    <!-- Signal Detection Box -->
+    <rect x="14" y="145" width="167" height="110" rx="6" fill="#292524" stroke="#f59e0b" stroke-width="1"/>
+    <text x="24" y="167" fill="#fde68a" font-size="11" font-weight="700">刚需信号捕获</text>
+    <text x="24" y="187" fill="#e2e8f0" font-size="10">高频评论困惑与阻力点</text>
+    <text x="24" y="205" fill="#e2e8f0" font-size="10">受众强烈的即时解决意愿</text>
+    <text x="24" y="223" fill="#e2e8f0" font-size="10">沉淀进入私域等候名单</text>
+    <text x="24" y="241" fill="#f59e0b" font-size="9.5">Waitlist = 真实前置需求凭证</text>
+
+    <rect x="14" y="268" width="167" height="78" rx="6" fill="#451a03" stroke="#b45309" stroke-width="1"/>
+    <text x="24" y="290" fill="#fed7aa" font-size="10.5" font-weight="700">商业机会判定公式</text>
+    <text x="24" y="310" fill="#fdba74" font-size="9.5">市场刚需痛点信号</text>
+    <text x="24" y="328" fill="#fdba74" font-size="9.5">+ 个人已趟平的真实问题</text>
+  </g>
+
+  <!-- Flow Connector 3 -> 4 -->
+  <line x1="720" y1="280" x2="755" y2="280" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+  <!-- Column 4: Lean MVP Delivery -->
+  <g transform="translate(760, 110)">
+    <rect x="0" y="0" width="150" height="360" rx="8" fill="url(#mvpGrad)" stroke="#d946ef" stroke-width="1.5"/>
+    <rect x="12" y="14" width="126" height="24" rx="4" fill="#a21caf"/>
+    <text x="18" y="30" fill="#fae8ff" font-size="11" font-weight="700">04. 极简交付 (MVP)</text>
+
+    <rect x="12" y="50" width="126" height="85" rx="6" fill="#3b0764" stroke="#c026d3" stroke-width="1"/>
+    <text x="20" y="70" fill="#f0abfc" font-size="10.5" font-weight="700">单页实操指南</text>
+    <text x="20" y="88" fill="#e9d5ff" font-size="9.5">• 1-Page 指南</text>
+    <text x="20" y="104" fill="#e9d5ff" font-size="9.5">• 聚焦单一阻力</text>
+    <text x="20" y="120" fill="#e9d5ff" font-size="9.5">• 建立直接交付</text>
+
+    <rect x="12" y="145" width="126" height="95" rx="6" fill="#3b0764" stroke="#c026d3" stroke-width="1"/>
+    <text x="20" y="165" fill="#f0abfc" font-size="10.5" font-weight="700">轻量交付包</text>
+    <text x="20" y="183" fill="#e9d5ff" font-size="9.5">• 30天挑战营</text>
+    <text x="20" y="199" fill="#e9d5ff" font-size="9.5">• Notion看板工具</text>
+    <text x="20" y="215" fill="#e9d5ff" font-size="9.5">• 伴随式社群打卡</text>
+    <text x="20" y="231" fill="#e9d5ff" font-size="9.5">• 真实平视交付</text>
+
+    <rect x="12" y="250" width="126" height="96" rx="6" fill="#2e1065" stroke="#a21caf" stroke-width="1"/>
+    <text x="20" y="272" fill="#d8b4fe" font-size="10" font-weight="700">手艺人长期复利</text>
+    <text x="20" y="292" fill="#c084fc" font-size="9">超越算法作品集</text>
+    <text x="20" y="308" fill="#c084fc" font-size="9">认知同频社群</text>
+    <text x="20" y="324" fill="#c084fc" font-size="9">高毛利平民商业化</text>
+  </g>
+
+  <!-- Bottom Execution Rhythm Ribbon -->
+  <g transform="translate(50, 475)">
+    <line x1="0" y1="0" x2="860" y2="0" stroke="#334155" stroke-width="1"/>
+  </g>
+</svg>
