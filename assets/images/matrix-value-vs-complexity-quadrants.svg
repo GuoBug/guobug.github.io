@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 680" width="760" height="680" style="background:#0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;">
+  <defs>
+    <!-- Sticky Note Shadow -->
+    <filter id="note-shadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <!-- Axis Arrow Marker -->
+    <marker id="axis-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Title & Caption -->
+  <text x="50" y="42" fill="#f8fafc" font-size="16" font-weight="700" letter-spacing="0.5">价值 - 复杂度决策矩阵（4-Quadrant Matrix）</text>
+  <text x="50" y="62" fill="#94a3b8" font-size="11">极狐GitLab需求优先级评估与动态分区模型</text>
+
+  <!-- Coordinate Origin & Base Grid -->
+  <!-- Origin at (110, 580) -->
+  <!-- Y Axis: (110, 580) -> (110, 95) -->
+  <line x1="110" y1="580" x2="110" y2="95" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#axis-arrow)"/>
+  <!-- X Axis: (110, 580) -> (710, 580) -->
+  <line x1="110" y1="580" x2="710" y2="580" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#axis-arrow)"/>
+
+  <!-- Y Axis Labels -->
+  <text x="88" y="115" fill="#f8fafc" font-size="15" font-weight="700" text-anchor="end">高</text>
+  <text x="68" y="270" fill="#cbd5e1" font-size="15" font-weight="700" text-anchor="middle">商</text>
+  <text x="68" y="305" fill="#cbd5e1" font-size="15" font-weight="700" text-anchor="middle">业</text>
+  <text x="68" y="340" fill="#cbd5e1" font-size="15" font-weight="700" text-anchor="middle">价</text>
+  <text x="68" y="375" fill="#cbd5e1" font-size="15" font-weight="700" text-anchor="middle">值</text>
+  <text x="88" y="585" fill="#94a3b8" font-size="15" font-weight="700" text-anchor="end">低</text>
+
+  <!-- X Axis Labels -->
+  <text x="110" y="612" fill="#94a3b8" font-size="15" font-weight="700" text-anchor="middle">低</text>
+  <text x="400" y="616" fill="#cbd5e1" font-size="16" font-weight="700" text-anchor="middle">复　杂　度</text>
+  <text x="695" y="612" fill="#f8fafc" font-size="15" font-weight="700" text-anchor="middle">高</text>
+
+  <!-- Dashed Dividing Lines -->
+  <!-- Horizontal Divider at Y = 340 -->
+  <line x1="110" y1="340" x2="690" y2="340" stroke="#64748b" stroke-width="2" stroke-dasharray="6,6"/>
+  <!-- Vertical Divider at X = 410 -->
+  <line x1="410" y1="120" x2="410" y2="580" stroke="#64748b" stroke-width="2" stroke-dasharray="6,6"/>
+
+  <!-- Quadrant Watermark Numbers -->
+  <text x="350" y="240" fill="#f97316" font-size="44" font-weight="800" text-anchor="middle">1</text>
+  <text x="470" y="240" fill="#f97316" font-size="44" font-weight="800" text-anchor="middle">2</text>
+  <text x="350" y="475" fill="#f97316" font-size="44" font-weight="800" text-anchor="middle">3</text>
+  <text x="470" y="475" fill="#f97316" font-size="44" font-weight="800" text-anchor="middle">4</text>
+
+  <!-- Sticky Notes Definitions -->
+  <!-- Macro Note: width 68, height 68, fill #facc15 (Golden Yellow) with folded ear -->
+  
+  <!-- Quadrant 1 Notes (Top-Left) -->
+  <g transform="translate(155, 140)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">Issue #108</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">SaaS 验证码优化</text>
+  </g>
+  <g transform="translate(255, 190)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">CREQ::blocker</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">权限控制补齐</text>
+  </g>
+  <g transform="translate(180, 275)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">CREQ::high</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">中文审计日志导出</text>
+  </g>
+
+  <!-- Quadrant 2 Notes (Top-Right) -->
+  <g transform="translate(520, 160)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">Epic #42</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">企业级合规流水线</text>
+    <text x="8" y="50" fill="#a16207" font-size="7">(拆分分阶段发)</text>
+  </g>
+  <g transform="translate(450, 260)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">Strategic</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">生态合作伙伴集成</text>
+  </g>
+
+  <!-- Quadrant 3 Notes (Bottom-Left) -->
+  <g transform="translate(320, 365)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">type::maintenance</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">UI 间距规范对齐</text>
+  </g>
+  <g transform="translate(170, 470)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">CREQ::low</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">浅色模式微调</text>
+  </g>
+  <g transform="translate(280, 500)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">insight</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">快捷键帮助浮层</text>
+  </g>
+
+  <!-- Quadrant 4 Notes (Bottom-Right) -->
+  <g transform="translate(530, 480)" filter="url(#note-shadow)">
+    <path d="M 0 0 L 52 0 L 68 16 L 68 68 L 0 68 Z" fill="#facc15"/>
+    <path d="M 52 0 L 52 16 L 68 16 Z" fill="#eab308"/>
+    <text x="8" y="24" fill="#854d0e" font-size="8" font-weight="600">Rejected</text>
+    <text x="8" y="38" fill="#713f12" font-size="7">非标深度私有定制</text>
+    <text x="8" y="50" fill="#dc2626" font-size="7">（高成本无共性）</text>
+  </g>
+
+  <!-- Corner Strategic Guidance Chips -->
+  <g transform="translate(130, 102)">
+    <rect x="0" y="0" width="160" height="24" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+    <text x="8" y="16" fill="#34d399" font-size="10" font-weight="700">Q1: 快赢项目 (优先排期上线)</text>
+  </g>
+  <g transform="translate(480, 102)">
+    <rect x="0" y="0" width="160" height="24" rx="4" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+    <text x="8" y="16" fill="#fbbf24" font-size="10" font-weight="700">Q2: 战略硬骨头 (拆解分批交付)</text>
+  </g>
+  <g transform="translate(130, 350)">
+    <rect x="0" y="0" width="150" height="24" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="8" y="16" fill="#94a3b8" font-size="10" font-weight="700">Q3: 填空优化 (闲暇自主认领)</text>
+  </g>
+  <g transform="translate(480, 350)">
+    <rect x="0" y="0" width="150" height="24" rx="4" fill="#450a0a" stroke="#dc2626" stroke-width="1"/>
+    <text x="8" y="16" fill="#f87171" font-size="10" font-weight="700">Q4: 资源黑洞 (明确拒绝并关闭)</text>
+  </g>
+</svg>

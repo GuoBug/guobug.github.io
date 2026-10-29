@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" width="960" height="450" style="background:#0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;">
+  <defs>
+    <!-- Bar Shadow -->
+    <filter id="bar-shadow" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <!-- Milestone Diamond Marker -->
+    <linearGradient id="gateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Title & Description -->
+  <text x="40" y="40" fill="#f8fafc" font-size="16" font-weight="700" letter-spacing="0.5">极狐GitLab 里程碑规划与研发节拍甘特图 (Milestone Cadence Gantt)</text>
+  <text x="40" y="60" fill="#94a3b8" font-size="11">从 M-2 方案锁定、M-1 严格范围冻结 (Scope Freeze) 到 M 冲刺与延后一周发布列车</text>
+  <line x1="40" y1="74" x2="920" y2="74" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Timeline Header (Top Axes) -->
+  <!-- Timeline Width: 640px, from X=280 to X=920. Total 5 Weeks (128px per week) -->
+  <!-- W1: 280-408 (M-2), W2: 408-536 (M-1), W3: 536-664 (M Sprint W1), W4: 664-792 (M Sprint W2), W5: 792-920 (Release +1W) -->
+  
+  <rect x="280" y="88" width="128" height="26" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="344" y="105" fill="#cbd5e1" font-size="11" font-weight="700" text-anchor="middle">第 1 周 (M-2)</text>
+
+  <rect x="408" y="88" width="128" height="26" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="472" y="105" fill="#cbd5e1" font-size="11" font-weight="700" text-anchor="middle">第 2 周 (M-1)</text>
+
+  <rect x="536" y="88" width="128" height="26" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="600" y="105" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">第 3 周 (冲刺 W1)</text>
+
+  <rect x="664" y="88" width="128" height="26" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="728" y="105" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">第 4 周 (冲刺 W2)</text>
+
+  <rect x="792" y="88" width="128" height="26" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="856" y="105" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">第 5 周 (延后发布)</text>
+
+  <!-- Vertical Week Grid Lines -->
+  <line x1="280" y1="114" x2="280" y2="420" stroke="#334155" stroke-width="1"/>
+  <line x1="408" y1="114" x2="408" y2="420" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="536" y1="114" x2="536" y2="420" stroke="#334155" stroke-width="1"/>
+  <line x1="664" y1="114" x2="664" y2="420" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="792" y1="114" x2="792" y2="420" stroke="#334155" stroke-width="1"/>
+  <line x1="920" y1="114" x2="920" y2="420" stroke="#334155" stroke-width="1"/>
+
+  <!-- Scope Freeze Warning Red Wall (X = 536) -->
+  <line x1="536" y1="80" x2="536" y2="420" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <g transform="translate(485, 42)">
+    <rect x="0" y="0" width="102" height="20" rx="3" fill="#ef4444"/>
+    <text x="51" y="14" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">SCOPE FREEZE 锁死</text>
+  </g>
+
+  <!-- Swimlane 1: Product & UX -->
+  <g transform="translate(40, 130)">
+    <rect x="0" y="0" width="220" height="60" rx="6" fill="#1e1b4b" stroke="#4338ca" stroke-width="1"/>
+    <text x="16" y="26" fill="#a5b4fc" font-size="12" font-weight="700">产品与设计团队</text>
+    <text x="16" y="44" fill="#6366f1" font-size="10">PM &amp; UX Department</text>
+
+    <!-- Task Bar 1.1: Stories & UX Design (W1-W2) -->
+    <rect x="240" y="12" width="230" height="36" rx="5" fill="#4f46e5" filter="url(#bar-shadow)"/>
+    <text x="250" y="34" fill="#ffffff" font-size="11" font-weight="600">用户故事与高保真原型交付 (M-2 会议)</text>
+  </g>
+
+  <!-- Swimlane 2: Engineering Team -->
+  <g transform="translate(40, 205)">
+    <rect x="0" y="0" width="220" height="75" rx="6" fill="#082f49" stroke="#0284c7" stroke-width="1"/>
+    <text x="16" y="26" fill="#7dd3fc" font-size="12" font-weight="700">研发工程团队</text>
+    <text x="16" y="44" fill="#0ea5e9" font-size="10">Engineering &amp; Lead</text>
+
+    <!-- Task Bar 2.1: Feasibility & Scope Lock (W2) -->
+    <rect x="368" y="8" width="128" height="26" rx="4" fill="#0284c7" filter="url(#bar-shadow)"/>
+    <text x="376" y="25" fill="#f0f9ff" font-size="10" font-weight="600">技术预研与工期拆解</text>
+
+    <!-- Task Bar 2.2: Sprint Development (W3-W4) -->
+    <rect x="496" y="40" width="256" height="28" rx="4" fill="#0ea5e9" filter="url(#bar-shadow)"/>
+    <text x="510" y="58" fill="#ffffff" font-size="11" font-weight="700">无干扰冲刺开发 (Sprint Implementation &amp; Tests)</text>
+  </g>
+
+  <!-- Swimlane 3: Upstream & QA Release -->
+  <g transform="translate(40, 295)">
+    <rect x="0" y="0" width="220" height="75" rx="6" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="16" y="26" fill="#6ee7b7" font-size="12" font-weight="700">质量保障与发版列车</text>
+    <text x="16" y="44" fill="#10b981" font-size="10">QA, Upstream &amp; Release</text>
+
+    <!-- Task Bar 3.1: Upstream Sync (W4) -->
+    <rect x="710" y="8" width="70" height="26" rx="4" fill="#047857" filter="url(#bar-shadow)"/>
+    <text x="718" y="25" fill="#ecfdf5" font-size="10">上游合入</text>
+
+    <!-- Task Bar 3.2: Localized Pack & QA (+1W) -->
+    <rect x="752" y="40" width="128" height="28" rx="4" fill="#10b981" filter="url(#bar-shadow)"/>
+    <text x="762" y="58" fill="#ffffff" font-size="11" font-weight="700">极狐打包与全量测试 (+1W)</text>
+  </g>
+
+  <!-- Milestones & Gate Indicators (Bottom Layer) -->
+  <g transform="translate(40, 385)">
+    <!-- Milestone 1: M-2 Meeting -->
+    <circle cx="240" cy="15" r="7" fill="#6366f1"/>
+    <text x="254" y="19" fill="#cbd5e1" font-size="10" font-weight="700">M-2 计划会议</text>
+
+    <!-- Milestone 2: Scope Freeze -->
+    <polygon points="496,8 503,15 496,22 489,15" fill="#ef4444"/>
+    <text x="510" y="19" fill="#fca5a5" font-size="10" font-weight="800">M-1 范围冻结生效</text>
+
+    <!-- Milestone 3: Monthly Release Train -->
+    <circle cx="880" cy="15" r="7" fill="#10b981"/>
+    <text x="815" y="19" fill="#6ee7b7" font-size="10" font-weight="700" text-anchor="end">极狐月度版本正式发布</text>
+  </g>
+</svg>

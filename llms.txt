@@ -187,6 +187,8 @@ ode:sqlite (WAL mode).
   - Deconstructing community lifecycles from early-stage polite consensus to inevitable friction: analyzing governance regression in modern platforms, firsthand lessons from Bilibili and early BBS history (Tianya, Xici), the breakdown of unconstrained blank input fields (10-page text dump crushing lightweight dialogue), and the fatal 'peacemaker trap' versus deterministic physical constraints (input limits and Proof-of-Work anchors) to protect high-signal shared affinity.
 
 ### Engineering Leadership & Remote Work
+- [从混沌输入到确定性发布：我在极狐GitLab的产品规划流（Planning Workflow）复盘](https://guobug.github.io/posts/2026/10/29/gitlab-cn-product-planning-workflow-retrospective/)
+  - Deconstructing the deterministic product planning workflow at GitLab CN: labels-as-state-machine (CREQ::*, Team::*), 4-quadrant value-vs-complexity decision matrix, M-2 rolling milestone cadence with strict scope freezing, and trade-offs of multi-party cross-organization asynchronous coordination.
 - [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
   - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.
 - [GitLab 远程产品经理的高效工作流与异步协作秘诀](https://guobug.github.io/posts/2026/04/29/gitlab-remote-product-manager/)
