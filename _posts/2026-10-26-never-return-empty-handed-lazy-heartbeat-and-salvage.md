@@ -9,7 +9,7 @@ math: true
 read_time: "12 MIN READ"
 summary: "在多智能体协同流水线中，复杂的代码生成与深度架构审查动辄耗时数分钟。传统执行器在遇到超时时往往采取粗暴强杀策略，导致大模型推演数百秒的半成品代码瞬间蒸发，造成严重的 At-most-once 隐性算力丢失。本文拆解 FerryCat 的执行主管（Step 0 Supervisor）架构，深入剖析固定心跳过早烧光续期配额的陷阱，揭秘如何通过动态‘惰性心跳续期’算法以有限配额稳健覆盖超长任务；并在子进程崩溃或窗口关闭临界点，通过‘超时残片打捞’机制强行提取关键缓冲区落库，实现确定性系统下的极致容错与零产物损失。"
 summary_en: "In multi-agent collaborative pipelines, heavy code generation and in-depth architectural audits routinely run for minutes. Naive execution runners handle timeouts by abruptly issuing SIGKILL signals, vaporizing hundreds of seconds of valuable partial LLM reasoning and causing critical At-most-once compute loss. This post deconstructs FerryCat's Step 0 Execution Supervisor architecture, analyzing how aggressive fixed-interval heartbeats exhaust finite renewal quotas prematurely and detailing our dynamic 'lazy heartbeat renewal' algorithm. Furthermore, we reveal how our 'partial-output salvage' mechanism captures vital buffer traces into permanent storage right before execution windows close, achieving resilient fault tolerance and zero output loss."
-tags: [AI Workflow Orchestration, DAG Engine, State Machine, Heartbeat, Fault Tolerance, FerryCat, Multi-Agent Collaboration, Product Engineering]
+tags: [AI Workflow Orchestration, DAG Engine, State Machine, Process Supervision, Lazy Heartbeat, Partial Output Salvage, Fault Tolerance, FerryCat, Product Engineering]
 series: "FerryCat · Multi-Agent Contract Orchestration"
 ---
 
@@ -27,6 +27,8 @@ series: "FerryCat · Multi-Agent Contract Orchestration"
 最令人抓狂的是：大模型辛辛苦苦推演了 299 秒、只差 1 秒就要输出最终交单 JSON，整个进程就因为超时被系统强制杀死，所有已经生成的宝贵推演结论瞬间化为乌有。
 
 今天这篇，我们深入 FerryCat 的长任务治理体系，聊聊如何通过动态惰性心跳保活与超时残片打捞机制，彻底终结这种算力黑洞。
+
+> **长任务治理定义**：所谓长任务治理，本质是在有限的续期预算与不可预知的模型推理耗时之间建立弹性自适应契约——以动态惰性心跳最大化单次认领覆盖窗口，以内核级缓冲区原子打捞托底异常残局，实现无论子进程正常交付还是崩溃超时均“绝不空手而归”的确定性交付。
 
 ![绝不空手而归 封面油画]({{ '/assets/images/cover-supervisor-lazy-heartbeat-salvage.jpg' | relative_url }})
 
@@ -46,6 +48,14 @@ series: "FerryCat · Multi-Agent Contract Orchestration"
 - 诊断线索完全抹杀：由于进程被强杀、管道被释放，发起方收到的仅仅是一个冷冰冰的超时状态码，完全无从得知模型究竟卡死在哪个逻辑分支；
 - 缺乏断点续跑可能：下游工作流或者人工排查者无法基于大模型已写好的 90% 半成品进行审查与纠偏，必须重头再来。
 
+| 维度 | 传统粗暴超时强杀 | FerryCat 执行主管治理 (Step 0) |
+| :--- | :--- | :--- |
+| 心跳续期策略 | 机械固定间隔（每 10s 一续，50s 即烧光配额） | 动态惰性续期（计算 Headroom，贴近警戒线才续） |
+| 时间窗口利用率 | 极低（配额过早耗尽导致健康任务被误杀） | 极高（5 次配额轻松覆盖 120s+ 超长推演） |
+| 瞬态网络/锁抖动 | 抛错即强杀，系统脆弱 | `stillOwnsLease()` 探针复核，容忍瞬时微抖动 |
+| 超时/崩溃终态产物 | `SIGKILL` 清空管道，推演代码全部蒸发 | 拦截 tail 256KB 缓冲区原子落库，零产物损失 |
+| 状态机流转纯粹性 | 易滥发“部分成功”等冗余中间态 | 维持 `CLAIMED -> TIMED_OUT / FAILED` 纯粹状态转移 |
+
 一个工业级的协同中枢，绝不能在下属努力工作时盲目按下斩首开关。
 
 ![FerryCat 执行主管与残片打捞架构图]({{ '/assets/images/flowchart-ferrycat-supervisor-heartbeat-salvage.svg' | relative_url }})
@@ -54,9 +64,9 @@ series: "FerryCat · Multi-Agent Contract Orchestration"
 
 为了防止任务因耗时长而误超时，最直观的解法是引入心跳保活（Heartbeat Keep-Alive）机制。
 
-为了杜绝恶意死循环占用资源，FerryCat 引擎在底层状态机中对工单施加了严格的防御性约束：一张工单在单次认领周期内，心跳续期的总次数是有上限的（例如硬性限制 `MAX_TTL_EXTENSIONS = 5`）。
+在我和 AI 结对推演长任务执行流程的关键节点上，我们梳理出了一个极其隐蔽的心跳早衰陷阱：我从技术主管与产品可用性视角出发，提出重构型工单动辄需要推演数分钟，必须允许长耗时运行，且已生成的半成品绝不能付之一炬；AI 则在底层状态机建模时提示了工程隐患——为了防止恶意死循环或子进程挂起无休止占用资源，底层契约对单次认领施加了硬性续期配额上限（例如硬性限制 `MAX_TTL_EXTENSIONS = 5`）。
 
-这里埋藏着一个极其隐蔽的心跳早衰陷阱（在 CK-01 验证阶段被白盒剖析出）：
+在 CK-01 验证阶段，这个矛盾被白盒代码具象化了：
 
 假设某工单单次执行窗口 `exec_ttl` 设为 30 秒。如果执行主管采用朴素的固定心跳逻辑——设置一个每 10 秒触发一次的定时器，只要子进程还在跑，就立刻调用 `extend_ttl`：
 
@@ -77,6 +87,10 @@ setInterval(() => {
 为了让有限的心跳配额发挥最大价值，FerryCat 在 `src/supervisor.ts` 中自研了**惰性续期（Lazy Renewal）**算法。
 
 执行主管不再机械地逢 tick 必续，而是在每个心跳周期内动态评估当前时间窗口的剩余余量（`headroom`）：
+
+$$\text{headroom} = t_{\text{expire}} - t_{\text{guard}} - t_{\text{now}}$$
+
+$$\text{Trigger Renewal} \iff \text{headroom} \le t_{\text{tick}} + t_{\text{slack}}$$
 
 ```typescript
 // 只有在下一次 tick 会踏入警戒线时，才真正发起续期
@@ -156,7 +170,7 @@ const salvageNow = (source: string) => {
 - 开发者可以直接人工采纳该半成品补丁，也可以把这些残片数据作为上下文锚点（Checkpoint）无缝投喂给下一张工单，让下一个 Agent 基于已完成的进度断点续跑；
 - 算力成本被有效封存，彻底根除了 At-most-once 的黑洞式浪费。
 
-更关键的是，根据 CK-09 架构规约，系统在落地打捞时**没有强行发明任何冗余的临时状态**。底层 **DAG 状态机** 依旧忠实地在 `CLAIMED -> TIMED_OUT / FAILED` 之间规范流转，而打捞数据仅仅作为工单的自包含元数据进行沉淀，捍卫了有限状态机的数学纯粹性。
+更关键的是，根据 CK-09 架构规约，系统在落地打捞时没有强行发明任何冗余的临时状态。底层 **DAG 状态机** 依旧忠实地在 `CLAIMED -> TIMED_OUT / FAILED` 之间规范流转，而打捞数据仅仅作为工单的自包含元数据进行沉淀，捍卫了有限状态机的数学纯粹性。
 
 ## 五、 代价与适用边界
 
@@ -176,7 +190,7 @@ const salvageNow = (source: string) => {
 
 然而，当一个超时任务的残片被成功打捞、中枢决定终止它的运行生命周期时，另一个极其凶险的操作系统级暗坑随即浮现：如果这个子进程在执行期间，背着中枢悄悄衍生出了一整棵庞大的“孙进程树”（例如用 npm 或 pytest 启动的底层测试套件），当中枢下达杀进程指令时，如何确保这些隐蔽的孙进程不会变成游离在后台的孤儿，暗中修改源码污染下一次评审？
 
-下一篇，我们将直面进程树治理的底层迷宫：拆解跨平台孙进程树递归清理与孤儿暗箱操作的彻底清扫。
+下一篇更新：📖 [崩了别慌：守护进程预写日志、崩溃打捞与 Git 差异补丁双闸门]({{ '/posts/2026/10/31/crash-without-panic-daemon-write-ahead-journal-and-git-patch-gates/' | relative_url }})，拆解守护进程预写日志落盘、CK-05 孤儿进程无盲杀存活矩阵与自包含 Git 差异补丁三重闸门。
 
 ---
 
