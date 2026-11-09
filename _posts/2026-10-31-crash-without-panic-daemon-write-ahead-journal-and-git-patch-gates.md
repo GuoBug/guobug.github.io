@@ -198,7 +198,8 @@ FerryCat 严格执行 **CK-05 防 PID 复用误杀规约**：
 
 > 专栏与开源项目  
 > **FerryCat（跨宿主 AI 智能体契约编排中枢）**：[https://github.com/GuoBug/FerryCat](https://github.com/GuoBug/FerryCat)  
-> 欢迎 Star 关注或提交 Issue 交流。本专栏全部演进过程与实录工单均已在仓库内完全开源。
+> 欢迎 Star 关注或提交 Issue 交流。本专栏全部演进过程与实录工单均已在仓库内完全开源。  
+> 下篇专栏更新：👉 [拒绝把日志当交付物：FerryCat v0.5.0 的防猜契约、智能注入与零配置沙箱]({{ '/posts/2026/11/09/never-guess-logs-as-deliverables-anti-guessing-delivery-envelope-and-safe-init/' | relative_url }})
 >
 > **关于作者**  
 > **郭强 (GuoBug)**，Product Engineer，做平台工程也做业务增长。目前主要在折腾 AI 工作流编排、DAG 状态机与确定性系统架构。  
