@@ -46,7 +46,15 @@ ode:sqlite (WAL mode).
   - Full-file SHA-256 fingerprint verification, 3-second dirty-buffer warning with first/last line snapshots, and TOCTOU re-verification upon contract fulfillment to eliminate silent blind reviews on stale files.
   - Bounded Ajv JSON Schema output validation (RETRY_NEEDED <= 2) with human-scheduled instant atomic polling (poll_next_task).
 
-### 3. Metaphysics Tools
+### 3. EdgeCat (Local-First AI Inference Governance Gateway)
+- Repository: https://github.com/GuoBug/EdgeCat
+- Technical Highlights:
+  - Pure static Go 1.26+ (`CGO_ENABLED=0`) dual-track inference governance gateway bridging local Ollama/vLLM compute and cloud fallback endpoints.
+  - Frame-level 3-channel sliding-window SSE rehydrator (`content`, `reasoning_content`, `tool_calls`) resolving cross-chunk BPE token slicing and split closing braces (`}}`) with zero TTFT latency penalty and zero-disk-persistence in-memory PII Vaults.
+  - Weighted concurrency semaphores, TTFT watchdogs, rolling SSE idle deadlines, and lossless wire passthrough (`json.Number`, `SetEscapeHTML(false)`).
+  - Homelab LAN sharing with Fail-Closed startup guards, Chrome Private Network Access (PNA) preflight support, and SQLite WAL atomic daily cloud fallback quotas (`daily_cloud_limit`).
+
+### 4. Metaphysics Tools
 - Live App: https://guobug.github.io/metaphysics-tools/index.html#
 - Interactive algorithmic modeling and visual computing experiments.
 
@@ -85,6 +93,10 @@ ode:sqlite (WAL mode).
   - Full reprint of DeepSeek Harness team's foundational engineering architecture on autonomous Super-agents: moving beyond single-session conversation bottlenecks; architecting two-tier Router/Worker separation for concurrent execution; deploying two-level event filtering (Fast Path rule engine + Slow Path LLM semantics); pioneering thread subscription and straight-through routing; formalizing context cache management via Inline & Spill and Chain of Recall; decoupling compute, session state, and heavy local execution environments (Bring Your Own Machine daemon); and deploying independent external Watchdog control loops to govern long-running multi-agent autonomy.
 - [构建高效 AI Agent 的上下文工程：从 Prompt 到 Context 的范式演进（Anthropic 官方工程实践精译）](https://guobug.github.io/posts/2026/09/29/effective-context-engineering-for-ai-agents/)
   - Comprehensive technical translation of Anthropic Applied AI's guide on context engineering for AI agents: dissecting transformer attention budget limits and context rot ($O(n^2)$ pairwise degradation); evaluating prompt engineering vs. context engineering in autonomous agent loops; deploying just-in-time (JIT) runtime data retrieval and progressive disclosure over bloated static context; and formalizing long-horizon task triad defenses across compaction (tool result clearing), structured note-taking (agentic memory), and sub-agent architectures.
+
+### Local-First AI Inference Governance Series (EdgeCat)
+- [流式 SSE 遇上 Token 截断：EdgeCat 如何用帧级滑动窗口实现零泄漏的 PII 脱敏还原](https://guobug.github.io/posts/2026/11/15/edgecat-sliding-window-sse-pii-rehydration-and-lossless-passthrough/)
+  - Frame-level sliding-window SSE PII rehydration and lossless wire passthrough in EdgeCat (https://github.com/GuoBug/EdgeCat): resolving the critical streaming token-slicing failure where BPE tokenizers split deterministic PII placeholders (`{{EC_PII_PHONE_1}}`) across adjacent SSE chunks or right between closing double braces (`}}`); refuting naive raw byte-stream buffering (which gets poisoned by JSON envelope quotes/braces and mixes concurrent streams) in favor of per-choice 3-channel orthogonal state machines (`contentRehydrators`, `reasoningRehydrators`, `toolCallRehydrators`); engineering a 64-byte bounded dual-cursor cut algorithm (`findUnclosedPrefixCut`) with single-trailing-brace tolerance (`strings.TrimSuffix(body, "}")`) that flushes safe prefixes at 0ms TTFT penalty; deploying dual-insurance tail flushing upon `finish_reason != nil` and pre-`[DONE]` synthetic chunks; and enforcing lossless wire passthrough (`map[string]any`, `json.Number`, `SetEscapeHTML(false)`, immutable `logicalModel` preservation, and surgical multimodal/tool-argument masking).
 
 ### Cross-Host AI Collaboration Series (FerryCat)
 - [拒绝把日志当交付物：FerryCat v0.5.0 的防猜契约、智能注入与零配置沙箱](https://guobug.github.io/posts/2026/11/09/never-guess-logs-as-deliverables-anti-guessing-delivery-envelope-and-safe-init/)

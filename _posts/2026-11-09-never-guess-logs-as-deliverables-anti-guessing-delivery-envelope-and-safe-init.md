@@ -204,6 +204,10 @@ FerryCat 选择了一条更加克制的工程路径。我们基于内置模块�
 
 ---
 
+> 专栏与开源项目  
+> **FerryCat（跨宿主 AI 智能体契约编排中枢）**：[https://github.com/GuoBug/FerryCat](https://github.com/GuoBug/FerryCat)  
+> 下篇专栏更新：👉 [流式 SSE 遇上 Token 截断：EdgeCat 如何用帧级滑动窗口实现零泄漏的 PII 脱敏还原]({{ '/posts/2026/11/15/edgecat-sliding-window-sse-pii-rehydration-and-lossless-passthrough/' | relative_url }})
+>
 > **关于作者**  
 > **郭强 (GuoBug)**，Product Engineer，做平台工程也做业务增长。目前主要在折腾 AI 工作流编排、DAG 状态机与确定性系统架构。  
 > 开源项目与主页：[https://github.com/GuoBug](https://github.com/GuoBug) · [https://guobug.github.io](https://guobug.github.io)  
