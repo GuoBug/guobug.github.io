@@ -7,8 +7,8 @@ categories: [AI, Architecture, Engineering]
 pub_tag: "Streaming SSE Governance & Zero-Leak PII"
 math: true
 read_time: "15 MIN READ"
-summary: "在本地优先的 AI 推理网关中，对提示词中的手机号、密钥与内网 IP 进行入站掩码很容易，难的是在流式 SSE（Server-Sent Events）响应中将占位符无损还原。由于大模型按 BPE Token 逐块吐字，一个完整的 {{EC_PII_PHONE_1}} 占位符随时会被劈成两半，甚至连末尾的双右花括号 }} 都会跨帧断裂。本文复盘 EdgeCat 网关的流式治理演进：从为何放弃外层字节流拦截转向 JSON 帧级三通道状态机，到单右花括号容忍算法、协议无损透传契约，以及 finish_reason 尾帧即时刷出机制，在零首字延迟损耗下守住数据隐私边界。"
-summary_en: "In a local-first AI inference gateway, masking sensitive PII (phone numbers, API keys, private IPv4s) on inbound prompts is straightforward; restoring those placeholders across streaming Server-Sent Events (SSE) without data corruption is where naive proxies fail. Because LLMs emit text token-by-token, a placeholder like {{EC_PII_PHONE_1}} is frequently sliced across adjacent SSE chunks—even right between its closing double braces }}. This article deconstructs EdgeCat's streaming governance architecture: why raw byte-stream buffering fails against SSE JSON envelopes, isolating per-choice 3-channel sliding windows (content, reasoning_content, tool_calls), tolerating split closing braces within a 64-byte candidate window, enforcing lossless wire passthrough via json.Number, and flushing residual tails immediately upon finish_reason."
+summary: "在本地优先的 AI 推理网关中，对提示词中的手机号、密钥与内网 IP 进行入站掩码很容易，难的是在流式 SSE（Server-Sent Events）响应中将占位符无损还原。由于大模型按 BPE Token 逐块吐字，一个完整的 EC_PII_PHONE_1 双花括号占位符随时会被劈成两半，甚至连末尾的双右花括号都会跨帧断裂。本文复盘 EdgeCat 网关的流式治理演进：从为何放弃外层字节流拦截转向 JSON 帧级三通道状态机，到单右花括号容忍算法、协议无损透传契约，以及 finish_reason 尾帧即时刷出机制，在零首字延迟损耗下守住数据隐私边界。"
+summary_en: "In a local-first AI inference gateway, masking sensitive PII (phone numbers, API keys, private IPv4s) on inbound prompts is straightforward; restoring those placeholders across streaming Server-Sent Events (SSE) without data corruption is where naive proxies fail. Because LLMs emit text token-by-token, a double-brace placeholder like EC_PII_PHONE_1 is frequently sliced across adjacent SSE chunks—even right between its closing double braces. This article deconstructs EdgeCat's streaming governance architecture: why raw byte-stream buffering fails against SSE JSON envelopes, isolating per-choice 3-channel sliding windows (content, reasoning_content, tool_calls), tolerating split closing braces within a 64-byte candidate window, enforcing lossless wire passthrough via json.Number, and flushing residual tails immediately upon finish_reason."
 tags: [AI Workflow Orchestration, DAG Engine, State Machine, SSE Streaming, Sliding Window, PII Masking, Go, EdgeCat, Local-First, Product Engineering]
 series: "EdgeCat · Local-First AI Inference Governance"
 ---
@@ -16,6 +16,7 @@ series: "EdgeCat · Local-First AI Inference Governance"
 > 项目开源地址：[GitHub - EdgeCat](https://github.com/GuoBug/EdgeCat) · 对应源码实现：[internal/filter/pii.go: 内存 Vault 与双游标滑动窗口](https://github.com/GuoBug/EdgeCat/blob/main/internal/filter/pii.go)、[internal/proxy/sse_rehydrator.go: 帧级三通道流式还原器](https://github.com/GuoBug/EdgeCat/blob/main/internal/proxy/sse_rehydrator.go)、[internal/proxy/protocol.go: 协议无损透传层](https://github.com/GuoBug/EdgeCat/blob/main/internal/proxy/protocol.go) 与 [internal/proxy/review_fixes_test.go: 跨帧双花括号断裂与多通道回归测试](https://github.com/GuoBug/EdgeCat/blob/main/internal/proxy/review_fixes_test.go)  
 > 前篇专栏回顾：👉 [拒绝把日志当交付物：FerryCat v0.5.0 的防猜契约、智能注入与零配置沙箱]({{ '/posts/2026/11/09/never-guess-logs-as-deliverables-anti-guessing-delivery-envelope-and-safe-init/' | relative_url }})
 
+{% raw %}
 流式 PII 脱敏还原（Streaming PII Rehydration）是指在 AI 推理网关的入站阶段将敏感隐私词替换为确定性占位符存入单次请求内存，并在出站 SSE（Server-Sent Events）流式传输中通过有限状态滑动窗口跨帧拼合被分词器截断的占位符，在保持首字延迟（TTFT）不变的前提下实现客户端无感还原的流式治理机制。
 
 在跑通了纯前端可视化的 **AI 工作流编排** 引擎（PatchCat）与跨宿主审查总线（FerryCat）之后，我开始把目光转向更底层的算力供给侧。
@@ -23,9 +24,11 @@ series: "EdgeCat · Local-First AI Inference Governance"
 日常在个人工作站与家庭 NAS 上运行 **DAG 状态机** 时，我的痛点非常具体：平时绝大多数常规节点希望直接走局域网内的免费 Ollama（如 `qwen2.5:7b`），只有当本地并发满载或首字超时时，才自动降级到云端的付费 API。而一旦请求准备跨出内网发往公网云端，提示词里夹带的客户手机号、内部邮箱、内网 IPv4 地址以及 `sk-` 开头的密钥，必须先在本地网关脱敏成类似 `{{EC_PII_PHONE_1}}` 的占位符；等模型流式吐字回来时，网关再把占位符实时换回真实号码，确保下游的业务节点或工具调用拿到完整可用的参数。
 
 这个需求听起来像是十行正则表达式就能搞定的周末小作业。但在借助 AI 辅助编程推进 EdgeCat（Go 1.26+ 纯静态编译网关）并贯彻“边写边学”的过程中，我踩进了一个几乎所有流式代理都会遇到的分词切片陷阱。
+{% endraw %}
 
 ![EdgeCat 流式 SSE 滑动窗口与无损透传 封面油画]({{ '/assets/images/cover-edgecat-sse-sliding-window-rehydration.jpg' | relative_url }})
 
+{% raw %}
 ---
 
 ## 一、 为什么“一把梭”正则替换在 SSE 流面前必死无疑？
@@ -69,11 +72,13 @@ data: {"id":"chatcmpl-s1","choices":[{"index":0,"delta":{"content":"I_PHONE_1}} 
 2. `多路并发增量通道串台`：现代推理接口早已不止一个 `delta.content` 字段。当接入 DeepSeek 等推理模型或执行并发工具调用时，同一个 `choice` 下会交错流淌着三条文本流：思考过程 `delta.reasoning_content`、正文 `delta.content`，以及多个并发工具参数 `delta.tool_calls[i].function.arguments`。如果共用外层字节缓冲，思考链末尾留下的半截括号，就会和下一帧正文或工具调用的字节混在一起。
 
 想明白这层原理后，我们彻底否定了粗放的字节流拦截，在 `internal/proxy/sse_rehydrator.go` 中确立了帧级解析与按通道正交隔离的 `StreamRehydrator` 架构：
+{% endraw %}
 
 <p align="center">
   <img src="{{ '/assets/images/flowchart-edgecat-sse-sliding-window-rehydration.svg' | relative_url }}" alt="EdgeCat 帧级滑动窗口 SSE 还原与无损透传架构图" width="960" height="480" loading="lazy" decoding="async" />
 </p>
 
+{% raw %}
 ```go
 type StreamRehydrator struct {
 	vault                *filter.Vault
@@ -161,9 +166,11 @@ func (r *SlidingRehydrator) findUnclosedPrefixCut(s string) int {
 2. 提取候选串 `cand = "{{EC_PII_PHONE_1}"`；
 3. 送入 `isValidPlaceholderCandidate` 检查：因为末尾那个落单的 `}` 不属于 `[A-Za-z0-9_]`，校验函数当场返回 `false`（误以为这是普通花括号文本）！
 4. `findUnclosedPrefixCut` 返回 `len(s)`，把半截 `{{EC_PII_PHONE_1}` 直接刷给了客户端；等第 2 帧的 `}` 到达时，早已无法挽回。
+{% endraw %}
 
 ![双花括号跨帧断裂与机械缓冲仓 哲思插图]({{ '/assets/images/illustration-edgecat-token-slicing-brace-trap.jpg' | relative_url }})
 
+{% raw %}
 定位到这个切口后，我们在 `internal/filter/pii.go` 第 307 行补上了极其克制的三行手术刀修补：
 
 ```go
@@ -267,3 +274,4 @@ type ChatRequest struct {
 > **郭强 (GuoBug)**，Product Engineer，做平台工程也做业务增长。目前主要在折腾 AI 工作流编排、DAG 状态机与确定性系统架构。  
 > 开源项目与主页：[https://github.com/GuoBug](https://github.com/GuoBug) · [https://guobug.github.io](https://guobug.github.io)  
 > 欢迎就工作流引擎架构、拓扑调度和低门槛开发体验交流指教。
+{% endraw %}
