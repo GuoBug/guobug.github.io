@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" width="960" height="660" style="background: transparent; display: block; max-width: 100%; height: auto;">
+  <defs>
+    <pattern id="dot-grid-an" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1.2" fill="#D4D4D8" />
+    </pattern>
+
+    <marker id="arrow-blk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#6366F1" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#EF4444" stroke="#000000" stroke-width="1"/>
+    </marker>
+
+    <style>
+      .font-mono { font-family: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .font-heading { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .bold { font-weight: 700; }
+      .bolder { font-weight: 800; }
+      .black { font-weight: 900; }
+      .border-main { stroke: #000000; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; }
+      .border-card { stroke: #000000; stroke-width: 2; }
+      .border-thin { stroke: #000000; stroke-width: 1.5; }
+      .border-dashed { stroke: #000000; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    </style>
+  </defs>
+
+  <!-- Outer Shadow & Background Frame -->
+  <rect x="14" y="14" width="932" height="632" rx="8" fill="#000000" />
+  <rect x="10" y="10" width="932" height="632" rx="8" fill="#FAF9F5" class="border-main" />
+  <rect x="14" y="14" width="924" height="624" rx="6" fill="url(#dot-grid-an)" />
+
+  <!-- Top Header Bar -->
+  <rect x="28" y="26" width="896" height="52" rx="6" fill="#000000" />
+  <rect x="25" y="23" width="896" height="52" rx="6" fill="#FFFFFF" class="border-card" />
+
+  <rect x="36" y="32" width="218" height="34" rx="4" fill="#7FFF00" class="border-thin" />
+  <text x="145" y="54" class="font-mono bolder" font-size="12" fill="#000000" text-anchor="middle" letter-spacing="1">PATCHCAT // AGENT ENGINE</text>
+
+  <text x="270" y="54" class="font-heading black" font-size="15" fill="#000000" letter-spacing="0.4">ENCAPSULATED REACT LOOP &amp; 3-MODALITY TOOL DISPATCH</text>
+  <text x="905" y="53" class="font-mono bold" font-size="11" fill="#71717A" text-anchor="end">ZERO BACK-EDGES</text>
+
+  <!-- Column 1: Outer Acyclic Kahn DAG (Width: 230) -->
+  <g transform="translate(25, 92)">
+    <rect x="3" y="3" width="230" height="440" rx="6" fill="#000000" />
+    <rect x="0" y="0" width="230" height="440" rx="6" fill="#FFFFFF" class="border-card" />
+
+    <rect x="12" y="12" width="206" height="30" rx="4" fill="#E0F2FE" class="border-thin" />
+    <text x="115" y="31" class="font-mono bolder" font-size="11" fill="#0369A1" text-anchor="middle">1. OUTER KAHN DAG</text>
+
+    <!-- Upstream Input -->
+    <rect x="24" y="64" width="182" height="64" rx="4" fill="#F4F4F5" class="border-thin" />
+    <text x="115" y="88" class="font-mono bold" font-size="11" fill="#18181B" text-anchor="middle">Upstream Input Node</text>
+    <text x="115" y="108" class="font-mono" font-size="10" fill="#52525B" text-anchor="middle">{{input_user.user_query}}</text>
+
+    <line x1="115" y1="128" x2="115" y2="168" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <!-- Agent Node Black-Box -->
+    <rect x="20" y="172" width="190" height="106" rx="6" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2.5" />
+    <rect x="34" y="182" width="162" height="22" rx="3" fill="#4F46E5" />
+    <text x="115" y="197" class="font-mono bolder" font-size="10" fill="#FFFFFF" text-anchor="middle">AGENT NODE (SINGLE TASK)</text>
+    <text x="115" y="224" class="font-heading bold" font-size="12" fill="#1E1B4B" text-anchor="middle">Opaque to Scheduler</text>
+    <text x="115" y="244" class="font-mono" font-size="10" fill="#4338CA" text-anchor="middle">No Canvas Back-Edges</text>
+    <text x="115" y="262" class="font-mono" font-size="10" fill="#4338CA" text-anchor="middle">AbortSignal Propagated</text>
+
+    <line x1="115" y1="278" x2="115" y2="318" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <!-- Downstream Output -->
+    <rect x="24" y="322" width="182" height="96" rx="4" fill="#ECFDF5" class="border-thin" />
+    <text x="115" y="344" class="font-mono bold" font-size="11" fill="#065F46" text-anchor="middle">Downstream Output</text>
+    <text x="115" y="366" class="font-mono" font-size="10" fill="#047857" text-anchor="middle">{{agent.response}}</text>
+    <text x="115" y="384" class="font-mono" font-size="10" fill="#047857" text-anchor="middle">{{agent.iterations}}</text>
+    <text x="115" y="402" class="font-mono" font-size="10" fill="#047857" text-anchor="middle">{{agent.usage}}</text>
+  </g>
+
+  <!-- Arrow Col 1 -> Col 2 -->
+  <line x1="255" y1="312" x2="278" y2="312" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#arrow-purple)" />
+
+  <!-- Column 2: Inner Encapsulated ReAct Loop (Width: 340) -->
+  <g transform="translate(282, 92)">
+    <rect x="3" y="3" width="340" height="440" rx="6" fill="#000000" />
+    <rect x="0" y="0" width="340" height="440" rx="6" fill="#FFFFFF" class="border-card" />
+
+    <rect x="12" y="12" width="316" height="30" rx="4" fill="#EEF2FF" class="border-thin" />
+    <text x="170" y="31" class="font-mono bolder" font-size="11" fill="#4338CA" text-anchor="middle">2. ENCAPSULATED REACT STATE MACHINE</text>
+
+    <!-- Think Step -->
+    <rect x="18" y="58" width="304" height="74" rx="4" fill="#F5F3FF" class="border-thin" />
+    <text x="30" y="79" class="font-mono bolder" font-size="11" fill="#4338CA">THINK (LLM Stream · temp 0.1–0.3)</text>
+    <text x="30" y="98" class="font-mono" font-size="10" fill="#3F3F46">• Tool-first system prompt contract</text>
+    <text x="30" y="116" class="font-mono" font-size="10" fill="#3F3F46">• Emits delta.tool_calls or final text</text>
+
+    <line x1="170" y1="132" x2="170" y2="156" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <!-- SSE Accumulator -->
+    <rect x="18" y="160" width="304" height="78" rx="4" fill="#FEF3C7" class="border-thin" />
+    <text x="30" y="181" class="font-mono bolder" font-size="11" fill="#92400E">SSE FRAGMENT ACCUMULATOR</text>
+    <text x="30" y="200" class="font-mono" font-size="10" fill="#78350F">• Buffers split JSON chunks by index</text>
+    <text x="30" y="218" class="font-mono" font-size="10" fill="#78350F">• Prevents Unexpected end of JSON</text>
+
+    <line x1="170" y1="238" x2="170" y2="262" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <!-- Act & Observe -->
+    <rect x="18" y="266" width="304" height="68" rx="4" fill="#ECFDF5" class="border-thin" />
+    <text x="30" y="287" class="font-mono bolder" font-size="11" fill="#065F46">ACT &amp; OBSERVE (Tool Message)</text>
+    <text x="30" y="306" class="font-mono" font-size="10" fill="#047857">• Dispatches call, appends tool output</text>
+    <text x="30" y="322" class="font-mono" font-size="10" fill="#047857">• Loops back to THINK until solved</text>
+
+    <!-- Loopback Arrow on Left -->
+    <path d="M 18 300 L 8 300 L 8 95 L 14 95" fill="none" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow-purple)" />
+
+    <!-- Watchdog Guardrail -->
+    <rect x="18" y="352" width="304" height="72" rx="4" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+    <text x="30" y="373" class="font-mono bolder" font-size="11" fill="#B91C1C">WATCHDOG // maxIterations &amp; AbortSignal</text>
+    <text x="30" y="392" class="font-mono" font-size="10" fill="#7F1D1D">• Hard-caps loop (default 5–10 steps)</text>
+    <text x="30" y="410" class="font-mono" font-size="10" fill="#7F1D1D">• Stops token bleed on hallucination loops</text>
+  </g>
+
+  <!-- Arrow Col 2 -> Col 3 -->
+  <line x1="622" y1="300" x2="646" y2="300" stroke="#10B981" stroke-width="2.5" marker-end="url(#arrow-green)" />
+
+  <!-- Column 3: Three Tool Modalities (Width: 270) -->
+  <g transform="translate(650, 92)">
+    <rect x="3" y="3" width="270" height="440" rx="6" fill="#000000" />
+    <rect x="0" y="0" width="270" height="440" rx="6" fill="#FFFFFF" class="border-card" />
+
+    <rect x="12" y="12" width="246" height="30" rx="4" fill="#DCFCE7" class="border-thin" />
+    <text x="135" y="31" class="font-mono bolder" font-size="11" fill="#166534" text-anchor="middle">3. THREE TOOL MODALITIES</text>
+
+    <!-- Modality 1: builtin_code -->
+    <rect x="14" y="58" width="242" height="110" rx="4" fill="#F8FAFC" class="border-thin" />
+    <rect x="22" y="66" width="114" height="20" rx="3" fill="#0F172A" />
+    <text x="79" y="80" class="font-mono bolder" font-size="10" fill="#7FFF00" text-anchor="middle">builtin_code</text>
+    <text x="22" y="104" class="font-heading bold" font-size="12" fill="#0F172A">Web Worker JS Sandbox</text>
+    <text x="22" y="124" class="font-mono" font-size="10" fill="#475569">• Deterministic math &amp; regex</text>
+    <text x="22" y="140" class="font-mono" font-size="10" fill="#475569">• Zero DOM / Storage access</text>
+    <text x="22" y="156" class="font-mono" font-size="10" fill="#475569">• Fixes LLM float arithmetic</text>
+
+    <!-- Modality 2: builtin_http -->
+    <rect x="14" y="182" width="242" height="110" rx="4" fill="#FFFBEB" class="border-thin" />
+    <rect x="22" y="190" width="114" height="20" rx="3" fill="#B45309" />
+    <text x="79" y="204" class="font-mono bolder" font-size="10" fill="#FFFFFF" text-anchor="middle">builtin_http</text>
+    <text x="22" y="228" class="font-heading bold" font-size="12" fill="#78350F">External REST API</text>
+    <text x="22" y="248" class="font-mono" font-size="10" fill="#92400E">• Typed JSON Schema args</text>
+    <text x="22" y="264" class="font-mono" font-size="10" fill="#92400E">• Live FX rates / weather / API</text>
+    <text x="22" y="280" class="font-mono" font-size="10" fill="#92400E">• Auto-wrapped Tool Message</text>
+
+    <!-- Modality 3: canvas_node -->
+    <rect x="14" y="306" width="242" height="118" rx="4" fill="#F0FDF4" class="border-thin" />
+    <rect x="22" y="314" width="114" height="20" rx="3" fill="#15803D" />
+    <text x="79" y="328" class="font-mono bolder" font-size="10" fill="#FFFFFF" text-anchor="middle">canvas_node</text>
+    <text x="22" y="352" class="font-heading bold" font-size="12" fill="#14532D">Canvas Node Reuse</text>
+    <text x="22" y="372" class="font-mono" font-size="10" fill="#166534">• Suspends Agent stack</text>
+    <text x="22" y="388" class="font-mono" font-size="10" fill="#166534">• Recursively runs target nodeId</text>
+    <text x="22" y="404" class="font-mono" font-size="10" fill="#166534">• Reuses RAG / Prompt nodes</text>
+  </g>
+
+  <!-- Bottom Summary Strip -->
+  <rect x="28" y="554" width="896" height="66" rx="6" fill="#000000" />
+  <rect x="25" y="551" width="896" height="66" rx="6" fill="#18181B" class="border-card" />
+  <text x="44" y="577" class="font-mono bolder" font-size="12" fill="#7FFF00">ARCHITECTURAL INVARIANT // WHY ENCAPSULATE REACT?</text>
+  <text x="44" y="600" class="font-mono" font-size="11" fill="#E4E4E7">Kahn's O(|V|+|E|) outer scheduler stays 100% acyclic, while iterative reasoning &amp; tool execution remain bounded inside a single node.</text>
+</svg>
