@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640" style="background: transparent; display: block; max-width: 100%; height: auto;">
+  <defs>
+    <pattern id="dot-grid-ts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1.2" fill="#D4D4D8" />
+    </pattern>
+
+    <marker id="arrow-blk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" stroke="#000000" stroke-width="1"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10B981" stroke="#000000" stroke-width="1"/>
+    </marker>
+
+    <style>
+      .font-mono { font-family: 'Space Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .font-heading { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .bold { font-weight: 700; }
+      .bolder { font-weight: 800; }
+      .black { font-weight: 900; }
+      .border-main { stroke: #000000; stroke-width: 2.5; stroke-linecap: square; stroke-linejoin: miter; }
+      .border-card { stroke: #000000; stroke-width: 2; }
+      .border-thin { stroke: #000000; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <!-- Outer Shadow & Background Frame -->
+  <rect x="14" y="14" width="932" height="612" rx="8" fill="#000000" />
+  <rect x="10" y="10" width="932" height="612" rx="8" fill="#FAF9F5" class="border-main" />
+  <rect x="14" y="14" width="924" height="604" rx="6" fill="url(#dot-grid-ts)" />
+
+  <!-- Top Header Bar -->
+  <rect x="28" y="26" width="896" height="52" rx="6" fill="#000000" />
+  <rect x="25" y="23" width="896" height="52" rx="6" fill="#FFFFFF" class="border-card" />
+
+  <rect x="36" y="32" width="224" height="34" rx="4" fill="#7FFF00" class="border-thin" />
+  <text x="148" y="54" class="font-mono bolder" font-size="12" fill="#000000" text-anchor="middle" letter-spacing="1">SAAS // TRUST &amp; SAFETY</text>
+
+  <text x="276" y="54" class="font-heading black" font-size="15" fill="#000000" letter-spacing="0.4">COMPLIANCE STATE MACHINE &amp; GROWTH BALANCE</text>
+  <text x="905" y="53" class="font-mono bold" font-size="11" fill="#71717A" text-anchor="end">EPIC #5398 · UPSTREAM #2578</text>
+
+  <!-- Column 1: Multi-Tenant Risk & Compliance Gates (Width: 270) -->
+  <g transform="translate(25, 92)">
+    <rect x="3" y="3" width="270" height="420" rx="6" fill="#000000" />
+    <rect x="0" y="0" width="270" height="420" rx="6" fill="#FFFFFF" class="border-card" />
+
+    <rect x="12" y="12" width="246" height="30" rx="4" fill="#FEF2F2" class="border-thin" />
+    <text x="135" y="31" class="font-mono bolder" font-size="11" fill="#B91C1C" text-anchor="middle">1. RISK &amp; COMPLIANCE GATES</text>
+
+    <rect x="16" y="58" width="238" height="92" rx="4" fill="#FFF1F2" class="border-thin" />
+    <text x="28" y="80" class="font-mono bolder" font-size="11" fill="#9F1239">MULTI-TENANT SIGNUP DEFENSE</text>
+    <text x="28" y="100" class="font-mono" font-size="10" fill="#4C0519">• Parent Epic #5398</text>
+    <text x="28" y="118" class="font-mono" font-size="10" fill="#4C0519">• Risk scoring (#2287, #2506, #2508)</text>
+    <text x="28" y="136" class="font-mono" font-size="10" fill="#4C0519">• Stops abuse without blocking teams</text>
+
+    <line x1="135" y1="150" x2="135" y2="180" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <rect x="16" y="184" width="238" height="96" rx="4" fill="#F0F9FF" class="border-thin" />
+    <text x="28" y="206" class="font-mono bolder" font-size="11" fill="#0369A1">UPSTREAM MERGED GATES</text>
+    <text x="28" y="226" class="font-mono" font-size="10" fill="#0C4A6E">• Merged into GitLab Global (#2578)</text>
+    <text x="28" y="244" class="font-mono" font-size="10" fill="#0C4A6E">• Platform-level audit contracts</text>
+    <text x="28" y="262" class="font-mono" font-size="10" fill="#0C4A6E">• Eliminates fragile local forks</text>
+
+    <line x1="135" y1="280" x2="135" y2="310" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <rect x="16" y="314" width="238" height="88" rx="4" fill="#F4F4F5" class="border-thin" />
+    <text x="28" y="336" class="font-mono bolder" font-size="11" fill="#18181B">HUMAN SIGN-OFF &amp; SANDBOX</text>
+    <text x="28" y="356" class="font-mono" font-size="10" fill="#3F3F46">• Explicit risk ownership</text>
+    <text x="28" y="374" class="font-mono" font-size="10" fill="#3F3F46">• Isolated verification zones</text>
+  </g>
+
+  <!-- Arrow Col 1 -> Col 2 -->
+  <line x1="295" y1="302" x2="321" y2="302" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arrow-cyan)" />
+
+  <!-- Column 2: Decoupled Telemetry & Governance Engine (Width: 310) -->
+  <g transform="translate(325, 92)">
+    <rect x="3" y="3" width="310" height="420" rx="6" fill="#000000" />
+    <rect x="0" y="0" width="310" height="420" rx="6" fill="#FFFFFF" class="border-card" />
+
+    <rect x="12" y="12" width="286" height="30" rx="4" fill="#E0F2FE" class="border-thin" />
+    <text x="155" y="31" class="font-mono bolder" font-size="11" fill="#0369A1" text-anchor="middle">2. DECOUPLED TELEMETRY &amp; GOVERNANCE</text>
+
+    <rect x="16" y="58" width="278" height="104" rx="4" fill="#F8FAFC" class="border-thin" />
+    <text x="28" y="80" class="font-mono bolder" font-size="11" fill="#0F172A">REGULATORY CONSTRAINT</text>
+    <text x="28" y="100" class="font-mono" font-size="10" fill="#334155">• Third-party SaaS analytics blocked</text>
+    <text x="28" y="118" class="font-mono" font-size="10" fill="#334155">• Strict data-residency boundaries</text>
+    <text x="28" y="136" class="font-mono" font-size="10" fill="#334155">• Cannot mutate core OLTP hot-path</text>
+
+    <line x1="155" y1="162" x2="155" y2="192" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <rect x="16" y="196" width="278" height="106" rx="4" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2" />
+    <text x="28" y="218" class="font-mono bolder" font-size="11" fill="#4338CA">ASYNC REPLICA &amp; UTM PIPELINE</text>
+    <text x="28" y="238" class="font-mono" font-size="10" fill="#312E81">• Independent telemetry (#2672, #2735)</text>
+    <text x="28" y="256" class="font-mono" font-size="10" fill="#312E81">• Decoupled read-replica isolation</text>
+    <text x="28" y="274" class="font-mono" font-size="10" fill="#312E81">• Zero third-party PII exfiltration</text>
+
+    <line x1="155" y1="302" x2="155" y2="332" stroke="#000000" stroke-width="2" marker-end="url(#arrow-blk)" />
+
+    <rect x="16" y="336" width="278" height="66" rx="4" fill="#FEF3C7" class="border-thin" />
+    <text x="28" y="357" class="font-mono bolder" font-size="11" fill="#92400E">BIDIRECTIONAL LEARNING LOOP</text>
+    <text x="28" y="377" class="font-mono" font-size="10" fill="#78350F">Field exceptions -&gt; Platform primitives</text>
+  </g>
+
+  <!-- Arrow Col 2 -> Col 3 -->
+  <line x1="635" y1="302" x2="661" y2="302" stroke="#10B981" stroke-width="2.5" marker-end="url(#arrow-green)" />
+
+  <!-- Column 3: Measured Outcomes & Principles (Width: 260) -->
+  <g transform="translate(665, 92)">
+    <rect x="3" y="3" width="260" height="420" rx="6" fill="#000000" />
+    <rect x="0" y="0" width="260" height="420" rx="6" fill="#FFFFFF" class="border-card" />
+
+    <rect x="12" y="12" width="236" height="30" rx="4" fill="#DCFCE7" class="border-thin" />
+    <text x="130" y="31" class="font-mono bolder" font-size="11" fill="#166534" text-anchor="middle">3. MEASURED OUTCOMES</text>
+
+    <rect x="16" y="58" width="228" height="106" rx="4" fill="#ECFDF5" class="border-thin" />
+    <text x="28" y="84" class="font-heading black" font-size="26" fill="#047857">+8%</text>
+    <text x="28" y="108" class="font-mono bolder" font-size="11" fill="#065F46">ENTERPRISE ONBOARDING</text>
+    <text x="28" y="128" class="font-mono" font-size="10" fill="#047857">Higher completion under strict</text>
+    <text x="28" y="144" class="font-mono" font-size="10" fill="#047857">multi-tenant compliance gates</text>
+
+    <rect x="16" y="180" width="228" height="106" rx="4" fill="#ECFDF5" class="border-thin" />
+    <text x="28" y="206" class="font-heading black" font-size="26" fill="#047857">+10%</text>
+    <text x="28" y="230" class="font-mono bolder" font-size="11" fill="#065F46">WEEK-ONE RETENTION</text>
+    <text x="28" y="250" class="font-mono" font-size="10" fill="#047857">Driven by full-funnel UTM</text>
+    <text x="28" y="266" class="font-mono" font-size="10" fill="#047857">visibility &amp; friction removal</text>
+
+    <rect x="16" y="302" width="228" height="100" rx="4" fill="#18181B" class="border-thin" />
+    <text x="28" y="326" class="font-mono bolder" font-size="11" fill="#7FFF00">GOVERNANCE INVARIANT</text>
+    <text x="28" y="348" class="font-mono" font-size="10" fill="#E4E4E7">Budget cannot outsource</text>
+    <text x="28" y="366" class="font-mono" font-size="10" fill="#E4E4E7">organizational ownership or</text>
+    <text x="28" y="384" class="font-mono" font-size="10" fill="#E4E4E7">deterministic state gates.</text>
+  </g>
+
+  <!-- Bottom Summary Strip -->
+  <rect x="28" y="534" width="896" height="66" rx="6" fill="#000000" />
+  <rect x="25" y="531" width="896" height="66" rx="6" fill="#18181B" class="border-card" />
+  <text x="44" y="557" class="font-mono bolder" font-size="12" fill="#7FFF00">PRODUCTION LESSON // COMPLIANCE AS DETERMINISTIC ARCHITECTURE</text>
+  <text x="44" y="580" class="font-mono" font-size="11" fill="#E4E4E7">Trust &amp; Safety scales when risk checks, async telemetry, and human sign-off form an explicit State Machine—not ad-hoc firefighting.</text>
+</svg>
