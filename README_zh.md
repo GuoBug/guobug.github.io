@@ -1,6 +1,6 @@
 # 郭强 (GuoBug) · Product Engineer 知识库与个人工程主页
 
-[English](README.md) | [中文](README_zh.md)
+[English](README.md) | [中文](README_zh.md) | [llms.txt](./llms.txt)
 
 > **郭强 (GuoBug)**，资深 **Product Engineer**，做平台工程也做业务增长。目前主要在折腾 **AI 工作流编排**、**DAG 状态机** 与 **确定性系统** 架构。
 

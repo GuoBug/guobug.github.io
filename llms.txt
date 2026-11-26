@@ -1,258 +1,110 @@
-# Guo Qiang (GuoBug) - Product Engineer
+# guobug.github.io (Guo Qiang / GuoBug)
 
-> Digital workspace, technical writings, and open-source architecture portfolio of Guo Qiang. Product Engineer / Product Architect blending platform engineering foundations with commercial growth. 14-year evolution from low-level systems and commercial growth, to platform product leadership, and back into production code to engineer deterministic AI systems.
+> Static Jekyll + GitHub Pages engineering workspace, client-side bilingual runtime, automated IndexNow push pipeline, and Generative Engine Optimization (GEO) knowledge base for Guo Qiang (GuoBug).
 
-## Identity & Contact
-- Name: Guo Qiang (郭强 / GuoBug)
-- Role: Product Engineer · AI Product Manager / Agent Runtime & Workflow Systems Lead
-- Base / Location: Shanghai, China · All-Remote
-- Website: https://guobug.github.io
-- Profile & Resume (ZH / Technical Hybrid): https://guobug.github.io/about/index.md
-- Profile & Resume (EN / Global Context): https://guobug.github.io/about/index-en.md
-- Interactive Profile & Career Roadmap (HTML): https://guobug.github.io/about/
-- Projects & Architecture: https://guobug.github.io/projects.html
-- GitHub: https://github.com/GuoBug
-- Email: gu0bug0@gmail.com
-- Career Evolution (14-Year Trajectory):
-  - 2012–2014: Low-level engineering base (Commercial Bank Core DCP Backend: Linux 0.11 kernels, C, DB2, production cutover resilience)
-  - 2014–2019: Product growth & user intent (Ctrip deferred deep linking -> Bilibili high-concurrency mobile web telemetry -> Alo7 B2B2C growth)
-  - 2019–2024: Specialized systems & platform governance (Xianze optical lab instruments & workstation -> JiHu GitLab SaaS Trust & Safety & upstream open-source MRs)
-  - 2024–Present: AI-native hands-on engineering (Miaoawu Studio automation pipelines & PatchCat open-source deterministic DAG runtime)
-- Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
-- Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
-- Dev.to: https://dev.to/guobug
+- Author: Guo Qiang (GuoBug) · Product Engineer / AI Product Manager (Agent Runtime & Workflow Systems)
+- Canonical Origin: https://guobug.github.io
+- Repository: https://github.com/GuoBug/guobug.github.io
+- Contact: gu0bug0@gmail.com
+- Identity Graph (`sameAs`):
+  - https://github.com/GuoBug
+  - https://gitlab.com/QiangGu0
+  - https://jihulab.com/gitlab-cn/gitlab
+  - https://dev.to/guobug
+- Cross-Domain Semantic Profiles:
+  - https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
+  - https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
+  - https://guobug.github.io/about/index-en.md
+  - https://guobug.github.io/about/index.md
 
 ---
 
-## Core Open-Source Projects
+## Start Here (Minimal Primitives)
 
-### 1. PatchCat (AI Prompt Flow Orchestrator)
-- Repository: https://github.com/GuoBug/PatchCat
-- Live Demo: https://guobug.github.io/PatchCat/
-- Technical Highlights:
-  - Visual DAG workflow editor built on React Flow and Zustand.
-  - Client-side topological sorting and cycle detection via Kahn's algorithm.
-  - Streaming SSE parser with real-time DeepSeek R1 reasoning chain rendering.
-  - Decoupled state machines (`useProjectStore` & `useWorkflowStore`) achieving zero dirty re-renders and smooth 60fps canvas operations.
-  - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
-- Video Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
+```bash
+# 1. Fetch compact routing & runtime invariants (this file)
+curl -fsSL https://guobug.github.io/llms.txt
 
-### 2. FerryCat (Contract-Driven Cross-Host AI Agent Handoff & Review Bus)
-- Repository: https://github.com/GuoBug/FerryCat
-- Empirical Trajectory Archive: https://github.com/GuoBug/FerryCat/blob/main/docs/real-mesh-trajectory.json
-- Technical Highlights:
-  - Deterministic 6-state contract bus (SUBMITTED, CLAIMED, COMPLETED, POINTER_STALE, VALIDATION_FAILED, TIMED_OUT) over MCP stdio and zero-addon 
-ode:sqlite (WAL mode).
-  - Full-file SHA-256 fingerprint verification, 3-second dirty-buffer warning with first/last line snapshots, and TOCTOU re-verification upon contract fulfillment to eliminate silent blind reviews on stale files.
-  - Bounded Ajv JSON Schema output validation (RETRY_NEEDED <= 2) with human-scheduled instant atomic polling (poll_next_task).
+# 2. Fetch full contract, error remediation matrix & 84-post Problem/Solution/Outcome archive
+curl -fsSL https://guobug.github.io/llms-full.txt
 
-### 3. EdgeCat (Local-First AI Inference Governance Gateway)
-- Repository: https://github.com/GuoBug/EdgeCat
-- Technical Highlights:
-  - Pure static Go 1.26+ (`CGO_ENABLED=0`) dual-track inference governance gateway bridging local Ollama/vLLM compute and cloud fallback endpoints.
-  - Frame-level 3-channel sliding-window SSE rehydrator (`content`, `reasoning_content`, `tool_calls`) resolving cross-chunk BPE token slicing and split closing braces (`}}`) with zero TTFT latency penalty and zero-disk-persistence in-memory PII Vaults.
-  - Weighted concurrency semaphores, TTFT watchdogs, rolling SSE idle deadlines, and lossless wire passthrough (`json.Number`, `SetEscapeHTML(false)`).
-  - Homelab LAN sharing with Fail-Closed startup guards, Chrome Private Network Access (PNA) preflight support, and SQLite WAL atomic daily cloud fallback quotas (`daily_cloud_limit`).
+# 3. Enumerate every canonical URL (core pages, profiles, protocol files, 84 posts)
+curl -fsSL https://guobug.github.io/sitemap.xml
 
-### 4. Metaphysics Tools
-- Live App: https://guobug.github.io/metaphysics-tools/index.html#
-- Interactive algorithmic modeling and visual computing experiments.
+# 4. Fetch standalone machine-readable author profile (EN or ZH)
+curl -fsSL https://guobug.github.io/about/index-en.md
+
+# 5. Run IndexNow push notification script locally or in CI (POSTs to api.indexnow.org)
+python .github/scripts/trigger_indexnow.py
+```
+
+### Which Primitive to Use When
+- Need system-prompt context, site architecture invariants, or route discovery -> fetch `/llms.txt`.
+- Need exact client JS constants, Liquid asset-loading rules, error remediation, non-goals, or Problem/Solution/Outcome evidence for technical essays -> fetch `/llms-full.txt`.
+- Need exhaustive URL enumeration across all 84 published posts (2013-06-07 to 2026-11-23) -> parse `/sitemap.xml`.
+- Need author career history, ATS competency mapping, or contact metadata -> fetch `/about/index-en.md` (English) or `/about/index.md` (Chinese).
+- Need human-rendered UI with language or pagination state -> load `https://guobug.github.io/?lang=en|zh` or `https://guobug.github.io/posts/?page=1..7&lang=en|zh`.
+- Need search-engine re-indexing after modifying posts or protocol files on `main` -> push to `main` (triggers `.github/workflows/indexnow.yml`) or invoke `.github/scripts/trigger_indexnow.py`.
 
 ---
 
-## Key Technical Writings & Architecture Essays
+## Core Architecture & State Invariants
 
-### Global English Engineering Essays (Dev.to & Pages)
-- [Trust & Safety at Scale: Lessons from Building SaaS Compliance](https://guobug.github.io/posts/2026/11/18/trust-and-safety-at-scale-lessons-from-building-saas-compliance/)
-  - Production case study on scaling SaaS Trust & Safety and enterprise governance at JiHu GitLab: structuring multi-tenant registration risk defense (Epic `#5398`, Issues `#2287`, `#2506`, `#2508`), merging compliance gates upstream into GitLab Global (`#2578`), and building decoupled async read-replica UTM telemetry (`#2672`, `#2735`) under strict data-residency rules—lifting enterprise onboarding completion by +8% and week-one retention by +10% while analyzing replica lag, friction trade-offs, and organizational ownership boundaries.
-- [Agent Nodes & Tool Calling in Visual Workflow Engines](https://guobug.github.io/posts/2026/11/17/agent-nodes-and-tool-calling-in-visual-workflow-engines/)
-  - Architectural breakdown of encapsulating the ReAct (`Think -> Act -> Observe`) loop inside a single Agent Node on a Kahn-scheduled DAG canvas (PatchCat v0.4.2): supporting three tool modalities (`builtin_code` Web Worker JS sandbox, `builtin_http` JSON-Schema REST API, and `canvas_node` recursive node reuse) without cyclic spaghetti back-edges; resolving streaming `delta.tool_calls` JSON fragmentation via per-index fragment buffering; enforcing `maxIterations` watchdogs, `AbortSignal` cancellation, and low-temperature (`0.1–0.3`) constraints across 195 automated tests while analyzing CORS, sandbox, and recursive context-bloat boundaries.
-- [What is MCP: Demystifying Model Context Protocol, Architecture Patterns, and Real-World Trade-offs](https://guobug.github.io/posts/2026/10/24/what-is-model-context-protocol-mcp-architecture-and-tradeoffs-en/)
-  - Comprehensive architectural guide deconstructing the Model Context Protocol (MCP): contrasting fragmented M*N proprietary connectors against the unified M+N star topology; dissecting Host-Client-Server runtime mechanics, stdio/SSE transport channels, and the tri-capability primitives (Tools, Resources, Prompts); detailing production defense against stdio stdout poisoning in local child processes; and analyzing architectural trade-offs across prompt context bloat, the determinism boundary with DAG state machines, and indirect injection security.
-- [Zero-Backend AI: Running Local Embeddings, BM25, and Hybrid RRF Search 100% in the Browser](https://guobug.github.io/posts/2026/10/18/zero-backend-browser-native-hybrid-search-bm25-rrf/)
-  - Production architecture and TypeScript guide to running zero-backend hybrid search entirely inside the browser: replacing expensive cloud vector databases (Pinecone, Qdrant) with an in-memory smoothed BM25 inverted index, a Web Worker-isolated neural embedding model (quantized BGE-small via ONNX), and Reciprocal Rank Fusion (RRF); solving dense vector blind spots on exact identifiers (e.g., `DAG_CYCLE_DETECTED`) and lexical synonym gaps; achieving sub-50ms query latency and 100% client data sovereignty; and transparently analyzing browser heap footprint (~150MB) and cold-start model download trade-offs.
-- [Visual Guide to True AI-Native Applications: Deconstructing Architecture Patterns with PatchCat](https://guobug.github.io/posts/2026/10/09/visual-guide-to-ai-native-applications-and-architecture/)
-  - First-principles architectural visual guide contrasting legacy wrapper (+AI) patterns with native deterministic state machines; deploying Kahn's topological sort for cycle-free wavefront scheduling, dual-anchor atomic transaction pruning to eliminate context decay, and immutable checkpoint reverse-BFS recovery with ReAct watchdogs to ground probabilistic LLM inference within deterministic engineering rails.
-- [Building a Client-Side DAG Runtime with Kahn's Algorithm](https://guobug.github.io/posts/2026/09/21/building-a-client-side-dag-runtime-with-kahns-algorithm/)
-  - In-browser topological sorting, wavefront concurrency matrices, cycle deadlock interception, and AST prototype pollution defense for client-side DAG workflow execution with zero backend dependency.
-- [Resisting Mode Gravity: Why Bigger LLMs Produce Mediocre Output](https://guobug.github.io/posts/2026/09/22/resisting-mode-gravity-why-bigger-llms-produce-mediocre-output/)
-  - Deconstructing Mode Gravity in autoregressive models, breaking the Triple Lock-in Flywheel of mediocrity, shifting from Semantic Continuation to Differential Diffing, and decoupling the Model compute engine from the Business Harness.
-- [Canvas Ergonomics: AABB Collision Avoidance in Node Editors](https://guobug.github.io/posts/2026/09/23/canvas-ergonomics-aabb-collision-avoidance-in-node-editors/)
-  - Canvas ergonomics for visual AI graph editors: Drop-to-Add connection release with inverse matrix coordinate projection, AABB spatial collision avoidance with a 40px breathing gap and 1800px line wrapping, and atomic history transaction bundling.
-- [From SEO to GEO: Optimizing for AI Search Engines](https://guobug.github.io/posts/2026/09/25/from-seo-to-geo-optimizing-for-ai-search-engines/)
-  - A production case study on Generative Engine Optimization (GEO): Schema.org cross-domain entity disambiguation, high-entropy prompt recall tags, dual-tier LLM protocols (`llms.txt`), and triple discovery redundancy.
+### 1. Static Build & Permalink Contract (`_config.yml`)
+- Generator: GitHub Pages Jekyll with `markdown: kramdown`, `permalink: /posts/:year/:month/:day/:title/`, `future: true`, `timezone: Asia/Shanghai`, plugin `jekyll-seo-tag`.
+- Build exclusions (not served at HTTP origin; return 404): `history`, `preview`, `devto`, `README.md`, `README_zh.md`.
+- Corpus volume: 84 Markdown posts in `_posts/*.md` across 13 `series` collections (34 PatchCat, 8 FerryCat, 2 EdgeCat, 2 GEO, plus Sovereign AI, MCP, SaaS governance, and engineering essays).
 
-### Creator Economy & Solo Product Engineering
-- [网红已死，“体验时代”降临：Dan Koe 个人品牌与数字手艺人方法论](https://guobug.github.io/posts/2026/10/29/the-influencer-is-dead-experiential-era-dan-koe-digital-artisan/)
-  - Deconstructing Dan Koe's creator economy thesis through the lens of a senior Product Engineer: examining the structural shift from dopamine-driven vanity influencers to durable, high-conviction digital artisans; engineering a deterministic pipeline from the Idea Museum (dual-board workflow: validated viral architectures x high-conviction personal convictions) and the 5-Lens Refraction Matrix (Sage, Time-Travel, Redefinition, Anti-Consensus, Reality) to transform commodity platitudes into distinct intellectual assets; utilizing zero-marginal-cost content distribution as an objective market sensor to capture authentic friction points; translating validated pain signals into lightweight Minimum Viable Products (MVPs); and transparently auditing production boundaries including cognitive filtering exhaustion, survivor bias in medium-tier creator modeling, and trust friction in lean digital product delivery.
+### 2. Triple GEO Discovery Redundancy
+1. HTML `<head>` auto-discovery across all layouts and root pages: `<link rel="alternate" type="text/markdown" href="https://guobug.github.io/llms.txt" title="LLM Context Protocol">`. Profile pages additionally emit `<link rel="describedby">` pointers to `/about/index.md` and `/about/index-en.md`.
+2. `robots.txt` declares `LLMs-Txt: https://guobug.github.io/llms.txt` and `Sitemap: https://guobug.github.io/sitemap.xml`, explicitly allows 11 AI crawlers (`Google-Extended`, `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `anthropic-ai`, `Applebot`, `Applebot-Extended`, `Bytespider`, `Cohere-ai`), and disallows `/history/`, `/preview/`, and `/assets/css/*.map`.
+3. `sitemap.xml` explicitly indexes `/`, `/posts/`, `/about/`, `/projects.html`, `/about/index.md`, `/about/index-en.md`, `/llms.txt`, `/llms-full.txt`, and all `site.posts`.
 
-### Engineering Philosophy & Market Dynamics
-- [做东西变快了，钱却更难挣了：AI 正在抽空组织的腰部骨干](https://guobug.github.io/posts/2026/10/20/ai-hollows-out-middle-engineering-backbone/)
-  - Deconstructing how frontier AI acceleration (AI agents working 6x human hours while junior technical hiring drops to 9%) paradoxically hollows out the middle tier of engineering organizations: the collapse of traditional apprentice practice grounds, middle management's self-preservation through pseudo-centralization, and the marginalization of senior domain experts under an illusion of AI efficiency; analyzing why production abundance clashes against customer acquisition barriers in public distribution channels; and demonstrating why silent, non-logging cross-system interface failures (DAG state machine deadlocks, attribution hijacking, billing drift) require senior builders who can sign off on commercial viability and boundary defense.
-- [当简历和 Demo 都变得廉价：AI 时代的技术招聘困局](https://guobug.github.io/posts/2026/10/09/curse-of-zero-marginal-cost-and-recruiting-lemon-trap/)
-  - An economic and engineering inquiry into the information collapse of the tech job market under zero-marginal-cost AI tools: dissecting the bilateral deflationary spiral between candidate resume spam and employer ATS keyword filtering; proving why static Proof-of-Work (toy repos, commit padding) rapidly inflates into noise; and establishing deterministic state streams, production mud, and high-bandwidth live stress testing as non-forgeable signals of engineering competence.
+### 3. Client-Side State Machines (`assets/app.js`, 922 lines, zero dependencies)
+- **Bilingual State Machine**:
+  - Resolution precedence: `URL ?lang` > `localStorage['guobug_lang']` > `DEFAULT_LANG = 'en'`.
+  - Normalization: `lang === 'zh' ? 'zh' : 'en'`. Mutates `html[data-lang]` and `html[lang]` (`zh-CN` or `en`); CSS hides non-active `[data-i18n]` spans via `display: none !important`.
+  - Side effects: persists to `localStorage` (wrapped in `try/catch`; silent session-only fallback if storage is blocked), calls `history.replaceState` to sync `?lang=`, and rewrites all same-origin relative `a[href]` links (skipping `http(s):`, `mailto:`, `tel:`, `#`, `javascript:`).
+- **Archive Pagination State Machine (`#postsArchiveGrid`)**:
+  - Reads `data-per-page="12"` (`totalPages = Math.ceil(cards.length / 12)` = 7 pages for 84 posts).
+  - Parses `?page=N`, clamps valid integers to `[1, totalPages]`, falls back to `1` on invalid/missing values, deletes `?page` on page 1, toggles `.page-hidden`, and syncs browser history via `history.pushState` / `popstate`.
+- **Single-rAF Scroll & Motion Pipeline**:
+  - Coalesces scroll elevation (`SCROLL_SHADOW_THRESHOLD = 12`), scroll spy (`SCROLL_SPY_OFFSET = 160`), HUD visibility (`HUD_INDICATOR_THRESHOLD = 90`), mesh drift (`MESH_DRIFT_FACTOR = 0.12`), marquee inertia (`MARQUEE_DAMPING = 0.82`, `MARQUEE_MAX_OFFSET = 200`), and card tilt (`TILT_MAX_DEG = 6`, fine-pointer only).
+  - Caches section `offsetTop`/`offsetHeight` until `documentElement.scrollHeight` changes or `resize`/`load` fires. Disables motion when `prefers-reduced-motion: reduce` matches.
 
-### AI Architecture & Engineering Translations
-- [面向工程实践的架构思路探讨：DeepSeek Super-agent 系统架构（DeepSeek 团队全文转载）](https://guobug.github.io/posts/2026/11/01/deepseek-harness-super-agent-architecture/)
-  - Full reprint of DeepSeek Harness team's foundational engineering architecture on autonomous Super-agents: moving beyond single-session conversation bottlenecks; architecting two-tier Router/Worker separation for concurrent execution; deploying two-level event filtering (Fast Path rule engine + Slow Path LLM semantics); pioneering thread subscription and straight-through routing; formalizing context cache management via Inline & Spill and Chain of Recall; decoupling compute, session state, and heavy local execution environments (Bring Your Own Machine daemon); and deploying independent external Watchdog control loops to govern long-running multi-agent autonomy.
-- [构建高效 AI Agent 的上下文工程：从 Prompt 到 Context 的范式演进（Anthropic 官方工程实践精译）](https://guobug.github.io/posts/2026/09/29/effective-context-engineering-for-ai-agents/)
-  - Comprehensive technical translation of Anthropic Applied AI's guide on context engineering for AI agents: dissecting transformer attention budget limits and context rot ($O(n^2)$ pairwise degradation); evaluating prompt engineering vs. context engineering in autonomous agent loops; deploying just-in-time (JIT) runtime data retrieval and progressive disclosure over bloated static context; and formalizing long-horizon task triad defenses across compaction (tool result clearing), structured note-taking (agentic memory), and sub-agent architectures.
+### 4. On-Demand Post Asset Loading (`_layouts/post.html`)
+- Conditional Liquid sniffing avoids loading heavy libraries on plain-text posts:
+  - **KaTeX 0.16.9** (jsDelivr, SHA-384 SRI pinned): loaded only when `page.math` is truthy or rendered `content` contains `math/tex` or `$$`.
+  - **Mermaid 10 ESM** (jsDelivr): loaded only when `page.mermaid` is truthy or `content` contains `language-mermaid` or `class="mermaid"`.
+  - **PrismJS 1.29.0 + Autoloader** (cdnjs, SHA-384 SRI pinned): loaded only when `page.highlight` is truthy or `content` contains `highlighter-rouge` or `<pre`.
 
-### Sovereign AI Infrastructure Series (PatchCat + FerryCat + EdgeCat)
-- [当 PatchCat、FerryCat 与 EdgeCat 合体：我对“主权 AI 运行时”的未来愿景与工程边界](https://guobug.github.io/posts/2026/11/15/patchcat-ferrycat-edgecat-sovereign-ai-runtime-vision/)
-  - Architectural vision and product strategy synthesizing PatchCat (browser-native DAG orchestrator), FerryCat (MCP stdio + SQLite WAL cross-host contract bus), and EdgeCat (pure-static Go inference governance & PII redaction gateway) into a Local-First Sovereign AI Runtime; evaluating two pragmatic commercial entry points (EdgeCat for compliance & cost governance vs. FerryCat + PatchCat for multi-agent coding supervision); and transparently defining integration trade-offs across heterogeneous runtimes (TypeScript/IndexedDB, Node.js, Go), determinism vs. UX simplicity, and over-engineering boundaries.
-
-### Local-First AI Inference Governance Series (EdgeCat)
-- [给普通用户的 EdgeCat 使用说明书：装在自己电脑或 NAS 上的 AI 流量总管与隐私门卫](https://guobug.github.io/posts/2026/11/23/edgecat-explained-for-everyday-ai-users/)
-  - Everyday-user overview and milestone summary of EdgeCat (https://github.com/GuoBug/EdgeCat) across Phase 1, Phase 1.5, Phase 2, and Phase 3 (R3.1/R3.2): explaining local-first Ollama routing with silent TTFT fallback and 3-state circuit breaker, zero-leak streaming PII masking and rehydration, homelab NAS multi-device token authentication with per-device daily cloud quotas, non-streaming Strict JSON repair, lossless wire passthrough, and the newly landed two-stage RequestMutator hook with opt-in layered local SQLite memory (`trigram` Chinese FTS5, `client_name` isolation, HMAC-SHA256 stable PII keys) through three concrete daily usage scenarios and honest engineering boundaries.
-- [流式 SSE 遇上 Token 截断：EdgeCat 如何用帧级滑动窗口实现零泄漏的 PII 脱敏还原](https://guobug.github.io/posts/2026/11/15/edgecat-sliding-window-sse-pii-rehydration-and-lossless-passthrough/)
-  - Frame-level sliding-window SSE PII rehydration and lossless wire passthrough in EdgeCat (https://github.com/GuoBug/EdgeCat): resolving the critical streaming token-slicing failure where BPE tokenizers split deterministic PII placeholders (`{{EC_PII_PHONE_1}}`) across adjacent SSE chunks or right between closing double braces (`}}`); refuting naive raw byte-stream buffering (which gets poisoned by JSON envelope quotes/braces and mixes concurrent streams) in favor of per-choice 3-channel orthogonal state machines (`contentRehydrators`, `reasoningRehydrators`, `toolCallRehydrators`); engineering a 64-byte bounded dual-cursor cut algorithm (`findUnclosedPrefixCut`) with single-trailing-brace tolerance (`strings.TrimSuffix(body, "}")`) that flushes safe prefixes at 0ms TTFT penalty; deploying dual-insurance tail flushing upon `finish_reason != nil` and pre-`[DONE]` synthetic chunks; and enforcing lossless wire passthrough (`map[string]any`, `json.Number`, `SetEscapeHTML(false)`, immutable `logicalModel` preservation, and surgical multimodal/tool-argument masking).
-
-### Cross-Host AI Collaboration Series (FerryCat)
-- [拒绝把日志当交付物：FerryCat v0.5.0 的防猜契约、智能注入与零配置沙箱](https://guobug.github.io/posts/2026/11/09/never-guess-logs-as-deliverables-anti-guessing-delivery-envelope-and-safe-init/)
-  - Explicit delivery envelope contracts, JSONC-preserving multi-host injection, and zero-config sandboxing in FerryCat v0.5.0: eliminating the fragile guesswork where multi-agent runners promote arbitrary stdout logs to structured findings or fabricate completion summaries upon silent exits; engineering a strict single-line envelope parser (`parseExecDelivery`) with multi-line regex tripwires (`/["']?ferrycat_delivery["']?\s*:/`) and zero-tolerance empty-output rejection (`DELIVERY_MISSING`); codifying `ferrycat init` with AST-safe JSONC parsing, atomic temporary-file backups, and existing-path preference across 7 major MCP host environments (Antigravity, WorkBuddy, Cursor, Claude Code, VS Code, Windsurf, Claude Desktop); pioneering `ferrycat demo` with isolated ephemeral temporary workspaces executing real child processes, real heartbeat renewals, and real AST issue detection in 2 seconds; and constructing zero-dependency static analysis and hygiene gates (`scripts/lint.js`) to enforce JSON-RPC transport stream purity and official MCP registry metadata schema limits.
-- [崩了别慌：守护进程预写日志、崩溃打捞与 Git 差异补丁双闸门](https://guobug.github.io/posts/2026/10/31/crash-without-panic-daemon-write-ahead-journal-and-git-patch-gates/)
-  - Write-ahead daemon journaling, crash recovery forensics, and self-contained git diff patch verification in FerryCat (https://github.com/GuoBug/FerryCat): resolving the fatal dual-process concurrency collision where a crashed daemon leaves orphaned workers mutating workspace code while newly spawned instances blind-reclaim identical tasks; architecting a three-phase write-ahead log (`TASK_DISPATCHING`, `CHILD_SPAWNED`, `TASK_SETTLED`) in `daemon-journal.jsonl` with atomic compaction and non-destructive PID probing (`process.kill(pid, 0)`) under the CK-05 safety protocol to prevent lethal PID reuse collisions; codifying a tripartite self-healing decision matrix that strictly quarantines live orphans (`QUARANTINED_ORPHAN_ALIVE`) and locks mutated code crashes (`MARKED_FAILED_MUTATION_UNSAFE`) while safely recycling read-only audits; pioneering self-contained Git patch review mode (FC-202) equipped with a robust three-gate lexical parser (unified diff headers, 100% pointer coverage enforcement, and valid hunk boundary checks) to eliminate prose bypasses in cross-branch workflows; and ensuring untampered forensic audit logs through explicit unverified pointer tracking.
-- [绝不空手而归：基于惰性心跳与残片打捞的多 Agent 长任务治理](https://guobug.github.io/posts/2026/10/26/never-return-empty-handed-lazy-heartbeat-and-salvage/)
-  - Step 0 execution supervision, lazy heartbeat keep-alives, and partial-output salvage in FerryCat (https://github.com/GuoBug/FerryCat): resolving the critical At-most-once execution loss where long-running AI tasks (>300s) are aborted by naive timers, vaporizing valuable partial LLM reasoning and patch code; exposing the heartbeat quota-exhaustion trap (fixed-cadence 10s renewals burning finite 5-extension limits in 50s) and engineering a dynamic lazy renewal algorithm that checks headroom (`windowEndsAt - guardLeadMs - Date.now()`) to cover 120s+ runs under a 30s TTL; shielding workers from transient lock contention via non-lethal heartbeat retries (`stillOwnsLease()` probe); pioneering critical partial-output salvage (`salvageNow()`, CK-07) extracting the tail 256KB stdout/stderr buffer into atomic `salvaged_result_json` persistence before execution windows close; and preserving state machine purity (CK-09) by avoiding superfluous interim states and mapping outcomes to canonical transitions.
-- [抢麦发言防撞车：基于 UUID 租约令牌的多 Agent 无锁并发治理](https://guobug.github.io/posts/2026/10/26/prevent-concurrency-collisions-uuid-lease-tokens/)
-  - Lock-free task preemption, same-agent impersonation defense, and exclusive lease governance in FerryCat (https://github.com/GuoBug/FerryCat): analyzing why heavy Redis distributed locks and blunt filesystem locks (`flock`) fail in local desktop AI workflows; uncovering the silent data corruption caused by naive check-then-act logic (`SELECT ... then UPDATE`) and identity-only authorization where concurrent processes sharing the same `agent_id` overwrite each other's work; engineering single-statement atomic SQL Compare-And-Swap (CAS) dispatch in `poll_next_task` (`UPDATE contracts SET status = 'CLAIMED', claim_token = ? WHERE id = ? AND status = 'SUBMITTED'`) achieving sub-millisecond contention without deadlocks; pioneering kernel-issued UUID lease tokens (`claim_token` / FC-301) bound to executor process memory; enforcing universal Holder Guards across all lifecycle mutations (`fulfill`, `release`, `extend`, `fail`, `recordSalvage`); and codifying token destruction and refresh semantics on contract release to eliminate replay hazards.
-- [先对齐最新基线：FerryCat 如何杜绝多 Agent 协作中的静默脏读](https://guobug.github.io/posts/2026/10/26/align-baseline-first-eliminate-silent-dirty-reads-in-multi-agent-collaboration/)
-  - Deterministic code baseline synchronization and dirty-read eradication in multi-agent workflows (FerryCat): dissecting why apparent LLM hallucinations and phantom syntax errors during code review stem from physical silent dirty reads and TOCTOU (Time-of-Check to Time-of-Use) races on disk; proving why filesystem timestamps (`mtime`) and partial line hashes fail under concurrent multi-IDE modifications; establishing whole-file SHA-256 physical snapshots for all contract pointers; recounting a production incident where a reviewing agent's in-place doc fixes triggered the TOCTOU watchdog and almost voided a 30-minute review contract (`POINTER_STALE`); resolving the semantic collision between immutable evidence anchors ("what was read") and mutated deliverables ("what was modified") via ADR-0004 Separation of Review and Mutation; formalizing structured Git Diff patches in `structured_output.fixes`; implementing non-destructive pre-flight `verify` probing with a 1-strike soft-fail buffer (`RETRY_NEEDED` with `git stash` guidance); and securing state machine quota integrity by resetting `extend_count` while strictly preserving `retry_count` upon contract releases.
-- [多 Agent 协作底座用什么好？我们选了 SQLite WAL](https://guobug.github.io/posts/2026/10/25/what-makes-the-ideal-multi-agent-collaboration-backbone-we-chose-sqlite-wal/)
-  - Storage engine selection, desktop concurrency mechanics, and lock safety in FerryCat (https://github.com/GuoBug/FerryCat): analyzing why heavy cloud brokers (Redis, RabbitMQ) and naive local file locks (`flock`, raw JSON writes) fail under desktop multi-IDE pair programming constraints (stdio isolation, zero external port listening, offline requirement); uncovering C++ native add-on ABI incompatibility crashes (`better-sqlite3` `NODE_MODULE_VERSION` mismatches between Node v24 host and Node v22 guest) and adopting Node.js v22.5+ built-in `node:sqlite` (`--experimental-sqlite`) for zero-dependency native distribution; dissecting SQLite WAL non-blocking readers and shared-memory index (`.shm`) mechanics; refuting the anti-pattern of long `BEGIN IMMEDIATE` transactions in a table-locking engine (which locks the entire database and prevents WAL checkpointing); architecting a microsecond atomic Compare-And-Swap (CAS) lease in `daemon_locks` (`ON CONFLICT(id) DO UPDATE ... WHERE expires_at < now`); implementing two-stage read-before-write TTL cleanup (`SELECT COUNT(*)` pre-check); and defining clear operational boundaries around single-writer serialization and network drive prohibitions.
-- [如何像主管一样组织 Agent 协作：FerryCat 契约编排中枢的演进之路](https://guobug.github.io/posts/2026/10/24/orchestrating-ai-agents-like-a-tech-lead/)
-  - Architectural evolution and multi-agent governance keynote for FerryCat (https://github.com/GuoBug/FerryCat): transitioning from frantic multi-window clipboard couriers into authoritative technical chairs presiding over review boards; deconstructing multi-agent collaboration into explicit roles (implementer, architecture critic, adversarial auditor); utilizing a deterministic contract hub over SQLite WAL with short-transaction CAS leases (`daemon_locks`) to eliminate database-wide write locks and WAL explosion; enforcing full-file SHA-256 fingerprint verification and ADR-0004 soft-failure buffers against dirty read/write races; implementing an execution supervisor with dynamic heartbeat keep-alive (`min(60s, ttl/3)`) and partial output salvage (`recordSalvage`) to permanently eradicate at-most-once execution loss; deploying recursive process-tree termination (`taskkill /T /F` and POSIX `-pgid`) to kill orphaned grandchildren; and recounting an authentic dialectic audit where the adversarial auditor agent rejected a naive Windows-only passing test suite to mandate cross-platform CI matrix proofs and hermetic test isolation before granting final approval.
-- [为什么我开始做 FerryCat：当你的电脑上同时开着两个 AI 编程软件](https://guobug.github.io/posts/2026/10/22/why-we-built-ferrycat-cross-host-agent-review-bus/)
-  - Product genesis and real-world demand analysis behind FerryCat (https://github.com/GuoBug/FerryCat): dissecting why having a single LLM audit its own code fails due to context inertia ("grading one's own homework"), and why opening multiple desktop AI coding hosts (Codex, Antigravity, WorkBuddy) manually traps developers in clipboard copy-paste fatigue, silent blind reviews on unsaved stale disk files, and unstructured 2,000-word essay responses; co-discovering the physical constraints of passive stdio desktop IDE processes to establish an honest "Human as Scheduler, Contract Bus as Guarantor" workflow; proving real-world utility via an archived 3-model self-audit (Deepseek-V4.1-Flash, Step-5-Preview, Hy3) that caught 9 production edge-case bugs; and transparently defining operational boundaries (15–25s 3-window-switch overhead, shared local disk requirement, vs. unattended DAG engines like PatchCat) while outlining the ultimate roadmap toward zero-intervention cross-agent dialogue and completion notification.
-
-### Model Context Protocol & Deterministic AI Infrastructure
-- [什么是 MCP：从“大模型的通用 USB 接口”到现实世界的架构代价](https://guobug.github.io/posts/2026/10/24/what-is-model-context-protocol-mcp-architecture-and-tradeoffs/)
-  - Architectural deconstruction, runtime protocol mechanics, and real-world engineering trade-offs of the Model Context Protocol (MCP): contrasting fragmented M*N proprietary connectors against the unified M+N star topology; dissecting Host-Client-Server roles, stdio and SSE transport layers, and the tri-capability primitives (Tools with execution side-effects, Resources for passive URI data subscriptions, Prompts for parameter-driven templated workflows); exposing the fatal stdio buffer-poisoning pitfall where standard console.log output collapses the JSON-RPC pipe; and confronting production engineering trade-offs: context window token inflation from excessive tool schemas, the boundary between stateless protocol piping and deterministic DAG state machine orchestration, and local privilege/indirect prompt injection defense.
-
-### AI Prompt Orchestrator Series (PatchCat)
-- [PatchCat 第一季收官复盘：从零构建纯端侧 AI 工作流引擎的架构全景与“边写边学”实战手记](https://guobug.github.io/posts/2026/10/18/patchcat-season-1-finale-local-first-orchestrator-architecture/)
-  - Architectural blueprint, full engine retro, and Season 1 finale of PatchCat (browser-native Local-First AI workflow orchestrator): spanning 26 technical notes and 592 automated tests (172 test suites, React 19 purity compliant); synthesizing deterministic DAG state machine scheduling (Kahn's topo queue, cycle deadlock watchdog, reverse BFS checkpoint resumption, cascade model fallback); deploying browser-native zero-dependency AI primitives (Web Worker vector embedding via BGE-small, pure BM25 inverted index + Reciprocal Rank Fusion, first-class read-only MemoryNode canvas primitives); enforcing client-side data sovereignty (Web Crypto AES-256-GCM vault, zero-plaintext memory wiping, Flow Preflight static canvas linter, IndexedDB v7 canonical SHA-256 snapshots and LCS structural DAG diffing); deep diving into the 'learning-by-doing' experimental workflow and human-AI co-creation mindset; transparently defining client-side main-thread memory boundaries and quota limits; and celebrating the milestone leap from v0.4.x primitive construction into the v0.5.0 stable production era.
-- [PatchCat 工程复盘：IndexedDB 工作流版本快照、拓扑规范化指纹与结构化 DAG Diff 实战（开源系列 26）](https://guobug.github.io/posts/2026/10/16/patchcat-workflow-version-snapshots-and-structural-diff/)
-  - IndexedDB v7 workflow version snapshots, canonical SHA-256 topological hashing, and structural DAG diffing in PatchCat: co-creating a 30-snapshot hard quota (rejecting silent FIFO baseline eviction), default-collapsed `layoutOnly` coordinate changes, and `Ctrl+Z` undoable atomic rollbacks with 3-way dirty state guards; computing canonical topological hashes invariant to layout shifts (`position`, `viewport`), runtime transient state (`output`, `status`), and random edge IDs; implementing 3-dimensional structural diffing (node sets, edge multisets, and flat `Int32Array` LCS line-level prompt/code diffing bounded by `MAX_LCS_CELLS = 4_000_000`); and resolving whitebox audit vulnerabilities via recursive credential stripping (`walkAndStrip` + `isGraphFullySanitized`), symmetrical `prepareVersionGraph` diff normalization, and single-transaction IndexedDB quota enforcement (`saveWorkflowVersionWithQuota`).
-- [PatchCat 工程复盘：从隐式注入到画布显式原语——MemoryNode 架构设计与确定性会话调度（开源系列 25）](https://guobug.github.io/posts/2026/10/13/patchcat-memory-node-canvas-visual-primitive/)
-  - Visual canvas memory primitives and deterministic session scheduling in PatchCat: transitioning multi-turn conversation memory from ad-hoc UI state injection into an observable, first-class DAG node (`MemoryNode`); co-creating read-only safety contracts to eliminate double-write persistence races and replay mutation side effects; enforcing non-cacheable reverse-BFS scheduling during checkpoint resumption to prevent stale memory reuse; isolating sub-workflow execution boundaries against parent session leakage; implementing tri-channel output decomposition (rolling summary, recent window, pinned anchors) with dual-mode format shaping (`text` vs `messages`); and providing L4 Never-Throw graceful degradation (`session_status: 'no_session'`) when executing workflows directly from canvas toolbars.
-- [PatchCat 工程复盘：纯前端端侧向量嵌入与三模混合检索（开源系列 24）](https://guobug.github.io/posts/2026/10/12/patchcat-browser-native-vector-embedding-and-hybrid-search/)
-  - Browser-native multi-provider vector embedding and tri-modal hybrid retrieval in PatchCat: bridging semantic synonym gaps (MacBook crash vs Apple system failure) without CSP modifications or heavy WASM neural weights (0 model footprint); engineering `BrowserEmbeddingClient` connecting to SiliconFlow, Ollama (`localhost:11434`), and OpenAI with mandatory L2 pre-normalization and typed CORS failure interception; deploying `FlatVectorIndex` continuous TypedArray linear dot-product scanning with O(1) swap-with-last removal; upgrading IndexedDB to v6 with dedicated `vector_embeddings` object store and multi-attribute dimension invalidation fingerprints (`provider / model / dimension`); decoupling Reciprocal Rank Fusion (RRF) candidate ordering from linear scoreThreshold weighted similarity; and establishing a 3-tier degradation defense with whitebox telemetry (`vector_status: 'disabled' | 'active' | 'degraded'`).
-- [PatchCat 工程复盘：用 Web Crypto API 加密本地 API Key（开源系列 23）](https://guobug.github.io/posts/2026/10/10/ai-prompt-orchestrator-web-crypto-vault-and-zero-plaintext/)
-  - Client-side data sovereignty, zero-plaintext storage hardening, and sanitized export pipelines in PatchCat: replacing plaintext LocalStorage and Base64 obfuscation with native Web Crypto API (SubtleCrypto AES-256-GCM); deploying PBKDF2 key derivation with 600,000 SHA-256 iterations and random 16-byte cryptographically secure salts (`crypto.getRandomValues`); building an Ephemeral Master Key cache with user passphrase verification (`VERIFY::CAT_VAULT_V1`) and manual vault locking; enforcing zero-plaintext physical persistence with non-extractable session keys; constructing AST-level automated export sanitization (`sanitizeWorkflow`) to redact API keys, mask sensitive prompt variables (`[SECRET_*]`), and normalize OS file paths; and transparently analyzing CPU derivation latency (~150-300ms), zero-backend recovery limits, and memory XSS threat boundaries.
-- [AI-Native（AI 原生）图解+秒懂：什么是真正的 AI-Native 应用？结合 PatchCat 工作流架构硬核拆解](https://guobug.github.io/posts/2026/10/08/ai-native-architecture-and-patchcat-visual-guide/)
-  - Comprehensive visual guide to genuine AI-Native architecture using PatchCat as an open-source reference: contrasting traditional wrapper (+AI sidebar) mental models with native deterministic state machines; transitioning from monolithic chat streams to Kahn-scheduled DAG workflows; deploying dual-anchor atomic transaction pruning to eliminate context degradation; and integrating immutable checkpoint reverse BFS resumption and ReAct watchdog circuit breakers to safely bind probabilistic LLM inference within deterministic engineering rails while transparently evaluating DOM canvas re-rendering trade-offs and onboarding cognitive friction.
-- [从 0 到 1 打造 AI 提示流编排器：纯前端零依赖！500 行手写 BM25 倒排索引与 RRF 倒数排名融合实战（开源系列 22）](https://guobug.github.io/posts/2026/10/06/ai-prompt-orchestrator-zero-dependency-bm25-and-rrf/)
-  - Zero-dependency client-side BM25 inverted index and Reciprocal Rank Fusion (RRF) hybrid retrieval in PatchCat: implementing a lightweight 500-line TypeScript search engine with dictionary-free CJK Bi-gram tokenization and bilingual stopword filtering; applying Robertson-Spärck Jones smoothed non-negative IDF ($\ln(1 + (N - n_q + 0.5) / (n_q + 0.5))$) to eliminate traditional negative score anomalies on high-frequency terms; deploying parameter-free RRF ($w_m / (k + \text{rank}_m)$, $k=60$) to bridge disparate BM25 and vector score distributions, achieving #1 ranking for precision technical identifiers (e.g., `DAG_CYCLE_DETECTED`, RFC-101) while transparently documenting browser heap boundaries (<8MB for 1,000 chunks) and main-thread tokenization ergonomics.
-- [从 0 到 1 打造 AI 提示流编排器：大模型也能秒级自检！Flow Preflight 语法静态分析与画布连线自查（开源系列 21）](https://guobug.github.io/posts/2026/10/03/ai-prompt-orchestrator-flow-preflight-lint-and-simulation/)
-  - Three-tier preflight inspection and zero-token simulation engine in PatchCat: applying Kahn's topological sort to scan execution cycles and unconnected branch dead-ends ($E_{\text{expected}} \setminus E_{\text{connected}} \neq \emptyset$); constructing transitive ancestor BFS reachability maps ($O(V \cdot (V + E))$) to detect and intercept ghost variable dependencies ($refId \notin ancestorsMap[nodeId]$) before asynchronous execution race conditions occur; and deploying dual-branch preflight interception modals alongside contract-aware mock engines to complete end-to-end DAG data pipeline verification in under 80ms at zero token cost while explicitly defining the limits of static AST analysis against dynamic runtime JavaScript evaluation.
-- [从 0 到 1 打造 AI 提示流编排器：模型级联路由、语义门禁拦截与强模型轮换池自愈升级（开源系列 20）](https://guobug.github.io/posts/2026/10/02/ai-prompt-orchestrator-cheap-first-model-routing-and-cascade-fallback/)
-  - Deterministic model routing and cascade state machine in PatchCat: adopting Cheap-First speculative execution to route routine traffic to economic models via bounded local self-healing; deploying F7 semantic conflict gates to intercept symptom descriptions masking primary refund intents; packaging raw output, failing path, and business rule into diagnostic triplets to eliminate cold-start re-inference during escalation; and orchestrating a multi-candidate strong model failover queue (Gemini 3.5 ➔ 3.1 ➔ 3.8) with automated recovery across observed cases (3.5–5.3s total recovery latency), achieving 100.0% (27/27) un-escalated consistency, 3/3 treated cohort recovery, and +21.8% token overhead under paired A/B evaluation across n=30 benchmark traces (directional finding, McNemar p = 0.25).
-- [从 0 到 1 打造 AI 提示流编排器：别让 Agent 原地鬼打墙！连续 3 次相同工具调用的柔性引导与硬熔断（开源系列 19）](https://guobug.github.io/posts/2026/10/01/ai-prompt-orchestrator-agent-deadlock-and-circuit-breaker/)
-  - Autonomous ReAct agent deadlock detection and dual-tier runtime safeguards in PatchCat: capturing tool invocation signatures (`callSig = ${toolName}:${toolArgsStr}`) with O(1) space complexity; injecting soft corrective reflection hints at the 2nd identical call to preserve asynchronous polling tolerance; tripping a hard circuit breaker at the 3rd consecutive identical call (`isDeadlockTripped = true`) to force terminal synthesis and prevent token bleeding; and balancing JSON key serialization drift against token budget ceilings (`maxTokenBudget`) and step watchdogs.
-- [从 0 到 1 打造 AI 提示流编排器：失败了别全盘重来！逆向 BFS 拓扑回溯与 DAG 检查点断点续跑（开源系列 18）](https://guobug.github.io/posts/2026/09/30/ai-prompt-orchestrator-dag-checkpoint-and-reverse-bfs/)
-  - Client-side DAG fault tolerance and deterministic breakpoint resumption in PatchCat: rejecting heavy event sourcing in favor of self-contained immutable JSON snapshots under Linux modular philosophy; resolving the classic diamond dependency void via adaptive reverse BFS traversal and dynamic ancestor in-edge expansion; triggering localized Kahn topological re-sorting to achieve strict zero-cost cached ancestor reuse (0ms, 0 Token); and enforcing a 5-record FIFO ring buffer with sub-millisecond tie-breaking resolution (timestamp -> isCompleted -> currentWaveIndex) to strictly bound browser IndexedDB quota.
-- [从 0 到 1 打造 AI 提示流编排器：告别“有进无出的上下文黑洞” —— 双锚点滑动窗口与原子事务裁剪实战（开源系列 17）](https://guobug.github.io/posts/2026/09/29/ai-prompt-orchestrator-context-engineering-dual-anchor-pruning/)
-  - Production context engineering and dual-anchor pruning pipeline in PatchCat: white-box auditing the 9-push-0-slice monotonically growing stack; deploying a pure TypeScript microsecond BPE estimator (<0.05ms) with 75% capacity watermark monitoring (Layer 0); enforcing a 4,000-char threshold with Head 60% / Tail 40% bipolar clamping and sentinel omission banners (Layer 1); locking `messages[0]` and `messages[1]` as immutable dual anchors to guarantee 100% cloud prompt prefix caching and zero goal drift while packaging tool calls into atomic interaction turns to eliminate ChatML/OpenAI HTTP 400 invalid sequence crashes within deterministic $O(K)$ sliding window bounds ($K=4$).
-- [从 0 到 1 打造 AI 提示流编排器：用一次“假药对照”，我们在大模型自愈中抓出了真凶（番外系列 2）](https://guobug.github.io/posts/2026/09/27/ai-prompt-orchestrator-placebo-control-and-empirical-closure/)
-  - Single-variable isolation and clinical placebo control in AI workflow orchestration: testing position bias by shuffling enum order in E0b (proving structural reordering yielded 0.0pt gain as a pure placebo); injecting substantive decision criteria in Schema descriptions (recovering intent accuracy from 78.6% to 92.9%, +14.3pt, Fisher $p=0.003$); deploying a non-intrusive Sentinel Watch-List with zero collateral damage on external cases; and white-box refuting diagnostic misconceptions between fixed-point lock-ins and oscillations.
-- [从 0 到 1 打造 AI 提示流编排器：合规暴涨 23.9% 语义却跌 7.1%？自愈病理诊断与双轴归因报告（番外系列 1）](https://guobug.github.io/posts/2026/09/27/ai-prompt-orchestrator-eval-error-analysis-taxonomy/)
-  - Failure pathology and dual-axis orthogonal taxonomy in LLM evaluation: uncovering the counter-intuitive regression where self-healing increased contract compliance (+23.9pt to 92.9%) while intent classification accuracy dropped (-7.1pt to 78.6%); formulating an orthogonal dual-axis framework separating Termination States (S1 First-Pass, S2 Healed, S3 Fallback) from Root Causes (F1 Structural Ambiguity, F2 Placeholder Lock-in, F3 GT Ambiguity, F5 Sampling Variance, F6 Semantic Masking); dissecting F6 where self-healing fixes secondary rules while legitimizing primary semantic errors; and proposing R1 Schema description disambiguation and groundedInInput extraction primitives.
-- [从 0 到 1 打造 AI 提示流编排器：代码越写越脏？架构纯度清洗与 42 样本统计检验复盘（开源系列 16）](https://guobug.github.io/posts/2026/09/26/ai-prompt-orchestrator-architectural-purity-and-mcnemar-eval/)
-  - Module 0 finale and empirical evaluation on deterministic structured outputs: resolving architectural debt by extracting hardcoded business schemas into domain-neutral Schema Registry (`registerSchema`/`getSchema`); conducting paired McNemar's exact test across 42 samples on Qwen2.5-7B; analyzing why By-Sample achieved extreme statistical significance ($p=0.00195 < 0.01$, +23.9% net gain) while By-Case did not reach significance ($p=0.125 > 0.05$) due to gain concentration on edge boundaries; and presenting the full 4-tier defense architecture (L1 constrained decoding, L2 Zod contracts, L3 triad self-healing, L4 Never-Throw vaults).
-- [从 0 到 1 打造 AI 提示流编排器：别把大模型当机械拼图！Case #7 字段冻结陷阱与代码回滚复盘（开源系列 15）](https://guobug.github.io/posts/2026/09/25/ai-prompt-orchestrator-case-7-field-freezing-trap-and-rollback/)
-  - Technical post-mortem on over-engineering failure in AI workflows: dissecting why static memory 'field freezing' optimization caused fatal local-optima deadlocks under cross-field business constraints (Case #7); mathematical reasoning on why mechanical code assembly ruptures the autoregressive self-attention continuous semantic field; demonstrating decisive code rollback over sunk-cost fallacy; and implementing the L4 Never-Throw graceful degradation contract with _validationFailed metadata to ensure DAG pipelines never crash on unhandled exceptions.
-- [从 0 到 1 打造 AI 提示流编排器：搞 Eval 评测前，先让输出闭合！结构化约束与业务契约防线（开源系列 14）](https://guobug.github.io/posts/2026/09/25/ai-prompt-orchestrator-structured-output-eval-prerequisite/)
-  - Deconstructing deterministic structured output and business contracts as the foundational prerequisite for LLM evaluation (Eval) and DAG workflows: deep dive into pre-sampling Logits masking and CFG/EBNF constrained decoding; 3-tier runtime negotiation (Strict json_schema -> JSON mode json_object -> none) across OpenAI, DeepSeek, and local Ollama; client-side lightweight repairJsonL1; and L2 Zod safeParse business defense against out-of-bounds values, empty semantic shells, and cross-field refinement paradoxes without throwing unhandled exceptions.
-- [谁来为大模型的失控与手滑兜底？一个 Product Engineer 的「零信任」数字生存反思](https://guobug.github.io/posts/2026/09/23/ai-prompt-orchestrator-zero-trust-local-first/)
-  - Deconstructing zero-trust digital survival and local-first architecture for AI workflows: dissecting centralized black-box vulnerabilities (silent code uploads, SaaS credential exfiltration) and human fallibility (internal leaks via public cloud drives, late-night credential push slips, agent infinite loops); architecting a dual defense of 100% Client-Only local data sovereignty and deterministic DAG state machines with recursive credential masking, runtime call fingerprint circuit breaking, and strict bilingual destructive confirmation passphrases.
-- [从 0 到 1 打造 AI 提示流编排器：别让 Agent 刷爆你的信用卡！运行时看门狗与死循环熔断器设计（开源系列 13）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-agent-runtime-guard-watchdog/)
-  - Deconstructing PatchCat's multi-layered runtime guardrails for autonomous agents: real-time token budget ceiling with graceful termination, fingerprint-based deadlock breakers with graduated reflection hints (N=2) and hard circuit breaking (N=3), 5s Web Worker sandbox watchdog alongside native `AbortSignal.timeout` network kill switch, and sanitized credential migration.
-- [从 0 到 1 打造 AI 提示流编排器：把 AI 引擎塞进华硕路由器！Merlin 插件与轻量边缘网关实战（开源系列 12）](https://guobug.github.io/posts/2026/09/22/ai-prompt-orchestrator-asuswrt-merlin-edge-gateway/)
-  - Porting an AI workflow orchestrator onto an ASUS RT-AX86U router (Asuswrt-Merlin): rewriting Python runtime into a 3MB zero-dependency static Go gateway (`linux/arm64`), addressing physical NAND flash wear-out risks via `/tmp` tmpfs RAM Disk redirection, and turning a home network into an always-on private AI hub with sub-20MB RAM footprint.
-- [从 0 到 1 打造 AI 提示流编排器：鞋里有沙走不远，怎么让画布连线真正顺手？（开源系列 11）](https://guobug.github.io/posts/2026/09/19/ai-prompt-orchestrator-canvas-ergonomics-spatial-collision/)
-  - Deconstructing canvas ergonomics and micro-interactions in PatchCat: Drop-to-Add connection release without snap-back frustration, AABB bounding box collision avoidance with 40px breathing gap and 1800px line wrapping, and atomic node+edge bundling for clean, error-free undo/redo.
-- [从 0 到 1 打造 AI 提示流编排器：酒香也怕巷子深，如何让用户真正接受产品？空白画布引导与场景模板实践（开源系列 10）](https://guobug.github.io/posts/2026/09/18/ai-prompt-orchestrator-onboarding-template-gallery/)
-  - Deconstructing onboarding UX and psychological acceptance in technical AI tools: replacing intrusive modal masks with non-blocking adaptive hero cards, and building an 8-scenario template gallery with visual pipeline capsules.
-- [从 0 到 1 打造 AI 提示流编排器：给大模型装上手和脚！Agent 节点与 Tools 工具调用体系设计与实战（开源系列 09）](https://guobug.github.io/posts/2026/09/13/ai-prompt-orchestrator-agent-tools-reactive-loop/)
-  - Endowing LLM nodes with autonomous ReAct reasoning and dynamic Tool Calling, function calling contract schema, multi-turn loop control, and safety recursion guardrails.
-- [从 0 到 1 打造 AI 提示流编排器：IndexedDB 工业级会话存储、动态 Token 修剪与变量注入实战（开源系列 08）](https://guobug.github.io/posts/2026/09/11/ai-prompt-orchestrator-indexeddb-token-pruning/)
-  - Industrial IndexedDB persistence for unlimited chat history, sliding-window dynamic token pruning, and context variable injection.
-- [从 0 到 1 打造 AI 提示流编排器：即时对话调试抽屉、节点级耗时追踪与一键发布生产 API 实战（开源系列 07）](https://guobug.github.io/posts/2026/09/10/ai-prompt-orchestrator-chat-debug-api-publishing/)
-  - Interactive sliding Chat Debug Drawer (Ctrl+Shift+D), SSE typewriter streaming, per-node trace latency breakdown waterfall, FastAPI one-click REST API publishing with workflow API keys and multi-language SDK snippets.
-- [从 0 到 1 打造 AI 提示流编排器：条件分支路由、Kahn 图剪枝与 HTTP 节点实战（开源系列 06）](https://guobug.github.io/posts/2026/09/09/ai-prompt-orchestrator-conditional-routing-graph-pruning/)
-  - Dynamic control flow with 9-operator IF/ELSE condition routing, Kahn topological dynamic branch skipping (NODE_SKIPPED, 0ms), Variable Aggregator reconvergence node without deadlocks, and resilient HTTP node with exponential backoff retry.
-- [从 0 到 1 打造 AI 提示流编排器：从 Dify 学习知识库架构，实现私有文档检索与 RAG 画布节点（开源系列 05）](https://guobug.github.io/posts/2026/09/04/ai-prompt-orchestrator-rag-knowledge-node/)
-  - Learning Dify's 3-tier decoupled model (KnowledgeBase ➔ Document ➔ DocumentChunk), sliding window chunking with 50-char overlap, vector cosine retrieval, and Cyan RAG canvas node.
-- [从 0 到 1 打造 AI 提示流编排器：告别单画布重绘瓶颈，状态机分层解耦与双模存储实战（开源系列 04）](https://guobug.github.io/posts/2026/09/03/ai-prompt-orchestrator-multi-workflow-dual-storage/)
-  - Multi-workflow drawer UI, Zustand state slicing, zero-canvas-re-render optimization, and StorageAdapter dual-mode storage pattern.
-- [从 0 到 1 打造 AI 提示流编排器：多模型生态适配、流式思维链与三级日志实战（开源系列 03）](https://guobug.github.io/posts/2026/09/01/ai-prompt-orchestrator-multi-model-observability/)
-  - OpenAI/DeepSeek/Claude unified API client, SSE streaming chunk parser, DeepSeek R1 `<think>` tag extraction, and three-tier execution observability.
-- [从 0 到 1 打造 AI 提示流编排器：Kahn 拓扑排序、安全变量引擎与异步运行时实战（开源系列 02）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-kahn-runtime/)
-  - Kahn algorithm for graph topological scheduling, circular dependency detection, `{{node.output}}` variable interpolation engine, and async execution runtime.
-- [从 0 到 1 打造 AI 提示流编排器：双引擎架构与纯前端 DAG 实践（开源系列 01）](https://guobug.github.io/posts/2026/08/28/ai-prompt-orchestrator-dual-engine/)
-  - Client-side DAG execution, zero-backend BYOK (Bring Your Own Key) privacy design, and node connection state management.
-
-### Generative Engine Optimization (GEO) & Machine Protocols
-- [从 SEO 到 GEO：大模型时代的个人站点语义图谱与生成式引擎优化实战](https://guobug.github.io/posts/2026/09/20/from-seo-to-geo-generative-engine-optimization/)
-  - Deconstructing the paradigm shift from traditional SEO to Generative Engine Optimization (GEO): Schema.org entity disambiguation across GitHub/GitLab, high-entropy prompt recall tags, dual-tier LLM protocol sync (llms.txt + llms-full.txt), and triple discovery redundancy.
-
-### AI-Native Product Thinking & Human-AI Collaboration
-- [语义丢包：当严谨理性撞上情绪感知](https://guobug.github.io/posts/2026/09/23/semantic-packet-loss-rational-vs-emotional/)
-  - Analyzing semantic packet loss in developer-user and open-source collaboration: dissecting biological limbic emotional defense systems vs. engineering determinism, product engineers acting as organizational impedance matchers between high-voltage logic and low-voltage perception, and adopting safe handshake protocols.
-- [抵抗众数引力：为什么换更强的 AI，反而产出“正确的废话”？（小红书精粹图文集）](https://guobug.github.io/posts/2026/09/17/resisting-mode-gravity-visual-cards/)
-  - A 5-card Neo-Brutalism visual digest deconstructing Mode Gravity in Human-AI collaboration: breaking the triple lock-in flywheel of mediocrity, shifting from Semantic Continuation to Differential Diffing, and decoupling Model from Harness.
-- [抵抗众数引力：写在自研提示流编排器后的认知重构](https://guobug.github.io/posts/2026/09/16/resisting-mode-gravity/)
-  - Deconstructing Mode Gravity and implicit mediocrity cocoons in Human-AI pair programming. Shifting from Semantic Continuation to Differential Diffing, and decoupling Model (Compute Engine) from Harness (Control Framework & Independent Critic).
-- [什么是真正的 AI 原生（AI-Native）？产品架构师视角的范式演进](https://guobug.github.io/posts/2026/08/27/what-is-ai-native/)
-  - Paradigm shift from traditional GUI to Agentic orchestration, emergent user experience, and human-in-the-loop systems.
-- [Boss 直聘 AI 产品的深度拆解与战略思考](https://guobug.github.io/posts/2026/08/17/zhipin-ai-product-analysis/)
-  - Analysis of conversational AI matching, intent recognition, and bilateral marketplace dynamics.
-
-### Community Governance & Product Engineering
-- [社区的生命周期：从礼貌共识到好恶筛除](https://guobug.github.io/posts/2026/09/28/community-lifecycle-physical-constraints/)
-  - Deconstructing community lifecycles from early-stage polite consensus to inevitable friction: analyzing governance regression in modern platforms, firsthand lessons from Bilibili and early BBS history (Tianya, Xici), the breakdown of unconstrained blank input fields (10-page text dump crushing lightweight dialogue), and the fatal 'peacemaker trap' versus deterministic physical constraints (input limits and Proof-of-Work anchors) to protect high-signal shared affinity.
-
-### Engineering Leadership & Remote Work
-- [从混沌输入到确定性发布：我在极狐GitLab的产品规划流（Planning Workflow）复盘](https://guobug.github.io/posts/2026/10/29/gitlab-cn-product-planning-workflow-retrospective/)
-  - Deconstructing the deterministic product planning workflow at GitLab CN: labels-as-state-machine (CREQ::*, Team::*), 4-quadrant value-vs-complexity decision matrix, M-2 rolling milestone cadence with strict scope freezing, and trade-offs of multi-party cross-organization asynchronous coordination.
-- [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
-  - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.
-- [GitLab 远程产品经理的高效工作流与异步协作秘诀](https://guobug.github.io/posts/2026/04/29/gitlab-remote-product-manager/)
-  - Deep asynchronous communication, handbook-first culture, and global distributed PM operating procedures.
-- [拒绝官僚主义：敏捷产品团队的高效运转法则](https://guobug.github.io/posts/2026/04/27/reject-bureaucracy/)
-  - Lean organizational design, reducing sync meetings, and ownership-driven execution.
-
-### Historical Product & Engineering Essays (2013–2022)
-- [用户注册流程分析（一）-- 完成验证后使用产品](https://guobug.github.io/posts/2022/03/27/sign-up-flow-one/)
-  - Growth funnel analysis on user registration friction, email/phone verification gates, and psychological momentum preservation.
-- [产品经理的学习能力](https://guobug.github.io/posts/2022/03/13/studying-ability-of-the-pm/)
-  - Deconstructing product manager learning loops: from problem solving to cross-functional leadership, information triage, and mental model building.
-- [在腾讯的第一堂产品课——菜鸟产品经理还是有专业度的产品经理](https://guobug.github.io/posts/2015/01/15/beginning-of-mp/)
-  - Tencent product management philosophy: shifting from feature thinking to service lifecycle, ATM cash operations case study, and invisible service architecture.
-- [如何系统的学习linux](https://guobug.github.io/posts/2014/07/30/beginning-of-linux/)
-  - Early reflections on breaking Windows paradigms, systematic textbook learning, and building foundational Unix/Linux mastery through experimentation.
-- [用Golang写爬虫和分析程序](https://guobug.github.io/posts/2014/07/10/golang-spider/)
-  - Concurrent web crawling, XML parsing, and mobile sitemap reconstruction using Go.
-- [Pi 上的 Pidora 中文化](https://guobug.github.io/posts/2014/07/02/raspberry-pi/)
-  - Embedded Linux configuration notes on Raspberry Pi with Pidora distribution.
-- [Html5页面如何图片叠加等](https://guobug.github.io/posts/2014/06/12/some-pages/)
-  - Early mobile frontend image overlay techniques with CSS and positioning.
-- [Swift 入门](https://guobug.github.io/posts/2014/06/05/beginner-of-swift/)
-  - WWDC 2014 first impressions of Swift language design, Xcode Playground interactivity, and future dev paradigms.
-- [Markdown 语法对照](https://guobug.github.io/posts/2014/05/24/markdown-syntax/)
-  - Practical Markdown syntax cheatsheet and escaping guidelines.
-- [音乐视频](https://guobug.github.io/posts/2013/08/18/music-video/)
-  - Early curation of non-commercial indie music videos and retrospective reflections.
-- [Markdown编辑时在页面中插入html](https://guobug.github.io/posts/2013/08/10/test-for-html/)
-  - Explorations in embedding rich media/HTML within markdown and static site generators.
-- [这只是开始](https://guobug.github.io/posts/2013/06/07/music-video/)
-  - The inaugural musical post marking the beginning of this digital workspace.
+### 5. IndexNow CI Push Pipeline (`.github/workflows/indexnow.yml`)
+- Trigger: `push` to `main` modifying `_posts/**`, `llms.txt`, `llms-full.txt`, `index.html`, `about.html`, `projects.html`, `sitemap.xml`, or `workflow_dispatch`.
+- Execution: Python 3.11 runs `.github/scripts/trigger_indexnow.py` using `GIT_BEFORE` and `GIT_AFTER`. Maps changed files to canonical URLs (fallback on empty diff: latest 3 posts + `llms.txt` + `llms-full.txt` + `sitemap.xml`) and sends HTTP `POST` (`timeout=15`s) to `https://api.indexnow.org/indexnow` with key `1a80b0d890a5499d9a25fa10002f08df`. Exits `1` on HTTP or network error.
 
 ---
 
-## Index of All Writings
-- Archive Directory: https://guobug.github.io/posts/
-- Complete Sitemap: https://guobug.github.io/sitemap.xml
-- Full Context (for LLMs with extended context): https://guobug.github.io/llms-full.txt
+## Canonical Routes & Flagship Systems Index
+
+### Primary HTTP Routes (All Read-Only `GET`)
+| Route | Format | Role |
+| :--- | :--- | :--- |
+| `/` | HTML | Workspace landing page (sections: `#hero`, `#projects`, `#writings` [latest 4], `#work`, `#about`) |
+| `/posts/` | HTML | Full 84-post archive (`_layouts/list.html`, 12/page client pagination via `?page=N`) |
+| `/posts/:year/:month/:day/:title/` | HTML | Individual technical article (`_layouts/post.html`, `TechArticle` JSON-LD) |
+| `/about/` | HTML | Bilingual profile, competency matrix, and 2012–Present career timeline (`ProfilePage` JSON-LD) |
+| `/about/index-en.md`, `/about/index.md` | Markdown | Standalone machine-readable EN / ZH resumes |
+| `/projects.html` | HTML | Canonical project index (PatchCat, FerryCat, Metaphysics Tools, Kindle Weather Station) |
+| `/llms.txt`, `/llms-full.txt` | Markdown | Dual-tier LLM context contracts (compact routing vs. standalone full spec + archive) |
+| `/sitemap.xml`, `/robots.txt` | XML / Text | Crawler and AI discovery manifests |
+
+### Core Open-Source Systems Documented in This Workspace
+1. **PatchCat** (`https://github.com/GuoBug/PatchCat`, demo `https://guobug.github.io/PatchCat/`): Browser-native, local-first visual DAG prompt orchestrator (React Flow, Zustand, Kahn topological sort, L1 constrained decoding + L2 Zod `.safeParse()`, 5s Web Worker sandbox, reverse-BFS checkpoint recovery, IndexedDB v7 snapshots, browser BM25 + BGE-small RRF hybrid search). 34 architecture essays.
+2. **FerryCat** (`https://github.com/GuoBug/FerryCat`): Contract-driven cross-host AI agent handoff and review bus over MCP stdio and Node.js built-in `node:sqlite` (WAL mode), enforcing full-file SHA-256 TOCTOU checks, UUID `claim_token` CAS leases, Ajv JSON Schema validation (`RETRY_NEEDED <= 2`), and daemon write-ahead journaling. 8 architecture essays.
+3. **EdgeCat** (`https://github.com/GuoBug/EdgeCat`): Static Go (`CGO_ENABLED=0`) local-first AI inference governance gateway bridging Ollama/vLLM and cloud fallbacks with 3-channel 64-byte sliding-window SSE PII rehydration, lossless wire passthrough (`json.Number`), Fail-Closed LAN guard, and SQLite daily cloud quotas. 2 architecture essays.
+4. **Labs & Hardware**: Metaphysics Tools (`https://guobug.github.io/metaphysics-tools/index.html#`), Kindle Weather Station (`https://github.com/GuoBug/kindle-weather-station`).
+
+---
+
+## Full Specification & Deep Archive
+- Complete runtime constants, front matter schema, error remediation matrix, security boundaries, explicit non-goals, career Problem/Solution/Outcome log, and expanded summaries of all 84 essays: https://guobug.github.io/llms-full.txt

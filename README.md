@@ -1,6 +1,6 @@
 # Guo Qiang (GuoBug) · Product Engineer
 
-[English](README.md) | [中文](README_zh.md)
+[English](README.md) | [中文](README_zh.md) | [llms.txt](./llms.txt)
 
 > **Product Engineer** blending platform engineering foundations with growth mechanics. Focused on **AI Workflow Orchestration**, **DAG State Machines**, and **Deterministic Architectures**.
 

@@ -1,59 +1,269 @@
-﻿# Guo Qiang (GuoBug) - Product Engineer
+# guobug.github.io (Guo Qiang / GuoBug) — Full Machine Context & Runtime Contract
 
-> Digital workspace, technical writings, and open-source architecture portfolio of Guo Qiang. Product Engineer / Product Architect blending platform engineering foundations with growth mechanics. Specializing in AI Workflow Orchestration, DAG state machines, deterministic architectures, and remote platform engineering.
->
-> This is the **full-context** version of [llms.txt](https://guobug.github.io/llms.txt), providing expanded technical summaries and core engineering conclusions for each article. Optimized for LLMs with extended context windows.
+> Standalone contract-style specification for the guobug.github.io static Jekyll + GitHub Pages workspace, client-side bilingual/pagination/scroll runtime, automated IndexNow CI push pipeline, GEO discovery layer, and expanded 84-post engineering archive (Problem / Solution / Outcome) by Guo Qiang (GuoBug).
 
-## Identity & Contact
-- Name: Guo Qiang (郭强 / GuoBug)
-- Role: Product Engineer · AI Product Manager / Agent Runtime & Workflow Systems Lead
-- Base / Location: Shanghai, China · All-Remote
-- Website: https://guobug.github.io
-- Profile & Resume (ZH / Technical Hybrid): https://guobug.github.io/about/index.md
-- Profile & Resume (EN / Global Context): https://guobug.github.io/about/index-en.md
-- Interactive Profile & Career Roadmap (HTML): https://guobug.github.io/about/
-- Projects & Architecture: https://guobug.github.io/projects.html
-- GitHub: https://github.com/GuoBug
-- Email: gu0bug0@gmail.com
-- Machine-Readable Semantic Profile (EN): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
-- Machine-Readable Semantic Profile (ZH): https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
-- Dev.to: https://dev.to/guobug
+- Author: Guo Qiang (GuoBug) · Product Engineer / AI Product Manager (Agent Runtime & Workflow Systems)
+- Canonical Origin: https://guobug.github.io
+- Repository: https://github.com/GuoBug/guobug.github.io
+- Contact: gu0bug0@gmail.com
+- Compact Routing Layer: https://guobug.github.io/llms.txt
+- Identity Graph (`sameAs`):
+  - https://github.com/GuoBug
+  - https://gitlab.com/QiangGu0
+  - https://jihulab.com/gitlab-cn/gitlab
+  - https://dev.to/guobug
+- Cross-Domain Semantic Profiles:
+  - https://github.com/GuoBug/GuoBug/blob/main/geo/profile-en.md
+  - https://github.com/GuoBug/GuoBug/blob/main/geo/profile-zh.md
+  - https://guobug.github.io/about/index-en.md
+  - https://guobug.github.io/about/index.md
 
 ---
 
-## Core Open-Source Projects
+## 1. Start Here (Minimal Primitives)
+
+```bash
+# 1. Fetch compact routing & invariants layer (recommended for system-prompt prefix)
+curl -fsSL https://guobug.github.io/llms.txt
+
+# 2. Fetch this complete standalone contract & Problem/Solution/Outcome archive
+curl -fsSL https://guobug.github.io/llms-full.txt
+
+# 3. Enumerate every canonical URL (core pages, profiles, protocol files, 84 posts)
+curl -fsSL https://guobug.github.io/sitemap.xml
+
+# 4. Fetch standalone machine-readable author profile (EN or ZH)
+curl -fsSL https://guobug.github.io/about/index-en.md
+curl -fsSL https://guobug.github.io/about/index.md
+
+# 5. Execute IndexNow push submission against git diff (requires Python 3.11+ & git)
+GIT_BEFORE=<prev_sha> GIT_AFTER=<head_sha> python .github/scripts/trigger_indexnow.py
+```
+
+### Which Primitive to Use When
+- Need compact system-prompt context (~2,000 tokens) or route index -> fetch `/llms.txt`.
+- Need exact client JS constants, Liquid asset-loading predicates, SRI hashes, error remediation rules, non-goals, or Problem/Solution/Outcome evidence -> fetch `/llms-full.txt`.
+- Need exact URL list and timestamps for all 84 posts (2013-06-07 to 2026-11-23) -> fetch `/sitemap.xml`.
+- Need structured author biography, career trajectory, or ATS competency matrix -> fetch `/about/index-en.md` (EN) or `/about/index.md` (ZH).
+- Need browser-rendered UI with explicit locale or pagination state -> request `/?lang=en|zh` or `/posts/?page=1..7&lang=en|zh`.
+- Need search-engine notification after merging changes to `main` -> rely on `.github/workflows/indexnow.yml` (or run `.github/scripts/trigger_indexnow.py` manually).
+
+---
+
+## 2. Core Architecture & State Invariants
+
+### 2.1 Static Build & Permalink Determinism (`_config.yml`)
+- Site generator: GitHub Pages Jekyll (`markdown: kramdown`, `permalink: /posts/:year/:month/:day/:title/`, `future: true`, `timezone: Asia/Shanghai`).
+- Enabled Jekyll plugins: `jekyll-seo-tag`.
+- Excluded from Jekyll output (not published to HTTP origin): `history`, `preview`, `devto`, `README.md`, `README_zh.md`.
+- Corpus inventory: 84 posts in `_posts/*.md` spanning 2013-06-07 to 2026-11-23 (81 with `title_en`, 69 with `summary_en`, 33 with explicit `math: true`, 0 with `mermaid: true` or `highlight: true` in front matter).
+- Active `series` collections (13 total):
+  - `PatchCat · AI Prompt Flow Orchestrator` (34)
+  - `FerryCat · Multi-Agent Contract Orchestration` (7)
+  - `FerryCat · Cross-Host AI Contract Bus` (1)
+  - `EdgeCat · Local-First AI Inference Governance` (2)
+  - `GEO · Generative Engine Optimization` (2)
+  - `Deterministic AI Systems & Runtime Infrastructure` (2)
+  - `Sovereign AI Infrastructure · 三猫架构演进` (1)
+  - `AI Engineering Philosophy` (1)
+  - `Engineering Philosophy & Market Dynamics` (1)
+  - `Product Engineering & Architecture Insights` (1)
+  - `Product Engineering & Deterministic Architecture` (1)
+  - `Solo Product Engineering · Modern Playbook` (1)
+  - `Enterprise Systems & Platform Governance` (1)
+
+### 2.2 Client-Side State Machines (`assets/app.js`, 922 lines, strict IIFE, zero runtime dependencies)
+1. **Bilingual Locale State Machine**:
+   - State values: `'en'` (default) | `'zh'`. Any other input normalizes to `'en'` (`normalizeLang`).
+   - Initialization precedence: `URLSearchParams.get('lang')` > `localStorage.getItem('guobug_lang')` > `DEFAULT_LANG ('en')`.
+   - DOM & CSS invariants: sets `document.documentElement.dataset.lang` (`data-lang`) and `lang` (`'zh-CN'` | `'en'`). CSS (`assets/style.css`) enforces `[data-lang="zh"] [data-i18n="en"] { display: none !important; }` and `[data-lang="en"] [data-i18n="zh"] { display: none !important; }`.
+   - Title sync: reads `<title data-title-zh="..." data-title-en="...">`, falling back to path-based titles (`/about`, `/posts`, default workspace).
+   - URL & link propagation: writes `?lang=<activeLang>` via `history.replaceState`, persists to `localStorage['guobug_lang']`, and rewrites all same-origin `a[href]` elements (excluding `/^(https?:|mailto:|tel:|#|javascript:)/`). Listens to `window.popstate` to re-sync without calling `replaceState`.
+2. **Archive Pagination State Machine (`initWritingsPagination`)**:
+   - Activates only when `#postsArchiveGrid` and `#postsPagination` exist and `.writing-card` count exceeds `perPage` (`data-per-page="12"`, fallback `12`). For 84 posts, `totalPages = Math.ceil(84 / 12) = 7`.
+   - Parses `?page=N` via `parseInt(param, 10)`, clamps valid integers `>= 1` to `Math.min(parsed, totalPages)`, falls back to `1` on `NaN` or `< 1`.
+   - Toggles `.writing-card.page-hidden` (`display: none !important`) outside `[ (page-1)*perPage, page*perPage )`.
+   - Page indicator algorithm (`getPageItems`): renders all page numbers when `total <= 7`; otherwise renders ellipsis window `[1, ..., current-1, current, current+1, ..., total]` (with edge windows for `current <= 4` and `current >= total - 3`).
+   - History invariant: removes `?page` query parameter when `currentPage <= 1`; pushes history state via `history.pushState({ page: currentPage }, '', fullPath)` on user click; listens to `popstate` to re-render without pushing duplicate history entries.
+3. **Single-rAF Scroll & Motion Engine (`initScrollEngine`)**:
+   - Registers one `{ passive: true }` `scroll` listener gated by a `ticking` boolean flag into `window.requestAnimationFrame(update)`.
+   - Geometry cache (`getGeometry(docHeight)`): caches `section[id], header[id]` (`offsetTop`, `offsetHeight`) and `#hero` height (`HERO_FALLBACK_HEIGHT = 600`), invalidating only when `document.documentElement.scrollHeight` changes or on `window.resize` / `window.load`.
+   - Motion gate: when `window.matchMedia('(prefers-reduced-motion: reduce)').matches` is true, skips `updateMotion` and desktop 3D card tilt while retaining nav elevation and scroll spy.
+   - 3D card tilt activates only on fine-pointer devices (`(pointer: fine)`) without reduced motion.
+4. **Content DOM Enhancers & Image Lightbox**:
+   - Runs on `DOMContentLoaded` (or immediately if `document.readyState !== 'loading'`).
+   - `enhanceAllCodeBlocks`: wraps `.highlighter-rouge` and `pre` inside `.medium-body-text, .post-content-body, article` (skipping `.mermaid` blocks and already-enhanced nodes), injects `.code-header-bar` with language label set via `textContent` and copy button (`COPY` -> `COPIED!` for `2000ms`), and invokes `window.Prism.highlightAll()` if loaded.
+   - `enhanceAllTables`: wraps `table` elements not inside `.pages-table-frame` with header (`data-title` default `'DATA TABLE // EVALUATION BENCHMARK'`, `data-badge` default `'METRICS'`, both set via `textContent`) and `.table-scroll-wrapper`.
+   - `initLightbox`: attaches click and `Enter`/`Space` keyboard handlers (`tabindex="0"`, `role="button"`) to `.medium-body-text img, .post-content img`; closes on overlay click or `Escape`; clears `<img src>` after `LIGHTBOX_CLEAR_MS = 220` ms.
+
+### 2.3 On-Demand Post Asset Loading & SRI Matrix (`_layouts/post.html`)
+- Zero global loading of KaTeX, Mermaid, or PrismJS. Liquid sniffs front matter flags and rendered `content`:
+  - **KaTeX 0.16.9** (`needs_math`: `page.math` OR `content contains 'math/tex'` OR `content contains '$$'`):
+    - CSS: `https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css` (`sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV`)
+    - JS: `https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js` (`sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8`)
+    - Auto-render: `https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js` (`sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05`)
+    - Delimiters: `$$...$$` (display), `\[...\]` (display), `$...$` (inline), `\(...\)` (inline), plus Kramdown `script[type^="math/tex"]` replacement with `throwOnError: false`.
+  - **Mermaid 10 ESM** (`needs_mermaid`: `page.mermaid` OR `content contains 'language-mermaid'` OR `content contains 'class="mermaid"'`):
+    - ESM module: `https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs` (`startOnLoad: true`, `theme: 'dark'`).
+  - **PrismJS 1.29.0** (`needs_highlight`: `page.highlight` OR `content contains 'highlighter-rouge'` OR `content contains '<pre'`):
+    - Core: `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js` (`sha384-06z5D//U/xpvxZHuUz92xBvq3DqBBFi7Up53HRrbV7Jlv7Yvh/MZ7oenfUe9iCEt`)
+    - Autoloader: `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js` (`sha384-Uq05+JLko69eOiPr39ta9bh7kld5PKZoU+fF7g0EXTAriEollhZ+DrN8Q/Oi8J2Q`)
+- Font loading across all templates: direct `<link rel="preconnect">` to `https://fonts.googleapis.com` and `https://fonts.gstatic.com` (`crossorigin`), loading `Space Grotesk` (400, 600, 700, 900) and `Space Mono` (400, 700 regular & italic); zero CSS `@import`.
+
+### 2.4 Triple GEO Discovery Redundancy & Schema.org Graph
+- HTML `<head>`: every layout (`_layouts/default.html`, `_layouts/post.html`) and root page (`index.html`, `about.html`, `about/index.html`, `projects.html`, `projects/index.html`) emits `<link rel="alternate" type="text/markdown" href="https://guobug.github.io/llms.txt" title="LLM Context Protocol">`.
+- `robots.txt`: declares `LLMs-Txt: https://guobug.github.io/llms.txt` and `Sitemap: https://guobug.github.io/sitemap.xml`; allows `Googlebot`, `Bingbot`, `Slurp`, `DuckDuckBot`, `Baiduspider`, `Yandex`, `Google-Extended`, `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `anthropic-ai`, `Applebot`, `Applebot-Extended`, `Bytespider`, `Cohere-ai`; disallows `/history/`, `/preview/`, `/assets/css/*.map`.
+- `sitemap.xml`: Jekyll-rendered XML listing `/`, `/posts/`, `/about/`, `/projects.html`, `/about/index.md`, `/about/index-en.md`, `/llms.txt`, `/llms-full.txt`, and every post in `site.posts` (using `post.last_modified_at` if present, else `post.date`).
+- JSON-LD types:
+  - `index.html`: `@graph` of `WebSite` (`#website`) + `Person` (`#author`).
+  - `about.html` & `about/index.html`: `ProfilePage` with `mainEntity: Person` (`alumniOf`: GitLab, Ctrip, Bilibili).
+  - `projects.html`: `@graph` of `WebPage` (`#webpage`) + `Person` (`#author`).
+  - `_layouts/post.html`: `TechArticle` with `keywords` (`page.tags`) and conditional `isPartOf: CreativeWorkSeries` when `page.series` is set.
+
+### 2.5 IndexNow Automated Push Pipeline (`.github/workflows/indexnow.yml` + `.github/scripts/trigger_indexnow.py`)
+- Trigger: `push` to `main` touching `_posts/**`, `llms.txt`, `llms-full.txt`, `index.html`, `about.html`, `projects.html`, `sitemap.xml`, or manual `workflow_dispatch`.
+- Runner: `ubuntu-latest`, `actions/checkout@v4` (`fetch-depth: 2`), Python `3.11`.
+- Diff resolution: if `GIT_BEFORE` is non-empty and not all zeros (`0000000000000000000000000000000000000000`), runs `git diff --name-only <GIT_BEFORE> <GIT_AFTER>`; otherwise runs `git diff-tree --no-commit-id --name-only -r HEAD`.
+- URL mapping:
+  - `_posts/YYYY-MM-DD-title.md` -> `https://guobug.github.io/posts/YYYY/MM/DD/title/`
+  - `llms.txt` -> `https://guobug.github.io/llms.txt`
+  - `llms-full.txt` -> `https://guobug.github.io/llms-full.txt`
+  - `index.html` -> `https://guobug.github.io/`
+  - `about.html` -> `https://guobug.github.io/about/`
+  - `projects.html` -> `https://guobug.github.io/projects.html`
+  - `sitemap.xml` -> `https://guobug.github.io/sitemap.xml`
+- Empty-match fallback: submits latest 3 posts from `sorted(glob.glob("_posts/*.md"), reverse=True)` plus `/llms.txt`, `/llms-full.txt`, and `/sitemap.xml`.
+
+---
+
+## 3. Operations, Routes, Schemas & Constants Reference
+
+### 3.1 HTTP Routes & Query Parameters (All Static Read-Only `GET`)
+| Route | Query Params | Side Effects | Notes |
+| :--- | :--- | :--- | :--- |
+| `/` | `?lang=en\|zh` | Client `localStorage` write + `replaceState` | Landing page; sections `#hero`, `#projects`, `#writings` (latest 4 posts), `#work`, `#about` |
+| `/posts/` | `?page=1..7&lang=en\|zh` | Client `localStorage` + `pushState`/`replaceState` | Renders all 84 `.writing-card` nodes; paginates 12/page in DOM |
+| `/posts/:year/:month/:day/:title/` | `?lang=en\|zh` | Client DOM code/table wrapping, lightbox, conditional KaTeX/Mermaid/Prism | Canonical article route (`_layouts/post.html`); shows up to 4 recommended posts |
+| `/about/` (and `/about.html`) | `?lang=en\|zh` | Client `localStorage` + `replaceState` | Canonical URL is `/about/`; dual static files `about/index.html` and `about.html` |
+| `/about/index-en.md`, `/about/index.md` | None | None (pure static Markdown) | Machine-readable EN / ZH profiles |
+| `/projects.html` (and `/projects/`) | `?lang=en\|zh` | Client `localStorage` + `replaceState` | Canonical URL is `/projects.html` (includes PatchCat + FerryCat); `/projects/index.html` omits FerryCat |
+| `/llms.txt`, `/llms-full.txt` | None | None (pure static Markdown) | Compact routing layer vs. full contract + archive |
+| `/sitemap.xml`, `/robots.txt` | None | None | Crawler index and allow/disallow rules |
+| `/1a80b0d890a5499d9a25fa10002f08df.txt` | None | None | IndexNow host ownership verification token |
+| `/google6f8fbb64d5319944.html` | None | None | Google Search Console verification file |
+
+### 3.2 Client Runtime Constants (`assets/app.js`)
+| Constant / Attribute | Exact Value | Scope / Unit |
+| :--- | :--- | :--- |
+| `SCROLL_SHADOW_THRESHOLD` | `12` | px; adds `.is-scrolled` to `.top-nav` |
+| `SCROLL_SPY_OFFSET` | `160` | px; viewport offset for active section matching |
+| `HUD_INDICATOR_THRESHOLD` | `90` | px; adds `.active` to `#hudIndicator` |
+| `MESH_DRIFT_FACTOR` | `0.12` | multiplier for `#parallaxBgMesh` Y translation |
+| `HERO_DEPTH_MULTIPLIER` | `1.5` | multiplier for `.parallax-layer` depth translation |
+| `HERO_FADE_RATIO` | `0.95` | fraction of hero height over which opacity fades to 0 |
+| `HERO_EXTRA_RANGE` | `100` | px; scroll margin beyond hero height before stopping updates |
+| `HERO_FALLBACK_HEIGHT` | `600` | px; fallback when `heroSection.offsetHeight` is 0 |
+| `MARQUEE_DAMPING` | `0.82` | per-frame velocity decay factor |
+| `MARQUEE_ACCELERATION` | `0.18` | scroll delta weight into marquee velocity |
+| `MARQUEE_SHIFT_FACTOR` | `0.6` | velocity-to-pixel conversion factor |
+| `MARQUEE_MAX_OFFSET` | `200` | px; clamp bound `[-200, +200]` for marquee translation |
+| `CARD_PARALLAX_RANGE` | `24` | px; max `--card-parallax-y` offset for in-viewport `.vibe-card` |
+| `TILT_MAX_DEG` | `6` | deg; max 3D rotateX/rotateY on fine-pointer hover |
+| `TILT_LIFT_PX` | `-3` | px; Y translation on hover tilt |
+| `TILT_DEPTH_PX` | `8` | px; Z translation on hover tilt |
+| `TILT_PERSPECTIVE_PX` | `900` | px; CSS perspective distance |
+| `COPY_FEEDBACK_MS` | `2000` | ms; duration of `COPIED!` button state (`#7fff00` bg) |
+| `LIGHTBOX_CLEAR_MS` | `220` | ms; delay before clearing `#neoLightboxImg.src` after close |
+| `LANG_STORAGE_KEY` | `'guobug_lang'` | `localStorage` key |
+| `DEFAULT_LANG` | `'en'` | default locale when URL and storage have no valid value |
+| `data-per-page` | `12` | cards per page on `#postsArchiveGrid` (fallback `12`) |
+| Pagination smooth-scroll top offset | `70` | px subtracted from `.section-header` top on page click |
+
+### 3.3 Jekyll Post Front Matter Schema (`_posts/YYYY-MM-DD-slug.md`)
+- Observed keys across 84 posts: `layout` (`post`), `title`, `title_en`, `date`, `categories`, `tags`, `pub_tag`, `read_time`, `series`, `summary`, `summary_en`, `math`.
+- Additional optional keys consumed by templates: `seo_title` (overrides `<title>`), `last_modified_at` (used in `article:modified_time`, JSON-LD `dateModified`, `sitemap.xml` `<lastmod>`), `mermaid: true` (forces Mermaid 10 ESM), `highlight: true` (forces PrismJS 1.29.0).
+
+### 3.4 IndexNow CLI & HTTP Payload Contract (`.github/scripts/trigger_indexnow.py`)
+- Environment variables: `GIT_BEFORE` (optional, default `""`), `GIT_AFTER` (optional, default `"HEAD"`).
+- Hardcoded constants: `HOST = "guobug.github.io"`, `KEY = "1a80b0d890a5499d9a25fa10002f08df"`, `KEY_LOCATION = "https://guobug.github.io/1a80b0d890a5499d9a25fa10002f08df.txt"`, `INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow"`.
+- HTTP request: `POST https://api.indexnow.org/indexnow`, `Content-Type: application/json; charset=utf-8`, `User-Agent: IndexNow-Automation/1.0`, `timeout=15` seconds, JSON body `{"host": HOST, "key": KEY, "keyLocation": KEY_LOCATION, "urlList": [...]}`.
+- Side effects: outbound HTTP `POST` to IndexNow API; no local file mutations. Success statuses: HTTP `200` or `202`.
+
+---
+
+## 4. Error Envelope & Deterministic Remediation
+
+| Subsystem | Error / Condition | Exact Trigger in Source | Retryable? | Deterministic Remediation Action |
+| :--- | :--- | :--- | :--- | :--- |
+| `trigger_indexnow.py` | `urllib.error.HTTPError` (400 / 403 / 422) | IndexNow rejects malformed payload, key mismatch (`KEY_LOCATION` unreachable), or URL outside `HOST`; process exits with code `1` | **NO — DO NOT RETRY in a loop** | Verify `https://guobug.github.io/1a80b0d890a5499d9a25fa10002f08df.txt` returns HTTP 200 with exact key string and all `urlList` entries match `HOST`. |
+| `trigger_indexnow.py` | `urllib.error.HTTPError` (429 / 5xx) or network timeout (`timeout=15`) | Upstream IndexNow rate limit, transient server error, or socket timeout; process exits with code `1` | Yes (bounded backoff) | Re-run `.github/workflows/indexnow.yml` via `workflow_dispatch` after exponential backoff (>= 60s). |
+| `trigger_indexnow.py` | `subprocess.CalledProcessError` on `git diff` | Shallow clone missing `GIT_BEFORE` commit or detached git state; caught and logged as warning | No (auto-recovered) | Script automatically falls back to submitting the latest 3 `_posts/*.md` URLs plus `/llms.txt`, `/llms-full.txt`, and `/sitemap.xml` (exits `0` if HTTP succeeds). |
+| `assets/app.js` | `localStorage` `SecurityError` / `QuotaExceededError` | Private browsing mode, disabled cookies/storage, or full quota in `readStoredLang`/`writeStoredLang` | **NO** | Silently degraded to in-memory session state; pass `?lang=zh` or `?lang=en` in URL to preserve locale across navigations. |
+| `assets/app.js` | `Error('copy unavailable')` | Non-HTTPS / non-localhost origin lacking `navigator.clipboard.writeText` AND `document.execCommand('copy')` returns `false` | **NO** | Rejected promise is caught silently; code block remains selectable for manual copy. Serve over HTTPS or `localhost` to enable Clipboard API. |
+| `assets/app.js` | Invalid `?lang=` or `?page=` query params | `?lang` not in `{'en', 'zh'}`; `?page` non-numeric, `< 1`, or `> totalPages` | **NO** | Deterministically normalized: unknown `lang` -> `'en'`; invalid `page` -> `1`; `page > totalPages` -> clamped to `totalPages`. |
+| `_layouts/post.html` | KaTeX parse failure | Malformed LaTeX inside `script[type^="math/tex"]` or auto-render delimiters | **NO** | `katex.render` runs with `throwOnError: false` inside `try/catch` (`console.error('KaTeX error:', e)`); fix LaTeX syntax in source `_posts/*.md`. |
+| GitHub Pages Origin | HTTP `404 Not Found` | Requesting excluded paths (`/history/*`, `/preview/*`, `/devto/*`, `/README.md`, `/README_zh.md`) or unimplemented routes (`/api/*`, `/feed.xml`, `/search`) | **NO — DO NOT RETRY** | Fetch canonical routes from `/sitemap.xml` or `/llms.txt`; read excluded repository files via GitHub raw/API (`https://github.com/GuoBug/guobug.github.io`) instead of Pages origin. |
+
+---
+
+## 5. Security Boundaries, Trade-offs & Explicit Non-Goals
+
+### 5.1 Security Boundaries
+- **Subresource Integrity (SRI)**: All KaTeX `0.16.9` CSS/JS (jsDelivr) and PrismJS `1.29.0` JS (cdnjs) tags enforce `integrity="sha384-..."`, `crossorigin="anonymous"`, and `referrerpolicy="no-referrer"`.
+- **DOM Injection Defense**: Dynamic text in `assets/app.js` (`buildCodeHeader` language label, `enhanceAllTables` `data-title`/`data-badge`, `openLightbox` `alt` caption) is assigned via `textContent` rather than interpolated into `innerHTML`.
+- **External Navigation Isolation**: External links use `target="_blank" rel="noopener noreferrer"`.
+- **Public Verification Tokens vs. Secrets**: The IndexNow key (`1a80b0d890a5499d9a25fa10002f08df`) and Google Search Console token (`google6f8fbb64d5319944`) are intentionally public domain-ownership artifacts, not authentication secrets. The repository contains zero private API keys or credentials.
+- **Third-Party Analytics**: All HTML layouts load Google Analytics 4 (`gtag.js`, measurement ID `G-T4M2BFHCNY`). Markdown protocol endpoints (`/llms.txt`, `/llms-full.txt`, `/about/index.md`, `/about/index-en.md`) load zero scripts or trackers.
+
+### 5.2 Engineering Trade-offs
+- **Client-Side Archive Pagination**: `/posts/` renders all 84 `.writing-card` elements in static HTML and hides 72 of them via `.page-hidden`. Trade-off: zero server round-trips and single-page full crawlability for search engines, at the cost of linear HTML size growth as post count increases.
+- **Dual Static Pages (`projects.html` vs. `projects/index.html`)**: `about.html`/`about/index.html` and `projects.html`/`projects/index.html` are maintained as separate static HTML files rather than Jekyll layouts. Currently `projects.html` (canonical) includes the FerryCat card, whereas `projects/index.html` does not.
+- **Mermaid ESM Integrity**: When `needs_mermaid` triggers, `_layouts/post.html` imports `mermaid@10/dist/mermaid.esm.min.mjs` as an ES module without an SRI attribute (mitigated by static SVG policy: 0 posts currently set `mermaid: true`).
+- **Immediate Future-Dated Publishing**: `_config.yml` sets `future: true`, meaning `_posts/` entries with dates ahead of build time publish immediately on push to `main`.
+
+### 5.3 Explicit Non-Goals (Not Implemented / Returns 404 on Origin)
+- **No Backend API or Dynamic Compute**: `guobug.github.io` is a pure static GitHub Pages host. There are no `/api/*`, GraphQL, WebSocket, or MCP server endpoints hosted on this domain.
+- **No Server-Side Search Endpoint**: There is no `/search` endpoint or JSON search index API on this site. Agents should query `/sitemap.xml`, `/llms.txt`, or `/llms-full.txt`.
+- **No RSS / Atom Feed**: `/feed.xml` and `/rss.xml` are not configured (`jekyll-feed` is not enabled in `_config.yml`) and return 404.
+- **No Authentication, Comments, or Form Submission**: No login, session cookie, comment POST, or newsletter signup endpoints exist.
+- **No Public Serving of Excluded Directories**: `history/`, `preview/`, `devto/`, `README.md`, and `README_zh.md` are excluded in `_config.yml` and return 404 at `https://guobug.github.io/`.
+
+---
+
+## 6. Core Open-Source Systems
 
 ### 1. PatchCat (AI Prompt Flow Orchestrator)
 - Repository: https://github.com/GuoBug/PatchCat
 - Live Demo: https://guobug.github.io/PatchCat/
-- Technical Highlights:
-  - Visual DAG workflow editor built on React Flow and Zustand.
-  - Client-side topological sorting and cycle detection via Kahn's algorithm.
-  - Streaming SSE parser with real-time DeepSeek R1 reasoning chain rendering.
-  - Decoupled state machines (`useProjectStore` & `useWorkflowStore`) achieving zero dirty re-renders and smooth 60fps canvas operations.
-  - StorageAdapter contract pattern supporting dual-mode persistence: zero-install browser LocalStorage and asynchronous FastAPI backend (SQLite / PostgreSQL).
-- Video Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
+- Screencast Demo: https://guobug.github.io/posts/2026/09/15/patchcat-demo-video/
+- Verified Architecture:
+  - Client-only, local-first visual DAG workflow editor built on React Flow and Zustand (`useProjectStore` & `useWorkflowStore` decoupled state slices).
+  - Client-side Kahn topological sort for cycle detection and wavefront concurrency partitioning.
+  - Two-tier structured output defense: L1 pre-sampling Logits masking + L2 Zod `.safeParse()` business contract with L4 Never-Throw degradation.
+  - 5-second Web Worker sandbox for `builtin_code` tool execution and 3-consecutive-call signature (`callSig`) ReAct deadlock circuit breaker.
+  - StorageAdapter contract supporting dual-mode persistence: browser LocalStorage / IndexedDB v7 (30-snapshot quota, canonical SHA-256 topological hash, LCS structural diff) and optional asynchronous FastAPI backend.
+  - Zero-backend hybrid search: 500-line client BM25 inverted index + Web Worker BGE-small ONNX embeddings + Reciprocal Rank Fusion (RRF, `k=60`).
 
 ### 2. FerryCat (Contract-Driven Cross-Host AI Agent Handoff & Review Bus)
 - Repository: https://github.com/GuoBug/FerryCat
 - Empirical Trajectory Archive: https://github.com/GuoBug/FerryCat/blob/main/docs/real-mesh-trajectory.json
-- Technical Highlights:
-  - Deterministic 6-state contract bus (SUBMITTED, CLAIMED, COMPLETED, POINTER_STALE, VALIDATION_FAILED, TIMED_OUT) over MCP stdio and zero-addon 
-ode:sqlite (WAL mode).
-  - Full-file SHA-256 fingerprint verification, 3-second dirty-buffer warning with first/last line snapshots, and TOCTOU re-verification upon contract fulfillment to eliminate silent blind reviews on stale files.
-  - Bounded Ajv JSON Schema output validation (RETRY_NEEDED <= 2) with human-scheduled instant atomic polling (poll_next_task).
+- Verified Architecture:
+  - Deterministic contract bus over MCP stdio and Node.js built-in `node:sqlite` (WAL mode, zero native C++ addons).
+  - Full-file SHA-256 fingerprint verification, 3-second dirty-buffer warning, and TOCTOU re-verification on fulfillment (`POINTER_STALE`).
+  - Single-statement SQL CAS dispatch (`poll_next_task`) with kernel-issued UUID `claim_token` lease guards across all lifecycle mutations.
+  - Bounded Ajv JSON Schema output validation (`RETRY_NEEDED <= 2`), lazy heartbeat keep-alive, 256KB partial-output salvage, and 3-phase daemon WAL (`daemon-journal.jsonl`).
 
 ### 3. EdgeCat (Local-First AI Inference Governance Gateway)
 - Repository: https://github.com/GuoBug/EdgeCat
-- Technical Highlights:
+- Verified Architecture:
   - Pure static Go 1.26+ (`CGO_ENABLED=0`) dual-track inference governance gateway bridging local Ollama/vLLM compute and cloud fallback endpoints.
-  - Frame-level 3-channel sliding-window SSE rehydrator (`content`, `reasoning_content`, `tool_calls`) resolving cross-chunk BPE token slicing and split closing braces (`}}`) with zero TTFT latency penalty and zero-disk-persistence in-memory PII Vaults.
-  - Weighted concurrency semaphores, TTFT watchdogs, rolling SSE idle deadlines, and lossless wire passthrough (`json.Number`, `SetEscapeHTML(false)`).
+  - Frame-level 3-channel sliding-window SSE rehydrator (`content`, `reasoning_content`, `tool_calls`) with `MaxPendingLength = 64` bytes and split closing-brace (`}}`) tolerance; zero-disk-persistence in-memory PII Vaults.
+  - Weighted concurrency semaphores, TTFT watchdogs, rolling SSE idle deadlines, and lossless wire passthrough (`map[string]any`, `json.Number`, `SetEscapeHTML(false)`).
   - Homelab LAN sharing with Fail-Closed startup guards, Chrome Private Network Access (PNA) preflight support, and SQLite WAL atomic daily cloud fallback quotas (`daily_cloud_limit`).
 
-### 4. Metaphysics Tools
-- Live App: https://guobug.github.io/metaphysics-tools/index.html#
-- Interactive algorithmic modeling and visual computing experiments.
+### 4. Creative Labs & Hardware
+- Metaphysics Tools: https://guobug.github.io/metaphysics-tools/index.html# (Bazi, I Ching, Ziwei algorithmic modeling).
+- Kindle Weather Station: https://github.com/GuoBug/kindle-weather-station (E-Ink display dashboard and 7-segment clock).
 
 ---
 
@@ -421,7 +631,7 @@ ode:sqlite (WAL mode).
 ### Engineering Leadership & Remote Work
 - [从混沌输入到确定性发布：我在极狐GitLab的产品规划流（Planning Workflow）复盘](https://guobug.github.io/posts/2026/10/29/gitlab-cn-product-planning-workflow-retrospective/)
   - **Problem**: (1) Unbounded Intake Chaos: In high-velocity commercial and open-source dual-track environments, product teams face fragmented feature requests from sales pipeline blockers, customer success escalations, strategic alliance integrations, and upstream open-source MR review windows, leading to chronic scope creep and sprint thrashing. (2) Prioritization Friction: Without structured criteria, backlog triage collapses into subjective lobbying and loudest-voice prioritization, neglecting engineering feasibility and business viability. (3) Release Cadence Breakdown: Asynchronous cross-organizational dependencies and upstream review unpredictability cause unpredictable release delays when features are planned without upstream merge runway.
-  - **Solution**: Formulated a deterministic, contract-driven planning workflow based on GitLab CN production experience: (1) Contract-Driven Intake & Labels as State Machine: Eliminated private-channel requests by mandating structured issue templates with strict type taxonomies (	ype::feature/bug/maintenance), originating team provenance (Team::*), and business-weighted customer priority tiers (CREQ::blocker/high/low); (2) 4-Way Evaluation & 2x2 Value-Complexity Matrix: Deployed collaborative triage across Product (Value, Business Viability), UX (Usability), and Engineering (Feasibility) to classify issues into 4 actionable quadrants (Ship First, Decompose Strategic Epics, Fill Idle Backlog, or Reject & Drop); (3) 3-Version Rolling Backlog & Scope Freeze Gateways: Maintained rolling multi-milestone visibility (M, M+1, M+2) to absorb upstream MR review lag, enforced M-2 milestone technical discovery, and instituted an absolute scope freeze at M-1 prior to execution; (4) Localized Monthly Release Train: Aligned with GitLab Inc. monthly cadence while offsetting release by +1 week for end-to-end localization packaging and verification.
+  - **Solution**: Formulated a deterministic, contract-driven planning workflow based on GitLab CN production experience: (1) Contract-Driven Intake & Labels as State Machine: Eliminated private-channel requests by mandating structured issue templates with strict type taxonomies (type::feature/bug/maintenance), originating team provenance (Team::*), and business-weighted customer priority tiers (CREQ::blocker/high/low); (2) 4-Way Evaluation & 2x2 Value-Complexity Matrix: Deployed collaborative triage across Product (Value, Business Viability), UX (Usability), and Engineering (Feasibility) to classify issues into 4 actionable quadrants (Ship First, Decompose Strategic Epics, Fill Idle Backlog, or Reject & Drop); (3) 3-Version Rolling Backlog & Scope Freeze Gateways: Maintained rolling multi-milestone visibility (M, M+1, M+2) to absorb upstream MR review lag, enforced M-2 milestone technical discovery, and instituted an absolute scope freeze at M-1 prior to execution; (4) Localized Monthly Release Train: Aligned with GitLab Inc. monthly cadence while offsetting release by +1 week for end-to-end localization packaging and verification.
   - **Outcome**: Established a deterministic delivery rhythm transforming multi-stakeholder chaos into predictable monthly releases; systematically audited operational boundaries including label maintenance overhead, subjective value-scoring drift, and cross-timezone upstream review latency.
 - [FDE 理念与企业级数据治理实战](https://guobug.github.io/posts/2026/08/14/fde-enterprise-governance/)
   - Forward Deployed Engineering (FDE) methodology, high-trust client delivery, and data governance frameworks.
